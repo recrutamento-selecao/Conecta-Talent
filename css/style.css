@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.header {
+    background: linear-gradient(90deg,
+            #0A2FD8 0%,
+            #2563EB 45%,
+            #4F8DFF 100%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 30px;
+}
+
+.logo{
+    color: #ffffff;
+}
+
+.navegacao {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.btn-menu{
+    background-color: transparent;
+    border-style: none;
+    color: white;
+    font-size: 15px;
+    transition: .25s;
+}
+
+.btn-menu:hover{
+    color: white;
+    transform: scale(1.05);
+}
+.acesso {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.btn-entrar{
+    background-color: transparent;
+    border: 1px solid #C7C5D0;
+    padding: 10px 35px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.btn-entrar:hover{
+    color: #FFFFFF;
+    background: rgba(255,255,255,.08);
+}
+
+.btn-cadastrar{
+    background: #ffffff;
+    padding: 10px 35px;
+    border: none;
+    border-radius: 5px;
+    color:#0A2FD8;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.btn-cadastrar:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+}
