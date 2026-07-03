@@ -99,7 +99,7 @@ imagemHero.alt = "Profissional utilizando notebook";
 const cardsBeneficio = document.createElement('section');
 cardsBeneficio.classList.add('cards-secao');
 
-const tituloBeneficio = document.createElement('h4');
+const tituloBeneficio = document.createElement('h2');
 tituloBeneficio.classList.add('titulo-secao');
 tituloBeneficio.textContent = 'Tudo que você precisa em um só lugar';
 
@@ -112,26 +112,40 @@ cardsContainer.classList.add('cards-container');
 
 
 const cardCandidato = document.createElement('div');
-cardCandidato.classList.add('card-beneficio');
+cardCandidato.classList.add('card-candidato');
 const tituloCandidato = document.createElement('p');
 tituloCandidato.classList.add('titulo-card');
 tituloCandidato.textContent = "Para Candidatos";
 const conteudoCandidato = document.createElement('p');
+const iconeCandidato = document.createElement('img');
+iconeCandidato.classList = 'icone-beneficio';
+iconeCandidato.src = "img/icons/people.svg"
+iconeCandidato.alt = "Candidatos";
 conteudoCandidato.classList.add('descricao-card');
 conteudoCandidato.textContent = "Encontre oportunidades compatíveis com seu perfil, acompanhe suas candidaturas e conecte-se com empresas de forma rápida e simples.";
 
+
+
 const cardEmpresa = document.createElement('div');
-cardEmpresa.classList.add('card-beneficio');
+cardEmpresa.classList.add('card-empresa');
 const tituloEmpresa = document.createElement('p');
 tituloEmpresa.classList.add('titulo-card');
 tituloEmpresa.textContent = "Para Empresas";
+const iconeEmpresa = document.createElement('img');
+iconeEmpresa.classList = 'icone-beneficio';
+iconeEmpresa.src = "img/icons/building.svg"
+iconeEmpresa.alt = "Empresas";
 const conteudoEmpresa = document.createElement('p');
 conteudoEmpresa.classList.add('descricao-card');
 conteudoEmpresa.textContent = "Publique vagas, gerencie recrutadores e encontre os profissionais ideais em uma plataforma moderna e intuitiva."
 
 
 const cardProcessos = document.createElement('div');
-cardProcessos.classList.add('card-beneficio');
+cardProcessos.classList.add('card-processo');
+const iconeProcesso = document.createElement('img');
+iconeProcesso.classList = 'icone-beneficio';
+iconeProcesso.src = "img/icons/clipboard2-check.svg"
+iconeProcesso.alt = "Processos simplificados";
 const tituloProcessos = document.createElement('p');
 tituloProcessos.classList.add('titulo-card');
 tituloProcessos.textContent = "Processos simplificados";
@@ -141,10 +155,14 @@ conteudoProcessos.textContent = "Automatize etapas do recrutamento, organize can
 
 
 const cardSeguranca = document.createElement('div');
-cardSeguranca.classList.add('card-beneficio');
+cardSeguranca.classList.add('card-seguranca');
+const iconeSeguranca = document.createElement('img');
+iconeSeguranca.classList = 'icone-beneficio';
+iconeSeguranca.src = "img/icons/shield-check.svg";
+iconeSeguranca.alt = "Segurança e confiabilidade";
 const tituloSeguranca = document.createElement('p');
 tituloSeguranca.classList.add('titulo-card');
-tituloSeguranca.textContent = "Processos simplificados";
+tituloSeguranca.textContent = "Segurança e confiança";
 const conteudoSeguranca = document.createElement('p');
 conteudoSeguranca.classList.add('descricao-card');
 conteudoSeguranca.textContent = "Proteja os dados da sua empresa e dos seus candidatos com uma plataforma desenvolvida para oferecer privacidade e confiabilidade."
@@ -179,9 +197,15 @@ cardsBeneficio.appendChild(subtituloBeneficio);
 cardsBeneficio.appendChild(cardsContainer);
 
 cardsContainer.appendChild(cardCandidato);
+cardCandidato.appendChild(iconeCandidato);
+cardCandidato.appendChild(tituloCandidato); 
+cardCandidato.appendChild(conteudoCandidato);
 cardsContainer.appendChild(cardEmpresa);
+cardEmpresa.appendChild(iconeEmpresa);
 cardsContainer.appendChild(cardProcessos);
+cardProcessos.appendChild(iconeProcesso);
 cardsContainer.appendChild(cardSeguranca);
+cardSeguranca.appendChild(iconeSeguranca);
 
 cardCandidato.appendChild(tituloCandidato);
 cardCandidato.appendChild(conteudoCandidato);
