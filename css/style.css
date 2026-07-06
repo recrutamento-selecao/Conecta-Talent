@@ -210,12 +210,14 @@
 .susbtitulo-beneficio{
     font-size: 18px;
     margin-top: 10px;
+    padding-top: 18px;
 }
 
 .cards-container{
     display: flex;
     gap: 30px;
     margin: 25px;
+    padding-top: 15px;
     
     
 }
@@ -226,25 +228,31 @@
     grid-template-columns: 60px 1fr;
     border-radius: 20px;
     width: 400px;
-   
-
 
 }
 
 .icone-beneficio{
+     background: linear-gradient(
+        180deg,
+        #F5F8FE 0%, 
+        #EAF2FF 50%, 
+        #DCE9FD 100%
+    );
     grid-column: 1;
     grid-row: 1;
-    height: 60px;
-
-
+    margin: 15px;
+    height: 50px;
+    padding: 5px;
+    border-radius: 10px;
+    
 }
 
 .titulo-card{
     display: flex;
+    margin-left: 20px;
     grid-column: 2;
     grid-row: 1;
     align-items: center;
-    margin: 10px;
     font-weight: 750;
 }
 
@@ -252,9 +260,210 @@
     grid-column: 1 / 3;
     grid-row: 2;
     margin: 15px 10px ;
+}
+
+.saiba-mais{
+    grid-column: 1 / 3;
+    justify-self: start;
+    padding: 8px;
+    background: transparent;
+    font-weight: 600;
+    border: none;
+    color: #1A3BBF;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.saiba-mais:hover{
+    color:#0F2EA3;
+    transform: translateX(5px);
+}
+
+.secao-funciona{
+    display: flex;
+    flex-direction: column;
     
+    width: 97%;
+    margin: 20px;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.titulo-funciona{
+    margin-top: 15px;
+    font-size: 16px;
+    color: #1A3BBF;
     
 }
+.subtitulo-funciona{
+    margin-top: 20px;
+    font-size: 25px;
+}
+.descricao-funciona{
+    margin-top: 10px;
+}
+
+.container-funciona{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid red;
+    margin-top: 15px;
+    width: 97%;
+    
+
+}
+
+.candidato-funciona{
+    border: 1px solid blue;
+    width:50%;
+    
+}
+
+.cabecalho-candidato{
+    display: flex;
+    border: 1px solid rgb(55, 243, 86);
+    width: 80%;
+}
+
+.icone-funciona-candidato{
+    background: linear-gradient(
+        180deg,
+        #F5F8FE 0%, 
+        #EAF2FF 50%, 
+        #DCE9FD 100%
+    );
+    width: 70px;
+    height: 80px;
+    border-radius: 10px;
+    margin: 15px;
+    padding: 5px;
+}
+
+.texto-funciona-candidato{
+    margin: 20px;
+}
+
+.titulo-funciona-candidato{
+    color: #1A3BBF;
+}
+
+.subtitulo-funciona-candidato{
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.empresa-funciona{
+    border: 1px solid orange;
+    width:50%;
+}
+.cabecalho-empresa{
+    display: flex;
+    border: 1px solid rgb(55, 243, 86);
+    width: 80%;
+}
+
+.icone-funciona-empresa{
+    background: linear-gradient(
+        180deg,
+        #F5F8FE 0%, 
+        #EAF2FF 50%, 
+        #DCE9FD 100%
+    );
+    width: 70px;
+    height: 80px;
+    border-radius: 10px;
+    margin: 15px;
+    padding: 5px;
+}
+.titulo-funciona-empresa{
+    color: #1A3BBF;
+}
+
+.texto-funciona-empresa{
+    margin: 20px;
+}
+
+.subtitulo-funciona-empresa{
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -278,6 +487,9 @@
 
     .imagem-hero {
         max-width: 500px;
+    }
+    .cards-container{
+        max-width: 1200px;
     }
 
     .input-buscar {
