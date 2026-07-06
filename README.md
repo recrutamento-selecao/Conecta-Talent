@@ -1,4 +1,4 @@
-# SimulaLab - Sistema de recrutamento e seleção (Educacional)
+# Conecta Talent - Sistema de recrutamento e seleção (Educacional)
 
 ## Descrição geral do sistema
 
