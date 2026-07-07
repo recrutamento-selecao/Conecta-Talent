@@ -1,4 +1,3 @@
-
 const app = document.getElementById('app');
 
 // HEADER
@@ -58,11 +57,8 @@ const descricaoHero = document.createElement('p');
 descricaoHero.classList.add('descricao-hero');
 descricaoHero.textContent = "Encontre a vaga para o seu perfil ou publique vagas e conecte-se com talentos incríveis."
 
-const buscarVagasHero = document.createElement('div');
-buscarVagasHero.classList.add('buscar-vagas-principal');
-
-const conteudoBuscarVagas = document.createElement('div');
-conteudoBuscarVagas.classList.add('conteudo-buscar');
+const areaBusca = document.createElement('div');
+areaBusca.classList.add('area-buscar-vagas');
 
 const tituloVagasHero = document.createElement('h3');
 tituloVagasHero.classList.add('encontre-vaga');
@@ -72,20 +68,39 @@ const tituloBusqueCargo = document.createElement('h4');
 tituloBusqueCargo.classList.add('busque-cargos');
 tituloBusqueCargo.textContent = 'Busque por cargo, palavra-chave ou localização.';
 
+const areaBuscaInput = document.createElement('div');
+areaBuscaInput.classList.add('area-busca-input');
+const campoBuscarVagas = document.createElement('div');
+campoBuscarVagas.classList.add('campo-buscar-vagas');
 const inputBuscarVagas = document.createElement('input');
 inputBuscarVagas.classList.add('input-buscar');
 inputBuscarVagas.type = "search";
 inputBuscarVagas.placeholder = "Cargo ou palavra-chave";
+const iconePesquisar = document.createElement('img');
+iconePesquisar.src = "img/icons/search.svg";
+iconePesquisar.classList.add('icone-pesquisar');
 
-const inputLocalizacao = document.createElement('input');
+
+const campoBuscarLocalizacao = document.createElement('div');
+campoBuscarLocalizacao.classList.add('campo-buscar-localizacao');
+const inputLocalizacao = document.createElement('input'); 
 inputLocalizacao.classList.add('input-localizar');
 inputLocalizacao.type = "text";
 inputLocalizacao.placeholder = "Localização";
+const iconeLocalizacao = document.createElement('img');
+iconeLocalizacao.src = "img/icons/map-pin.svg";
+iconeLocalizacao.classList.add('icone-localizacao');
 
 
+const campobtnBuscar = document.createElement('div');
+campobtnBuscar.classList.add('campo-btn-buscar');
 const btnBuscarVagas = document.createElement('button');
 btnBuscarVagas.classList.add('btn-buscar-vagas');
+const iconePesquisarBranco = document.createElement('img');
+iconePesquisarBranco.classList.add('icone-pesquisar-branco');
+iconePesquisarBranco.src = "img/icons/search-branco.svg";
 btnBuscarVagas.textContent = "Buscar vagas";
+
 
 const heroImagem = document.createElement('div');
 heroImagem.classList.add('hero-imagem');
@@ -217,7 +232,7 @@ passosCandidato1.classList.add('passo-candidato1');
 const conteudoPasso1 = document.createElement('div');
 conteudoPasso1.classList.add('conteudo-passo1')
 const numeroPasso1 = document.createElement('div');
-numeroPasso1.classList.add('numero-passo1');
+numeroPasso1.classList.add('numero-candidato-passo1');
 numeroPasso1.textContent = "1";
 const tituloPasso1 = document.createElement('div');
 tituloPasso1.classList.add('titulo-passo1');
@@ -385,20 +400,27 @@ acesso.appendChild(btnCadastrar);
 main.appendChild(section);
 section.appendChild(heroConteudo);
 section.appendChild(heroImagem);
-
 heroConteudo.appendChild(tituloHero);
-heroConteudo.appendChild(descricaoHero);
-heroConteudo.appendChild(buscarVagasHero);
-
-heroConteudo.appendChild(conteudoBuscarVagas);
-
-conteudoBuscarVagas.appendChild(tituloVagasHero)
-conteudoBuscarVagas.appendChild(tituloBusqueCargo)
-buscarVagasHero.appendChild(inputBuscarVagas);
-buscarVagasHero.appendChild(inputLocalizacao);
-buscarVagasHero.appendChild(btnBuscarVagas);
-
+heroConteudo.appendChild(descricaoHero); 
 heroImagem.appendChild(imagemHero);
+heroConteudo.appendChild(areaBusca); //aqui começa a área que busca vaga
+areaBusca.appendChild(tituloVagasHero);
+areaBusca.appendChild(tituloBusqueCargo);
+areaBusca.appendChild(areaBuscaInput);
+areaBuscaInput.appendChild(campoBuscarVagas);
+campoBuscarVagas.appendChild(iconePesquisar);
+campoBuscarVagas.appendChild(inputBuscarVagas);
+areaBuscaInput.appendChild(campoBuscarLocalizacao);
+campoBuscarLocalizacao.appendChild(iconeLocalizacao);
+campoBuscarLocalizacao.appendChild(inputLocalizacao);
+areaBuscaInput.appendChild(campobtnBuscar);
+campobtnBuscar.appendChild(btnBuscarVagas);
+btnBuscarVagas.appendChild(iconePesquisarBranco);
+
+
+
+
+
 
 cardsBeneficio.appendChild(tituloBeneficio);
 cardsBeneficio.appendChild(subtituloBeneficio);

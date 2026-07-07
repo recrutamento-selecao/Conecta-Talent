@@ -130,53 +130,86 @@
 
 }
 
-.conteudo-buscar {
-    transform: translateY(-110px);
-    margin-left: 15px;
-    color: white;
-}
-
-.encontre-vaga {
-    margin-bottom: 5px;
-
-}
-
-.busque-cargos {
-    font-weight: 400;
-}
-
-.buscar-vagas-principal {
+.area-buscar-vagas{
     background: linear-gradient(90deg,
             #0066FF 18%,
             #408CFF 52%,
             #5D9EFF 75%);
     display: flex;
-    margin-top: 40px;
-    gap: 10px;
-    padding: 60px 20px 10px 10px;
+    flex-direction: column;
     border-radius: 20px;
+    gap: 4px;
+    padding: 5px 40px 20px 5px;
+    margin-top: 20px;
+}
+
+.encontre-vaga {
+    color: white;
 
 }
+
+.busque-cargos {
+    color: white;
+    font-weight: 400;
+}
+
+.area-busca-input{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+
+
+.campo-buscar-vagas,
+.campo-buscar-localizacao
+{
+    display: flex;
+    position: relative;
+    padding: 5px;
+
+}
+
 
 .input-buscar,
 .input-localizar {
     height: 45px;
     border: none;
     border-radius: 15px;
-    padding: 0 48px;
+    padding: 0 35px;
     background-color: #FFFFFF;
     color: #1F2937;
     font-size: 15px;
 }
 
-.input-buscar {
-    width: 100%;
-    max-width: 400px;
+.icone-pesquisar,
+.icone-localizacao
+{
+    position: absolute;
+    top: 24%;
+    left: 4%;
 }
 
-.input-localizar {
-    width: 100%;
-    max-width: 250px;
+.btn-buscar-vagas {
+    display: flex;
+    width: 140px;
+    align-items: center;
+    justify-content: center;
+    height: 45px;
+    padding-left: 15px;
+    border-radius: 15px;
+    border-style: none;
+    background: #1A3BBF;
+    color: #FFFFFF;
+    white-space: nowrap;
+    gap: 10px;
+    
+}
+
+.icone-pesquisar-branco{
+    width: 20px;
+    height: 20px;
 }
 
 .input-buscar::placeholder,
@@ -184,16 +217,6 @@
     color: #8A8A8A;
 
 }
-
-.btn-buscar-vagas {
-    width: 100%;
-    max-width: 140px;
-    border-radius: 15px;
-    border-style: none;
-    background: #1A3BBF;
-    color: #FFFFFF;
-}
-
 
 .cards-secao{
     display: flex;
@@ -304,13 +327,17 @@
 }
 
 .container-funciona{
+    background: linear-gradient(
+        180deg,
+        #F5F8FE 0%, 
+        #EAF2FF 50%, 
+        #DCE9FD 100%
+    );
     display: flex;
     flex-direction: row;
     border: 1px solid red;
     margin-top: 15px;
     width: 97%;
-    
-
 }
 
 .candidato-funciona{
@@ -321,8 +348,12 @@
 
 .cabecalho-candidato{
     display: flex;
-    border: 1px solid rgb(55, 243, 86);
+    background: white;
     width: 80%;
+    border-radius: 20px;
+    margin:5px auto;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.08);;
+
 }
 
 .icone-funciona-candidato{
@@ -358,8 +389,10 @@
 }
 .cabecalho-empresa{
     display: flex;
-    border: 1px solid rgb(55, 243, 86);
+    background: white;
     width: 80%;
+    border-radius: 20px;
+    margin:5px auto;
 }
 
 .icone-funciona-empresa{
@@ -381,6 +414,7 @@
 
 .texto-funciona-empresa{
     margin: 20px;
+    
 }
 
 .subtitulo-funciona-empresa{
@@ -388,6 +422,16 @@
     margin-top: 10px;
 }
 
+/*parei aqui */
+.passo-candidato1{
+    display: flex;
+}
+
+.numero-candidato-passo1{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+}
 
 
 
@@ -501,6 +545,6 @@
     }
 
     .btn-buscar-vagas {
-        max-width: 110px;
+        max-width: 140px;
     }
 }
