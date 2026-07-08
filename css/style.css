@@ -422,16 +422,80 @@
     margin-top: 10px;
 }
 
-/*parei aqui */
-.passo-candidato1{
+
+.passo-candidato1,
+.passo-candidato2,
+.passo-candidato3,
+.passo-candidato4,
+.passo-candidato5,
+.passo-empresa1,
+.passo-empresa2,
+.passo-empresa3,
+.passo-empresa4,
+.passo-empresa5{
     display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 30px;
 }
 
-.numero-candidato-passo1{
-    width: 60px;
-    height: 60px;
-    border-radius: 30px;
+
+.numero-candidato-passo1,
+.numero-candidato-passo2,
+.numero-candidato-passo3,
+.numero-candidato-passo4,
+.numero-candidato-passo5,
+.numero-passo-empresa1,
+.numero-passo-empresa2,
+.numero-passo-empresa3,
+.numero-passo-empresa4,
+.numero-passo-empresa5{
+    display: flex;
+    background: #1A3BBF;
+    color: #FFFFFF;
+    width: 40px;
+    height: 35px;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-left: 15px;
 }
+
+.titulo-passo1,
+.titulo-passo2,
+.titulo-passo3, 
+.titulo-passo4, 
+.titulo-passo5,
+.titulo-passo-empresa1,
+.titulo-passo-empresa2,
+.titulo-passo-empresa3,
+.titulo-passo-empresa4,
+.titulo-passo-empresa5{
+    margin-left: 35px;
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.descricao-passo1,
+.descricao-passo2,
+.descricao-passo3,
+.descricao-passo4,
+.descricao-passo5,
+.descricao-passo-empresa1,
+.descricao-passo-empresa2,
+.descricao-passo-empresa3,
+.descricao-passo-empresa4,
+.descricao-passo-empresa5{
+    max-width: 350px;
+    margin-left: 35px;
+}
+
+
+
+
 
 
 

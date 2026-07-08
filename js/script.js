@@ -246,7 +246,7 @@ passosCandidato2.classList.add('passo-candidato2');
 const conteudoPasso2 = document.createElement('div');
 conteudoPasso2.classList.add('conteudo-passo2')
 const numeroPasso2 = document.createElement('div');
-numeroPasso2.classList.add('numero-passo2');
+numeroPasso2.classList.add('numero-candidato-passo2');
 numeroPasso2.textContent = "2";
 const tituloPasso2 = document.createElement('div');
 tituloPasso2.classList.add('titulo-passo2');
@@ -260,7 +260,7 @@ passosCandidato3.classList.add('passo-candidato3');
 const conteudoPasso3 = document.createElement('div');
 conteudoPasso3.classList.add('conteudo-passo3')
 const numeroPasso3 = document.createElement('div');
-numeroPasso3.classList.add('numero-passo3');
+numeroPasso3.classList.add('numero-candidato-passo3');
 numeroPasso3.textContent = "3";
 const tituloPasso3 = document.createElement('div');
 tituloPasso3.classList.add('titulo-passo3');
@@ -274,7 +274,7 @@ passosCandidato4.classList.add('passo-candidato4');
 const conteudoPasso4 = document.createElement('div');
 conteudoPasso4.classList.add('conteudo-passo4')
 const numeroPasso4 = document.createElement('div');
-numeroPasso4.classList.add('numero-passo4');
+numeroPasso4.classList.add('numero-candidato-passo4');
 numeroPasso4.textContent = "4";
 const tituloPasso4 = document.createElement('div');
 tituloPasso4.classList.add('titulo-passo4');
@@ -288,7 +288,7 @@ passosCandidato5.classList.add('passo-candidato5');
 const conteudoPasso5 = document.createElement('div');
 conteudoPasso5.classList.add('conteudo-passo5')
 const numeroPasso5 = document.createElement('div');
-numeroPasso5.classList.add('numero-passo5');
+numeroPasso5.classList.add('numero-candidato-passo5');
 numeroPasso5.textContent = "5";
 const tituloPasso5 = document.createElement('div');
 tituloPasso5.classList.add('titulo-passo5');
@@ -416,11 +416,6 @@ campoBuscarLocalizacao.appendChild(inputLocalizacao);
 areaBuscaInput.appendChild(campobtnBuscar);
 campobtnBuscar.appendChild(btnBuscarVagas);
 btnBuscarVagas.appendChild(iconePesquisarBranco);
-
-
-
-
-
 
 cardsBeneficio.appendChild(tituloBeneficio);
 cardsBeneficio.appendChild(subtituloBeneficio);
