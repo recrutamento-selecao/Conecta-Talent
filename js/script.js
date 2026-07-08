@@ -234,6 +234,8 @@ conteudoPasso1.classList.add('conteudo-passo1')
 const numeroPasso1 = document.createElement('div');
 numeroPasso1.classList.add('numero-candidato-passo1');
 numeroPasso1.textContent = "1";
+const linhaPasso1 = document.createElement('div');
+linhaPasso1.classList.add('linha-passo1');
 const tituloPasso1 = document.createElement('div');
 tituloPasso1.classList.add('titulo-passo1');
 tituloPasso1.textContent = "Crie sua conta";
@@ -248,6 +250,8 @@ conteudoPasso2.classList.add('conteudo-passo2')
 const numeroPasso2 = document.createElement('div');
 numeroPasso2.classList.add('numero-candidato-passo2');
 numeroPasso2.textContent = "2";
+const linhaPasso2 = document.createElement('div');
+linhaPasso2.classList.add('linha-passo2');
 const tituloPasso2 = document.createElement('div');
 tituloPasso2.classList.add('titulo-passo2');
 tituloPasso2.textContent = "Complete seu perfil";
@@ -262,6 +266,8 @@ conteudoPasso3.classList.add('conteudo-passo3')
 const numeroPasso3 = document.createElement('div');
 numeroPasso3.classList.add('numero-candidato-passo3');
 numeroPasso3.textContent = "3";
+const linhaPasso3 = document.createElement('div');
+linhaPasso3.classList.add('linha-passo3');
 const tituloPasso3 = document.createElement('div');
 tituloPasso3.classList.add('titulo-passo3');
 tituloPasso3.textContent = "Encontre vagas";
@@ -276,6 +282,8 @@ conteudoPasso4.classList.add('conteudo-passo4')
 const numeroPasso4 = document.createElement('div');
 numeroPasso4.classList.add('numero-candidato-passo4');
 numeroPasso4.textContent = "4";
+const linhaPasso4 = document.createElement('div');
+linhaPasso4.classList.add('linha-passo4');
 const tituloPasso4 = document.createElement('div');
 tituloPasso4.classList.add('titulo-passo4');
 tituloPasso4.textContent = "Candidate-se";
@@ -290,6 +298,8 @@ conteudoPasso5.classList.add('conteudo-passo5')
 const numeroPasso5 = document.createElement('div');
 numeroPasso5.classList.add('numero-candidato-passo5');
 numeroPasso5.textContent = "5";
+const linhaPasso5 = document.createElement('div');
+linhaPasso5.classList.add('linha-passo5');
 const tituloPasso5 = document.createElement('div');
 tituloPasso5.classList.add('titulo-passo5');
 tituloPasso5.textContent = "Seja contratado";
@@ -327,6 +337,8 @@ conteudoPassoEmpresa1.classList.add('conteudo-passo-empresa1');
 const numeroPassoEmpresa1 = document.createElement('div');
 numeroPassoEmpresa1.classList.add('numero-passo-empresa1');
 numeroPassoEmpresa1.textContent = "1";
+const linhaPassoEmpresa1 = document.createElement('div');
+linhaPassoEmpresa1.classList.add('linha-empresa-1');
 const tituloPassoEmpresa1 = document.createElement('div');
 tituloPassoEmpresa1.classList.add('titulo-passo-empresa1');
 tituloPassoEmpresa1.textContent = "Cadastre sua empresa";
@@ -341,6 +353,8 @@ conteudoPassoEmpresa2.classList.add('conteudo-passo-empresa2');
 const numeroPassoEmpresa2 = document.createElement('div');
 numeroPassoEmpresa2.classList.add('numero-passo-empresa2');
 numeroPassoEmpresa2.textContent = "2";
+const linhaPassoEmpresa2 = document.createElement('div');
+linhaPassoEmpresa2.classList.add('linha-empresa-2');
 const tituloPassoEmpresa2 = document.createElement('div');
 tituloPassoEmpresa2.classList.add('titulo-passo-empresa2');
 tituloPassoEmpresa2.textContent = "Publique uma vaga";
@@ -355,6 +369,8 @@ conteudoPassoEmpresa3.classList.add('conteudo-passo-empresa3');
 const numeroPassoEmpresa3 = document.createElement('div');
 numeroPassoEmpresa3.classList.add('numero-passo-empresa3');
 numeroPassoEmpresa3.textContent = "3";
+const linhaPassoEmpresa3 = document.createElement('div');
+linhaPassoEmpresa3.classList.add('linha-empresa-3');
 const tituloPassoEmpresa3 = document.createElement('div');
 tituloPassoEmpresa3.classList.add('titulo-passo-empresa3');
 tituloPassoEmpresa3.textContent = "Receba candidatos";
@@ -369,6 +385,8 @@ conteudoPassoEmpresa4.classList.add('conteudo-passo-empresa4');
 const numeroPassoEmpresa4 = document.createElement('div');
 numeroPassoEmpresa4.classList.add('numero-passo-empresa4');
 numeroPassoEmpresa4.textContent = "4";
+const linhaPassoEmpresa4 = document.createElement('div');
+linhaPassoEmpresa4.classList.add('linha-empresa-4');
 const tituloPassoEmpresa4 = document.createElement('div');
 tituloPassoEmpresa4.classList.add('titulo-passo-empresa4');
 tituloPassoEmpresa4.textContent = "Faça a triagem";
@@ -383,12 +401,84 @@ conteudoPassoEmpresa5.classList.add('conteudo-passo-empresa5');
 const numeroPassoEmpresa5 = document.createElement('div');
 numeroPassoEmpresa5.classList.add('numero-passo-empresa5');
 numeroPassoEmpresa5.textContent = "5";
+const linhaPassoEmpresa5 = document.createElement('div');
+linhaPassoEmpresa5.classList.add('linha-empresa-5');
 const tituloPassoEmpresa5 = document.createElement('div');
 tituloPassoEmpresa5.classList.add('titulo-passo-empresa5');
 tituloPassoEmpresa5.textContent = "Contrate";
 const descricaoPassoEmpresa5 = document.createElement('div');
 descricaoPassoEmpresa5.classList.add('descricao-passo-empresa5');
 descricaoPassoEmpresa5.textContent = "Escolha o profissional ideal e fortaleça sua equipe.";
+
+//SEÇÃO FAQ
+
+const secaoFaq = document.createElement('section');
+secaoFaq.classList.add('secao-faq');
+const tituloFaq = document.createElement('h2');
+tituloFaq.classList.add('titulo-faq');
+tituloFaq.textContent = "PERGUNTAS FREQUENTES";
+const subtituloFaq = document.createElement('h3');
+subtituloFaq.classList.add('subtitulo-faq');
+subtituloFaq.textContent = "Tire suas dúvidas sobre a Conecta Talent";
+const descricaoFaq = document.createElement('p');
+descricaoFaq.classList.add('descricao-faq');
+descricaoFaq.textContent = "Encontre respostas para as perguntas mais comuns de candidatos e empresas."
+const containerFaq = document.createElement('div');
+containerFaq.classList.add('container-faq');
+
+const itemFaq1 = document.createElement('div');
+itemFaq1.classList.add('item-faq1');
+const pergunta1 = document.createElement('button');
+pergunta1.classList.add('pergunta-faq1');
+pergunta1.textContent = "Como faço para criar uma conta?"
+const resposta1 = document.createElement('p');
+resposta1.classList.add('resposta-faq1');
+resposta1.textContent = "Cadastrar-se, escolha se deseja criar uma conta como candidato ou empresa e preencha as informações solicitadas."
+
+const itemFaq2 = document.createElement('div');
+itemFaq2.classList.add('item-faq2');
+const pergunta2 = document.createElement('button');
+pergunta2.classList.add('pergunta-faq2');
+pergunta2.textContent = "O cadastro é gratuito?"
+const resposta2 = document.createElement('p');
+resposta2.classList.add('resposta-faq2');
+resposta2.textContent = "Sim. O cadastro na Conecta Talent é gratuito para candidatos e empresas."
+
+const itemFaq3 = document.createElement('div');
+itemFaq3.classList.add('item-faq3');
+const pergunta3 = document.createElement('button');
+pergunta3.classList.add('pergunta-faq3');
+pergunta3.textContent = "Como posso me candidatar a uma vaga?"
+const resposta3 = document.createElement('p');
+resposta3.classList.add('resposta-faq3');
+resposta3.textContent = "Após completar seu perfil, basta acessar a lista de vagas, escolher a oportunidade desejada e clicar em Candidatar-se. "
+
+const itemFaq4 = document.createElement('div');
+itemFaq4.classList.add('item-faq4');
+const pergunta4 = document.createElement('button');
+pergunta4.classList.add('pergunta-faq4');
+pergunta4.textContent = "Como uma empresa publica uma vaga?"
+const resposta4 = document.createElement('p');
+resposta4.classList.add('resposta-faq4');
+resposta4.textContent = "Após criar uma conta empresarial, acesse o painel da empresa, informe os detalhes da oportunidade e clique em publicar vaga. "
+
+const itemFaq5 = document.createElement('div');
+itemFaq5.classList.add('item-faq5');
+const pergunta5 = document.createElement('button');
+pergunta5.classList.add('pergunta-faq5');
+pergunta5.textContent = "Posso acompanhar minhas candidaturas?"
+const resposta5 = document.createElement('p');
+resposta5.classList.add('resposta-faq5');
+resposta5.textContent = "Sim. No painel do candidato você pode visualizar todas as vagas para as quais se candidatou e acompanhar o status de cada processo. "
+
+const itemFaq6 = document.createElement('div');
+itemFaq6.classList.add('item-faq6');
+const pergunta6 = document.createElement('button');
+pergunta6.classList.add('pergunta-faq6');
+pergunta6.textContent = "Meus dados estão seguros?"
+const resposta6 = document.createElement('p');
+resposta6.classList.add('resposta-faq6');
+resposta6.textContent = " Sim. A Conecta Talent utiliza boas práticas de segurança para proteger as informações de candidatos e empresas. "
 
 
 header.appendChild(logo); //coloca logo dentro do header
@@ -459,30 +549,35 @@ containerFunciona.appendChild(empresaFunciona);
 candidatoFunciona.appendChild(passosCandidato);
 passosCandidato.appendChild(passosCandidato1)
 passosCandidato1.appendChild(numeroPasso1);
+passosCandidato1.appendChild(linhaPasso1);
 passosCandidato1.appendChild(conteudoPasso1);
 conteudoPasso1.appendChild(tituloPasso1);
 conteudoPasso1.appendChild(descricaoPasso1);
 
 passosCandidato.appendChild(passosCandidato2)
 passosCandidato2.appendChild(numeroPasso2);
+passosCandidato2.appendChild(linhaPasso2);
 passosCandidato2.appendChild(conteudoPasso2);
 conteudoPasso2.appendChild(tituloPasso2);
 conteudoPasso2.appendChild(descricaoPasso2);
 
 passosCandidato.appendChild(passosCandidato3)
 passosCandidato3.appendChild(numeroPasso3);
+passosCandidato3.appendChild(linhaPasso3);
 passosCandidato3.appendChild(conteudoPasso3);
 conteudoPasso3.appendChild(tituloPasso3);
 conteudoPasso3.appendChild(descricaoPasso3);
 
 passosCandidato.appendChild(passosCandidato4)
 passosCandidato4.appendChild(numeroPasso4);
+passosCandidato4.appendChild(linhaPasso4);
 passosCandidato4.appendChild(conteudoPasso4);
 conteudoPasso4.appendChild(tituloPasso4);
 conteudoPasso4.appendChild(descricaoPasso4);
 
 passosCandidato.appendChild(passosCandidato5)
 passosCandidato5.appendChild(numeroPasso5);
+passosCandidato5.appendChild(linhaPasso5);
 passosCandidato5.appendChild(conteudoPasso5);
 conteudoPasso5.appendChild(tituloPasso5);
 conteudoPasso5.appendChild(descricaoPasso5);
@@ -499,6 +594,7 @@ empresaFunciona.appendChild(passosEmpresa);
 
 passosEmpresa.appendChild(passoEmpresa1);
 passoEmpresa1.appendChild(numeroPassoEmpresa1);
+passoEmpresa1.appendChild(linhaPassoEmpresa1);
 passoEmpresa1.appendChild(conteudoPassoEmpresa1);
 conteudoPassoEmpresa1.appendChild(tituloPassoEmpresa1);
 conteudoPassoEmpresa1.appendChild(descricaoPassoEmpresa1);
@@ -506,12 +602,14 @@ conteudoPassoEmpresa1.appendChild(descricaoPassoEmpresa1);
 
 passosEmpresa.appendChild(passoEmpresa2);
 passoEmpresa2.appendChild(numeroPassoEmpresa2);
+passoEmpresa2.appendChild(linhaPassoEmpresa2);
 passoEmpresa2.appendChild(conteudoPassoEmpresa2);
 conteudoPassoEmpresa2.appendChild(tituloPassoEmpresa2);
 conteudoPassoEmpresa2.appendChild(descricaoPassoEmpresa2);
 
 passosEmpresa.appendChild(passoEmpresa3);
 passoEmpresa3.appendChild(numeroPassoEmpresa3);
+passoEmpresa3.appendChild(linhaPassoEmpresa3);
 passoEmpresa3.appendChild(conteudoPassoEmpresa3);
 conteudoPassoEmpresa3.appendChild(tituloPassoEmpresa3);
 conteudoPassoEmpresa3.appendChild(descricaoPassoEmpresa3);
@@ -519,22 +617,51 @@ conteudoPassoEmpresa3.appendChild(descricaoPassoEmpresa3);
 
 passosEmpresa.appendChild(passoEmpresa4);
 passoEmpresa4.appendChild(numeroPassoEmpresa4);
+passoEmpresa4.appendChild(linhaPassoEmpresa4);
 passoEmpresa4.appendChild(conteudoPassoEmpresa4);
 conteudoPassoEmpresa4.appendChild(tituloPassoEmpresa4);
 conteudoPassoEmpresa4.appendChild(descricaoPassoEmpresa4);
 
-
 passosEmpresa.appendChild(passoEmpresa5);
 passoEmpresa5.appendChild(numeroPassoEmpresa5);
+passoEmpresa5.appendChild(linhaPassoEmpresa5);
 passoEmpresa5.appendChild(conteudoPassoEmpresa5);
 conteudoPassoEmpresa5.appendChild(tituloPassoEmpresa5);
 conteudoPassoEmpresa5.appendChild(descricaoPassoEmpresa5);
+
+secaoFaq.appendChild(tituloFaq);
+secaoFaq.appendChild(subtituloFaq);
+secaoFaq.appendChild(descricaoFaq);
+secaoFaq.appendChild(containerFaq);
+containerFaq.appendChild(itemFaq1)
+itemFaq1.appendChild(pergunta1);
+itemFaq1.appendChild(resposta1);
+
+containerFaq.appendChild(itemFaq2)
+itemFaq2.appendChild(pergunta2);
+itemFaq2.appendChild(resposta2);
+
+containerFaq.appendChild(itemFaq3)
+itemFaq3.appendChild(pergunta3);
+itemFaq3.appendChild(resposta3);
+
+containerFaq.appendChild(itemFaq4)
+itemFaq4.appendChild(pergunta4);
+itemFaq4.appendChild(resposta4);
+
+containerFaq.appendChild(itemFaq5)
+itemFaq5.appendChild(pergunta5);
+itemFaq5.appendChild(resposta5);
+
+containerFaq.appendChild(itemFaq6)
+itemFaq6.appendChild(pergunta6);
+itemFaq6.appendChild(resposta6);
 
 app.appendChild(header); //coloca header na página
 app.appendChild(main); //coloca main na pagina
 app.appendChild(cardsBeneficio); //cardsBeneficio na pagina
 app.appendChild(cardsComoFunciona); //cardsComoFunciona na pagina
-
+app.appendChild(secaoFaq); // coloca FAQ na página
 
 console.log(acesso);
 
