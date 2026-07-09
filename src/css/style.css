@@ -78,7 +78,7 @@
 
 .hero {
     display: flex;
-    background-image: url("../img/hero-bg.png");
+    background-image: url("../../assets/images/hero-bg.png");
     background-size: cover;
     /*Cobre toda a hero mesmo que tenha que aumentar ou diminuir a imagem e mesmo que tenha que cortar uma parte dela. */
     background-position: center;
