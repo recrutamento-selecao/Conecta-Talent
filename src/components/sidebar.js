@@ -24,8 +24,15 @@ export function criarSidebar(){ //disponibilizando a função para que outros ar
     campoLogo.classList.add("campo-logo");
     const imgLogo = document.createElement('img');
     imgLogo.classList.add("img-logo");
-    imgLogo.src = "assets/images/logo-conecta-talent.svg"
-
+    imgLogo.src = "assets/images/icone-logo.png"
+    const textoLogo = document.createElement('div');
+    textoLogo.classList.add('campo-texto');
+    const primeiroNomeLogo = document.createElement('h1');
+    primeiroNomeLogo.classList.add('primeiro-nome-logo');
+    primeiroNomeLogo.textContent = "Conecta"
+    const segundoNomeLogo = document.createElement('p');
+    segundoNomeLogo.classList.add('segundo-nome-logo');
+    segundoNomeLogo.textContent = "Talent"
 
     const sidebar = document.createElement('aside');
     sidebar.classList.add('sidebar');
@@ -76,8 +83,14 @@ export function criarSidebar(){ //disponibilizando a função para que outros ar
     "ícone Configuração"
     )
 
+    const linhaSidebar = document.createElement('hr');
+    linhaSidebar.classList.add('linha-sidebar')
+
     sidebar.appendChild(campoLogo);
     campoLogo.appendChild(imgLogo);
+    campoLogo.appendChild(textoLogo);
+    textoLogo.appendChild(primeiroNomeLogo);
+    textoLogo.appendChild(segundoNomeLogo);
     sidebar.appendChild(menuSidebar);
     menuSidebar.appendChild(dashboard);
     menuSidebar.appendChild(usuariosSistema);
@@ -85,6 +98,8 @@ export function criarSidebar(){ //disponibilizando a função para que outros ar
     menuSidebar.appendChild(assinaturaSistema);
     menuSidebar.appendChild(relatorioSistema);
     menuSidebar.appendChild(configuracaoSistema);
+
+    menuSidebar.appendChild(linhaSidebar);
    
     return sidebar;
 

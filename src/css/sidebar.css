@@ -34,11 +34,43 @@ body{
 }
 
 .campo-logo{
-    margin: 10px;
+    display: flex;
+    margin: 5px 5px 10px 5px;
+    
 }
 
 .img-logo{
-    width: 215px;
+    width: 60px;
+    height: 60px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.campo-texto{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+
+}
+
+.primeiro-nome-logo{
+    color: #ffffff;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 25px;
+    line-height: 1;
+
+}
+
+.segundo-nome-logo{
+    color: #ffffff;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 7px;
+    margin-left: 30px;
+    margin-top: 6px;
 }
 
 .item-sidebar{
@@ -65,5 +97,10 @@ body{
 .icone-dashboard{
     width: 22px;
     height: 22px;
+}
+
+.linha-sidebar{
+    border: none;
+    border-top: 0.5px solid rgba(255,255,255,0.5);
 }
 
