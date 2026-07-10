@@ -135,7 +135,7 @@ tituloCandidato.textContent = "Para Candidatos";
 const conteudoCandidato = document.createElement('p');
 const iconeCandidato = document.createElement('img');
 iconeCandidato.classList = 'icone-beneficio';
-iconeCandidato.src = "assets/images/icons/people.svg"
+iconeCandidato.src = "assets/icons/people.svg"
 iconeCandidato.alt = "Candidatos";
 conteudoCandidato.classList.add('descricao-card');
 conteudoCandidato.textContent = "Encontre oportunidades compatíveis com seu perfil, acompanhe suas candidaturas e conecte-se com empresas de forma rápida e simples.";
@@ -151,7 +151,7 @@ tituloEmpresa.classList.add('titulo-card');
 tituloEmpresa.textContent = "Para Empresas";
 const iconeEmpresa = document.createElement('img');
 iconeEmpresa.classList = 'icone-beneficio';
-iconeEmpresa.src = "assets/images/icons/building.svg"
+iconeEmpresa.src = "assets/icons/building.svg"
 iconeEmpresa.alt = "Empresas";
 const conteudoEmpresa = document.createElement('p');
 conteudoEmpresa.classList.add('descricao-card');
@@ -164,7 +164,7 @@ const cardProcessos = document.createElement('div');
 cardProcessos.classList.add('card-processo');
 const iconeProcesso = document.createElement('img');
 iconeProcesso.classList = 'icone-beneficio';
-iconeProcesso.src = "assets/images/icons/clipboard2-check.svg"
+iconeProcesso.src = "assets/icons/clipboard2-check.svg"
 iconeProcesso.alt = "Processos simplificados";
 const tituloProcessos = document.createElement('p');
 tituloProcessos.classList.add('titulo-card');
@@ -180,7 +180,7 @@ const cardSeguranca = document.createElement('div');
 cardSeguranca.classList.add('card-seguranca');
 const iconeSeguranca = document.createElement('img');
 iconeSeguranca.classList = 'icone-beneficio';
-iconeSeguranca.src = "assets/images/icons/shield-check.svg";
+iconeSeguranca.src = "assets/icons/shield-check.svg";
 iconeSeguranca.alt = "Segurança e confiabilidade";
 const tituloSeguranca = document.createElement('p');
 tituloSeguranca.classList.add('titulo-card');
@@ -215,7 +215,7 @@ const cabecalhoFuncionaCandidato = document.createElement('div');
 cabecalhoFuncionaCandidato.classList.add('cabecalho-candidato');
 const iconeFuncionaCandidato = document.createElement('img');
 iconeFuncionaCandidato.classList.add('icone-funciona-candidato');
-iconeFuncionaCandidato.src = "assets/images/icons/people.svg"
+iconeFuncionaCandidato.src = "assets/icons/people.svg"
 const textoFuncionaCandidato = document.createElement('div');
 textoFuncionaCandidato.classList.add('texto-funciona-candidato');
 const tituloFuncionaCandidato = document.createElement('h3');
@@ -314,7 +314,7 @@ cabecalhoFuncionaEmpresa.classList.add('cabecalho-empresa');
 
 const iconeFuncionaEmpresa = document.createElement('img');
 iconeFuncionaEmpresa.classList.add('icone-funciona-empresa');
-iconeFuncionaEmpresa.src = "assets/images/icons/building.svg";
+iconeFuncionaEmpresa.src = "assets/icons/building.svg";
 
 const textoFuncionaEmpresa = document.createElement('div');
 textoFuncionaEmpresa.classList.add('texto-funciona-empresa');
