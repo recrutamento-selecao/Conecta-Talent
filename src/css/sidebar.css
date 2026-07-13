@@ -104,3 +104,47 @@ body{
     border-top: 0.5px solid rgba(255,255,255,0.5);
 }
 
+.campo-perfil-logado{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    transition: .3s;
+}
+
+.campo-informacoes-usuario{
+    display: flex;
+    flex-direction: column;
+    padding-left: 6px;
+    
+}
+
+.nome-usuario{
+    color: white;
+    font-size: 15px;
+}
+
+.funcao-usuario{
+    color: white;
+    font-size: 13px;
+    align-items: center;
+    margin-top: 2px;
+
+}
+
+.icone-sair{
+    padding: 14px 18px;
+}
+
+.campo-sair{
+    display: flex;
+    padding-left: 6px;
+    align-items: center;
+    color: white;
+
+}
+
+
+
+
+
