@@ -193,7 +193,7 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             const dashboard = criarItemSidebar(
             "assets/icons/home.svg",
             "Dashboard",
-            "dashboard-administrador.html",
+            "",
             "ícone Dashboard",
             false
             )
@@ -203,7 +203,7 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             const criacaoVagas = criarItemSidebar(
             "assets/icons/briefcase-branco.svg",
             "Vagas",
-            "dashboard-administrador.html",
+            "",
             "ícone Vagas",
             true
             )
@@ -227,9 +227,24 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
                 }
             ]);
 
+            const containerVagas = document.createElement("div");
+            containerVagas.classList.add("container-submenu");
 
-            menuSidebar.appendChild(criacaoVagas);
-            menuSidebar.appendChild(submenuVagas);
+            containerVagas.appendChild(criacaoVagas);
+            containerVagas.appendChild(submenuVagas);
+
+            const seta = criacaoVagas.querySelector(".seta-direita-menu");
+            
+            criacaoVagas.addEventListener("click", (event) => {
+            event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+            submenuVagas.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+            seta.classList.toggle("ativa")
+            });
+
+            
+            menuSidebar.appendChild(containerVagas);
+
 
             const processosSeletivos = criarItemSidebar(
             "assets/icons/clipboard-text-branco.svg",
