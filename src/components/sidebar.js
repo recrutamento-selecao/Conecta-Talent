@@ -19,7 +19,7 @@ function criarItemSidebar(icone, texto, href, alt){
     
 }
 
-export function criarSidebar(tipoUsuario){ //disponibilizando a função para que outros arquivos possam usar.
+export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a função para que outros arquivos possam usar.
     const campoLogo = document.createElement('div');
     campoLogo.classList.add("campo-logo");
     const imgLogo = document.createElement('img');
@@ -39,7 +39,7 @@ export function criarSidebar(tipoUsuario){ //disponibilizando a função para qu
     menuSidebar.classList.add('menu-sidebar');
 
     switch(tipoUsuario){
-        case "administrador":
+        case "administrador":{
             
             const dashboard = criarItemSidebar(
             "assets/icons/home.svg",
@@ -95,11 +95,207 @@ export function criarSidebar(tipoUsuario){ //disponibilizando a função para qu
             )
 
             menuSidebar.appendChild(configuracaoSistema);
+        
+            break;
+    }
+            case "empresa": {
+
+            const dashboard = criarItemSidebar(
+            "assets/icons/home.svg",
+            "Dashboard",
+            "dashboard-administrador.html",
+            "ícone Dashboard"
+            )
+             
+            menuSidebar.appendChild(dashboard);
+
+            const usuariosSistema = criarItemSidebar(
+            "assets/icons/users-branco.svg",
+            "Recrutadores",
+            "dashboard-administrador.html",
+            "ícone Recrutadores"
+            )
+
+            menuSidebar.appendChild(usuariosSistema);
+
+            const gestaoVagas = criarItemSidebar(
+            "assets/icons/clipboard-text-branco.svg",
+            "Gestão de vagas",
+            "dashboard-administrador.html",
+            "ícone Planos"
+            )
+
+            menuSidebar.appendChild(gestaoVagas); 
+
+            const assinaturaSistema = criarItemSidebar(
+            "assets/icons/license-branco.svg",
+            "Assinaturas",
+            "dashboard-administrador.html",
+            "ícone Assinatura"
+            )
+
+            menuSidebar.appendChild(assinaturaSistema);
+
+            
+            const relatorioSistema = criarItemSidebar(
+            "assets/icons/file-analytics-branco.svg",
+            "Relatórios",
+            "dashboard-administrador.html",
+            "ícone Relatório"
+            )
+
+            menuSidebar.appendChild(relatorioSistema);
+
+            const configuracaoSistema = criarItemSidebar(
+            "assets/icons/settings-branco.svg",
+            "Configuração",
+            "dashboard-administrador.html",
+            "ícone Configuração"
+            )
+
+            menuSidebar.appendChild(configuracaoSistema);
 
             break;
-
-
         }
+
+        case "recrutador": {
+
+            const dashboard = criarItemSidebar(
+            "assets/icons/home.svg",
+            "Dashboard",
+            "dashboard-administrador.html",
+            "ícone Dashboard"
+            )
+             
+            menuSidebar.appendChild(dashboard);
+
+            const criacaoVagas = criarItemSidebar(
+            "assets/icons/briefcase-branco.svg",
+            "Vagas",
+            "dashboard-administrador.html",
+            "ícone Vagas"
+            )
+
+            menuSidebar.appendChild(criacaoVagas);
+
+            const processosSeletivos = criarItemSidebar(
+            "assets/icons/clipboard-text-branco.svg",
+            "Processos seletivos",
+            "dashboard-administrador.html",
+            "ícone Vagas"
+            )
+
+            menuSidebar.appendChild(processosSeletivos);
+
+            const bancoTalentos = criarItemSidebar(
+            "assets/icons/users-branco.svg",
+            "Banco de talentos",
+            "dashboard-administrador.html",
+            "ícone Banco de Talentos"
+            )
+
+            menuSidebar.appendChild(bancoTalentos);
+
+            const candidaturas = criarItemSidebar(
+            "assets/icons/file-description-branco.svg",
+            "Candidaturas",
+            "dashboard-administrador.html",
+            "ícone Planos"
+            )
+
+            menuSidebar.appendChild(candidaturas); 
+
+            const agenda = criarItemSidebar(
+            "assets/icons/calendar-week-branco.svg",
+            "Agenda",
+            "dashboard-administrador.html",
+            "ícone Agenda"
+            )
+
+            menuSidebar.appendChild(agenda); 
+
+            const relatorioSistema = criarItemSidebar(
+            "assets/icons/file-analytics-branco.svg",
+            "Relatórios",
+            "dashboard-administrador.html",
+            "ícone Relatório"
+            )
+
+            menuSidebar.appendChild(relatorioSistema);
+
+            const perfil = criarItemSidebar(
+            "assets/icons/settings-branco.svg",
+            "Perfil",
+            "dashboard-administrador.html",
+            "ícone Perfil"
+            )
+
+            menuSidebar.appendChild(perfil);
+
+            break;
+        }
+
+        case "candidato": {
+
+            const dashboard = criarItemSidebar(
+            "assets/icons/home.svg",
+            "Dashboard",
+            "dashboard-administrador.html",
+            "ícone Dashboard"
+            )
+             
+            menuSidebar.appendChild(dashboard);
+
+            const procurarVagas = criarItemSidebar(
+            "assets/icons/search-branco.svg",
+            "Vagas",
+            "dashboard-administrador.html",
+            "ícone Vagas"
+            )
+
+            menuSidebar.appendChild(procurarVagas);
+
+            const minhasCandidaturas = criarItemSidebar(
+            "assets/icons/clipboard-text-branco.svg",
+            "Minhas Candidaturas",
+            "dashboard-administrador.html",
+            "ícone Vagas"
+            )
+
+            menuSidebar.appendChild(minhasCandidaturas);
+
+            const curriculo = criarItemSidebar(
+            "assets/icons/file-description-branco.svg",
+            "Currículo",
+            "dashboard-administrador.html",
+            "ícone Curriculo"
+            )
+
+            menuSidebar.appendChild(curriculo); 
+
+            const agenda = criarItemSidebar(
+            "assets/icons/calendar-week-branco.svg",
+            "Agenda",
+            "dashboard-administrador.html",
+            "ícone Agenda"
+            )
+
+            menuSidebar.appendChild(agenda); 
+
+            const perfil = criarItemSidebar(
+            "assets/icons/settings-branco.svg",
+            "Perfil",
+            "dashboard-administrador.html",
+            "ícone Perfil"
+            )
+
+            menuSidebar.appendChild(perfil);
+
+            break;
+        }
+
+
+    }
     
     const linhaSidebar = document.createElement('hr');
     linhaSidebar.classList.add('linha-sidebar');
@@ -111,12 +307,15 @@ export function criarSidebar(tipoUsuario){ //disponibilizando a função para qu
     iconePerfil.classList.add('icone-perfil');
     iconePerfil.src = "assets/icons/user-circle.svg";
     
+    const rodapeSidebar = document.createElement('div');
+    rodapeSidebar.classList.add('rodape-sidebar');
+
     const informacoesUsuario = document.createElement('div');
     informacoesUsuario.classList.add('campo-informacoes-usuario');
 
-    const nomeUsuario = document.createElement('p')
-    nomeUsuario.classList.add('nome-usuario');
-    nomeUsuario.textContent = "João Silva"
+    const usuario = document.createElement('p')
+    usuario.classList.add('nome-usuario');
+    usuario.textContent = nomeUsuario;
 
     const funcaoUsuario = document.createElement('p');
     funcaoUsuario.classList.add('funcao-usuario');
@@ -133,21 +332,25 @@ export function criarSidebar(tipoUsuario){ //disponibilizando a função para qu
     textoSair.classList.add('texto-sair');
     textoSair.textContent = "Sair";
 
-    sidebar.appendChild(campoLogo);
+    
     campoLogo.appendChild(imgLogo);
     campoLogo.appendChild(textoLogo);
     textoLogo.appendChild(primeiroNomeLogo);
     textoLogo.appendChild(segundoNomeLogo);
-    sidebar.appendChild(menuSidebar);
+    
    
-    menuSidebar.appendChild(linhaSidebar);
-    menuSidebar.appendChild(campoPerfilLogado);
+    rodapeSidebar.appendChild(linhaSidebar);
+    rodapeSidebar.appendChild(campoPerfilLogado);
+    rodapeSidebar.appendChild(campoSair);
     campoPerfilLogado.appendChild(iconePerfil);
     campoPerfilLogado.appendChild(informacoesUsuario);
-    informacoesUsuario.appendChild(nomeUsuario);
+    informacoesUsuario.appendChild(usuario);
     informacoesUsuario.appendChild(funcaoUsuario);
-    
-    menuSidebar.appendChild(campoSair);
+
+    sidebar.appendChild(campoLogo);
+    sidebar.appendChild(menuSidebar);
+    sidebar.appendChild(rodapeSidebar);
+  
     campoSair.appendChild(iconeSair);
     campoSair.appendChild(textoSair);
     

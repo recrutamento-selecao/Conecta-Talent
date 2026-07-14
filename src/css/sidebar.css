@@ -21,6 +21,7 @@ body{
     background: #F8FAFF;/*verificar #F5F7FC*/
 }
 .sidebar{
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     background: linear-gradient(
@@ -31,6 +32,10 @@ body{
     );
     width: 270px;
     padding: 30px 20px;
+}
+
+.menu-sidebar{
+    flex: 1;
 }
 
 .campo-logo{
@@ -108,7 +113,7 @@ body{
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 14px 18px;
+    padding: 5px 18px;
     transition: .3s;
 }
 
@@ -116,6 +121,7 @@ body{
     display: flex;
     flex-direction: column;
     padding-left: 6px;
+    margin-bottom: 7px;
     
 }
 
@@ -132,16 +138,26 @@ body{
 
 }
 
+.rodape-sidebar{
+    margin-top: auto;
+}
+
 .icone-sair{
-    padding: 14px 18px;
+    padding: 5px 18px;
 }
 
 .campo-sair{
-    display: flex;
-    padding-left: 6px;
-    align-items: center;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+    border-radius:12px;
+    transition:.3s;
     color: white;
+}
 
+.campo-sair:hover{
+    background:#284ED4;
 }
 
 
