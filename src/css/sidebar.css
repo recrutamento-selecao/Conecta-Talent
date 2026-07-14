@@ -160,6 +160,25 @@ body{
     background:#284ED4;
 }
 
+.submenu{
+    display: none;
+    flex-direction: column;
+    margin-left: 60px;
+    gap: 8px;
+    margin-bottom: 8px;
+
+}
+
+.item-submenu{
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.seta-direita-menu{
+    margin-left: auto;
+}
 
 
 

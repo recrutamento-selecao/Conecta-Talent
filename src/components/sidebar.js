@@ -1,4 +1,4 @@
-function criarItemSidebar(icone, texto, href, alt){
+function criarItemSidebar(icone, texto, href, alt, possuiSubmenu){
     const itemSidebar= document.createElement('div');
     itemSidebar.classList.add('item-sidebar');
 
@@ -11,12 +11,40 @@ function criarItemSidebar(icone, texto, href, alt){
     linkSidebar.classList.add('link-sidebar')
     linkSidebar.href = href;
     linkSidebar.textContent = texto;
-    
+
     itemSidebar.appendChild(iconeSidebar);
     itemSidebar.appendChild(linkSidebar);
+    
+    if(possuiSubmenu){
+        const iconeSetaDireita = document.createElement('img');
+        iconeSetaDireita.classList.add('seta-direita-menu');
+        iconeSetaDireita.src = "assets/icons/arrow-right-branco.svg";
+        iconeSetaDireita.alt = "Seta Direita";
+
+        itemSidebar.appendChild(iconeSetaDireita);
+    }
+    
 
     return itemSidebar;
     
+}
+
+function criarSubmenu(opcoes){
+    const submenu = document.createElement('div');
+    submenu.classList.add('submenu');
+
+    for(const opcao of opcoes){ //para cada opcao que existir dentro do array opcoes, execute. 
+        const itemSubmenu = document.createElement('a');
+        itemSubmenu.classList.add('item-submenu');
+
+        itemSubmenu.textContent = opcao.texto;
+        itemSubmenu.href = opcao.href;
+        
+
+        submenu.appendChild(itemSubmenu);
+    }
+
+    return submenu;
 }
 
 export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a função para que outros arquivos possam usar.
@@ -45,7 +73,8 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             "assets/icons/home.svg",
             "Dashboard",
             "dashboard-administrador.html",
-            "ícone Dashboard"
+            "ícone Dashboard", 
+            false
             )
              
             menuSidebar.appendChild(dashboard);
@@ -54,7 +83,8 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             "assets/icons/users-branco.svg",
             "Usuários",
             "dashboard-administrador.html",
-            "ícone Usuários"
+            "ícone Usuários", 
+            true
             )
 
             menuSidebar.appendChild(usuariosSistema);
@@ -164,7 +194,8 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             "assets/icons/home.svg",
             "Dashboard",
             "dashboard-administrador.html",
-            "ícone Dashboard"
+            "ícone Dashboard",
+            false
             )
              
             menuSidebar.appendChild(dashboard);
@@ -173,16 +204,39 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             "assets/icons/briefcase-branco.svg",
             "Vagas",
             "dashboard-administrador.html",
-            "ícone Vagas"
+            "ícone Vagas",
+            true
             )
 
+            const submenuVagas = criarSubmenu([
+                {
+                    texto: "Criar Vaga",
+                    href:"#"
+                },
+                {
+                    texto: "Minhas Vagas",
+                    href:"#"
+                },
+                {
+                    texto: "Vagas Ativas",
+                    href:"#"
+                },
+                {
+                    texto: "Vagas Encerradas",
+                    href:"#"
+                }
+            ]);
+
+
             menuSidebar.appendChild(criacaoVagas);
+            menuSidebar.appendChild(submenuVagas);
 
             const processosSeletivos = criarItemSidebar(
             "assets/icons/clipboard-text-branco.svg",
             "Processos seletivos",
             "dashboard-administrador.html",
-            "ícone Vagas"
+            "ícone Vagas", 
+            true
             )
 
             menuSidebar.appendChild(processosSeletivos);
@@ -191,7 +245,8 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             "assets/icons/users-branco.svg",
             "Banco de talentos",
             "dashboard-administrador.html",
-            "ícone Banco de Talentos"
+            "ícone Banco de Talentos", 
+            true
             )
 
             menuSidebar.appendChild(bancoTalentos);
@@ -200,7 +255,8 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             "assets/icons/file-description-branco.svg",
             "Candidaturas",
             "dashboard-administrador.html",
-            "ícone Planos"
+            "ícone Planos", 
+            true
             )
 
             menuSidebar.appendChild(candidaturas); 
@@ -209,7 +265,8 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             "assets/icons/calendar-week-branco.svg",
             "Agenda",
             "dashboard-administrador.html",
-            "ícone Agenda"
+            "ícone Agenda", 
+            true
             )
 
             menuSidebar.appendChild(agenda); 
@@ -218,7 +275,8 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             "assets/icons/file-analytics-branco.svg",
             "Relatórios",
             "dashboard-administrador.html",
-            "ícone Relatório"
+            "ícone Relatório",
+            true
             )
 
             menuSidebar.appendChild(relatorioSistema);
@@ -227,7 +285,8 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             "assets/icons/settings-branco.svg",
             "Perfil",
             "dashboard-administrador.html",
-            "ícone Perfil"
+            "ícone Perfil",
+            true
             )
 
             menuSidebar.appendChild(perfil);
@@ -241,7 +300,8 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             "assets/icons/home.svg",
             "Dashboard",
             "dashboard-administrador.html",
-            "ícone Dashboard"
+            "ícone Dashboard",
+            false
             )
              
             menuSidebar.appendChild(dashboard);
