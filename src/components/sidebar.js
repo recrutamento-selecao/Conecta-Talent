@@ -1,5 +1,5 @@
-function criarItemSidebar(icone, texto, href, alt, possuiSubmenu){
-    const itemSidebar= document.createElement('div');
+function criarItemSidebar(icone, texto, href, alt, possuiSubmenu) {
+    const itemSidebar = document.createElement('div');
     itemSidebar.classList.add('item-sidebar');
 
     const iconeSidebar = document.createElement('img');
@@ -14,8 +14,8 @@ function criarItemSidebar(icone, texto, href, alt, possuiSubmenu){
 
     itemSidebar.appendChild(iconeSidebar);
     itemSidebar.appendChild(linkSidebar);
-    
-    if(possuiSubmenu){
+
+    if (possuiSubmenu) {
         const iconeSetaDireita = document.createElement('img');
         iconeSetaDireita.classList.add('seta-direita-menu');
         iconeSetaDireita.src = "assets/icons/arrow-right-branco.svg";
@@ -23,23 +23,23 @@ function criarItemSidebar(icone, texto, href, alt, possuiSubmenu){
 
         itemSidebar.appendChild(iconeSetaDireita);
     }
-    
+
 
     return itemSidebar;
-    
+
 }
 
-function criarSubmenu(opcoes){
+function criarSubmenu(opcoes) {
     const submenu = document.createElement('div');
     submenu.classList.add('submenu');
 
-    for(const opcao of opcoes){ //para cada opcao que existir dentro do array opcoes, execute. 
+    for (const opcao of opcoes) { //para cada opcao que existir dentro do array opcoes, execute. 
         const itemSubmenu = document.createElement('a');
         itemSubmenu.classList.add('item-submenu');
 
         itemSubmenu.textContent = opcao.texto;
         itemSubmenu.href = opcao.href;
-        
+
 
         submenu.appendChild(itemSubmenu);
     }
@@ -47,9 +47,23 @@ function criarSubmenu(opcoes){
     return submenu;
 }
 
-export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a função para que outros arquivos possam usar.
+export function criarSidebar(tipoUsuario, nomeUsuario) { //disponibilizando a função para que outros arquivos possam usar.
     const campoLogo = document.createElement('div');
     campoLogo.classList.add("campo-logo");
+
+    const cabecalhoSidebar = document.createElement("div");
+    cabecalhoSidebar.classList.add("cabecalho-sidebar");
+
+    const botaoMenu = document.createElement('button');
+    botaoMenu.classList.add('btn-menu');
+
+   
+
+    const iconeMenu = document.createElement('img');
+    iconeMenu.classList.add('icone-menu');
+    iconeMenu.src = "assets/icons/menu-branco.svg";
+    iconeMenu.alt = "Ícone menu"
+
     const imgLogo = document.createElement('img');
     imgLogo.classList.add("img-logo");
     imgLogo.src = "assets/images/icone-logo.png"
@@ -66,124 +80,406 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
     const menuSidebar = document.createElement('nav');
     menuSidebar.classList.add('menu-sidebar');
 
-    switch(tipoUsuario){
-        case "administrador":{
-            
+    switch (tipoUsuario) {
+        case "administrador": {
+
             const dashboard = criarItemSidebar(
-            "assets/icons/home.svg",
-            "Dashboard",
-            "dashboard-administrador.html",
-            "ícone Dashboard", 
-            false
+                "assets/icons/home.svg",
+                "Dashboard",
+                "",
+                "ícone Dashboard",
+                false
             )
-             
+
             menuSidebar.appendChild(dashboard);
 
             const usuariosSistema = criarItemSidebar(
-            "assets/icons/users-branco.svg",
-            "Usuários",
-            "dashboard-administrador.html",
-            "ícone Usuários", 
-            true
+                "assets/icons/users-branco.svg",
+                "Usuários",
+                "",
+                "ícone Usuários",
+                true
             )
 
-            menuSidebar.appendChild(usuariosSistema);
+            const submenuUsuarios = criarSubmenu([
+                {
+                    texto: "Gerenciar usuários",
+                    href: "#"
+                }
+
+            ]);
+
+            const containerUsuarios = document.createElement("div");
+            containerUsuarios.classList.add("container-submenu");
+
+            containerUsuarios.appendChild(usuariosSistema);
+            containerUsuarios.appendChild(submenuUsuarios);
+
+            const setaUsuarios = usuariosSistema.querySelector(".seta-direita-menu");
+
+            usuariosSistema.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuUsuarios.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaUsuarios.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerUsuarios);
 
             const planosSistema = criarItemSidebar(
-            "assets/icons/box-branco.svg",
-            "Planos",
-            "dashboard-administrador.html",
-            "ícone Planos"
+                "assets/icons/box-branco.svg",
+                "Planos",
+                "",
+                "ícone Planos",
+                true
             )
 
-            menuSidebar.appendChild(planosSistema); 
+            const submenuPlanoSistema = criarSubmenu([
+                {
+                    texto: "Gerenciar planos",
+                    href: "#"
+                }
+            ]);
+
+            const containerPlanos = document.createElement("div");
+            containerPlanos.classList.add("container-submenu");
+
+            containerPlanos.appendChild(planosSistema);
+            containerPlanos.appendChild(submenuPlanoSistema);
+
+            const setaPlanoSistema = planosSistema.querySelector(".seta-direita-menu");
+
+            planosSistema.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuPlanoSistema.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaPlanoSistema.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerPlanos);
 
             const assinaturaSistema = criarItemSidebar(
-            "assets/icons/license-branco.svg",
-            "Assinaturas",
-            "dashboard-administrador.html",
-            "ícone Assinatura"
+                "assets/icons/license-branco.svg",
+                "Assinaturas",
+                "",
+                "ícone Assinatura",
+                true
             )
 
-            menuSidebar.appendChild(assinaturaSistema);
+            const submenuAssinatura = criarSubmenu([
+                {
+                    texto: "Gerenciar assinaturas",
+                    href: "#"
+                },
+                {
+                    texto: "Pagamentos",
+                    href: "#"
+                },
 
-            
+            ]);
+
+            const containerAssinatura = document.createElement("div");
+            containerAssinatura.classList.add("container-submenu");
+
+            containerAssinatura.appendChild(assinaturaSistema);
+            containerAssinatura.appendChild(submenuAssinatura);
+
+            const setaAssinatura = assinaturaSistema.querySelector(".seta-direita-menu");
+
+            assinaturaSistema.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuAssinatura.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaAssinatura.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerAssinatura);
+
+
+
             const relatorioSistema = criarItemSidebar(
-            "assets/icons/file-analytics-branco.svg",
-            "Relatórios",
-            "dashboard-administrador.html",
-            "ícone Relatório"
+                "assets/icons/file-analytics-branco.svg",
+                "Relatórios",
+                "",
+                "ícone Relatório",
+                true
             )
 
-            menuSidebar.appendChild(relatorioSistema);
+            const submenuRelatorioSistema = criarSubmenu([
+                {
+                    texto: "Relatorio de usuários",
+                    href: "#"
+                },
+                {
+                    texto: "Relatório de assinaturas",
+                    href: "#"
+                }
+
+            ]);
+
+            const containerRelatorioSistema = document.createElement("div");
+            containerRelatorioSistema.classList.add("container-submenu");
+
+            containerRelatorioSistema.appendChild(relatorioSistema);
+            containerRelatorioSistema.appendChild(submenuRelatorioSistema);
+
+            const setaRelatoriosSistema = assinaturaSistema.querySelector(".seta-direita-menu");
+
+            relatorioSistema.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuRelatorioSistema.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaRelatoriosSistema.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerRelatorioSistema);
+
 
             const configuracaoSistema = criarItemSidebar(
-            "assets/icons/settings-branco.svg",
-            "Configuração",
-            "dashboard-administrador.html",
-            "ícone Configuração"
+                "assets/icons/settings-branco.svg",
+                "Configuração",
+                "",
+                "ícone Configuração",
+                true
             )
 
-            menuSidebar.appendChild(configuracaoSistema);
-        
+            const submenuConfiguracaoSistema = criarSubmenu([
+                {
+                    texto: "Relatorio de usuários",
+                    href: "#"
+                },
+                {
+                    texto: "Relatório de assinaturas",
+                    href: "#"
+                }
+
+            ]);
+
+            const containerConfiguracaoSistema = document.createElement("div");
+            containerConfiguracaoSistema.classList.add("container-submenu");
+
+            containerConfiguracaoSistema.appendChild(configuracaoSistema);
+            containerConfiguracaoSistema.appendChild(submenuConfiguracaoSistema);
+
+            const setaConfiguracaoSistema = configuracaoSistema.querySelector(".seta-direita-menu");
+
+            configuracaoSistema.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuConfiguracaoSistema.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaConfiguracaoSistema.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerConfiguracaoSistema);
+
             break;
-    }
-            case "empresa": {
+        }
+        case "empresa": {
 
             const dashboard = criarItemSidebar(
-            "assets/icons/home.svg",
-            "Dashboard",
-            "dashboard-administrador.html",
-            "ícone Dashboard"
+                "assets/icons/home.svg",
+                "Dashboard",
+                "dashboard-administrador.html",
+                "ícone Dashboard"
             )
-             
+
             menuSidebar.appendChild(dashboard);
 
-            const usuariosSistema = criarItemSidebar(
-            "assets/icons/users-branco.svg",
-            "Recrutadores",
-            "dashboard-administrador.html",
-            "ícone Recrutadores"
+            const usuariosEmpresa = criarItemSidebar(
+                "assets/icons/users-branco.svg",
+                "Recrutadores",
+                "dashboard-administrador.html",
+                "ícone Recrutadores",
+                true
             )
 
-            menuSidebar.appendChild(usuariosSistema);
+            const submenuUsuarioEmpresa = criarSubmenu([
+                {
+                    texto: "Gerenciar recrutadores",
+                    href: "#"
+                }
+
+            ]);
+
+            const containerUsuarioEmpresa = document.createElement("div");
+            containerUsuarioEmpresa.classList.add("container-submenu");
+
+            containerUsuarioEmpresa.appendChild(usuariosEmpresa);
+            containerUsuarioEmpresa.appendChild(submenuUsuarioEmpresa);
+
+            const setaUsuarioEmpresa = usuariosEmpresa.querySelector(".seta-direita-menu");
+
+            usuariosEmpresa.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuUsuarioEmpresa.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaUsuarioEmpresa.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerUsuarioEmpresa);
+
 
             const gestaoVagas = criarItemSidebar(
-            "assets/icons/clipboard-text-branco.svg",
-            "Gestão de vagas",
-            "dashboard-administrador.html",
-            "ícone Planos"
+                "assets/icons/clipboard-text-branco.svg",
+                "Gestão de vagas",
+                "",
+                "ícone Planos",
+                true
             )
 
-            menuSidebar.appendChild(gestaoVagas); 
+            const submenuGestaoVagas = criarSubmenu([
+                {
+                    texto: "Gerenciar vagas",
+                    href: "#"
+                },
+                {
+                    texto: "Vagas ativas",
+                    href: "#"
+                },
+                {
+                    texto: "Vagas encerradas",
+                    href: "#"
+                }
+            ]);
+
+            const containerGestaoVagas = document.createElement("div");
+            containerGestaoVagas.classList.add("container-submenu");
+
+            containerGestaoVagas.appendChild(gestaoVagas);
+            containerGestaoVagas.appendChild(submenuGestaoVagas);
+
+            const setaGestaoVagas = gestaoVagas.querySelector(".seta-direita-menu");
+
+            gestaoVagas.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuGestaoVagas.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaGestaoVagas.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerGestaoVagas);
+
 
             const assinaturaSistema = criarItemSidebar(
-            "assets/icons/license-branco.svg",
-            "Assinaturas",
-            "dashboard-administrador.html",
-            "ícone Assinatura"
+                "assets/icons/license-branco.svg",
+                "Assinaturas",
+                "",
+                "ícone Assinatura",
+                true
             )
 
-            menuSidebar.appendChild(assinaturaSistema);
+            const submenuAssinaturaSistema = criarSubmenu([
+                {
+                    texto: "Meu plano",
+                    href: "#"
+                },
+                {
+                    texto: "Pagamentos",
+                    href: "#"
+                },
+                {
+                    texto: "Histórico",
+                    href: "#"
+                }
+            ]);
 
-            
-            const relatorioSistema = criarItemSidebar(
-            "assets/icons/file-analytics-branco.svg",
-            "Relatórios",
-            "dashboard-administrador.html",
-            "ícone Relatório"
+            const containerAssinaturaSistema = document.createElement("div");
+            containerAssinaturaSistema.classList.add("container-submenu");
+
+            containerAssinaturaSistema.appendChild(assinaturaSistema);
+            containerAssinaturaSistema.appendChild(submenuAssinaturaSistema);
+
+            const setaAssinaturaSistema = assinaturaSistema.querySelector(".seta-direita-menu");
+
+            assinaturaSistema.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuAssinaturaSistema.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaAssinaturaSistema.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerAssinaturaSistema);
+
+
+            const relatorioEmpresa = criarItemSidebar(
+                "assets/icons/file-analytics-branco.svg",
+                "Relatórios",
+                "",
+                "ícone Relatório",
+                true
             )
 
-            menuSidebar.appendChild(relatorioSistema);
+            const submenuRelatorioEmpresa = criarSubmenu([
+                {
+                    texto: "Relatório de vagas",
+                    href: "#"
+                },
+                {
+                    texto: "Relatório de recrutadores",
+                    href: "#"
+                },
+                {
+                    texto: "Relatório de contratações",
+                    href: "#"
+                }
+            ]);
 
-            const configuracaoSistema = criarItemSidebar(
-            "assets/icons/settings-branco.svg",
-            "Configuração",
-            "dashboard-administrador.html",
-            "ícone Configuração"
+            const containerRelatorioEmpresa = document.createElement("div");
+            containerRelatorioEmpresa.classList.add("container-submenu");
+
+            containerRelatorioEmpresa.appendChild(relatorioEmpresa);
+            containerRelatorioEmpresa.appendChild(submenuRelatorioEmpresa);
+
+            const setaRelatorioEmpresa = relatorioEmpresa.querySelector(".seta-direita-menu");
+
+            relatorioEmpresa.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuRelatorioEmpresa.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaRelatorioEmpresa.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerRelatorioEmpresa);
+
+            const configuracaoSistemaEmpresa = criarItemSidebar(
+                "assets/icons/settings-branco.svg",
+                "Configuração",
+                "",
+                "ícone Configuração",
+                true
             )
 
-            menuSidebar.appendChild(configuracaoSistema);
+            const submenuConfiguracaoEmpresa = criarSubmenu([
+                {
+                    texto: "Dados da empresa",
+                    href: "#"
+                },
+                {
+                    texto: "Preferências",
+                    href: "#"
+                },
+                {
+                    texto: "Segurança",
+                    href: "#"
+                }
+            ]);
+
+            const containerConfiguracaoSistemaEmpresa = document.createElement("div");
+            containerConfiguracaoSistemaEmpresa.classList.add("container-submenu");
+
+            containerConfiguracaoSistemaEmpresa.appendChild(relatorioEmpresa);
+            containerConfiguracaoSistemaEmpresa.appendChild(submenuRelatorioEmpresa);
+
+            const setaConfiguracaoEmpresa = configuracaoSistemaEmpresa.querySelector(".seta-direita-menu");
+
+            configuracaoSistemaEmpresa.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuConfiguracaoEmpresa.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaConfiguracaoEmpresa.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerConfiguracaoSistemaEmpresa);
 
             break;
         }
@@ -191,39 +487,39 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
         case "recrutador": {
 
             const dashboard = criarItemSidebar(
-            "assets/icons/home.svg",
-            "Dashboard",
-            "",
-            "ícone Dashboard",
-            false
+                "assets/icons/home.svg",
+                "Dashboard",
+                "",
+                "ícone Dashboard",
+                false
             )
-             
+
             menuSidebar.appendChild(dashboard);
 
             const criacaoVagas = criarItemSidebar(
-            "assets/icons/briefcase-branco.svg",
-            "Vagas",
-            "",
-            "ícone Vagas",
-            true
+                "assets/icons/briefcase-branco.svg",
+                "Vagas",
+                "",
+                "ícone Vagas",
+                true
             )
 
             const submenuVagas = criarSubmenu([
                 {
                     texto: "Criar Vaga",
-                    href:"#"
+                    href: "#"
                 },
                 {
                     texto: "Minhas Vagas",
-                    href:"#"
+                    href: "#"
                 },
                 {
                     texto: "Vagas Ativas",
-                    href:"#"
+                    href: "#"
                 },
                 {
                     texto: "Vagas Encerradas",
-                    href:"#"
+                    href: "#"
                 }
             ]);
 
@@ -234,77 +530,281 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             containerVagas.appendChild(submenuVagas);
 
             const seta = criacaoVagas.querySelector(".seta-direita-menu");
-            
-            criacaoVagas.addEventListener("click", (event) => {
-            event.preventDefault(); //faz com que o javascript controlar o que acontece.
 
-            submenuVagas.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
-            seta.classList.toggle("ativa")
+            criacaoVagas.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuVagas.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                seta.classList.toggle("ativa")
             });
 
-            
+
             menuSidebar.appendChild(containerVagas);
 
 
             const processosSeletivos = criarItemSidebar(
-            "assets/icons/clipboard-text-branco.svg",
-            "Processos seletivos",
-            "dashboard-administrador.html",
-            "ícone Vagas", 
-            true
+                "assets/icons/clipboard-text-branco.svg",
+                "Processos seletivos",
+                "",
+                "ícone Vagas",
+                true
             )
 
-            menuSidebar.appendChild(processosSeletivos);
+            const submenuProcessoSeletivo = criarSubmenu([
+                {
+                    texto: "Criar Processo Seletivo",
+                    href: "#"
+                },
+                {
+                    texto: "Meus Processos",
+                    href: "#"
+                },
+                {
+                    texto: "Processos Ativos",
+                    href: "#"
+                },
+                {
+                    texto: "Processos encerrados",
+                    href: "#"
+                }
+            ]);
+
+            const containerProcessosSeletivos = document.createElement("div");
+            containerProcessosSeletivos.classList.add("container-submenu");
+
+            containerProcessosSeletivos.appendChild(processosSeletivos);
+            containerProcessosSeletivos.appendChild(submenuProcessoSeletivo);
+
+            const setaProcessoSeletivo = processosSeletivos.querySelector(".seta-direita-menu");
+
+            processosSeletivos.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuProcessoSeletivo.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaProcessoSeletivo.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerProcessosSeletivos);
 
             const bancoTalentos = criarItemSidebar(
-            "assets/icons/users-branco.svg",
-            "Banco de talentos",
-            "dashboard-administrador.html",
-            "ícone Banco de Talentos", 
-            true
+                "assets/icons/users-branco.svg",
+                "Banco de talentos",
+                "",
+                "ícone Banco de Talentos",
+                true
             )
 
-            menuSidebar.appendChild(bancoTalentos);
+            const submenuBancoTalentos = criarSubmenu([
+                {
+                    texto: "Buscar Candidatos",
+                    href: "#"
+                },
+                {
+                    texto: "Favoritos",
+                    href: "#"
+                },
+                {
+                    texto: "Candidatos Salvos",
+                    href: "#"
+                },
+                {
+                    texto: "Convites enviados",
+                    href: "#"
+                }
+            ]);
+
+            const containerBancoTalentos = document.createElement("div");
+            containerBancoTalentos.classList.add("container-submenu");
+
+            containerBancoTalentos.appendChild(bancoTalentos);
+            containerBancoTalentos.appendChild(submenuBancoTalentos);
+
+            const setaBancoTalentos = bancoTalentos.querySelector(".seta-direita-menu");
+
+            bancoTalentos.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuBancoTalentos.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaBancoTalentos.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerBancoTalentos);
+
 
             const candidaturas = criarItemSidebar(
-            "assets/icons/file-description-branco.svg",
-            "Candidaturas",
-            "dashboard-administrador.html",
-            "ícone Planos", 
-            true
+                "assets/icons/file-description-branco.svg",
+                "Candidaturas",
+                "",
+                "ícone Planos",
+                true
             )
 
-            menuSidebar.appendChild(candidaturas); 
+            const submenuCandidaturas = criarSubmenu([
+                {
+                    texto: "Recebidas",
+                    href: "#"
+                },
+                {
+                    texto: "Em Triagem",
+                    href: "#"
+                },
+                {
+                    texto: "Em processo",
+                    href: "#"
+                },
+                {
+                    texto: "Finalizadas",
+                    href: "#"
+                }
+            ]);
+
+            const containerCandidaturas = document.createElement("div");
+            containerCandidaturas.classList.add("container-submenu");
+
+            containerCandidaturas.appendChild(candidaturas);
+            containerCandidaturas.appendChild(submenuCandidaturas);
+
+            const setaCandidaturas = candidaturas.querySelector(".seta-direita-menu");
+
+            candidaturas.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuCandidaturas.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaCandidaturas.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerCandidaturas);
+
 
             const agenda = criarItemSidebar(
-            "assets/icons/calendar-week-branco.svg",
-            "Agenda",
-            "dashboard-administrador.html",
-            "ícone Agenda", 
-            true
+                "assets/icons/calendar-week-branco.svg",
+                "Agenda",
+                "dashboard-administrador.html",
+                "ícone Agenda",
+                true
             )
 
-            menuSidebar.appendChild(agenda); 
+            const submenuAgenda = criarSubmenu([
+                {
+                    texto: "Calendário",
+                    href: "#"
+                },
+                {
+                    texto: "Entrevistas",
+                    href: "#"
+                },
+                {
+                    texto: "Reuniões",
+                    href: "#"
+                },
+                {
+                    texto: "Eventos",
+                    href: "#"
+                }
+            ]);
+
+            const containerAgenda = document.createElement("div");
+            containerAgenda.classList.add("container-submenu");
+
+            containerAgenda.appendChild(agenda);
+            containerAgenda.appendChild(submenuAgenda);
+
+            const setaAgenda = agenda.querySelector(".seta-direita-menu");
+
+            agenda.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuAgenda.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaAgenda.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerAgenda);
+
 
             const relatorioSistema = criarItemSidebar(
-            "assets/icons/file-analytics-branco.svg",
-            "Relatórios",
-            "dashboard-administrador.html",
-            "ícone Relatório",
-            true
+                "assets/icons/file-analytics-branco.svg",
+                "Relatórios",
+                "",
+                "ícone Relatório",
+                true
             )
 
-            menuSidebar.appendChild(relatorioSistema);
+            const submenuRelatorio = criarSubmenu([
+                {
+                    texto: "Relatório de Vagas",
+                    href: "#"
+                },
+                {
+                    texto: "Relatório de Processos Seletivos",
+                    href: "#"
+                },
+                {
+                    texto: "Relatório de Candidaturas",
+                    href: "#"
+                }
+            ]);
+
+            const containerRelatorio = document.createElement("div");
+            containerRelatorio.classList.add("container-submenu");
+
+            containerRelatorio.appendChild(relatorioSistema);
+            containerRelatorio.appendChild(submenuRelatorio);
+
+            const setaRelatorio = relatorioSistema.querySelector(".seta-direita-menu");
+
+            relatorioSistema.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuRelatorio.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaRelatorio.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerRelatorio);
+
 
             const perfil = criarItemSidebar(
-            "assets/icons/settings-branco.svg",
-            "Perfil",
-            "dashboard-administrador.html",
-            "ícone Perfil",
-            true
+                "assets/icons/settings-branco.svg",
+                "Perfil",
+                "",
+                "ícone Perfil",
+                true
             )
 
-            menuSidebar.appendChild(perfil);
+            const submenuPerfil = criarSubmenu([
+                {
+                    texto: "Meus Dados",
+                    href: "#"
+                },
+                {
+                    texto: "Alterar Senha",
+                    href: "#"
+                },
+                {
+                    texto: "Preferências",
+                    href: "#"
+                },
+                {
+                    texto: "Notificações",
+                    href: "#"
+                }
+            ]);
+
+            const containerPerfil = document.createElement("div");
+            containerPerfil.classList.add("container-submenu");
+
+            containerPerfil.appendChild(perfil);
+            containerPerfil.appendChild(submenuPerfil);
+
+            const setaPerfil = perfil.querySelector(".seta-direita-menu");
+
+            perfil.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuPerfil.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaPerfil.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerPerfil);
 
             break;
         }
@@ -312,66 +812,204 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
         case "candidato": {
 
             const dashboard = criarItemSidebar(
-            "assets/icons/home.svg",
-            "Dashboard",
-            "dashboard-administrador.html",
-            "ícone Dashboard",
-            false
+                "assets/icons/home.svg",
+                "Dashboard",
+                "dashboard-administrador.html",
+                "ícone Dashboard",
+                false
             )
-             
+
             menuSidebar.appendChild(dashboard);
 
             const procurarVagas = criarItemSidebar(
-            "assets/icons/search-branco.svg",
-            "Vagas",
-            "dashboard-administrador.html",
-            "ícone Vagas"
+                "assets/icons/search-branco.svg",
+                "Vagas",
+                "dashboard-administrador.html",
+                "ícone Vagas",
+                true
             )
 
-            menuSidebar.appendChild(procurarVagas);
+            const submenuProcurarVagas = criarSubmenu([
+                {
+                    texto: "Buscar vagas",
+                    href: "#"
+                },
+                {
+                    texto: "Vagas favoritas",
+                    href: "#"
+                }
+            ]);
+
+            const containerProcurarVagas = document.createElement("div");
+            containerProcurarVagas.classList.add("container-submenu");
+
+            containerProcurarVagas.appendChild(procurarVagas);
+            containerProcurarVagas.appendChild(submenuProcurarVagas);
+
+            const setaProcurarVagas = procurarVagas.querySelector(".seta-direita-menu");
+
+            procurarVagas.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuProcurarVagas.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaProcurarVagas.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerProcurarVagas);
+
 
             const minhasCandidaturas = criarItemSidebar(
-            "assets/icons/clipboard-text-branco.svg",
-            "Minhas Candidaturas",
-            "dashboard-administrador.html",
-            "ícone Vagas"
+                "assets/icons/clipboard-text-branco.svg",
+                "Candidaturas",
+                "",
+                "ícone Vagas",
+                true
             )
 
-            menuSidebar.appendChild(minhasCandidaturas);
+
+            const submenuMinhasCandidaturas = criarSubmenu([
+                {
+                    texto: "Minhas candidaturas",
+                    href: "#"
+                }
+            ]);
+
+            const containerMinhasCandidaturas = document.createElement("div");
+            containerMinhasCandidaturas.classList.add("container-submenu");
+
+            containerMinhasCandidaturas.appendChild(minhasCandidaturas);
+            containerMinhasCandidaturas.appendChild(submenuMinhasCandidaturas);
+
+            const setaMinhasCandidaturas = minhasCandidaturas.querySelector(".seta-direita-menu");
+
+            minhasCandidaturas.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuMinhasCandidaturas.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaMinhasCandidaturas.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerMinhasCandidaturas);
+
 
             const curriculo = criarItemSidebar(
-            "assets/icons/file-description-branco.svg",
-            "Currículo",
-            "dashboard-administrador.html",
-            "ícone Curriculo"
+                "assets/icons/file-description-branco.svg",
+                "Currículo",
+                "dashboard-administrador.html",
+                "ícone Curriculo",
+                true
             )
 
-            menuSidebar.appendChild(curriculo); 
+
+            const submenuCurriculo = criarSubmenu([
+                {
+                    texto: "Meu currículo",
+                    href: "#"
+                }
+            ]);
+
+            const containerCurriculo = document.createElement("div");
+            containerCurriculo.classList.add("container-submenu");
+
+            containerCurriculo.appendChild(curriculo);
+            containerCurriculo.appendChild(submenuCurriculo);
+
+            const setaCurriculo = curriculo.querySelector(".seta-direita-menu");
+
+            curriculo.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuCurriculo.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaCurriculo.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerCurriculo);
 
             const agenda = criarItemSidebar(
-            "assets/icons/calendar-week-branco.svg",
-            "Agenda",
-            "dashboard-administrador.html",
-            "ícone Agenda"
+                "assets/icons/calendar-week-branco.svg",
+                "Agenda",
+                "dashboard-administrador.html",
+                "ícone Agenda",
+                true
             )
 
-            menuSidebar.appendChild(agenda); 
+
+            const submenuAgendaCandidato = criarSubmenu([
+                {
+                    texto: "Entrevistas",
+                    href: "#"
+                },
+                {
+                    texto: "Calendário",
+                    href: "#"
+                }
+
+            ]);
+
+            const containerAgendaCandidato = document.createElement("div");
+            containerAgendaCandidato.classList.add("container-submenu");
+
+            containerAgendaCandidato.appendChild(agenda);
+            containerAgendaCandidato.appendChild(submenuAgendaCandidato);
+
+            const setaAgendaCandidato = agenda.querySelector(".seta-direita-menu");
+
+            agenda.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuAgendaCandidato.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaAgendaCandidato.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerAgendaCandidato);
+
 
             const perfil = criarItemSidebar(
-            "assets/icons/settings-branco.svg",
-            "Perfil",
-            "dashboard-administrador.html",
-            "ícone Perfil"
+                "assets/icons/settings-branco.svg",
+                "Perfil",
+                "dashboard-administrador.html",
+                "ícone Perfil",
+                true
             )
 
-            menuSidebar.appendChild(perfil);
+            const submenuPerfilCandidato = criarSubmenu([
+                {
+                    texto: "Meus Dados",
+                    href: "#"
+                },
+                {
+                    texto: "Alterar senha",
+                    href: "#"
+                },
+                {
+                    texto: "Preferências",
+                    href: "#"
+                }
+
+            ]);
+
+            const containerPerfilCandidato = document.createElement("div");
+            containerPerfilCandidato.classList.add("container-submenu");
+
+            containerPerfilCandidato.appendChild(perfil);
+            containerPerfilCandidato.appendChild(submenuPerfilCandidato);
+
+            const setaPerfilCandidato = perfil.querySelector(".seta-direita-menu");
+
+            perfil.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuPerfilCandidato.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                setaPerfilCandidato.classList.toggle("ativa")
+            });
+
+            menuSidebar.appendChild(containerPerfilCandidato);
 
             break;
         }
 
-
     }
-    
+
     const linhaSidebar = document.createElement('hr');
     linhaSidebar.classList.add('linha-sidebar');
 
@@ -381,7 +1019,7 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
     const iconePerfil = document.createElement('img');
     iconePerfil.classList.add('icone-perfil');
     iconePerfil.src = "assets/icons/user-circle.svg";
-    
+
     const rodapeSidebar = document.createElement('div');
     rodapeSidebar.classList.add('rodape-sidebar');
 
@@ -394,7 +1032,7 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
 
     const funcaoUsuario = document.createElement('p');
     funcaoUsuario.classList.add('funcao-usuario');
-    funcaoUsuario.textContent =  tipoUsuario.charAt(0).toUpperCase() + tipoUsuario.slice(1);
+    funcaoUsuario.textContent = tipoUsuario.charAt(0).toUpperCase() + tipoUsuario.slice(1);
 
     const campoSair = document.createElement('div');
     campoSair.classList.add('campo-sair');
@@ -407,13 +1045,13 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
     textoSair.classList.add('texto-sair');
     textoSair.textContent = "Sair";
 
-    
+
     campoLogo.appendChild(imgLogo);
     campoLogo.appendChild(textoLogo);
     textoLogo.appendChild(primeiroNomeLogo);
     textoLogo.appendChild(segundoNomeLogo);
-    
-   
+
+
     rodapeSidebar.appendChild(linhaSidebar);
     rodapeSidebar.appendChild(campoPerfilLogado);
     rodapeSidebar.appendChild(campoSair);
@@ -422,13 +1060,21 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
     informacoesUsuario.appendChild(usuario);
     informacoesUsuario.appendChild(funcaoUsuario);
 
-    sidebar.appendChild(campoLogo);
+     botaoMenu.addEventListener("click", () => {
+        sidebar.classList.toggle("fechada");
+    });
+
+    botaoMenu.appendChild(iconeMenu);
+
+    cabecalhoSidebar.appendChild(botaoMenu);
+    cabecalhoSidebar.appendChild(campoLogo);
+    sidebar.appendChild(cabecalhoSidebar);
     sidebar.appendChild(menuSidebar);
     sidebar.appendChild(rodapeSidebar);
-  
+
     campoSair.appendChild(iconeSair);
     campoSair.appendChild(textoSair);
-    
+
     return sidebar;
 
 }
