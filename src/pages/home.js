@@ -435,6 +435,16 @@ const resposta1 = document.createElement('p');
 resposta1.classList.add('resposta-faq1');
 resposta1.textContent = "Cadastrar-se, escolha se deseja criar uma conta como candidato ou empresa e preencha as informações solicitadas."
 
+pergunta1.addEventListener("click", () => {
+
+    if(resposta1.style.display === "block"){
+        resposta1.style.display = "none";
+    }else{
+        resposta1.style.display = "block";
+    }
+
+});
+
 const itemFaq2 = document.createElement('div');
 itemFaq2.classList.add('item-faq2');
 const pergunta2 = document.createElement('button');
@@ -442,7 +452,17 @@ pergunta2.classList.add('pergunta-faq2');
 pergunta2.textContent = "O cadastro é gratuito?"
 const resposta2 = document.createElement('p');
 resposta2.classList.add('resposta-faq2');
-resposta2.textContent = "Sim. O cadastro na Conecta Talent é gratuito para candidatos e empresas."
+resposta2.textContent = "Sim. O cadastro na Conecta Talent é gratuito para candidatos e empresas.";
+
+pergunta2.addEventListener("click", () => {
+
+    if(resposta2.style.display === "block"){
+        resposta2.style.display = "none";
+    }else{
+        resposta2.style.display = "block";
+    }
+
+});
 
 const itemFaq3 = document.createElement('div');
 itemFaq3.classList.add('item-faq3');
@@ -453,6 +473,16 @@ const resposta3 = document.createElement('p');
 resposta3.classList.add('resposta-faq3');
 resposta3.textContent = "Após completar seu perfil, basta acessar a lista de vagas, escolher a oportunidade desejada e clicar em Candidatar-se. "
 
+pergunta3.addEventListener("click", () => {
+
+    if(resposta3.style.display === "block"){
+        resposta3.style.display = "none";
+    }else{
+        resposta3.style.display = "block";
+    }
+
+});
+
 const itemFaq4 = document.createElement('div');
 itemFaq4.classList.add('item-faq4');
 const pergunta4 = document.createElement('button');
@@ -461,6 +491,17 @@ pergunta4.textContent = "Como uma empresa publica uma vaga?"
 const resposta4 = document.createElement('p');
 resposta4.classList.add('resposta-faq4');
 resposta4.textContent = "Após criar uma conta empresarial, acesse o painel da empresa, informe os detalhes da oportunidade e clique em publicar vaga. "
+
+pergunta4.addEventListener("click", () => {
+
+    if(resposta4.style.display === "block"){
+        resposta4.style.display = "none";
+    }else{
+        resposta4.style.display = "block";
+    }
+
+});
+
 
 const itemFaq5 = document.createElement('div');
 itemFaq5.classList.add('item-faq5');
@@ -471,6 +512,16 @@ const resposta5 = document.createElement('p');
 resposta5.classList.add('resposta-faq5');
 resposta5.textContent = "Sim. No painel do candidato você pode visualizar todas as vagas para as quais se candidatou e acompanhar o status de cada processo. "
 
+pergunta5.addEventListener("click", () => {
+
+    if(resposta5.style.display === "block"){
+        resposta5.style.display = "none";
+    }else{
+        resposta5.style.display = "block";
+    }
+
+});
+
 const itemFaq6 = document.createElement('div');
 itemFaq6.classList.add('item-faq6');
 const pergunta6 = document.createElement('button');
@@ -480,6 +531,165 @@ const resposta6 = document.createElement('p');
 resposta6.classList.add('resposta-faq6');
 resposta6.textContent = " Sim. A Conecta Talent utiliza boas práticas de segurança para proteger as informações de candidatos e empresas. "
 
+pergunta6.addEventListener("click", () => {
+
+    if(resposta6.style.display === "block"){
+        resposta6.style.display = "none";
+    }else{
+        resposta6.style.display = "block";
+    }
+
+});
+
+
+// footer
+
+const rodape = document.createElement('footer')
+rodape.classList.add('footer');
+
+const rodapeContainer = document.createElement('div');
+rodapeContainer.classList.add("footer-container");
+
+//coluna footer 1
+const colunaLogo = document.createElement('div');
+colunaLogo.classList.add('footer-coluna');
+
+const logoContainer = document.createElement('div');
+logoContainer.classList.add("logo-container");
+
+const logoFooter = document.createElement('img');
+logoFooter.classList.add('logo-footer');
+
+logoFooter.src = "assets/icons/logo-footer.svg";
+logoFooter.alt = "Logo Conecta Talent";
+const descricaoFooter = document.createElement("p");
+descricaoFooter.classList.add("descricao-footer");
+descricaoFooter.textContent ="Conectando talentos às melhores oportunidades.";
+
+//coluna footer 2 
+const colunaEmpresa = document.createElement('div');
+colunaEmpresa.classList.add('footer-coluna');
+
+const tituloEmpresaFooter = document.createElement('h3');
+tituloEmpresaFooter.classList.add('titulo-footer');
+tituloEmpresaFooter.textContent = "Empresa";
+
+
+function criarItemFooter(icone, texto, href) {
+
+    const item = document.createElement('div');
+    item.classList.add('item-footer');
+
+    const img = document.createElement('img');
+    img.classList.add('icone-footer');
+    img.src = icone;
+    img.alt = texto;
+
+    const link = document.createElement('a');
+    link.classList.add('link-footer');
+    link.href = href;
+    link.textContent = texto;
+
+    item.appendChild(img);
+    item.appendChild(link);
+
+    return item;
+}
+
+colunaEmpresa.appendChild(tituloEmpresaFooter);
+
+const linksEmpresa = [
+    "Sobre nós",
+    "Recursos",
+    "Planos",
+    "Suporte"
+];
+
+linksEmpresa.forEach((texto) => {
+
+    colunaEmpresa.appendChild(
+        criarItemFooter(
+            "assets/icons/chevron-right-branco.svg",
+            texto,
+            "#"
+        )
+    );
+
+});
+
+// coluna footer 3
+
+const colunaContato = document.createElement('div');
+colunaContato.classList.add('footer-coluna');
+
+const tituloContatoFooter = document.createElement('h3');
+tituloContatoFooter.classList.add('titulo-footer');
+tituloContatoFooter.textContent = "Contato";
+
+colunaContato.appendChild(tituloContatoFooter);
+
+const contatos = [
+    {
+        icone: "assets/icons/mail-branco.svg",
+        texto: "contato@conectatalent.com",
+        href: "mailto:contato@conectatalent.com"
+    },
+    {
+        icone: "assets/icons/phone-branco.svg",
+        texto: "(15) 99999-9999",
+        href: "tel:+5515999999999"
+    }
+];
+
+contatos.forEach((item) => {
+
+    colunaContato.appendChild(
+        criarItemFooter(
+            item.icone,
+            item.texto,
+            item.href
+        )
+    );
+
+});
+
+const colunaRedes = document.createElement('div');
+colunaRedes.classList.add('footer-coluna');
+
+const tituloRedesFooter = document.createElement('h3');
+tituloRedesFooter.classList.add('titulo-footer');
+tituloRedesFooter.textContent = "Redes Sociais";
+
+colunaRedes.appendChild(tituloRedesFooter);
+
+const redesSociais = [
+    {
+        icone: "assets/icons/instagram.svg",
+        texto: "Conecta Talent",
+        href: "https://www.instagram.com/"
+    }
+];
+
+redesSociais.forEach((item) => {
+
+    colunaRedes.appendChild(
+        criarItemFooter(
+            item.icone,
+            item.texto,
+            item.href
+        )
+    );
+
+});
+
+const footerBottom = document.createElement('div');
+footerBottom.classList.add('footer-bottom');
+
+const copyright = document.createElement('p');
+copyright.classList.add('copyright');
+copyright.textContent = "© 2026 Conecta Talent. Todos os direitos reservados.";
+
+footerBottom.appendChild(copyright);
 
 header.appendChild(logo); //coloca logo dentro do header
 header.appendChild(navegacao) //coloca navegacao dentro do header
@@ -657,12 +867,30 @@ containerFaq.appendChild(itemFaq6)
 itemFaq6.appendChild(pergunta6);
 itemFaq6.appendChild(resposta6);
 
+
+rodape.appendChild(rodapeContainer);
+rodape.appendChild(rodapeContainer);
+rodape.appendChild(footerBottom);
+
+rodapeContainer.appendChild(colunaLogo);
+colunaLogo.appendChild(logoContainer);
+logoContainer.appendChild(logoFooter);
+logoContainer.appendChild(descricaoFooter);
+
+
+rodapeContainer.appendChild(colunaEmpresa);
+
+
+
+rodapeContainer.appendChild(colunaContato);
+rodapeContainer.appendChild(colunaRedes);
+
 app.appendChild(header); //coloca header na página
 app.appendChild(main); //coloca main na pagina
 app.appendChild(cardsBeneficio); //cardsBeneficio na pagina
 app.appendChild(cardsComoFunciona); //cardsComoFunciona na pagina
 app.appendChild(secaoFaq); // coloca FAQ na página
-
+app.appendChild(rodape); //rodapé na página
 console.log(acesso);
 
 

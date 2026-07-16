@@ -565,13 +565,16 @@
 .pergunta-faq4,
 .pergunta-faq5,
 .pergunta-faq6{
-    color: #1A3BBF;
-    font-size: 18px;
-    margin-bottom: 12px;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-size:18px;
+    font-weight:600;
 }
-
-
-
 
 .resposta-faq1,
 .resposta-faq2,
@@ -579,45 +582,107 @@
 .resposta-faq4,
 .resposta-faq5,
 .resposta-faq6{
+    display: none;
     color: #555;
     line-height: 1.6;
 }
 
+.footer{
 
+    background:#0036A4;
+    padding:15px 80px;
+    margin-top: 15px;
+}
 
+.footer-container{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:60px;
+}
 
+.titulo-footer{
+    color:white;
+    font-size:21px;
+    font-weight:600;
+    margin-top:50px;
+    margin-bottom: 30px;
+}
 
+.item-footer{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+}
 
+.icone-footer{
+    width:30px;
+    height:30px;
+}
 
+.link-footer{
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+    transition:0.3s;
+}
 
+.logo-footer{
+    width:300px;
+}
 
+.logo-container{
+    position: relative;
+    margin-bottom:30px;
+}
 
+.descricao-footer{
+    position: absolute;
+    top: 200px; 
+    left: 50%;
+    width: 280px;
+    transform: translateX(-50%);
+    color:#D7E3FF;
+    font-size:18px;
+    line-height:1.6;
+    text-align:center;
+}
 
+.footer-bottom{
+    border-top:1px solid rgba(255,255,255,.2);
+    margin-top:25px;
+    padding-top:25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
 
+.copyright{
+    color:#D7E3FF;
+    font-size:15px;
+    text-align:center;
+}
 
+.footer-coluna{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
 
+.colunaLogo{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
 
+.link-footer:hover{
+    transform: translateX(3px);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.item-footer:hover .icone-footer{
+    transform: translateX(3px);
+}
 
 
 
