@@ -684,6 +684,733 @@
     transform: translateX(3px);
 }
 
+/* Responsividade */
+
+/* Notebook */
+@media (max-width: 1366px) {
+
+    /* ---------- HEADER ---------- */
+
+    .header{
+        padding: 0 20px;
+    }
+
+    .navegacao{
+        gap: 35px;
+    }
+
+    .acesso{
+        gap: 20px;
+    }
+
+    .btn-entrar,
+    .btn-cadastrar{
+        padding: 10px 25px;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero{
+        height: 380px;
+    }
+
+    .hero-conteudo{
+        padding-left: 35px;
+    }
+
+    .titulo-hero{
+        font-size: 42px;
+    }
+
+    .descricao-hero{
+        font-size: 18px;
+    }
+
+    .imagem-hero{
+        max-width: 500px;
+    }
+
+    /* ---------- ÁREA DE BUSCA ---------- */
+
+    .input-buscar{
+        width: 300px;
+    }
+
+    .input-localizar{
+        width: 180px;
+    }
+
+    .btn-buscar-vagas{
+        width: 140px;
+    }
+
+    /* ---------- CARDS ---------- */
+
+    .cards-container{
+        gap: 20px;
+    }
+
+    .card-candidato,
+    .card-empresa,
+    .card-processo,
+    .card-seguranca{
+        width: 300px;
+    }
+
+    /* ---------- COMO FUNCIONA ---------- */
+
+    .container-funciona{
+        width: 95%;
+    }
+
+    .cabecalho-candidato,
+    .cabecalho-empresa{
+        width: 90%;
+    }
+
+    /* ---------- FAQ ---------- */
+
+    .container-faq{
+        width: 90%;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    .footer{
+        padding: 40px;
+    }
+
+    .footer-container{
+        gap: 40px;
+    }
+
+    .logo-footer{
+        width: 220px;
+    }
+
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .header {
+        padding: 0 20px;
+    }
+
+    .navegacao {
+        gap: 20px;
+    }
+
+    .btn-menu {
+        font-size: 14px;
+    }
+
+    .acesso {
+        gap: 15px;
+    }
+
+    .btn-entrar,
+    .btn-cadastrar {
+        padding: 8px 18px;
+        font-size: 14px;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        padding: 50px 20px;
+    }
+
+    .hero-conteudo {
+        padding-left: 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    .titulo-hero {
+        font-size: 38px;
+        margin-top: 0;
+        max-width: 700px;
+    }
+
+    .descricao-hero {
+        font-size: 18px;
+        max-width: 600px;
+    }
+
+    .hero-imagem {
+        margin-top: 35px;
+        justify-content: center;
+    }
+
+    .imagem-hero {
+        max-width: 420px;
+        width: 100%;
+        transform: none;
+    }
+
+    /* ---------- ÁREA DE BUSCA ---------- */
+
+    .area-buscar-vagas {
+        width: 100%;
+        max-width: 700px;
+    }
+
+    .area-busca-input {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .input-buscar {
+        width: 280px;
+    }
+
+    .input-localizar {
+        width: 180px;
+    }
+
+    .btn-buscar-vagas {
+        width: 160px;
+    }
+
+    /* ---------- BENEFÍCIOS ---------- */
+
+    .cards-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .card-candidato,
+    .card-empresa,
+    .card-processo,
+    .card-seguranca {
+        width: 45%;
+    }
+
+    /* ---------- COMO FUNCIONA ---------- */
+
+    .container-funciona {
+        flex-direction: column;
+    }
+
+    .candidato-funciona,
+    .empresa-funciona {
+        width: 100%;
+    }
+
+    .cabecalho-candidato,
+    .cabecalho-empresa {
+        width: 90%;
+    }
+
+    .passo-candidato1,
+    .passo-candidato2,
+    .passo-candidato3,
+    .passo-candidato4,
+    .passo-candidato5,
+    .passo-empresa1,
+    .passo-empresa2,
+    .passo-empresa3,
+    .passo-empresa4,
+    .passo-empresa5 {
+        margin-left: 25px;
+    }
+
+    /* ---------- FAQ ---------- */
+
+    .container-faq {
+        width: 90%;
+    }
+
+    .pergunta-faq1,
+    .pergunta-faq2,
+    .pergunta-faq3,
+    .pergunta-faq4,
+    .pergunta-faq5,
+    .pergunta-faq6 {
+        font-size: 17px;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    .footer {
+        padding: 40px 25px;
+    }
+
+    .footer-container {
+        gap: 30px;
+    }
+
+    .logo-footer {
+        width: 220px;
+    }
+
+    .descricao-footer {
+        width: 220px;
+        top: 145px;
+        font-size: 15px;
+    }
+
+    .titulo-footer {
+        font-size: 18px;
+    }
+
+    .link-footer {
+        font-size: 15px;
+    }
+
+    .icone-footer {
+        width: 25px;
+        height: 25px;
+    }
+
+}
+
+
+
+/* Celular */
+@media (max-width: 768px) {
+    .header{
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .logo{
+        font-size: 28px;
+    }
+
+    .navegacao{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .acesso{
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .btn-entrar,
+    .btn-cadastrar{
+        width: 140px;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        padding: 40px 20px;
+    }
+
+    .hero-conteudo{
+        padding: 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    .titulo-hero{
+        font-size: 32px;
+        margin-top: 0;
+    }
+
+    .descricao-hero{
+        font-size: 16px;
+        max-width: 100%;
+    }
+
+    .hero-imagem{
+        margin-top: 30px;
+    }
+
+    .imagem-hero{
+        width: 100%;
+        max-width: 320px;
+        transform: none;
+    }
+
+    /* ---------- ÁREA DE BUSCA ---------- */
+
+    .area-buscar-vagas{
+        width: 100%;
+        padding: 20px;
+    }
+
+    .area-busca-input{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .campo-buscar-vagas,
+    .campo-buscar-localizacao{
+        width: 100%;
+    }
+
+    .input-buscar,
+    .input-localizar,
+    .btn-buscar-vagas{
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* ---------- BENEFÍCIOS ---------- */
+
+    .cards-container{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-candidato,
+    .card-empresa,
+    .card-processo,
+    .card-seguranca{
+        width: 95%;
+    }
+
+    /* ---------- COMO FUNCIONA ---------- */
+
+    .container-funciona{
+        flex-direction: column;
+    }
+
+    .candidato-funciona,
+    .empresa-funciona{
+        width: 100%;
+    }
+
+    .cabecalho-candidato,
+    .cabecalho-empresa{
+        width: 95%;
+    }
+
+    .passo-candidato1,
+    .passo-candidato2,
+    .passo-candidato3,
+    .passo-candidato4,
+    .passo-candidato5,
+    .passo-empresa1,
+    .passo-empresa2,
+    .passo-empresa3,
+    .passo-empresa4,
+    .passo-empresa5{
+        margin-left: 10px;
+        gap: 10px;
+    }
+
+    .titulo-passo1,
+    .titulo-passo2,
+    .titulo-passo3,
+    .titulo-passo4,
+    .titulo-passo5,
+    .titulo-passo-empresa1,
+    .titulo-passo-empresa2,
+    .titulo-passo-empresa3,
+    .titulo-passo-empresa4,
+    .titulo-passo-empresa5,
+    .descricao-passo1,
+    .descricao-passo2,
+    .descricao-passo3,
+    .descricao-passo4,
+    .descricao-passo5,
+    .descricao-passo-empresa1,
+    .descricao-passo-empresa2,
+    .descricao-passo-empresa3,
+    .descricao-passo-empresa4,
+    .descricao-passo-empresa5{
+        margin-left: 15px;
+    }
+
+    /* ---------- FAQ ---------- */
+
+    .container-faq{
+        width: 95%;
+    }
+
+    .pergunta-faq1,
+    .pergunta-faq2,
+    .pergunta-faq3,
+    .pergunta-faq4,
+    .pergunta-faq5,
+    .pergunta-faq6{
+        font-size: 16px;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    .footer{
+        padding: 30px 20px;
+    }
+
+    .footer-container{
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 35px;
+    }
+
+    .footer-coluna{
+        align-items: center;
+    }
+
+    .logo-footer{
+        width: 180px;
+    }
+
+    .logo-container{
+        position: static;
+    }
+
+    .descricao-footer{
+        position: static;
+        transform: none;
+        width: 100%;
+        margin-top: 15px;
+        font-size: 15px;
+    }
+
+    .item-footer{
+        justify-content: center;
+    }
+
+    .footer-bottom{
+        text-align: center;
+    }
+
+}
+
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+    @media (max-width: 480px) {
+
+    /* ---------- HEADER ---------- */
+
+    .header{
+        padding:15px;
+        gap:15px;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .navegacao{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .acesso{
+        flex-direction:column;
+        width:100%;
+    }
+
+    .btn-entrar,
+    .btn-cadastrar{
+        width:100%;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero{
+        padding:30px 15px;
+    }
+
+    .titulo-hero{
+        font-size:26px;
+        line-height:1.3;
+    }
+
+    .descricao-hero{
+        font-size:15px;
+    }
+
+    .imagem-hero{
+        max-width:250px;
+    }
+
+    /* ---------- ÁREA DE BUSCA ---------- */
+
+    .area-buscar-vagas{
+        padding:15px;
+    }
+
+    .encontre-vaga{
+        text-align:center;
+        font-size:18px;
+    }
+
+    .busque-cargos{
+        text-align:center;
+        font-size:14px;
+    }
+
+    .area-busca-input{
+        gap:10px;
+    }
+
+    .input-buscar,
+    .input-localizar,
+    .btn-buscar-vagas{
+        height:45px;
+        font-size:14px;
+    }
+
+    /* ---------- BENEFÍCIOS ---------- */
+
+    .titulo-secao{
+        font-size:24px;
+        text-align:center;
+    }
+
+    .susbtitulo-beneficio{
+        font-size:16px;
+        text-align:center;
+        padding:0 15px;
+    }
+
+    .cards-container{
+        margin:15px;
+    }
+
+    .card-candidato,
+    .card-empresa,
+    .card-processo,
+    .card-seguranca{
+        width:100%;
+    }
+
+    .titulo-card{
+        font-size:17px;
+    }
+
+    .descricao-card{
+        font-size:14px;
+    }
+
+    /* ---------- COMO FUNCIONA ---------- */
+
+    .subtitulo-funciona{
+        font-size:22px;
+        text-align:center;
+    }
+
+    .descricao-funciona{
+        text-align:center;
+        padding:0 15px;
+    }
+
+    .cabecalho-candidato,
+    .cabecalho-empresa{
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+
+    .texto-funciona-candidato,
+    .texto-funciona-empresa{
+        margin:15px;
+    }
+
+    .passo-candidato1,
+    .passo-candidato2,
+    .passo-candidato3,
+    .passo-candidato4,
+    .passo-candidato5,
+    .passo-empresa1,
+    .passo-empresa2,
+    .passo-empresa3,
+    .passo-empresa4,
+    .passo-empresa5{
+        margin-left:0;
+        gap:10px;
+    }
+
+    .titulo-passo1,
+    .titulo-passo2,
+    .titulo-passo3,
+    .titulo-passo4,
+    .titulo-passo5,
+    .titulo-passo-empresa1,
+    .titulo-passo-empresa2,
+    .titulo-passo-empresa3,
+    .titulo-passo-empresa4,
+    .titulo-passo-empresa5,
+    .descricao-passo1,
+    .descricao-passo2,
+    .descricao-passo3,
+    .descricao-passo4,
+    .descricao-passo5,
+    .descricao-passo-empresa1,
+    .descricao-passo-empresa2,
+    .descricao-passo-empresa3,
+    .descricao-passo-empresa4,
+    .descricao-passo-empresa5{
+        margin-left:0;
+    }
+
+    /* ---------- FAQ ---------- */
+
+    .titulo-faq{
+        text-align:center;
+    }
+
+    .container-faq{
+        width:100%;
+    }
+
+    .pergunta-faq1,
+    .pergunta-faq2,
+    .pergunta-faq3,
+    .pergunta-faq4,
+    .pergunta-faq5,
+    .pergunta-faq6{
+        font-size:15px;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    .footer{
+        padding:25px 15px;
+    }
+
+    .logo-footer{
+        width:150px;
+    }
+
+    .descricao-footer{
+        font-size:14px;
+        width:100%;
+    }
+
+    .titulo-footer{
+        font-size:18px;
+    }
+
+    .item-footer{
+        justify-content:center;
+    }
+
+    .link-footer{
+        font-size:14px;
+    }
+
+    .copyright{
+        font-size:13px;
+    }
+
+}
+
+}
 
 
 
