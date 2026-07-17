@@ -14,7 +14,7 @@ root.innerHTML = `
     <header class="header">
 
         <div class="header-icon">
-            📋
+            <img src="assets/icons/file-description-branco.svg" alt="Triagem">
         </div>
 
         <div>
@@ -30,37 +30,37 @@ root.innerHTML = `
     <section class="stats">
 
         <div class="card">
-            <div class="icon">👥</div>
+            <img src="assets/icons/people.svg" class="icon" alt="">
             <h3>Inscritos</h3>
             <span>32</span>
         </div>
 
         <div class="card">
-            <div class="icon">🔍</div>
+            <img src="assets/icons/clipboard-text-branco.svg" class="icon" alt="">
             <h3>Em triagem</h3>
             <span>18</span>
         </div>
 
         <div class="card">
-            <div class="icon">✅</div>
+            <img src="assets/icons/clipboard2-check.svg" class="icon" alt="">
             <h3>Aprovados</h3>
             <span>7</span>
         </div>
 
         <div class="card">
-            <div class="icon">❌</div>
+            <img src="assets/icons/shield-check.svg" class="icon" alt="">
             <h3>Reprovados</h3>
             <span>5</span>
         </div>
 
         <div class="card">
-            <div class="icon">📅</div>
+            <img src="assets/icons/calendar-week-branco.svg" class="icon" alt="">
             <h3>Entrevistas</h3>
             <span>4</span>
         </div>
 
         <div class="card">
-            <div class="icon">🏆</div>
+            <img src="assets/icons/user-circle.svg" class="icon" alt="">
             <h3>Contratados</h3>
             <span>2</span>
         </div>
@@ -69,10 +69,16 @@ root.innerHTML = `
 
     <div class="search-section">
 
-        <input
-            type="text"
-            placeholder="Buscar candidato por nome, email ou palavra-chave"
-        >
+        <div class="search-box">
+
+            <img src="assets/icons/search.svg" alt="Buscar">
+
+            <input
+                type="text"
+                placeholder="Buscar candidato por nome, email ou palavra-chave"
+            >
+
+        </div>
 
     </div>
 
