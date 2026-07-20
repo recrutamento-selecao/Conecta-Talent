@@ -1,4 +1,4 @@
-import { createTable } from "../components/table.js";
+import { createCandidateTable } from "../components/candidateTable.js";
 
 const root = document.getElementById("root");
 
@@ -95,7 +95,7 @@ root.innerHTML = `
 
     </div>
 
-    ${createTable()}
+    ${createCandidateTable()}
 
 </div>
 `;
