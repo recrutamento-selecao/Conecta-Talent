@@ -1,0 +1,15 @@
+#app{
+    display: flex;
+    min-height: 100vh;
+}
+
+.dashboard{
+    flex: 1;
+    padding: 30px;
+}
+
+.area-cards{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}

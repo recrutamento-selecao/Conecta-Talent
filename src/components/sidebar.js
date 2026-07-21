@@ -1018,7 +1018,7 @@ export function criarSidebar(tipoUsuario, nomeUsuario) { //disponibilizando a fu
 
     const iconePerfil = document.createElement('img');
     iconePerfil.classList.add('icone-perfil');
-    iconePerfil.src = "assets/icons/user-circle.svg";
+    iconePerfil.src = "assets/icons/user-circle-branco.svg";
 
     const rodapeSidebar = document.createElement('div');
     rodapeSidebar.classList.add('rodape-sidebar');
