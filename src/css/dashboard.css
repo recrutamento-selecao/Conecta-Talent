@@ -1,15 +1,15 @@
-#app{
+#app {
     display: flex;
     min-height: 100vh;
 }
 
-.dashboard{
+.dashboard {
     flex: 1;
     padding: 30px;
 }
 
 .area-cards{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    flex-wrap: wrap;
 }

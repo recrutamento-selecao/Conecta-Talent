@@ -1,23 +1,38 @@
 .container-card{
-
+    height: 150px;
+    padding: 20px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .cabecalho-card{
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .titulo-card{
-
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748B;
 }
 
 .img-card{
-
+    width: 32px;
+    height: 32px;
 }
 
-.valor-card{
-
+.valor-card {
+    margin-top: 8px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #1E293B;
 }
 
-.descricao-card{
-
+.descricao-card {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #64748B;
 }
