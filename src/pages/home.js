@@ -11,18 +11,36 @@ logo.classList.add('logo');
 const navegacao = document.createElement('nav'); //cria nav
 navegacao.classList.add('navegacao');
 
-const menu = [ //isso é um array
-    "Sobre nós",
-    "Recursos",
-    "Planos",
-    "Suporte"
+const menu = [
+    {
+        nome: "Sobre nós",
+        pagina: "sobre-nos.html"
+    },
+    {
+        nome: "Recursos",
+        pagina: "recursos.html"
+    },
+    {
+        nome: "Planos",
+        pagina: "planos.html"
+    },
+    {
+        nome: "Suporte",
+        pagina: "suporte.html"
+    }
 ];
 
-menu.forEach((menu) => { //percorre o array inteiro, um item de cada vez.
-    const btnMenu = document.createElement('button'); //cria um botao a cada repeticao do forEach
-    btnMenu.textContent = menu; //coloca texto do item do array dentro do botão
-    navegacao.appendChild(btnMenu); // o botão é colocado dentro do elemento navegacao
-    btnMenu.classList.add("btn-menu")
+menu.forEach((menu) => {
+    const btnMenu = document.createElement('button');
+
+    btnMenu.textContent = menu.nome;
+    btnMenu.classList.add("btn-menu");
+
+    btnMenu.addEventListener("click", () => {
+        window.location.href = menu.pagina;
+    });
+
+    navegacao.appendChild(btnMenu);
 });
 
 const acesso = document.createElement('div'); //cria div 

@@ -1,0 +1,338 @@
+.sobre-nos {
+    font-family: 'Inter', sans-serif;
+}
+
+.apresentacao-sobre {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.titulo-sobre {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2563EB;
+}
+
+.titulo-principal-sobre {
+    font-size: 40px;
+    font-weight: 700;
+    color: #1E293B;
+    margin-top: 12px;
+}
+
+.descricao-sobre {
+    font-size: 16px;
+    color: #64748B;
+    line-height: 1.6;
+    max-width: 750px;
+    margin: 20px auto 0;
+}
+
+.historia {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.imagem-historia {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+}
+
+.historia-imagem,
+.historia-conteudo {
+    flex: 1;
+}
+
+.subtitulo-historia {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2563EB;
+}
+
+.titulo-historia {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1E293B;
+    margin-top: 12px;
+}
+
+.descricao-historia {
+    font-size: 16px;
+    color: #64748B;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+.proposito {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.titulo-proposito {
+    color: #1E293B;
+}
+
+.descricao-proposito {
+    color: #64748B;
+    margin-top: 10px;
+}
+
+.area-proposito {
+    display: flex;
+    gap: 24px;
+    margin-top: 40px;
+}
+
+.card-proposito {
+    flex: 1;
+    padding: 30px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+}
+
+.icone-proposito {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.titulo-card-proposito {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1E293B;
+    margin-bottom: 12px;
+}
+
+.descricao-card-proposito {
+    font-size: 14px;
+    color: #64748B;
+    line-height: 1.6;
+}
+
+@media (max-width: 1366px) {
+    .apresentacao-sobre {
+        padding: 70px 30px;
+    }
+
+    .titulo-principal-sobre {
+        font-size: 36px;
+    }
+
+    .historia {
+        gap: 40px;
+        padding: 0 30px;
+    }
+
+    .imagem-historia {
+        max-width: 500px;
+    }
+
+    .titulo-historia {
+        font-size: 30px;
+    }
+
+    .proposito {
+        padding: 70px 30px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .apresentacao-sobre {
+        padding: 60px 30px;
+    }
+
+    .titulo-principal-sobre {
+        font-size: 32px;
+    }
+
+    .descricao-sobre {
+        max-width: 650px;
+    }
+
+    .historia {
+        gap: 30px;
+        padding: 0 30px;
+    }
+
+    .imagem-historia {
+        max-width: 450px;
+    }
+
+    .titulo-historia {
+        font-size: 27px;
+    }
+
+    .descricao-historia {
+        font-size: 15px;
+    }
+
+    .proposito {
+        padding: 60px 30px;
+    }
+
+    .area-proposito {
+        flex-wrap: wrap;
+    }
+
+    .card-proposito {
+        flex: 1 1 calc(50% - 24px);
+    }
+}
+
+@media (max-width: 768px) {
+    .apresentacao-sobre {
+        padding: 50px 25px;
+    }
+
+    .titulo-sobre {
+        font-size: 13px;
+    }
+
+    .titulo-principal-sobre {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    .descricao-sobre {
+        font-size: 15px;
+        max-width: 550px;
+    }
+
+    .historia {
+        flex-direction: column;
+        gap: 35px;
+        padding: 0 25px;
+    }
+
+    .historia-imagem,
+    .historia-conteudo {
+        width: 100%;
+    }
+
+    .historia-imagem {
+        display: flex;
+        justify-content: center;
+    }
+
+    .imagem-historia {
+        max-width: 500px;
+    }
+
+    .historia-conteudo {
+        text-align: center;
+    }
+
+    .titulo-historia {
+        font-size: 26px;
+    }
+
+    .descricao-historia {
+        font-size: 15px;
+        max-width: 600px;
+        margin: 20px auto 0;
+    }
+
+    .proposito {
+        padding: 60px 25px;
+    }
+
+    .area-proposito {
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .card-proposito {
+        width: 100%;
+    }
+
+    .icone-proposito {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .apresentacao-sobre {
+        padding: 40px 15px;
+    }
+
+    .titulo-sobre {
+        font-size: 12px;
+    }
+
+    .titulo-principal-sobre {
+        font-size: 24px;
+        line-height: 1.25;
+        margin-top: 10px;
+    }
+
+    .descricao-sobre {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-top: 15px;
+    }
+
+    .historia {
+        padding: 0 15px;
+        gap: 25px;
+    }
+
+    .imagem-historia {
+        max-width: 100%;
+    }
+
+    .subtitulo-historia {
+        font-size: 12px;
+    }
+
+    .titulo-historia {
+        font-size: 23px;
+        line-height: 1.25;
+        margin-top: 10px;
+    }
+
+    .descricao-historia {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-top: 15px;
+    }
+
+    .proposito {
+        padding: 50px 15px;
+    }
+
+    .titulo-proposito {
+        font-size: 24px;
+    }
+
+    .descricao-proposito {
+        font-size: 14px;
+    }
+
+    .area-proposito {
+        margin-top: 25px;
+        gap: 16px;
+    }
+
+    .card-proposito {
+        padding: 25px 20px;
+    }
+
+    .icone-proposito {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 12px;
+    }
+
+    .titulo-card-proposito {
+        font-size: 18px;
+    }
+
+    .descricao-card-proposito {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.header {
+    background: linear-gradient(
+        90deg,
+        #0A2FD8 0%,
+        #2563EB 45%,
+        #4F8DFF 100%
+    );
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 30px;
+}
+
+.logo {
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+
+.navegacao {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.btn-menu {
+    background-color: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.btn-menu:hover {
+    color: #FFFFFF;
+    transform: scale(1.05);
+}
+
+.acesso {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.btn-entrar {
+    background-color: transparent;
+    border: 1px solid #C7C5D0;
+    padding: 10px 35px;
+    color: #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-entrar:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-cadastrar {
+    background: #FFFFFF;
+    padding: 10px 35px;
+    border: none;
+    border-radius: 5px;
+    color: #0A2FD8;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.btn-cadastrar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 1366px) {
+    .header {
+        padding: 0 25px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .navegacao {
+        gap: 35px;
+    }
+
+    .acesso {
+        gap: 15px;
+    }
+
+    .btn-entrar,
+    .btn-cadastrar {
+        padding: 10px 22px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header {
+        padding: 0 20px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .navegacao {
+        gap: 20px;
+    }
+
+    .btn-menu {
+        font-size: 14px;
+    }
+
+    .acesso {
+        gap: 10px;
+    }
+
+    .btn-entrar,
+    .btn-cadastrar {
+        padding: 9px 15px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        height: auto;
+        min-height: 80px;
+        padding: 20px;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .navegacao {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .acesso {
+        gap: 10px;
+    }
+
+    .btn-entrar,
+    .btn-cadastrar {
+        padding: 8px 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        flex-direction: column;
+        padding: 20px 15px;
+        gap: 20px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .navegacao {
+        flex-direction: column;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .btn-menu {
+        font-size: 15px;
+    }
+
+    .acesso {
+        width: 100%;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .btn-entrar,
+    .btn-cadastrar {
+        flex: 1;
+        max-width: 160px;
+        padding: 10px;
+    }
+}

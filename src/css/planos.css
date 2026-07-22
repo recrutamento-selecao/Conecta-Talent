@@ -1,0 +1,282 @@
+.planos {
+    font-family: 'Inter', sans-serif;
+}
+
+.apresentacao-planos {
+    text-align: center;
+    padding: 70px 20px 50px;
+}
+
+.titulo-planos {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2563EB;
+}
+
+.titulo-principal-planos {
+    font-size: 40px;
+    font-weight: 700;
+    color: #1E293B;
+    margin-top: 12px;
+}
+
+.descricao-planos {
+    font-size: 16px;
+    color: #64748B;
+    line-height: 1.6;
+    max-width: 650px;
+    margin: 20px auto 0;
+}
+
+.area-planos {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 30px 80px;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    align-items: stretch;
+}
+
+.card-plano {
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 32px;
+
+    display: flex;
+    flex-direction: column;
+
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-plano:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.10);
+}
+
+.nome-plano {
+    font-size: 22px;
+    font-weight: 600;
+    color: #1E293B;
+    margin-bottom: 20px;
+}
+
+.preco-plano {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1E293B;
+}
+
+.periodo-plano {
+    font-size: 14px;
+    color: #64748B;
+    margin-top: 4px;
+}
+
+.descricao-plano {
+    font-size: 14px;
+    color: #64748B;
+    line-height: 1.6;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.lista-recursos {
+    list-style: none;
+    margin-top: 25px;
+    margin-bottom: 30px;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.item-recurso {
+    font-size: 14px;
+    color: #475569;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.item-recurso::before {
+    content: "✓";
+    color: #2563EB;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.botao-assinar {
+    width: 100%;
+    padding: 12px 20px;
+    margin-top: auto;
+
+    background-color: #2563EB;
+    border: none;
+    border-radius: 6px;
+
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.botao-assinar:hover {
+    background-color: #1D4ED8;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 1366px) {
+    .apresentacao-planos {
+        padding: 60px 30px 45px;
+    }
+
+    .titulo-principal-planos {
+        font-size: 36px;
+    }
+
+    .area-planos {
+        max-width: 1100px;
+        gap: 22px;
+        padding: 20px 30px 70px;
+    }
+
+    .card-plano {
+        padding: 28px;
+    }
+
+    .preco-plano {
+        font-size: 34px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .apresentacao-planos {
+        padding: 55px 30px 40px;
+    }
+
+    .titulo-principal-planos {
+        font-size: 32px;
+    }
+
+    .area-planos {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 800px;
+        gap: 24px;
+        padding: 20px 30px 60px;
+    }
+
+    .card-plano {
+        padding: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .apresentacao-planos {
+        padding: 50px 25px 35px;
+    }
+
+    .titulo-planos {
+        font-size: 13px;
+    }
+
+    .titulo-principal-planos {
+        font-size: 28px;
+        line-height: 1.2;
+    }
+
+    .descricao-planos {
+        font-size: 15px;
+        max-width: 550px;
+    }
+
+    .area-planos {
+        grid-template-columns: 1fr;
+        max-width: 550px;
+        padding: 15px 25px 60px;
+        gap: 20px;
+    }
+
+    .card-plano {
+        padding: 28px;
+    }
+
+    .nome-plano {
+        font-size: 21px;
+    }
+
+    .preco-plano {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .apresentacao-planos {
+        padding: 40px 15px 30px;
+    }
+
+    .titulo-planos {
+        font-size: 12px;
+    }
+
+    .titulo-principal-planos {
+        font-size: 24px;
+        line-height: 1.25;
+        margin-top: 10px;
+    }
+
+    .descricao-planos {
+        font-size: 14px;
+        line-height: 1.5;
+        margin-top: 15px;
+    }
+
+    .area-planos {
+        padding: 10px 15px 50px;
+        gap: 18px;
+    }
+
+    .card-plano {
+        padding: 24px 20px;
+    }
+
+    .nome-plano {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+
+    .preco-plano {
+        font-size: 30px;
+    }
+
+    .periodo-plano {
+        font-size: 13px;
+    }
+
+    .descricao-plano {
+        font-size: 14px;
+        margin-top: 16px;
+    }
+
+    .lista-recursos {
+        margin-top: 20px;
+        margin-bottom: 25px;
+        gap: 13px;
+    }
+
+    .item-recurso {
+        font-size: 13px;
+    }
+
+    .botao-assinar {
+        font-size: 14px;
+        padding: 11px 15px;
+    }
+}
