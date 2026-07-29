@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+#app {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+.cabecalho-pagina {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.titulo-pagina {
+    font-size: 24px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.descricao-pagina {
+    font-size: 14px;
+    color: #6B7280;
+    margin-top: 4px;
+}
+
+.btn-cadastrar-recrutador {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #1A3BBF;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.icone-adicionar {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.listar-recrutadores {
+    flex: 1;
+    padding: 32px;
+}
+
+.container-indicadores {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.card-indicador {
+    flex: 1;
+    padding: 16px;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+}
+
+.titulo-indicador {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+
+.conteudo-indicador {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+}
+
+.valor-indicador {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.img-indicador {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
