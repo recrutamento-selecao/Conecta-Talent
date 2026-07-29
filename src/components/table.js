@@ -1,17 +1,38 @@
-export function createTable(headers, rows, tableClass = "candidate-table") {
-    return `
-        <table class="${tableClass}">
+export function criartabela(cabecalho, linhas){
 
-            <thead>
-                <tr>
-                    ${headers.map(header => `<th>${header}</th>`).join("")}
-                </tr>
-            </thead>
+    const app = document.getElementById('app');
+    const table = document.createElement('table');
+    const thead = document.createElement('thead');
+    const tbody = document.createElement('tbody');
 
-            <tbody>
-                ${rows.join("")}
-            </tbody>
+    const tr = document.createElement('tr');
 
-        </table>
-    `;
+    cabecalho.forEach(header => {
+        const th = document.createElement('th');
+
+        th.textContent = header;
+        tr.appendChild(th);
+    });
+
+
+    linhas.forEach(row =>{
+        const tr = document.createElement('tr');
+
+        row.forEach(item => {
+            const td = document.createElement('td');
+
+            td.textContent = item;
+
+            tr.appendChild(td);
+        })
+        
+
+        tbody.appendChild(tr);
+    })
+
+    thead.appendChild(tr);
+    table.appendChild(thead);
+    table.appendChild(tbody);
+    app.appendChild(table);
+
 }
