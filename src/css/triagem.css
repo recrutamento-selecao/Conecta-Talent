@@ -1,0 +1,55 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+thead th {
+    padding: 18px 20px;
+    text-align: left;
+    font-size: 15px;
+    font-weight: 700;
+    color: #111;
+    border-bottom: 1px solid #d9e2f2;
+}
+
+tbody td {
+    padding: 22px 20px;
+    font-size: 14px;
+    color: #222;
+    vertical-align: top;
+}
+
+tbody tr {
+    border-bottom: 1px solid #d9e2f2;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+/* Primeira coluna (Candidato) */
+th:first-child,
+td:first-child {
+    width: 55%;
+}
+
+/* Inscrição */
+th:nth-child(2),
+td:nth-child(2) {
+    width: 15%;
+}
+
+/* Experiência */
+th:nth-child(3),
+td:nth-child(3) {
+    width: 15%;
+}
+
+/* Status */
+th:last-child,
+td:last-child {
+    width: 15%;
+}
+
