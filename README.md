@@ -1,5 +1,7 @@
 # Conecta Talent - Sistema de recrutamento e seleção (Educacional)
 
+Figma: https://www.figma.com/proto/UAEUInGbjQoI1vmLsbcxmw/Sistema?node-id=0-1&t=XqEl0mGOHo7tCNGD-1
+
 ## Descrição geral do sistema
 
 A plataforma de recrutamento e seleção educacional foi desenvolvida para simular o funcionamento de um sistema real de recrutamento e seleção dentro do ambiente escolar.
