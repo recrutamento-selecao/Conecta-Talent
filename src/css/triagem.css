@@ -1,12 +1,21 @@
-/* ===== Tabela de candidatos ===== */
+/* ===== Tabela de candidatos (versão Grid) ===== */
 
-table {
+.table-container table {
+  display: grid;
+  grid-template-columns: minmax(240px, 2fr) 1fr 1fr 1fr;
   width: 100%;
-  max-width: 1000px;
+  max-width: none;
   border-collapse: separate;
   border-spacing: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   color: #1f2430;
+}
+
+/* thead, tbody e tr somem como caixa e viram só "agrupadores" lógicos */
+table thead,
+table tbody,
+table tr {
+  display: contents;
 }
 
 /* Cabeçalho */
@@ -14,7 +23,7 @@ thead th {
   text-align: left;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #6b7280;
+  color: #1f2430; /* era #6b7280 (cinza) — agora preto/quase-preto, igual ao texto do corpo */
   padding: 0 16px 12px 16px;
   border-bottom: 1px solid #e5e7eb;
   white-space: nowrap;
@@ -24,22 +33,15 @@ thead th:not(:first-child) {
   text-align: right;
 }
 
-/* Linhas */
-tbody tr {
-  border-bottom: 1px solid #eef0f3;
-  transition: background-color 0.15s ease;
-}
-
-tbody tr:hover {
-  background-color: #fafafa;
-}
-
+/* Linhas — como tr não tem mais caixa, a borda e o hover vão pra célula */
 tbody td {
   padding: 16px 12px;
   font-size: 0.875rem;
   vertical-align: middle;
   white-space: pre-line;
   line-height: 1.5;
+  border-bottom: 1px solid #eef0f3;
+  transition: background-color 0.15s ease;
 }
 
 tbody td:not(:first-child) {
@@ -47,14 +49,14 @@ tbody td:not(:first-child) {
   color: #6b7280;
 }
 
-/* Coluna "Candidato" (1a coluna) - icone de avatar generico via ::before,
-   funciona so com CSS, sem precisar mudar o JS */
+/* Coluna "Candidato" */
 tbody td:first-child {
   font-weight: 600;
   color: #1f2430;
   display: flex;
   align-items: center;
   gap: 12px;
+  overflow: hidden;
 }
 
 tbody td:first-child::before {
@@ -70,25 +72,24 @@ tbody td:first-child::before {
   background-size: 22px;
 }
 
-/* Ultima coluna (Status) - vira "pilula" usando um truque de largura:
-   width:1% + white-space:nowrap forca a coluna a encolher para o
-   tamanho do texto, e o border-radius entao forma o formato de badge */
-thead th:not(:first-child),
-tbody td:not(:first-child) {
-  width: 1%;
+/* Coluna Status — td volta ao normal, só alinha o conteúdo à direita */
+tbody td:last-child {
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* remove: justify-self: end; */
+  /* remove: background-color, border-radius, padding, color, font-weight, font-size daqui */
 }
 
-thead th:last-child,
-tbody td:last-child {
-  white-space: nowrap;
-}
-
-tbody td:last-child {
-  text-align: center;
+/* A pílula em si, agora num elemento próprio */
+.status-pill {
+  display: inline-block;
   background-color: #ece9fe;
   color: #7c6ef0;
   font-weight: 600;
   font-size: 0.75rem;
   border-radius: 999px;
   padding: 6px 14px;
+  white-space: nowrap;
 }

@@ -45,8 +45,9 @@ h1 {
 .table-container tbody td {
     padding: 20px 28px;
     font-size: 1rem;
-    font-weight: 600;
-    border-bottom: 1px solid #4f7cff;
+    font-weight: 400;
+    color: #6b7280;
+    border-bottom: 1px solid #e3e8f7;
 }
 
 .table-container tbody tr:last-child td {
@@ -65,7 +66,7 @@ h1 {
 }
 
 .status-pausado {
-    color: #f4b400;
+    color: #f5a623;
     font-weight: 700;
 }
 
@@ -80,6 +81,7 @@ h1 {
     display: flex;
     align-items: center;
     gap: 8px;
+    color: #111;
 }
 
 .etapa::before {
@@ -113,6 +115,7 @@ h1 {
 .acoes {
     font-size: 24px;
     cursor: pointer;
+    color: #6b7280;
 }
 
 .acoes:hover {
