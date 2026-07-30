@@ -12,7 +12,7 @@ const linhas = [
     ['Analista de RH', '36', '12,4%', '12,4%'],
     ['Desenvolvedor Front-end', '29', '50%', '10,3%'],
     ['Ver todas as vagas >']
-
 ];
 
-criartabela(cabecalho, linhas);
+const app = document.getElementById('app-vagas');
+criartabela(cabecalho, linhas, app);

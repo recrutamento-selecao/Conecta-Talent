@@ -17,4 +17,4 @@ const linhas = [
 
 ];
 
-criartabela(cabecalho, linhas);
+criartabela(cabecalho, linhas,);
