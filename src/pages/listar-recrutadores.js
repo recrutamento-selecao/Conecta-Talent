@@ -37,28 +37,28 @@ containerIndicadores.classList.add('container-indicadores');
 const totalRecrutadores = {
     titulo: 'Total de recrutadores',
     valor: 6,
-    icone: "../assets/icons/users-group.svg",
+    icone: "../assets/icons/users.svg",
     descricaoImagem: 'Ícone de recrutadores'
 };
 
 const recrutadoresAtivos = {
     titulo: 'Ativos',
     valor: 4,
-    icone: '',
+    icone: "../assets/icons/circle-check.svg",
     descricaoImagem: 'Ícone ativo'
 };
 
 const recrutadoresInativos = {
     titulo: 'Inativos',
     valor: 2,
-    icone: '',
+    icone: "../assets/icons/circle-x.svg",
     descricaoImagem: 'Ícone inativo'
 };
 
 const recrutadoresAcessoTotal = {
     titulo: 'Com acesso total',
     valor: 2,
-    icone: '',
+    icone: "../assets/icons/shield-check.svg",
     descricaoImagem: 'Ícone acesso total'
 };
 

@@ -14,14 +14,28 @@ export function criarCardIndicador(dados) {
     imgIndicador.src = dados.icone;
     imgIndicador.alt = dados.descricaoImagem;
 
+    const infoIndicador = document.createElement('div');
+    infoIndicador.classList.add('info-indicador');
+
     const valorIndicador = document.createElement('p');
     valorIndicador.classList.add('valor-indicador');
     valorIndicador.textContent = dados.valor;
 
+    const variacaoIndicador = document.createElement('p');
+    variacaoIndicador.classList.add('variacao-indicador');
+    variacaoIndicador.textContent = dados.variacao;
+
     cardIndicador.appendChild(tituloIndicador);
     cardIndicador.appendChild(conteudoIndicador);
+
     conteudoIndicador.appendChild(imgIndicador);
-    conteudoIndicador.appendChild(valorIndicador);
+    conteudoIndicador.appendChild(infoIndicador);
+
+    infoIndicador.appendChild(valorIndicador);
+
+    if (dados.variacao) {
+        infoIndicador.appendChild(variacaoIndicador);
+    }
 
     return cardIndicador;
 }
