@@ -52,7 +52,7 @@
     line-height: 1;
 }
 
-.listar-recrutadores, .listar-vagas {
+.listar-recrutadores, .listar-vagas, .triagem-candidatos{
     flex: 1;
     padding: 32px;
 }

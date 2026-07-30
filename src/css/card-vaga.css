@@ -1,0 +1,107 @@
+body {
+    background: #F8FAFF;
+}
+
+#app {
+    display: flex;
+    min-height: 100vh;
+}
+
+.vagas-internas {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 32px;
+}
+
+.titulo-vaga {
+    font-size: 1.10rem;
+    font-weight: 700;
+    color: #1F2937;
+    margin-bottom: 10px;
+}
+
+.empresa-vaga {
+    font-size: .95rem;
+    color: #6B7280;
+    margin-bottom: 22px;
+}
+
+.lista-vagas {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.card-vaga {
+    background-color: #fff;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: .2s ease;
+}
+
+.card-vaga:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+}
+
+.info-vaga {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+    margin-bottom: 18px;
+}
+
+.item-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.icone-info {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.texto-info {
+    font-size: .95rem;
+    color: #374151;
+}
+
+.publicacao-vaga {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.data-publicacao {
+    font-size: .9rem;
+    color: #9CA3AF;
+}
+
+.btn-ver-detalhes {
+    margin-top: auto;
+    align-self: flex-start;
+    background: #2563EB;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 22px;
+    font-size: .95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-ver-detalhes:hover {
+    background: #1D4ED8;
+}

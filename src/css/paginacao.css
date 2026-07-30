@@ -1,0 +1,46 @@
+.paginacao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 40px 0 20px;
+}
+
+.btn-pagina {
+    min-width: 42px;
+    height: 42px;
+    padding: 0 14px;
+    border: 1px solid #D1D5DB;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    color: #374151;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.btn-pagina:hover:not(:disabled) {
+    background-color: #EFF6FF;
+    border-color: #2563EB;
+    color: #2563EB;
+    transform: translateY(-2px);
+}
+
+.btn-pagina.ativo {
+    background-color: #2563EB;
+    border-color: #2563EB;
+    color: #FFFFFF;
+}
+
+.btn-pagina:disabled {
+    opacity: .45;
+    cursor: not-allowed;
+    background-color: #F3F4F6;
+    color: #9CA3AF;
+}
+
+.btn-pagina:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .2);
+}
