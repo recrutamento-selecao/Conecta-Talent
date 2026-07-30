@@ -1,7 +1,10 @@
 import { criartabela } from '../components/table.js';
 
 const cabecalho = [
-    'Candidato', 'Inscrição', 'Experiência', 'Status'
+    'Candidato',
+    'Inscrição',
+    'Experiência',
+    'Status'
 ];
 
 const linhas = [
@@ -12,4 +15,8 @@ const linhas = [
     ['Vitor Preste\nvitor.preste@email.com\n(11)98765-5698', '17/05/2025\nHá 2 dias', '7 anos\nMarketing', 'Em triagem']
 ];
 
-criartabela(cabecalho, linhas);
+const app = document.getElementById('app');
+
+const tabela = criartabela(cabecalho, linhas);
+
+app.appendChild(tabela);

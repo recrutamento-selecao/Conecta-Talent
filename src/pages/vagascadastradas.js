@@ -14,7 +14,10 @@ const linhas = [
     ['Desenvolvedor Front-end', 'Tecnologia', 'Ativa', '36', 'Entrevista', ':'],
     ['Analista de RH', 'Recursos Humanos', 'Pausado', '15', 'Avaliação', ':'],
     ['Designer UI/UX', 'Design', 'Rascunho', '0', '...', ':']
-
 ];
 
-criartabela(cabecalho, linhas,);
+const app = document.getElementById('app');
+
+const tabela = criartabela(cabecalho, linhas);
+
+app.appendChild(tabela);

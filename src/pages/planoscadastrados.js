@@ -1,6 +1,11 @@
 import { criartabela } from '../components/table.js';
 
-const cabecalho = ['PLANO', 'EMPRESAS', 'VALOR', 'AÇÕES'];
+const cabecalho = [
+    'PLANO',
+    'EMPRESAS',
+    'VALOR',
+    'AÇÕES'
+];
 
 const linhas = [
     ['Básico', '45', 'R$325,00', 'Icones'],
@@ -9,4 +14,7 @@ const linhas = [
 ];
 
 const app = document.getElementById('app-planos');
-criartabela(cabecalho, linhas, app);
+
+const tabela = criartabela(cabecalho, linhas);
+
+app.appendChild(tabela);

@@ -14,5 +14,8 @@ const linhas = [
     ['Ver todas as vagas >']
 ];
 
-const app = document.getElementById('app-vagas');
-criartabela(cabecalho, linhas, app);
+const app = document.getElementById('app');
+
+const tabela = criartabela(cabecalho, linhas);
+
+app.appendChild(tabela);
