@@ -1,4 +1,5 @@
 import { criartabela } from '../components/table.js';
+import { criarSidebar } from '../components/sidebar.js';
 
 function criarStatus(texto) {
     const span = document.createElement('span');
@@ -35,7 +36,7 @@ function fetchCandidatosFake() {
 // ===== MUDANÇA 2 =====
 // Antes: o código rodava direto, sem função
 // Agora: precisa ser async porque depende de "esperar" a resposta chegar
-async function carregarCandidatos() {
+async function carregarCandidatos(app) {
 
     // ===== MUDANÇA 3 =====
     // Aqui é onde, no futuro, entra o fetch de verdade:
@@ -54,11 +55,19 @@ async function carregarCandidatos() {
     ]);
 
     // ===== O resto fica igual =====
-    const app = document.getElementById('app');
     const tabela = criartabela(cabecalho, linhas);
     app.appendChild(tabela);
 }
 
 // ===== MUDANÇA 5 =====
-// Chama a função (antes o código simplesmente rodava direto no fim do arquivo)
-carregarCandidatos();
+// Inicializa a página: sidebar primeiro, depois carrega a tabela
+function init() {
+    const app = document.getElementById('app');
+
+    const sidebar = criarSidebar('recrutador', 'Nome do Usuário'); // tipoUsuario e nomeUsuario reais
+    app.appendChild(sidebar);
+
+    carregarCandidatos(app);
+}
+
+init();
