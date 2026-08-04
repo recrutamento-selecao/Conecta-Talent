@@ -1,5 +1,6 @@
 import { criarSidebar } from "../components/sidebar.js";
 import { criarCardDashboard } from "../components/card-dashboard.js";
+import { dashboardCandidato } from "../../data/dashboard-candidato.js";
 
 const app = document.getElementById("app");
 
@@ -9,41 +10,54 @@ main.classList.add("dashboard");
 const areaCards = document.createElement("section");
 areaCards.classList.add("area-cards");
 
-const cards = [
+
+const { usuario, cards } = dashboardCandidato;
+
+
+const cardsDashboard = [
     {
         titulo: "Candidaturas",
-        valor: "12",
-        descricao: "3 novas esta semana",
+        valor: cards.candidaturas,
+        descricao: `${cards.novasCandidaturas} novas esta semana`,
         icone: "../assets/icons/file-description.svg",
         descricaoImagem: "Ícone de candidaturas"
     },
     {
         titulo: "Em Análise",
-        valor: "5",
-        descricao: "Aguardando retorno das empresas",
+        valor: cards.emAnalise,
+        descricao: cards.aguardandoRetorno,
         icone: "../assets/icons/search.svg",
         descricaoImagem: "Ícone de candidaturas em análise"
     },
     {
         titulo: "Entrevistas",
-        valor: "2",
-        descricao: "1 agendada para amanhã",
+        valor: cards.entrevistas,
+        descricao: cards.proximaEntrevista,
         icone: "../assets/icons/calendar-event.svg",
         descricaoImagem: "Ícone de entrevistas"
     },
     {
         titulo: "Perfil",
-        valor: "95%",
-        descricao: "Perfil quase completo",
+        valor: cards.perfilCompleto,
+        descricao: cards.statusPerfil,
         icone: "../assets/icons/user-circle.svg",
         descricaoImagem: "Ícone do perfil"
     }
 ];
 
-app.appendChild(criarSidebar("candidato", "João Silva"));
+
+app.appendChild(
+    criarSidebar(
+        usuario.perfil,
+        usuario.nome
+    )
+);
+
+
 app.appendChild(main);
 main.appendChild(areaCards);
 
-cards.forEach(card => {
+
+cardsDashboard.forEach(card => {
     areaCards.appendChild(criarCardDashboard(card));
 });

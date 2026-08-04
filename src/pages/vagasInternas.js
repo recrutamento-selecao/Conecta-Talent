@@ -2,54 +2,33 @@ import { criarSidebar } from "../components/sidebar.js";
 import { criarBarraBusca } from "../components/barra-busca.js";
 import { criarCardVaga } from "../components/card-vaga.js";
 import { criarPaginacao } from "../components/paginacao.js";
+import { vagasInternas } from "../../data/vagas-internas.js";
 
 const app = document.getElementById("app");
 
 const main = document.createElement("main");
 main.classList.add("vagas-internas");
 
+
+const { usuario, pagina, vagas } = vagasInternas;
+
+
 const tituloPagina = document.createElement("h1");
-tituloPagina.textContent = "Encontre sua próxima vaga";
+tituloPagina.textContent = pagina.titulo;
 
 const descricaoPagina = document.createElement("p");
-descricaoPagina.textContent =
-    "Explore as oportunidades abertas e encontre a vaga que mais combina com o seu perfil.";
+descricaoPagina.textContent = pagina.descricao;
+
 
 const barraBusca = criarBarraBusca();
+
 
 const listaVagas = document.createElement("div");
 listaVagas.classList.add("lista-vagas");
 
-const vagas = [
-    {
-        titulo: "Assistente Administrativo",
-        empresa: "Kezim",
-        localizacao: "Sorocaba - SP",
-        modalidade: "Híbrido",
-        regime: "CLT",
-        dataPublicacao: "Publicado há 2 dias"
-    },
-    {
-        titulo: "Desenvolvedor Front-end",
-        empresa: "Tech Solutions",
-        localizacao: "São Paulo - SP",
-        modalidade: "Remoto",
-        regime: "PJ",
-        dataPublicacao: "Publicado hoje"
-    },
-    {
-        titulo: "Analista de Dados",
-        empresa: "Data Corp",
-        localizacao: "Campinas - SP",
-        modalidade: "Presencial",
-        regime: "CLT",
-        dataPublicacao: "Publicado há 5 dias"
-    }
-    
-];
 
 let paginaAtual = 1;
-const registrosPorPagina = 2; //só coloquei 2 para aparecer a paginação mas depois voltar para 6 regristros
+const registrosPorPagina = 6;
 
 function renderizarVagas() {
 
@@ -97,13 +76,21 @@ function renderizarPaginacao() {
 
 }
 
-app.appendChild(criarSidebar("candidato", "João Silva"));
+
+app.appendChild(
+    criarSidebar(
+        usuario.perfil,
+        usuario.nome
+    )
+);
+
 app.appendChild(main);
 
 main.appendChild(tituloPagina);
 main.appendChild(descricaoPagina);
 main.appendChild(barraBusca);
 main.appendChild(listaVagas);
+
 
 renderizarVagas();
 renderizarPaginacao();
