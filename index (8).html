@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Criar Nova Vaga</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <nav class="main-menu">
+      <a><span class="icon">▥</span>Dashboard</a>
+      <a><span class="icon">👥</span>Recrutadores <span class="chevron">⌄</span></a>
+      <a><span class="icon">🛒</span>Assinatura <span class="chevron">⌄</span></a>
+      <a><span class="icon">⚙</span>Configuração <span class="chevron">⌄</span></a>
+    </nav>
+    <div class="account">
+      <div><span class="avatar">◉</span>Empresa01</div>
+      <div><span class="exit">⇱</span>Sair</div>
+    </div>
+  </aside>
+
+  <main class="page">
+    <header class="topbar">
+      <div class="crumbs">⌂ <span>›</span> Vagas <span>›</span> <b>Criar Nova Vaga</b></div>
+      <div class="title-row">
+        <div class="briefcase">□</div>
+        <div>
+          <h1>Criar Nova Vaga</h1>
+          <p>Preencha as informações para publicar uma nova oportunidade</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="content">
+      <form class="job-card">
+        <h2>Informações da vaga</h2>
+        <div class="grid two">
+          <label>Título da Vaga*<input placeholder="Ex: Analista de Recursos Humanos"></label>
+          <label>Área/Departamento*<input placeholder="Ex: Recursos Humanos"></label>
+          <label>Tipo de Contratação*<input placeholder="Ex: Analista de Recursos Humanos"></label>
+          <label>Nível da vaga*<input placeholder="Selecione o nível"></label>
+          <label>Regime de Trabalho*<input placeholder="Selecione o regime"></label>
+          <label>Local de Trabalho*<input placeholder="Selecione o local"></label>
+          <label>Salário (opcional)<input placeholder="Ex: R$4.000,00"></label>
+          <label>Faixa Salarial (opcional)
+            <span class="salary"><input placeholder="De"><input placeholder="Até"><input placeholder="Ex:R$6.000,00"></span>
+          </label>
+        </div>
+
+        <hr>
+        <h2>Descrição da vaga</h2>
+        <label>Resumo da vaga*<textarea placeholder="Descreva brevemente o propósito da vaga, principais responsabilidades e o impacto no time."></textarea></label>
+        <label>Responsabilidade e Atribuições*<textarea placeholder="Liste as principais responsabilidades e atribuições do profissional."></textarea></label>
+        <div class="grid two">
+          <label>Requisitos Obrigatórios*<textarea placeholder="Liste os requisitos obrigatórios para a vaga"></textarea></label>
+          <label>Diferenciais (Desejáveis)<textarea placeholder="Liste os diferenciais que serão considerados um plus"></textarea></label>
+        </div>
+        <label>Benefícios (opcional)<textarea placeholder="Ex: Vale alimentação, Plano de saúde, Vale transporte..."></textarea></label>
+      </form>
+
+      <aside class="right-panel">
+        <section class="box">
+          <h2>Publicação</h2>
+          <label>Status da vaga<select><option>Rascunho</option></select></label>
+          <p class="note">ⓘ A vaga será publicada após a aprovação e ficará visível aos candidatos</p>
+        </section>
+        <section class="box">
+          <h2>Divulgação</h2>
+          <strong>Visibilidade da vaga</strong>
+          <label class="radio"><input type="radio" checked> Pública <small>Qualquer pessoa poderá se candidatar.</small></label>
+          <label class="radio"><input type="radio"> Privada <small>Apenas pessoas com o link poderão ver.</small></label>
+          <label>Data de publicação<input value="17/06/2025"></label>
+          <label class="check"><input type="checkbox"> Publicar automaticamente</label>
+        </section>
+        <section class="box">
+          <h2>Processos seletivo</h2>
+          <div class="stage-title">Etapas do processo <b>+ Adicionar etapa</b></div>
+          <div class="pill">Triagem de Currículos <button type="button">x</button></div>
+          <div class="pill">Entrevista com RH <button type="button">x</button></div>
+          <div class="pill">Entrevista Técnica <button type="button">x</button></div>
+          <div class="pill">Proposta <button type="button">x</button></div>
+        </section>
+      </aside>
+    </section>
+
+    <footer class="actions">
+      <button>Cancelar</button>
+      <button>Salvar como Rascunho</button>
+      <button class="primary">Publicar Vagas</button>
+    </footer>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>

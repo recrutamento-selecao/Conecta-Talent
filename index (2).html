@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastrar Recrutador</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <nav>
+      <a><span>▥</span>Dashboard</a>
+      <a><span>👥</span>Recrutadores <b>⌄</b></a>
+      <a><span>🛒</span>Assinatura <b>⌄</b></a>
+      <a><span>⚙</span>Configuração <b>⌄</b></a>
+    </nav>
+    <div class="account">
+      <p><i>◉</i>Empresa01</p>
+      <p><i class="door">⇱</i>Sair</p>
+    </div>
+  </aside>
+  <main>
+    <header>
+      <div class="crumbs">⌂ <span>›</span> Recrutadores <span>›</span> <b>Cadastrar Recrutador</b></div>
+      <h1>Cadastrar Recrutador</h1>
+    </header>
+    <form>
+      <section class="card">
+        <h2><span>♙</span>Dados do recrutador</h2>
+        <div class="grid two">
+          <label>Nome Completo<input></label>
+          <label>CPF<input></label>
+          <label>Cargo<input></label>
+          <label>E-mail corporativo<input></label>
+          <label>Telefone<input></label>
+        </div>
+      </section>
+      <section class="card access">
+        <h2><span>▣</span>Dados de acesso</h2>
+        <div class="grid two">
+          <label>Usuário<input></label>
+          <label>Senha<input type="password"></label>
+          <label>Confirmar Senha<input type="password"></label>
+        </div>
+      </section>
+      <section class="card bottom">
+        <div>
+          <h2><span>♢</span>Permissões</h2>
+          <label class="check"><input type="checkbox" checked>Publicar vagas</label>
+          <label class="check"><input type="checkbox" checked>Editar vagas</label>
+          <label class="check"><input type="checkbox" checked>Visualizar vagas</label>
+          <label class="check"><input type="checkbox" checked>Aprovar candidatos</label>
+          <label class="check"><input type="checkbox" checked>Reprovar candidatos</label>
+        </div>
+        <div>
+          <h2><span>✓</span>Status</h2>
+          <label class="radio"><input name="status" type="radio" checked>Ativo</label>
+          <label class="radio"><input name="status" type="radio">Inativo</label>
+        </div>
+      </section>
+      <div class="actions">
+        <button type="button">Cancelar</button>
+        <button class="primary">Salvar recrutador</button>
+      </div>
+    </form>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>
