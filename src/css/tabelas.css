@@ -1,362 +1,563 @@
-/* =========================================================
-   BASE COMPARTILHADA
-   ========================================================= */
+/* ===== Card ===== */
+.tabela-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 24px;
+    font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    color: #111827;
+}
 
-html,
-body {
+.tabela-card--limpa {
+    border-color: #e6e8ee;
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+}
+
+.tabela-cabecalho {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.tabela-titulo {
     margin: 0;
-    padding: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
 }
 
-.page-vagas-cadastradas,
-.page-vagas-mais-candidatas,
-.page-planos-cadastrados,
-.page-empresas-adicionadas {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-    background: #F8FAFF;
-    color: #1f2430;
+.tabela-subtitulo {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #6b7280;
 }
 
-.page-vagas-cadastradas *,
-.page-vagas-mais-candidatas *,
-.page-planos-cadastrados *,
-.page-empresas-adicionadas * {
-    box-sizing: border-box;
+.tabela-cabecalho-acao {
+    flex-shrink: 0;
 }
 
-.page-vagas-cadastradas table,
-.page-vagas-mais-candidatas table,
-.page-planos-cadastrados table,
-.page-empresas-adicionadas table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    font-family: inherit;
-}
-
-.page-vagas-cadastradas thead th,
-.page-vagas-mais-candidatas thead th,
-.page-planos-cadastrados thead th,
-.page-empresas-adicionadas thead th {
-    text-align: left;
-    font-size: .75rem;
-    font-weight: 700;
-    color: #1f2430;
-    padding: 0 16px 12px;
-    border-bottom: 1px solid #e5e7eb;
+/* Link e botão do cabeçalho do card */
+.link-acao {
+    font-size: 12px;
+    font-weight: 500;
+    color: #3730a3;
+    text-decoration: none;
     white-space: nowrap;
 }
 
-.page-vagas-cadastradas tbody td,
-.page-vagas-mais-candidatas tbody td,
-.page-planos-cadastrados tbody td,
-.page-empresas-adicionadas tbody td {
-    padding: 16px;
-    font-size: .875rem;
+.link-acao:hover {
+    text-decoration: underline;
+}
+
+.btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 999px;
+    background: #eceefb;
+    color: #3730a3;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+}
+
+.btn-pill:hover {
+    background: #dfe3f8;
+}
+
+.btn-pill svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ===== Rodapé do card ===== */
+.tabela-rodape {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eceef3;
+    font-size: 11px;
     color: #6b7280;
-    border-bottom: 1px solid #eef0f3;
-    transition: background-color .15s ease;
 }
 
-.page-vagas-cadastradas tbody tr:hover,
-.page-vagas-mais-candidatas tbody tr:hover,
-.page-planos-cadastrados tbody tr:hover,
-.page-empresas-adicionadas tbody tr:hover {
-    background: #f8f6ff;
+.indicador-ativo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #4b5563;
 }
 
-.page-vagas-cadastradas tbody tr:last-child td,
-.page-vagas-mais-candidatas tbody tr:last-child td,
-.page-planos-cadastrados tbody tr:last-child td,
-.page-empresas-adicionadas tbody tr:last-child td {
+.indicador-ativo::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+}
+
+/* ===== Tabela ===== */
+.tabela-wrapper {
+    overflow-x: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.tabela thead tr {
+    background: #f5f5f4;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tabela th {
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+    white-space: nowrap;
+}
+
+.tabela td {
+    padding: 12px 16px;
+    vertical-align: middle;
+    color: #1f2937;
+}
+
+.tabela tbody tr {
+    border-bottom: 1px solid #eeeeec;
+}
+
+.tabela tbody tr:last-child {
     border-bottom: none;
 }
 
-/* =========================================================
-   TRIAGEM
-   ========================================================= */
-
-.page-triagem .sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    overflow-y: auto;
-    z-index: 10;
+.tabela--zebra tbody tr:nth-child(even) {
+    background: #f9f9f8;
 }
 
-.page-triagem .table-container {
-    margin-left: 270px;
-    width: calc(100% - 270px);
-    min-height: 100vh;
-    padding: 24px 30px;
-    background: #F8FAFF;
-    box-sizing: border-box;
+.tabela tbody tr:hover {
+    background: #f3f4f6;
 }
 
-.page-triagem .table-container table {
+.tabela td.tabela-vazia {
+    padding: 24px 16px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.texto-forte {
+    font-weight: 600;
+    color: #111827;
+}
+
+/* ===== Variante limpa (sem borda interna, cabeçalho cinza) ===== */
+.tabela-card--limpa .tabela-wrapper {
+    border: none;
+    border-radius: 0;
+}
+
+.tabela-card--limpa .tabela thead tr {
+    background: #f7f8fb;
+    border-bottom: none;
+}
+
+.tabela-card--limpa .tabela th {
+    color: #4b5563;
+}
+
+.tabela-card--limpa .tabela-wrapper--lista {
+    border-top: 1px solid #eceef3;
+}
+
+.tabela-card--limpa .tabela-wrapper--lista .tabela td {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+/* ===== Alinhamento ===== */
+.tabela th.col-acoes,
+.tabela td.col-acoes,
+.tabela th.col-direita,
+.tabela td.col-direita {
+    text-align: right;
+}
+
+.tabela th.col-centro,
+.tabela td.col-centro {
+    text-align: center;
+}
+
+/* ===== Empresa ===== */
+.empresa {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.icone-empresa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+}
+
+.icone-empresa svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ===== Status / Plano ===== */
+.status-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.4;
+    background: #e5e7eb;
+    color: #4b5563;
+}
+
+.status-pill.verde    { background: #dcfce7; color: #15803d; }
+.status-pill.azul     { background: #dbeafe; color: #1d4ed8; }
+.status-pill.cinza    { background: #e5e7eb; color: #4b5563; }
+.status-pill.roxo     { background: #f3e8ff; color: #7e22ce; }
+.status-pill.amarelo  { background: #fef3c7; color: #b45309; }
+.status-pill.laranja  { background: #ffedd5; color: #c2410c; }
+.status-pill.vermelho { background: #fee2e2; color: #b91c1c; }
+
+/* ===== Etapa (ponto colorido + texto) ===== */
+.etapa {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.etapa::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.etapa.azul    { color: #2563eb; }
+.etapa.indigo  { color: #4f46e5; }
+.etapa.laranja { color: #d97706; }
+.etapa.vazia   { color: #9ca3af; }
+.etapa.vazia::before { display: none; }
+
+/* ===== Texto com duas linhas / tag ===== */
+.celula-dupla strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.celula-dupla small {
+    display: block;
+    margin-top: 2px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.celula-dupla .linha-nome {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.celula-dupla .linha-nome strong {
+    display: inline;
+}
+
+.tag {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #eef0f6;
+    color: #4b5563;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.data-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    font-size: 12px;
+    color: #4b5563;
+}
+
+/* ===== Item com avatar / salvar ===== */
+.item-com-avatar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    padding: 3px 4px;
+    border-radius: 4px;
+    background: #e5e7eb;
+    color: #374151;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.avatar.verde    { background: #c9f3a4; }
+.avatar.azul     { background: #8fc2fb; }
+.avatar.lavanda  { background: #e9dcfb; }
+.avatar.rosa     { background: #fbd3e0; }
+.avatar.amarelo  { background: #fdf1b0; }
+
+.btn-salvar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #2563eb;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.btn-salvar svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-salvar.salva svg {
+    fill: currentColor;
+}
+
+.btn-salvar:hover {
+    opacity: 0.7;
+}
+
+/* ===== Seleção e ordenação ===== */
+.tabela th.col-check,
+.tabela td.col-check {
+    width: 40px;
+    padding-right: 0;
+}
+
+.tabela-check {
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    vertical-align: middle;
+    accent-color: #1d3fbf;
+    cursor: pointer;
+}
+
+.tabela tbody tr.selecionada {
+    background: #f5f7ff;
+}
+
+.btn-ordenar {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    cursor: pointer;
+}
+
+.btn-ordenar svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0.6;
+}
+
+.btn-ordenar:hover svg,
+th[aria-sort] .btn-ordenar svg {
+    opacity: 1;
+}
+
+/* ===== Data e hora em duas linhas ===== */
+.data-hora span {
+    display: block;
+}
+
+.data-hora span + span {
+    margin-top: 2px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+/* ===== Avatar redondo ===== */
+.avatar.redondo {
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    background: #e3eafc;
+    color: #1e3a8a;
+    font-size: 10px;
+}
+
+.avatar.redondo svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ===== Variante plana (sem card, cabeçalho simples) ===== */
+.tabela-card--plana {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.tabela-card--plana .tabela-wrapper {
+    border: none;
+    border-radius: 0;
+}
+
+.tabela-card--plana .tabela thead tr {
+    background: transparent;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tabela-card--plana .tabela th {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #1f2937;
+}
+
+/* ===== Ações ===== */
+.acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+}
+
+.btn-editar,
+.btn-excluir,
+.btn-menu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.btn-editar svg,
+.btn-excluir svg,
+.btn-menu svg {
+    width: 16px;
+    height: 16px;
+}
+
+.btn-editar  { color: #2563eb; }
+.btn-excluir { color: #ef4444; }
+.btn-menu    { color: #6b7280; }
+
+.btn-editar:hover,
+.btn-excluir:hover,
+.btn-menu:hover {
+    opacity: 0.7;
+}
+
+/* ===== Lista (tabela sem cabeçalho) ===== */
+.tabela-wrapper--lista {
+    border: none;
+    border-radius: 0;
+}
+
+.tabela-wrapper--lista .tabela td {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.tabela-wrapper--lista .tabela td:not(:first-child) {
+    width: 1%;
+    white-space: nowrap;
+    padding-left: 12px;
+}
+
+/* ===== Várias tabelas na mesma página ===== */
+.tabelas-grid {
     display: grid;
-    grid-template-columns: minmax(240px,2fr) 1fr 1fr 1fr;
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    font-family: "Inter",-apple-system,BlinkMacSystemFont,sans-serif;
-    color:#1f2430;
+    grid-template-columns: minmax(0, var(--col-esq, 1.15fr)) minmax(0, var(--col-dir, 1fr));
+    gap: 16px;
+    align-items: start;
 }
 
-.page-triagem .table-container thead,
-.page-triagem .table-container tbody,
-.page-triagem .table-container tr{
-    display:contents;
+/* ===== Responsividade ===== */
+@media (max-width: 900px) {
+    .tabelas-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
 }
 
-.page-triagem .table-container thead th{
-    text-align:left;
-    font-size:.75rem;
-    font-weight:700;
-    color:#1f2430;
-    padding:0 16px 12px;
-    border-bottom:1px solid #e5e7eb;
-}
+@media (max-width: 768px) {
+    .tabela-card {
+        padding: 16px;
+        border-radius: 12px;
+    }
 
-.page-triagem .table-container thead th:not(:first-child){
-    text-align:right;
-}
+    .tabela th,
+    .tabela td {
+        padding: 10px 12px;
+    }
 
-.page-triagem .table-container tbody td{
-    padding:16px 12px;
-    font-size:.875rem;
-    line-height:1.5;
-    border-bottom:1px solid #eef0f3;
-}
+    .tabela {
+        min-width: 560px;
+    }
 
-.page-triagem .table-container tbody td:not(:first-child){
-    text-align:right;
-    color:#6b7280;
-}
-
-.page-triagem .table-container tbody td:first-child{
-    display:flex;
-    align-items:flex-start;
-    gap:12px;
-    font-weight:600;
-    color:#1f2430;
-    white-space:pre-line;
-}
-
-.page-triagem .table-container tbody td:first-child::before{
-    content:"";
-    width:40px;
-    height:40px;
-    flex-shrink:0;
-    border-radius:50%;
-    background:#ece9fe url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238b7cf6'%3E%3Cpath d='M12 12c2.7 0 4.9-2.2 4.9-4.9S14.7 2.2 12 2.2 7.1 4.4 7.1 7.1 9.3 12 12 12zm0 2.5c-3.3 0-9.8 1.6-9.8 4.9v2.4h19.6v-2.4c0-3.3-6.5-4.9-9.8-4.9z'/%3E%3C/svg%3E") center/22px no-repeat;
-}
-
-.page-triagem .table-container tbody td:nth-child(2){
-    white-space:pre-line;
-}
-
-.page-triagem .table-container tbody td:last-child{
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-}
-
-.page-triagem .status-pill{
-    display:inline-block;
-    padding:6px 14px;
-    border-radius:999px;
-    background:#ece9fe;
-    color:#7c6ef0;
-    font-size:.75rem;
-    font-weight:600;
-}
-/* =========================================================
-   VAGAS CADASTRADAS
-   ========================================================= */
-
-.page-vagas-cadastradas{
-    padding:24px;
-}
-
-.page-vagas-cadastradas h1{
-    font-size:2rem;
-    margin-bottom:24px;
-}
-
-.page-vagas-cadastradas .table-container{
-    width:100%;
-    overflow-x:auto;
-}
-
-.page-vagas-cadastradas .status-ativa{
-    color:#2ecc71;
-    font-weight:600;
-}
-
-.page-vagas-cadastradas .status-pausado{
-    color:#f5a623;
-    font-weight:600;
-}
-
-.page-vagas-cadastradas .status-rascunho{
-    color:#7c6ef0;
-    font-weight:600;
-}
-
-.page-vagas-cadastradas .etapa{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    color:#1f2430;
-}
-
-.page-vagas-cadastradas .etapa::before{
-    content:"";
-    width:10px;
-    height:10px;
-    border-radius:50%;
-}
-
-.page-vagas-cadastradas .triagem::before{background:#1e88ff;}
-.page-vagas-cadastradas .entrevista::before{background:#8b7cf6;}
-.page-vagas-cadastradas .avaliacao::before{background:#ffc107;}
-
-.page-vagas-cadastradas .candidatos,
-.page-vagas-cadastradas .acoes{
-    text-align:center;
-}
-
-.page-vagas-cadastradas .acoes{
-    cursor:pointer;
-    color:#6b7280;
-}
-
-.page-vagas-cadastradas .acoes:hover{
-    color:#8b7cf6;
-}
-/* =========================================================
-   VAGAS MAIS CANDIDATAS
-   ========================================================= */
-
-.page-vagas-mais-candidatas{
-    padding:24px;
-}
-
-.page-vagas-mais-candidatas #app{
-    width:100%;
-    background:#fff;
-    padding:0;
-    border-radius:0;
-}
-
-.page-vagas-mais-candidatas table{
-    width:100%;
-}
-
-.page-vagas-mais-candidatas thead th:first-child,
-.page-vagas-mais-candidatas thead th:last-child{
-    border-radius:0;
-}
-
-.page-vagas-mais-candidatas tbody td:first-child{
-    font-weight:600;
-    color:#1f2430;
-}
-
-/* =========================================================
-   PLANOS CADASTRADOS
-   ========================================================= */
-
-.page-planos-cadastrados{
-    padding:24px;
-}
-
-.page-planos-cadastrados th:nth-child(2),
-.page-planos-cadastrados td:nth-child(2),
-.page-planos-cadastrados th:nth-child(3),
-.page-planos-cadastrados td:nth-child(3),
-.page-planos-cadastrados th:last-child,
-.page-planos-cadastrados td:last-child{
-    text-align:center;
-}
-
-.page-planos-cadastrados tbody td:first-child{
-    font-weight:600;
-    color:#1f2430;
-}
-
-.page-planos-cadastrados tbody td:nth-child(2),
-.page-planos-cadastrados tbody td:nth-child(3),
-.page-planos-cadastrados tbody td:last-child{
-    color:#6b7280;
-}
-
-/* =========================================================
-   EMPRESAS ADICIONADAS
-   ========================================================= */
-
-.page-empresas-adicionadas{
-    padding:24px;
-}
-
-.page-empresas-adicionadas tbody td:first-child{
-    font-weight:600;
-    color:#1f2430;
-}
-
-.page-empresas-adicionadas tbody td:not(:first-child){
-    color:#6b7280;
-}
-
-/* =========================================================
-   PADRÕES COMPARTILHADOS
-   ========================================================= */
-
-.page-vagas-cadastradas .table-container,
-.page-planos-cadastrados,
-.page-empresas-adicionadas,
-.page-vagas-mais-candidatas{
-    overflow-x:auto;
-}
-
-.page-vagas-cadastradas table,
-.page-vagas-mais-candidatas table,
-.page-planos-cadastrados table,
-.page-empresas-adicionadas table{
-    min-width:700px;
-}
-
-.page-vagas-cadastradas thead th:not(:first-child),
-.page-planos-cadastrados thead th:not(:first-child),
-.page-empresas-adicionadas thead th:not(:first-child){
-    text-align:center;
-}
-
-.page-vagas-cadastradas tbody td:not(:first-child),
-.page-planos-cadastrados tbody td:not(:first-child),
-.page-empresas-adicionadas tbody td:not(:first-child){
-    text-align:center;
-}
-
-.page-vagas-cadastradas tbody td:first-child,
-.page-vagas-mais-candidatas tbody td:first-child,
-.page-planos-cadastrados tbody td:first-child,
-.page-empresas-adicionadas tbody td:first-child{
-    color:#1f2430;
-}
-
-.page-vagas-cadastradas tbody td,
-.page-vagas-mais-candidatas tbody td,
-.page-planos-cadastrados tbody td,
-.page-empresas-adicionadas tbody td{
-    vertical-align:middle;
-}
-
-.page-vagas-cadastradas tbody tr,
-.page-vagas-mais-candidatas tbody tr,
-.page-planos-cadastrados tbody tr,
-.page-empresas-adicionadas tbody tr{
-    transition:background-color .15s ease;
+    .tabela-wrapper--lista .tabela {
+        min-width: 0;
+    }
 }

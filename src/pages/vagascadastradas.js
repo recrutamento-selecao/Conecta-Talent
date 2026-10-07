@@ -1,82 +1,101 @@
-import { criartabela } from '../components/table.js';
+import { criartabela, ICONES } from '../components/table.js';
 
-function criarStatus(texto, classe) {
+// Dados fake no formato que virá do backend.
+// Futuramente:
+// const resposta = await fetch('/api/empresa/vagas');
+// const dados = await resposta.json();
+const dados = {
+    total: 18,
+    ativas: 2,
+    itens: [
+        { id: 1, cargo: 'Analista de Marketing',      area: 'Marketing',         status: 'Ativa',    candidatos: 48, etapaAtual: 'Triagem' },
+        { id: 2, cargo: 'Desenvolvedor Front-end',    area: 'Tecnologia',        status: 'Ativa',    candidatos: 36, etapaAtual: 'Entrevista' },
+        { id: 3, cargo: 'Analista de RH',             area: 'Recursos Humanos',  status: 'Pausada',  candidatos: 15, etapaAtual: 'Avaliação' },
+        { id: 4, cargo: 'Designer UI/UX',             area: 'Design',            status: 'Rascunho', candidatos: 0,  etapaAtual: null }
+    ]
+};
+
+const coresStatus = {
+    Ativa: 'verde',
+    Pausada: 'amarelo',
+    Rascunho: 'cinza'
+};
+
+const coresEtapa = {
+    Triagem: 'azul',
+    Entrevista: 'indigo',
+    'Avaliação': 'laranja'
+};
+
+function criarCargo(cargo) {
+    const strong = document.createElement('strong');
+    strong.className = 'texto-forte';
+    strong.textContent = cargo;
+    return strong;
+}
+
+function criarStatus(status) {
     const span = document.createElement('span');
-    span.className = classe;
-    span.textContent = texto;
+    span.className = `status-pill ${coresStatus[status] || 'cinza'}`;
+    span.textContent = status;
     return span;
 }
 
-const cabecalho = [
-    'Cargo',
-    'Área',
-    'Status',
-    'Candidatos',
-    'Etapa Atual',
-    'Ações'
+function criarEtapa(etapa) {
+    const span = document.createElement('span');
+    if (!etapa) {
+        span.className = 'etapa vazia';
+        span.textContent = '—';
+    } else {
+        span.className = `etapa ${coresEtapa[etapa] || ''}`.trim();
+        span.textContent = etapa;
+    }
+    return span;
+}
+
+function criarMenu(_, vaga) {
+    const botao = document.createElement('button');
+    botao.type = 'button';
+    botao.className = 'btn-menu';
+    botao.title = 'Ações';
+    botao.setAttribute('aria-label', 'Ações');
+    botao.innerHTML = ICONES.menu;
+    botao.addEventListener('click', () => console.log('Ações da vaga', vaga));
+    return botao;
+}
+
+function criarLinkVerTodas() {
+    const link = document.createElement('a');
+    link.className = 'link-acao';
+    link.href = '#'; // trocar pela rota da lista completa de vagas
+    link.textContent = 'Ver todas as vagas →';
+    return link;
+}
+
+function criarIndicadorAtivas(quantidade) {
+    const span = document.createElement('span');
+    span.className = 'indicador-ativo';
+    span.textContent = `${quantidade} ${quantidade === 1 ? 'Vaga ativa' : 'Vagas ativas'} no momento`;
+    return span;
+}
+
+const colunas = [
+    { chave: 'cargo',      titulo: 'CARGO',        render: criarCargo },
+    { chave: 'area',       titulo: 'ÁREA' },
+    { chave: 'status',     titulo: 'STATUS',       render: criarStatus },
+    { chave: 'candidatos', titulo: 'CANDIDATOS',   alinhamento: 'centro' },
+    { chave: 'etapaAtual', titulo: 'ETAPA ATUAL',  render: criarEtapa },
+    { chave: 'acoes',      titulo: 'AÇÕES',        render: criarMenu, alinhamento: 'direita' }
 ];
 
-// Mapeia o status (texto vindo da API) para a classe CSS correspondente.
-// Se o backend já mandar a classe pronta, essa função deixa de ser necessária.
-const CLASSES_STATUS = {
-    'Ativa': 'status-ativa',
-    'Pausado': 'status-pausado',
-    'Rascunho': 'status-rascunho'
-};
-
-// Simula a resposta de uma API. Quando o backend existir, troque o
-// conteúdo desta função pelo fetch real (ver comentário em carregarVagas).
-// O formato de cada objeto abaixo já é o formato esperado da API,
-// então basta o backend devolver JSON nesse mesmo shape.
-function fetchVagasFake() {
-    const dadosFalsos = [
-        { id: 1, cargo: 'Analista de marketing', area: 'Marketing', status: 'Ativa', candidatos: 48, etapaAtual: 'Triagem' },
-        { id: 2, cargo: 'Desenvolvedor Front-end', area: 'Tecnologia', status: 'Ativa', candidatos: 36, etapaAtual: 'Entrevista' },
-        { id: 3, cargo: 'Analista de RH', area: 'Recursos Humanos', status: 'Pausado', candidatos: 15, etapaAtual: 'Avaliação' },
-        { id: 4, cargo: 'Designer UI/UX', area: 'Design', status: 'Rascunho', candidatos: 0, etapaAtual: '...' }
-    ];
-
-    // Simula o tempo de resposta de uma API real
-    return new Promise(resolve => {
-        setTimeout(() => resolve(dadosFalsos), 500);
-    });
-}
-
-// Monta as linhas da tabela a partir da lista de vagas (objetos),
-// não importa se ela veio da função fake ou de um fetch real —
-// contanto que cada item siga o mesmo shape usado acima.
-function montarLinhas(vagas) {
-    return vagas.map(v => [
-        v.cargo,
-        v.area,
-        criarStatus(v.status, CLASSES_STATUS[v.status] ?? 'status-rascunho'),
-        String(v.candidatos),
-        v.etapaAtual,
-        '⋮'
-    ]);
-}
-
-async function carregarVagas(app) {
-    try {
-        // Quando o backend existir, substitua a linha abaixo por:
-        // const resposta = await fetch('https://sua-api.com/vagas');
-        // if (!resposta.ok) throw new Error('Falha ao buscar vagas');
-        // const vagas = await resposta.json();
-        const vagas = await fetchVagasFake();
-
-        const linhas = montarLinhas(vagas);
-        const tabela = criartabela(cabecalho, linhas);
-        app.appendChild(tabela);
-    } catch (erro) {
-        // Tratamento básico de erro, já preparado para quando o fetch
-        // real entrar em ação (rede fora do ar, backend indisponível, etc.)
-        console.error('Erro ao carregar vagas:', erro);
-        const mensagem = document.createElement('p');
-        mensagem.textContent = 'Não foi possível carregar as vagas.';
-        app.appendChild(mensagem);
+criartabela(colunas, dados.itens, {
+    titulo: 'Vagas Cadastradas',
+    subtitulo: 'Gerenciamento dos processos seletivos abertos',
+    acaoTitulo: criarLinkVerTodas(),
+    variante: 'limpa',
+    acoes: false,
+    rodape: {
+        esquerda: `Exibindo ${dados.itens.length} de ${dados.total} vagas cadastradas`,
+        direita: criarIndicadorAtivas(dados.ativas)
     }
-}
-
-const app = document.getElementById('app');
-
-carregarVagas(app);
+});
