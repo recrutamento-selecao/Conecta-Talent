@@ -1,0 +1,25 @@
+{
+  "name": "pi-conectatalent",
+  "version": "1.0.0",
+  "description": "Projeto desenvolvido de recrutamento e seleção.",
+  "keywords": [
+    "recrutamento",
+    "selecao",
+    "vagas",
+    "candidatos"
+  ],
+  "license": "ISC",
+  "author": "Thaeny Soares",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@supabase/server": "^1.9.2",
+    "@supabase/supabase-js": "^2.118.0",
+    "dotenv": "^18.0.8",
+    "express": "^5.3.0",
+    "mysql2": "^3.24.6"
+  }
+}
