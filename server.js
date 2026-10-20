@@ -1,6 +1,7 @@
 //const express = require ("express");
 import express from 'express'
 import dotenv from 'dotenv';
+import authRoutes from './src/routes/authRoutes.js';
 
 //Carrega as variáveis de ambiente
 dotenv.config();
@@ -9,7 +10,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT;
 
-
+app.use(express.json());
+app.use('/autenticacao', authRoutes);
 
 
 // app.get('/Usuarios', async (req, res) => {
