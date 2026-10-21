@@ -1,15 +1,14 @@
+import 'dotenv/config'; 
 import express from 'express';
-import dotenv from 'dotenv';
 import authRoutes from './src/routes/authRoutes.js';
 
-dotenv.config();
-
 const app = express();
+
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use('./autenticacao', authRoutes);
 
+app.use('/autenticacao', authRoutes);
 
 /*
 app.get('/usuarios', async (req, res) => {
@@ -25,4 +24,6 @@ app.get('/usuarios', async (req, res) => {
 });
 */
 
-app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});

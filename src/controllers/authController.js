@@ -1,5 +1,7 @@
+import AuthService from "../services/authService.js";
+
 class AuthController {
-    async cadastrar(req, res) {
+    static async cadastrar(req, res) {
         try {
             const {
                 nome,
@@ -7,25 +9,26 @@ class AuthController {
                 senha
             } = req.body
 
-        
-            if(!nome || !email || !senha){
+
+            if (!nome || !email || !senha) {
                 return res
-                .status(400)
-                .json({erro: `Preencha todos os campos obrigatórios`});
+                    .status(400)
+                    .json({ erro: `Preencha todos os campos obrigatórios` });
             }
             const resultado = await AuthService.cadastrar(nome, email, senha);
-                return res 
+            return res
                 .status(201)
-                .json({mensagem: `Cadastro feito com sucesso!`, 
-                usuario: resultado.user,
-                requerConfirmacao: !resultado.session
+                .json({
+                    mensagem: `Cadastro feito com sucesso!`,
+                    usuario: resultado.user,
+                    requerConfirmacao: !resultado.session
 
                 });
 
         }
         catch (erro) {
             return res
-            .json({erro: `Falha ao cadastrar ${erro.message}`});
+                .json({ erro: `Falha ao cadastrar ${erro.message}` });
         }
     }
 }
