@@ -8,5 +8,12 @@ router.post("/cadastrar", (req, res) =>
     AuthController.cadastrar(req, res)
 );
 
+
+
+/*
+http://localhost:3000/autenticacao/cadastrar
+http://localhost:3000/autenticacao/login
+*/
+
 export default router;
 

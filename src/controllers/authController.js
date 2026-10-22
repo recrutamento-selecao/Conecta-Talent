@@ -1,3 +1,4 @@
+import AuthService from "../services/authServices.js";
 class AuthController {
     async cadastrar(req) {
         try {
@@ -28,7 +29,7 @@ class AuthController {
         catch (erro) {
             return res
                 .status(400)
-                .json({ erro: `Falha ao cadastrar: ${erro.massage}`});
+                .json({ erro: `Falha ao cadastrar: ${erro.massage}` });
         }
     }
 }

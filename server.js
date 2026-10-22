@@ -13,7 +13,6 @@ const PORT = process.env.PORT;
 app.use(express.json());
 app.use('/autenticacao', authRoutes);
 
-
 // app.get('/Usuarios', async (req, res) => {
 //     try {
 //         const [rows] = await conn.query('SELECT * FROM usuario');
@@ -25,4 +24,5 @@ app.use('/autenticacao', authRoutes);
 //         });
 //     }
 // }); 
+
 app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
