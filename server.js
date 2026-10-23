@@ -1,4 +1,4 @@
-import 'dotenv/config'; 
+import 'dotenv/config'; // Carrega as variáveis de ambiente logo na primeira linha
 import express from 'express';
 import authRoutes from './src/routes/authRoutes.js';
 

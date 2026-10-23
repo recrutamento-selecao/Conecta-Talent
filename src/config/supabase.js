@@ -1,7 +1,8 @@
 
-import 'dotenv/config';
+import 'dotenv/config'; //esse teve mudança antes era "import dotenv from 'dotenv/config";
 import { createClient } from '@supabase/supabase-js';
 
+//aqui mudou também.
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_PUBLISHABLE_KEY;
 
