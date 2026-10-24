@@ -18,5 +18,19 @@ class AuthService {
     if(error) throw error;
         return data;
     }
+
+    static async login(email, senha) {
+
+        const { data, error } = await supabase.auth.signInWithPassword(
+            {
+                email,
+                password: senha
+            }
+        );
+
+    if(error) throw error;
+        return data;
+    }
 }
+
 export default AuthService;
