@@ -1,0 +1,94 @@
+/* CONTAINER E LINHA CONECTORA */
+.stepper-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+ 
+.stepper-linha-bg {
+    position: absolute;
+    top: 20px; /* Alinhado ao centro dos círculos */
+    left: 40px;
+    right: 40px;
+    height: 2px;
+    background-color: #cbd5e1;
+    z-index: 1;
+}
+ 
+/* ITEM DE ETAPA */
+.stepper-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    text-align: center;
+}
+ 
+/* CÍRCULOS (PADRÃO PENDENTE / CINZA) */
+.stepper-circulo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #64748b; /* Cor cinza exibida na imagem */
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+}
+ 
+/* TÍTULOS (PADRÃO PENDENTE / CINZA) */
+.stepper-titulo {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-top: 0.6rem;
+    max-width: 90px;
+    line-height: 1.25;
+    font-weight: 500;
+    transition: color 0.25s ease;
+}
+ 
+/* ESTADO ATIVO (AZUL - EXATAMENTE COMO NA IMAGEM) */
+.stepper-item.ativo .stepper-circulo {
+    background-color: #1d4ed8; /* Azul principal */
+    box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.15);
+}
+ 
+.stepper-item.ativo .stepper-titulo {
+    color: #1d4ed8;
+    font-weight: 700;
+}
+ 
+/* ESTADO CONCLUÍDO (OPCIONAL: AZUL OU CHECKMARK) */
+.stepper-item.concluido .stepper-circulo {
+    background-color: #2563eb;
+}
+ 
+.stepper-item.concluido .stepper-titulo {
+    color: #334155;
+}
+ 
+/* RESPONSIVIDADE PARA TELAS MENORES */
+@media (max-width: 640px) {
+    .stepper-titulo {
+        font-size: 0.7rem;
+        max-width: 60px;
+    }
+    .stepper-circulo {
+        width: 32px;
+        height: 32px;
+        font-size: 0.85rem;
+    }
+    .stepper-linha-bg {
+        top: 16px;
+    }
+}
