@@ -7,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(express.static("src/view"));
 
 app.use('/autenticacao', authRoutes);
 
@@ -14,7 +15,7 @@ app.use('/autenticacao', authRoutes);
 app.get('/usuarios', async (req, res) => {
     try {
         const [rows] = await conn.query('SELECT * FROM usuario');
-        res.json(rows);
+        res.json(rows);s
     }
     catch (erro) {
         res.status(500).json({
