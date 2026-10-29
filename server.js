@@ -4,7 +4,7 @@ import path from 'path'; // 1. Importe o path para lidar com caminhos absolutos
 import { fileURLToPath } from 'url';
 import authRoutes from './src/routes/authRoutes.js';
 import { createRequire } from 'node:module';
-import { url } from 'node:inspector';
+
 
 // Configuração para o __dirname funcionar em módulos ES (import/export)
 const __filename = fileURLToPath(import.meta.url);
@@ -26,7 +26,7 @@ app.get('/interface-config', (req, res) => {
 
     res.json({
         urlComplete: `https:${urlFonts}`,
-        Icons:{
+        icons:{
             visibleIcon: visibleIcon,
             invisibleIcon: invisibleIcon
         }

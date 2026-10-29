@@ -7,10 +7,12 @@ const res = await fetch('/interface-config');
 
 const interfaceConfig = await res.json();
 
+
+
 const tagLink = document.createElement('link');
 tagLink.rel = 'stylesheet';
 tagLink.href = interfaceConfig.urlComplete;
 document.head.appendChild(tagLink);
 
 //app.replaceChildren(renderLoginPage());
-app.replaceChildren(renderCadastroPage());
+app.replaceChildren(renderCadastroPage(interfaceConfig.icons));
