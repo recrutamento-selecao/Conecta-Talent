@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.root{
+    display: flex;
+    flex:1;
+    justify-content:center;
+}
+
+.container{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+

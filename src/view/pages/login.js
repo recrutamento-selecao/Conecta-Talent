@@ -1,8 +1,10 @@
 const renderLoginPage = () => {
     const container = document.createElement('div');
     container.style.height = '100vh';
+    container.className = "container"
 
     const formulario = document.createElement('form');
+    formulario.className = 'form-login';
 
     const labelEmail = document.createElement('label');
     labelEmail.setAttribute('for', 'email');
@@ -12,7 +14,7 @@ const renderLoginPage = () => {
     inputEmail.setAttribute('type', 'email');
     inputEmail.setAttribute('id', 'email');
     inputEmail.setAttribute('required', ''); 
-    inputEmail.placeholder =  "example@email.com";
+    inputEmail.placeholder = "example@email.com";
 
     const labelSenha = document.createElement('label');
     labelSenha.setAttribute('for', 'senha');
@@ -28,15 +30,15 @@ const renderLoginPage = () => {
     btnEnviar.setAttribute('id', 'enviar');
     btnEnviar.innerText = "Entrar";
 
-    formulario.addEventListener('submit', async (e) =>{
+    formulario.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const emailValue = inputEmail.value.trim();
-        const senhaValue = inputSenha.value.trim();
+        const email = inputEmail.value.trim();
+        const senha = inputSenha.value.trim();
         const usuario = {
-            emailValue,
-            senhaValue
-        }
-        try{
+            email,
+            senha
+        };
+        try {
             const resultado = await fetch("http://localhost:3000/autenticacao/login",
                 {
                     method: "POST",
@@ -48,15 +50,16 @@ const renderLoginPage = () => {
             );
 
             const confirmacao = await resultado.json();
-            if(!resultado.ok){
-                alert("Conta inexistente!")
+            
+            if (!resultado.ok) {
+                alert("Conta inexistente!");
+                return; 
             }
+
             alert("Login realizado com sucesso!");
             return confirmacao;
 
-        }
-
-        catch(erro){
+        } catch (erro) {
             console.error(erro);
             alert("Erro ao logar!");
         }
