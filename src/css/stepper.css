@@ -12,9 +12,9 @@
  
 .stepper-linha-bg {
     position: absolute;
-    top: 20px; /* Alinhado ao centro dos círculos */
-    left: 40px;
-    right: 40px;
+    top: 20px;
+    left: calc(1rem + (100% - 2rem) / 14);
+    right: calc(1rem + (100% - 2rem) / 14);
     height: 2px;
     background-color: #cbd5e1;
     z-index: 1;
@@ -78,17 +78,31 @@
 }
  
 /* RESPONSIVIDADE PARA TELAS MENORES */
-@media (max-width: 640px) {
-    .stepper-titulo {
-        font-size: 0.7rem;
-        max-width: 60px;
+@media (min-width: 1600px) {
+    .stepper-container {
+        max-width: 1200px;
+        margin: 3rem auto;
     }
     .stepper-circulo {
-        width: 32px;
-        height: 32px;
-        font-size: 0.85rem;
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
     }
     .stepper-linha-bg {
-        top: 16px;
+        top: 24px;
+        height: 3px;
     }
+    .stepper-item.ativo .stepper-circulo {
+        box-shadow: 0 0 0 5px rgba(29, 78, 216, 0.15);
+    }
+    .stepper-titulo {
+        font-size: 1rem;
+        max-width: 140px;
+        margin-top: 0.8rem;
+    }
+}
+
+/* CENTRALIZACAO */
+body:has(.stepper-container) .conteudo-principal {
+    margin-left: 0 !important;
 }
