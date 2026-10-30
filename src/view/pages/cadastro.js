@@ -55,6 +55,7 @@ const renderCadastroPage = (icons) => {
     btnEnviar.setAttribute('type', 'submit');
     btnEnviar.setAttribute('id', 'enviar');
     btnEnviar.innerText = "Cadastrar"; 
+    
 
     formulario.addEventListener('submit', async (e) => {
         e.preventDefault();

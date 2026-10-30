@@ -20,3 +20,28 @@
     border: 1px solid blue;
     
 }
+
+.divSenha{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.divSenha input{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.btnVisibilidade {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    width: 28px;
+    height: 28px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    right: 2.6rem;
+
+}
+
