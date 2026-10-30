@@ -1,7 +1,9 @@
 //https://icon-sets.iconify.design/?query=eye
 
+import criarInputsenha from "../utils/senhaVisibilidade.js";
 
-const renderCadastroPage = () => {
+
+const renderCadastroPage = (icons) => {
     const container = document.createElement('div');
     container.style.height = '100vh';
     container.className = "container";
@@ -37,6 +39,7 @@ const renderCadastroPage = () => {
     inputSenha.setAttribute('type', 'password');
     inputSenha.setAttribute('id', 'password');
     inputSenha.setAttribute('required', ''); 
+    const campoSenha = criarInputsenha(inputSenha, icons);
 
     const labelSenhaConfirmacao = document.createElement('label');
     labelSenhaConfirmacao.setAttribute('for', 'passwordConfirmacao');
@@ -46,6 +49,7 @@ const renderCadastroPage = () => {
     inputSenhaConfirmacao.setAttribute('type', 'password');
     inputSenhaConfirmacao.setAttribute('id', 'passwordConfirmacao');
     inputSenhaConfirmacao.setAttribute('required', ''); 
+    const campoConfirmarSenha = criarInputsenha(inputSenhaConfirmacao, icons)
 
     const btnEnviar = document.createElement('button');
     btnEnviar.setAttribute('type', 'submit');
@@ -103,8 +107,10 @@ const renderCadastroPage = () => {
     formulario.appendChild(inputEmail);
     formulario.appendChild(labelSenha);
     formulario.appendChild(inputSenha);
+    formulario.appendChild(campoSenha);
     formulario.appendChild(labelSenhaConfirmacao);
     formulario.appendChild(inputSenhaConfirmacao);
+    formulario.appendChild(campoConfirmarSenha);
     formulario.appendChild(btnEnviar);
 
     container.appendChild(formulario);

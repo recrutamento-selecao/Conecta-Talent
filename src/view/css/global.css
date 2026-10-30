@@ -16,3 +16,25 @@
     justify-content: center;
 }
 
+
+.divSenha input {
+    padding-right: 35px; /* Abre espaço para o botão não ficar em cima do texto */
+}
+
+.btnVisibilidade {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.btnVisibilidade svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor; /* Ou a cor que preferir para o ícone */
+}
