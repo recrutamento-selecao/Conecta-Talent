@@ -1,25 +1,40 @@
-function criarFormulario() {
-    const formulario = document.createElement("form");
-    formulario.className = "meu-formulario"; 
 
-    const inputEmail = document.createElement("input");
-    inputEmail.type = "email";
-    inputEmail.placeholder = "Digite seu email";
-    inputEmail.className = "campo-texto";
+function createForm(config) {
+    const container = document.createElement("div");
 
-    const inputSenha = document.createElement("input");
-    inputSenha.type = "password";
-    inputSenha.placeholder = "Digite sua senha";
-    inputSenha.className = "campo-texto";
+    const form = document.createElement("form");
+    form.className = "meu-formulario";
 
-    const botaoEnviar = document.createElement("button");
-    botaoEnviar.type = "submit";
-    botaoEnviar.innerText = "Entrar";
-    botaoEnviar.className = "botao-enviar";
+    config.campos.forEach(campo => {
+        const grupo = document.createElement("div");
+        grupo.className = "grupo-campo";
 
-    formulario.appendChild(inputEmail);
-    formulario.appendChild(inputSenha);
-    formulario.appendChild(botaoEnviar);
+        if (campo.label) {
+            const label = document.createElement("label");
+            label.innerText = campo.label;
+            grupo.appendChild(label);
+        }
 
-    return formulario;
+        const input = document.createElement("input");
+        input.type = campo.tipo || "text";
+        input.name = campo.nome;
+        input.placeholder = campo.placeholder || "";
+        input.className = "campo-texto";
+
+        grupo.appendChild(input);
+        form.appendChild(grupo);
+    });
+
+    config.botoes.forEach(btn => {
+        const botao = document.createElement("button");
+        botao.type = btn.tipo || "button";
+        botao.innerText = btn.texto;
+        botao.className = btn.className || "botao-padrao";
+
+        form.appendChild(botao);
+    });
+
+    container.appendChild(form);
+
+    return container;
 }

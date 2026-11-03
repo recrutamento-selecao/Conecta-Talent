@@ -5,18 +5,7 @@
     font-family: 'Inter', sans-serif;
 }
 
-/*
-:root{
-    --azul-principal: #1A3BBF;
-    --azul-secundario: #2E5BFF;
-    --azul-escuro: #15309B;
-    --azul-hover: #284ED4;
-    --azul-claro: #EAF1FF;
-    --branco: #FFFFFF;
-    --cinza: #8A94A6;
-}
 
-*/
 body{
     background: #F8FAFF;/*verificar #F5F7FC*/
 }

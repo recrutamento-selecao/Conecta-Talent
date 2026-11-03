@@ -1,10 +1,11 @@
+
 body {
   font-family: Arial, sans-serif;
   background-color: #e9f2fe;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0;
 }
 
@@ -21,7 +22,7 @@ body {
   color: #1f2937;
   font-size: 22px;
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-weight: 700;
 }
 
@@ -38,19 +39,24 @@ body {
 }
 
 .caixa-botoes-sociais {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 .botao-perfil {
-  background-color: transparent;
+  background-color: #ffffff;
   color: #2563eb;
-  border: 1px solid #e5e7eb;
-  padding: 8px 18px;
+  border: 1px solid #dbe3ef;
+  padding: 9px 20px;
   border-radius: 20px;
-  margin: 0 4px;
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
+  transition: 0.2s;
+}
+
+.botao-perfil:hover {
+  background-color: #eff6ff;
+  border-color: #2563eb;
 }
 
 .criar-conta,
@@ -64,53 +70,88 @@ body {
 
 .criar-conta {
   font-size: 13px;
-  margin: 15px 0 25px 0;
+  margin: 18px 0 25px;
 }
 
 .esqueceu-senha {
   font-size: 12px;
-  margin: 15px 0 20px 0;
+  margin: 18px 0 20px;
 }
 
 .meu-formulario {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
+}
+
+.grupo-campo {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 7px;
+  width: 100%;
+}
+
+.grupo-campo label {
+  color: #374151;
+  font-size: 13px;
+  font-weight: 600;
 }
 
 .campo-texto {
-  border: none;
-  border-bottom: 1px solid #d1d5db;
-  padding: 8px 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border: 1px solid #dbe3ef;
+  border-radius: 10px;
   outline: none;
   font-size: 14px;
-  background-color: transparent;
+  color: #1f2937;
+  background-color: #f8fafc;
+  transition: 0.2s;
+}
+
+.campo-texto::placeholder {
+  color: #9ca3af;
 }
 
 .campo-texto:focus {
-  border-bottom-color: #2563eb;
+  background-color: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .botao-enviar {
   background-color: #0d47a1;
   color: #ffffff;
   border: none;
-  padding: 12px;
-  border-radius: 12px;
+  padding: 13px;
+  border-radius: 10px;
   font-weight: bold;
   font-size: 14px;
   cursor: pointer;
-  margin-top: 10px;
+  margin-top: 5px;
+  transition: 0.2s;
+}
+
+.botao-enviar:hover {
+  background-color: #123b80;
 }
 
 .botao-social {
   background-color: #ffffff;
-  border: 1px solid #e5e7eb;
-  padding: 8px 16px;
+  border: 1px solid #dbe3ef;
+  padding: 9px 18px;
   border-radius: 10px;
-  margin: 0 4px;
   cursor: pointer;
   font-size: 13px;
   color: #374151;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: 0.2s;
+}
+
+.botao-social:hover {
+  background-color: #f8fafc;
+  border-color: #2563eb;
 }

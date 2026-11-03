@@ -1,59 +1,62 @@
 const container = document.getElementById("login-container");
 
-// Título "Acesse sua conta"
 const titulo = document.createElement("h2");
 titulo.innerText = "Acesse sua conta";
 titulo.className = "titulo-login";
 
-// Caixa para os botões de tipo de perfil: Candidato e Empresa
-const boxPerfil = document.createElement("div");
-boxPerfil.className = "caixa-botoes-perfil";
+const formContainer = createForm({
+    campos: [
+        {
+            nome: "email",
+            label: "E-mail",
+            tipo: "email",
+            placeholder: "Digite seu e-mail"
+        },
+        {
+            nome: "senha",
+            label: "Senha",
+            tipo: "password",
+            placeholder: "Digite sua senha"
+        }
+    ],
+    botoes: [
+        {
+            texto: "Entrar",
+            tipo: "submit",
+            className: "botao-enviar"
+        }
+    ]
+});
 
-const botaoCandidato = document.createElement("button");
-botaoCandidato.innerText = "Candidato";
-botaoCandidato.className = "botao-perfil";
+container.appendChild(formContainer);
 
-const botaoEmpresa = document.createElement("button");
-botaoEmpresa.innerText = "Empresa";
-botaoEmpresa.className = "botao-perfil";
+const form = formContainer.querySelector("form");
+const inputEmail = form.querySelector('input[type="email"]');
+const inputSenha = form.querySelector('input[type="password"]');
 
-boxPerfil.appendChild(botaoCandidato);
-boxPerfil.appendChild(botaoEmpresa);
+form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-// Crie uma conta
-const CriarConta = document.createElement("a");
-CriarConta.innerText = "Não tem uma conta? Crie uma";
-CriarConta.href = "#";
-CriarConta.className = "criar-conta";
+    const email = inputEmail.value.trim();
+    const senha = inputSenha.value.trim();
 
-// Formulário criado no outro arquivo
-const meuForm = criarFormulario();
+    try {
+        const response = await fetch("http://localhost:3000/autenticacao/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                senha: senha
+            })
+        });
 
-// Esqueceu a senha
-const EsqueceuSenha = document.createElement("a");
-EsqueceuSenha.innerText = "Esqueceu a minha senha";
-EsqueceuSenha.href = "#";
-EsqueceuSenha.className = "esqueceu-senha";
+        const dados = await response.json();
 
-// Caixa para os botões de login social: Google e Microsoft
-const boxSocial = document.createElement("div");
-boxSocial.className = "caixa-botoes-sociais";
+        console.log(dados);
 
-const botaoGoogle = document.createElement("button");
-botaoGoogle.innerText = "Google";
-botaoGoogle.className = "botao-social";
-
-const botaoMicrosoft = document.createElement("button");
-botaoMicrosoft.innerText = "Microsoft";
-botaoMicrosoft.className = "botao-social";
-
-boxSocial.appendChild(botaoGoogle);
-boxSocial.appendChild(botaoMicrosoft);
-
-// Adicionando os elementos na tela com as caixas agrupadoras
-container.appendChild(titulo);
-container.appendChild(boxPerfil);
-container.appendChild(CriarConta);
-container.appendChild(meuForm);
-container.appendChild(EsqueceuSenha);
-container.appendChild(boxSocial);
+    } catch {
+        console.log("Erro inesperado!");
+    }
+});
