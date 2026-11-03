@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meu Perfil</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <nav>
+      <a><span>▥</span>Dashboard</a>
+      <a><span>👥</span>Recrutadores <b>⌄</b></a>
+      <a><span>🛒</span>Assinatura <b>⌄</b></a>
+      <a><span>⚙</span>Configuração <b>⌄</b></a>
+    </nav>
+    <div class="account">
+      <p><i>◉</i>Empresa01</p>
+      <p><i class="door">⇱</i>Sair</p>
+    </div>
+  </aside>
+  <main>
+    <header>
+      <div class="crumbs">⌂ <span>›</span> <b>Assinatura</b></div>
+    </header>
+    <section class="hero-title">
+      <div class="building">▦</div>
+      <div>
+        <h1>Meu perfil</h1>
+        <p>Gerencie as informações da sua empresa</p>
+      </div>
+    </section>
+    <form>
+      <section class="card company">
+        <h2>Informações da empresa</h2>
+        <div class="logo">
+          <div>▦</div>
+          <button type="button">↥ Alterar logo</button>
+          <small>Formato aceito: JPG,PNG.</small>
+        </div>
+        <div class="grid">
+          <label>Razão social<input placeholder="Ex: Empresa Tecnologia e Soluções Ltda."></label>
+          <label>Nome fantasia<input placeholder="Ex: Empresa LTDA"></label>
+          <label>CNPJ<input placeholder="Ex: 12.345.678/0001-90"></label>
+          <label>E-mail corporativo<input placeholder="Ex: email@empresaltda.com"></label>
+          <label>Telefone<input placeholder="Ex: (11) 99876-5432"></label>
+          <label>Site<input placeholder="Ex: www.empresaltda.com.br"></label>
+          <label class="wide">Data de Cadastro<input placeholder="Ex: 12/12/2020"></label>
+        </div>
+      </section>
+      <section class="card address">
+        <h2>Endereço</h2>
+        <div class="grid five">
+          <label>CEP<input placeholder="Ex: 04567-890"></label>
+          <label>Rua<input placeholder="Ex: Rua das Palmeiras"></label>
+          <label>Número<input placeholder="Ex:1000"></label>
+          <label>Estado<input placeholder="Ex: São Paulo"></label>
+          <label>Cidade<input placeholder="Ex: Sorocaba"></label>
+          <label>Bairro<input placeholder="Ex: Bela Vista"></label>
+          <label>Complemento<input></label>
+        </div>
+      </section>
+      <div class="split">
+        <section class="card about">
+          <h2>Sobre a Empresa</h2>
+          <textarea>Somos uma empresa dedicada a conectar talentos e oportunidades.
+Nosso objetivo é transformar o processo de recrutamento e seleção em algo
+simples, ágil e eficiente.</textarea>
+          <small>148/150</small>
+        </section>
+        <section class="card social">
+          <h2>Redes Sociais</h2>
+          <label><span class="in">in</span> Linkedin <input value="https://br.linkedin.com"></label>
+          <label><span class="ig">◎</span> Instagram <input value="https://www.instagram.com"></label>
+          <label><span class="fb">f</span> Facebook <input value="https://www.facebook.com"></label>
+        </section>
+      </div>
+      <section class="card responsible">
+        <h2>Responsável pela Conta</h2>
+        <div class="grid four">
+          <label>Nome<input placeholder="Ex:Ana Carolina"></label>
+          <label>Cargo<input placeholder="Ex: Gerente de RH"></label>
+          <label>E-mail<input placeholder="Ex: anacarolina@empresa.com"></label>
+          <label>Telefone<input placeholder="Ex: (11) 99876-5555"></label>
+        </div>
+      </section>
+      <div class="actions">
+        <button type="button">Cancelar</button>
+        <button class="primary">Salvar alterações</button>
+      </div>
+    </form>
+  </main>
+  <script src="./script.js"></script>
+</body>
+</html>
