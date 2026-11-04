@@ -1,0 +1,376 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+:root {
+    --primary-blue: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --border-color: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+    --success-green: #16a34a;
+    --success-bg: #dcfce7;
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 78px;
+}
+
+
+body {
+    background-color: #f8fafc;
+    color: #1e293b;
+    display: flex;
+    min-height: 100vh;
+}
+
+.conteudo-principal {
+    flex: 1;
+    min-width: 0;
+    margin-left: 260px; 
+    padding: 2rem;
+    transition: margin-left 0.25s ease;
+}
+
+body:has(.sidebar.fechada) .conteudo-principal {
+    margin-left: 78px;
+}
+
+.header-saudacao {
+    margin-bottom: 1.5rem;
+}
+
+.header-saudacao h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.header-saudacao p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+}
+
+.kpi-card {
+    background-color: var(--bg-card);
+    padding: 1.1rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.kpi-titulo {
+    font-size: 0.825rem;
+    color: #64748b;
+    font-weight: 500;
+    
+}
+
+.kpi-valor {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0.4rem 0;
+}
+
+.kpi-status {
+    font-size: 0.775rem;
+    display: flex;
+    gap: 0.25rem;
+}
+
+.kpi-status.positivo span { color: #16a34a; font-weight: 600; }
+.kpi-status.neutro span { color: #2563eb; font-weight: 600; }
+.kpi-status small { color: #94a3b8; }
+
+/* --- GRELHA PRINCIPAL DE DUAS COLUNAS --- */
+.grid-dashboard-empresa {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.coluna-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* CARDS GERIAS */
+.tabela-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-painel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+}
+
+.card-painel-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.card-painel-header small {
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+.card-painel-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    margin-top: 1.25rem;
+    border-top: 1px solid #f1f5f9;
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+/* TABELA DE VAGAS */
+.tabela-responsive {
+    overflow-x: auto;
+}
+
+.tabela-empresas {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+.tabela-empresas th {
+    color: #64748b;
+    font-weight: 600;
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+}
+
+.tabela-empresas td {
+    padding: 0.85rem 0.5rem;
+    border-bottom: 1px solid #f8fafc;
+    color: #334155;
+}
+
+.text-right { text-align: right; }
+
+.link-acao {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 0.825rem;
+    font-weight: 600;
+}
+
+.link-acao:hover { text-decoration: underline; }
+
+/* BADGES DE STATUS */
+.badge {
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-ativa { background-color: #dcfce7; color: #15803d; }
+.status-pausada { background-color: #fef3c7; color: #b45309; }
+.status-rascunho { background-color: #f1f5f9; color: #64748b; }
+
+.ponto-etapa { font-size: 0.8rem; margin-right: 0.2rem; }
+.ponto-etapa.azul { color: #2563eb; }
+.ponto-etapa.roxo { color: #8b5cf6; }
+.ponto-etapa.laranja { color: #f97316; }
+.ponto-etapa.cinza { color: #94a3b8; }
+
+.badge-subtil.verde { color: #16a34a; font-weight: 500; }
+
+/* LISTA RECRUTADORES */
+.btn-adicionar {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-adicionar:hover { background-color: #dbeafe; }
+
+.lista-recrutadores {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.item-recrutador {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid #f8fafc;
+}
+
+.recrutador-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.recrutador-avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #e0e7ff;
+    color: #4338ca;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.tag-empresa {
+    background-color: #f1f5f9;
+    color: #64748b;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    margin-left: 0.3rem;
+}
+
+.email-recrutador {
+    font-size: 0.775rem;
+    color: #64748b;
+}
+
+.recrutador-acoes {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.btn-acao-sm {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.btn-acao-sm:hover { opacity: 1; }
+
+.btn-icone {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #94a3b8;
+    font-size: 1.1rem;
+}
+
+/* GRÁFICOS DE BARRAS */
+.legenda-grafico {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.quadrado-cor {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+.quadrado-cor.azul { background-color: #2563eb; }
+.quadrado-cor.verde { background-color: #10b981; }
+
+.grafico-barras-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 160px;
+    padding-top: 1.5rem;
+}
+
+.coluna-grafico {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+    gap: 0.35rem;
+    flex: 1;
+}
+
+.valor-coluna {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #334155;
+}
+
+.barra-fundo-vert {
+    width: 28px;
+    height: 100%;
+    background-color: #f1f5f9;
+    border-radius: 6px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.barra-preenchida-vert {
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    transition: height 0.4s ease;
+}
+
+.barra-preenchida-vert.azul { background-color: #2563eb; }
+.barra-preenchida-vert.verde { background-color: #10b981; }
+
+.label-coluna {
+    font-size: 0.725rem;
+    color: #64748b;
+    text-align: center;
+}
+
+.texto-positivo {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 1100px) {
+    .grid-dashboard-empresa {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,308 @@
+.conteudo-principal {
+    padding-top: 1rem !important; 
+}
+
+.header-saudacao {
+    margin-top: 0;
+    margin-bottom: 1rem; 
+}
+
+.header-saudacao h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 0;
+    margin-bottom: 0.25rem; 
+}
+
+.header-saudacao p {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-top: 0;
+}
+
+
+.banner-boas-vindas {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+    position: relative;
+}
+
+.banner-boas-vindas .banner-imagem {
+    grid-area: 1 / 1; 
+    width: 100%;
+    height: 100%;
+    max-height: 220px;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.banner-boas-vindas .banner-conteudo {
+    grid-area: 1 / 1; 
+    z-index: 2;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.banner-boas-vindas .banner-conteudo h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.2;
+}
+
+.banner-boas-vindas .banner-conteudo p {
+    font-size: 0.9rem;
+    color: #475569;
+    margin: 0 0 1.25rem 0;
+    max-width: 340px;
+    line-height: 1.4;
+}
+
+.banner-boas-vindas .btn-primario {
+    background-color: #1d4ed8;
+    color: #ffffff;
+    border: none;
+    padding: 0.65rem 1.3rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.banner-boas-vindas .btn-primario:hover {
+    background-color: #1e40af;
+}
+
+.tabela-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    max-width: 600px;
+    width: 100%;
+}
+
+.card-painel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.card-painel-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.link-ver-todas {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.link-ver-todas:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+.tabela-empresas {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabela-empresas thead tr {
+    background-color: #f8fafc;
+}
+
+.tabela-empresas th {
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.tabela-empresas tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.15s ease;
+}
+
+.tabela-empresas tbody tr:last-child {
+    border-bottom: none;
+}
+
+.tabela-empresas tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.tabela-empresas td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.vaga-detalhes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.vaga-detalhes strong {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.vaga-detalhes small {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.coluna-data {
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.badge.em-analise {
+    background-color: #fef9c3;
+    color: #854d0e;
+}
+
+.badge.entrevista {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.badge.aprovado {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.badge.recusado {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+
+.grid-dashboard-candidato {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 1.5rem;                   
+    align-items: start;           
+    width: 100%;
+}
+
+.lista-vagas-recomendadas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.item-vaga-candidato {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #f1f5f9;
+    background-color: #ffffff;
+    transition: all 0.2s ease-in-out;
+}
+
+.item-vaga-candidato:hover {
+    border-color: #cbd5e1;
+    background-color: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.vaga-avatar-admin {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background-color: #eff6ff;
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0.5px;
+}
+
+.vaga-info-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex-grow: 1;
+}
+
+.vaga-info-admin strong {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0f172a;
+    line-height: 1.25;
+}
+
+.vaga-info-admin small {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.btn-acao-salvar {
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    color: #64748b;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.btn-acao-salvar:hover {
+    background-color: #f1f5f9;
+    color: #2563eb;
+    border-color: #cbd5e1;
+}
+
+.btn-acao-salvar.salvo {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border-color: #bfdbfe;
+}
+
+.btn-acao-salvar.salvo svg {
+    fill: #2563eb;
+}

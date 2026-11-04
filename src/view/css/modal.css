@@ -1,0 +1,188 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    animation: fadeIn 0.25s ease-out;
+}
+
+.modal-conteudo {
+    background-color: #ffffff;
+    width: 100%;
+    max-width: 760px;
+    
+    padding: 1.75rem 2.25rem;
+    
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    box-sizing: border-box;
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-fechar {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.25rem;
+    width: 32px;
+    height: 32px;
+    background-color: #f1f5f9;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #64748b;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.modal-fechar:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-header-texto{
+    text-align: center;
+}
+.modal-cards-perfil {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 1.25rem !important;
+    width: 100% !important;
+    margin-top: 0.5rem !important;
+    box-sizing: border-box !important;
+}
+
+.card-perfil-opcao {
+    flex: 1 !important;
+    border: 1.5px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    padding: 1.5rem 1.25rem !important;
+    background-color: #ffffff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    transition: all 0.25s ease !important;
+    box-sizing: border-box !important;
+}
+
+.card-perfil-opcao:hover {
+    border-color: #2563eb !important;
+    background-color: #f8fafc !important;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.08) !important;
+}
+
+/* Ícone / Avatar do Perfil */
+.perfil-icone-avatar {
+    width: 56px !important;
+    height: 56px !important;
+    background-color: #dbeafe !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin-bottom: 1rem !important;
+}
+
+.perfil-icone-avatar img {
+    width: 26px !important;
+    height: 26px !important;
+    object-fit: contain !important;
+}
+
+/* Títulos e Descrições */
+.card-perfil-opcao h3 {
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+    margin: 0 0 0.5rem 0 !important;
+}
+
+.card-perfil-opcao p {
+    font-size: 0.85rem !important;
+    color: #64748b !important;
+    line-height: 1.45 !important;
+    margin: 0 0 1.25rem 0 !important;
+}
+
+/* Lista de Benefícios */
+.perfil-lista-beneficios {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    border-top: 1px solid #f1f5f9 !important;
+    padding-top: 1rem !important;
+    text-align: left !important;
+}
+
+.perfil-lista-beneficios li {
+    font-size: 0.8rem !important;
+    color: #475569 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+}
+
+.perfil-lista-beneficios li::before {
+    content: "✓";
+    color: #16a34a;
+    font-weight: bold;
+}
+
+/* ==================================================================== */
+/* --- RESPONSIVIDADE DO MODAL BASE                                 --- */
+/* ==================================================================== */
+
+@media (max-width: 768px) {
+    .modal-overlay {
+        padding: 1rem;
+    }
+
+    .modal-conteudo {
+        padding: 1.25rem 1.5rem;
+        max-height: 90vh;
+        overflow-y: auto; /* Apenas em ecrãs móveis pequenos caso o conteúdo ultrapasse */
+    }
+}

@@ -1,0 +1,210 @@
+.page-sobre {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    color: #334155;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.page-sobre main.sobre-nos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 3rem 6% 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.cabecalho-secao-centro,
+.apresentacao-sobre {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.tag-secao,
+.tag-sobre,
+.subtitulo-historia {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+}
+
+.titulo-secao,
+.titulo-principal-sobre {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.5px;
+}
+
+.subtitulo-secao,
+.descricao-sobre {
+    font-size: 1.05rem;
+    color: #64748b;
+    line-height: 1.6;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+/* --- SECÇÃO HISTÓRIA (LADO A LADO) --- */
+.historia {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+}
+
+/* Imagem à esquerda em tamanho proporcional */
+.sobre-imagem-container,
+.historia-imagem {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem-historia,
+.sobre-imagem-container img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Conteúdo de texto à direita */
+.historia-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.titulo-historia {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+    margin: 0.5rem 0 1.25rem;
+    letter-spacing: -0.4px;
+}
+
+.descricao-historia {
+    font-size: 1rem;
+    color: #64748b;
+    line-height: 1.65;
+}
+
+/* --- SECÇÃO PROPÓSITO / VALORES --- */
+.proposito {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.sobre-cards,
+.area-proposito {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.card-sobre,
+.card-proposito {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-sobre:hover,
+.card-proposito:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.icone-card-sobre,
+.icone-proposito {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 1rem;
+    object-fit: contain;
+}
+
+.titulo-card-sobre,
+.titulo-card-proposito {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+.descricao-card-sobre,
+.descricao-card-proposito {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 992px) {
+    .historia {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .historia-conteudo {
+        align-items: center;
+        text-align: center;
+    }
+
+    .imagem-historia,
+    .sobre-imagem-container img {
+        max-width: 420px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-sobre main.sobre-nos {
+        padding: 2rem 1.5rem 3.5rem;
+        gap: 2.5rem;
+    }
+
+    .titulo-secao,
+    .titulo-principal-sobre {
+        font-size: 1.85rem;
+    }
+
+    .titulo-historia {
+        font-size: 1.5rem;
+    }
+
+    .sobre-cards,
+    .area-proposito {
+        grid-template-columns: 1fr;
+    }
+}

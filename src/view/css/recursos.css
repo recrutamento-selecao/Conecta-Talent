@@ -1,0 +1,130 @@
+.page-recursos {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    color: #334155;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.page-recursos main.recursos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem 6% 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.apresentacao-recursos,
+.cabecalho-secao-centro {
+    text-align: center;
+    max-width: 780px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+}
+
+.titulo-recursos,
+.tag-secao {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+}
+
+.titulo-principal-recursos,
+.titulo-secao {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.5px;
+}
+
+.descricao-recursos,
+.subtitulo-secao {
+    font-size: 1.05rem;
+    color: #64748b;
+    line-height: 1.6;
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.area-recursos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.card-recurso {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card-recurso:hover {
+    transform: translateY(-4px);
+    border-color: #2563eb;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+}
+
+.icone-recurso {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    margin-bottom: 0; 
+}
+
+.cabecalho-card-recurso {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.titulo-card-recurso {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 0.5rem;
+}
+
+.descricao-card-recurso {
+    font-size: 0.95rem;
+    color: #64748b;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .page-recursos main.recursos {
+        padding: 2rem 1.5rem 3.5rem;
+        gap: 2.5rem;
+    }
+
+    .titulo-principal-recursos,
+    .titulo-secao {
+        font-size: 1.85rem;
+    }
+
+    .area-recursos {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,388 @@
+:root {
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 78px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+}
+
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #f8fafc;
+    color: #1e293b;
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: var(--sidebar-width);
+    z-index: 1000;
+    transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.conteudo-principal {
+    flex: 1;
+    min-width: 0;
+    margin-left: var(--sidebar-width) !important; 
+    padding: 2rem;
+    transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body:has(.sidebar.fechada) .conteudo-principal,
+.sidebar.fechada ~ .conteudo-principal {
+    margin-left: var(--sidebar-collapsed-width) !important;
+}
+
+.header-saudacao {
+    margin-bottom: 2rem;
+}
+
+.header-saudacao h1 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.header-saudacao p {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+    
+}
+
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+}
+
+.kpi-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.kpi-titulo {
+    font-size: 0.85rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.kpi-valor {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0.5rem 0;
+}
+
+.kpi-status {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+}
+
+.kpi-status.positivo span {
+    color: #16a34a;
+    font-weight: 600;
+}
+
+.kpi-status small {
+    color: #94a3b8;
+}
+
+.grid-secao-intermedia {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+}
+
+.grid-acoes-rapidas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.tabela-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.card-painel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.card-painel-header h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.badge-total {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    border-radius: 20px;
+}
+
+.lista-progresso-etapas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.item-etapa {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.etapa-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+}
+
+.etapa-nome {
+    color: #475569;
+    font-weight: 500;
+}
+
+.etapa-porcentagem {
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.barra-fundo {
+    width: 100%;
+    height: 8px;
+    background-color: #f1f5f9;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.barra-preenchimento {
+    height: 100%;
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}
+
+.barra-preenchimento.azul { background-color: #2563eb; }
+.barra-preenchimento.laranja { background-color: #f97316; }
+.barra-preenchimento.verde { background-color: #10b981; }
+.barra-preenchimento.roxo { background-color: #8b5cf6; }
+
+.card-acao-rapida {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-acao-rapida:hover {
+    border-color: #cbd5e1;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.icone-acao-wrapper {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+}
+
+.icone-acao-wrapper.azul {
+    background-color: #eff6ff;
+    color: #2563eb;
+}
+
+.icone-acao-wrapper.verde {
+    background-color: #ecfdf5;
+    color: #10b981;
+}
+
+.card-acao-rapida h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.5rem 0;
+}
+
+.card-acao-rapida p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0 0 1.25rem 0;
+    line-height: 1.4;
+}
+
+.btn-acao-primario {
+    width: 100%;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-acao-primario:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-acao-secundario {
+    width: 100%;
+    background-color: #ffffff;
+    color: #059669;
+    border: 1px solid #059669;
+    padding: 0.65rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-acao-secundario:hover {
+    background-color: #ecfdf5;
+}
+
+.grid-dashboard-recrutador {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.tabela-empresas {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.875rem;
+}
+
+.tabela-empresas th {
+    color: #64748b;
+    font-weight: 600;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+}
+
+.tabela-empresas td {
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+}
+
+.lista-entrevistas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.item-entrevista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.entrevista-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.entrevista-info strong {
+    font-size: 0.9rem;
+    color: #0f172a;
+}
+
+.entrevista-info small {
+    font-size: 0.8rem;
+    color: #64748b;
+}
+
+.entrevista-detalhes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.35rem;
+}
+
+.data-hora {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.badge {
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge.agendada { background-color: #fef9c3; color: #854d0e; }
+.badge.confirmada { background-color: #dcfce7; color: #15803d; }
+
+
+
+@media (max-width: 1024px) {
+    .grid-secao-intermedia,
+    .grid-dashboard-recrutador {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid-acoes-rapidas {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .conteudo-principal {
+        margin-left: 0 !important;
+        padding: 1.25rem;
+    }
+}

@@ -1,0 +1,191 @@
+.page-planos {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #f8f9fa;
+    color: #333333;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.page-planos main.planos {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    padding: 3rem 6% 5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.apresentacao-planos {
+    text-align: center;
+    max-width: 750px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.titulo-planos {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.75rem;
+    padding: 0.35rem 0.85rem;
+    
+}
+
+.titulo-principal-planos {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+}
+
+.descricao-planos {
+    font-size: 1.1rem;
+    color: #666666;
+    line-height: 1.6;
+}
+
+.area-planos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    align-items: stretch;
+    width: 100%;
+}
+
+.card-plano {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    padding: 2.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    position: relative;
+}
+
+.card-plano:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 20px -4px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+    border-color: #cbd5e1;
+}
+
+.card-plano:nth-child(2) {
+    border: 2px solid #0056b3;
+}
+
+.nome-plano {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+}
+
+.preco-plano {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0056b3;
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+.periodo-plano {
+    font-size: 0.95rem;
+    color: #718096;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.descricao-plano {
+    font-size: 0.95rem;
+    color: #4a5568;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.lista-recursos {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.item-recurso {
+    font-size: 0.95rem;
+    color: #2d3748;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.item-recurso::before {
+    content: "✓";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: #e6f0fa;
+    color: #0056b3;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* --- BOTÃO DE ASSINATURA --- */
+.botao-assinar {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: #0056b3;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.botao-assinar:hover {
+    background-color: #004085;
+}
+
+.botao-assinar:active {
+    transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+    .page-planos main.planos {
+        padding: 2rem 1.5rem 3rem;
+    }
+
+    .titulo-principal-planos {
+        font-size: 1.75rem;
+    }
+
+    .descricao-planos {
+        font-size: 1rem;
+    }
+
+    .area-planos {
+        grid-template-columns: 1fr;
+    }
+}

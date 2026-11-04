@@ -1,0 +1,148 @@
+.page-suporte {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #ffffff;
+    color: #334155;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.page-suporte main.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1.5rem 5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.hero-suporte {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.5rem;
+}
+
+.hero-suporte .cabecalho-secao-centro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+.hero-suporte .tag-secao {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+}
+
+.hero-suporte .titulo-secao {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+.hero-suporte .subtitulo-secao {
+    font-size: 1.05rem;
+    color: #64748b;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-bottom: 0;
+}
+
+.como-funciona-secao {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.form-suporte {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 600px;
+    background: #ffffff;
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    box-sizing: border-box;
+}
+
+.form-suporte input,
+.form-suporte select,
+.form-suporte textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.85rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    font-size: 0.95rem;
+    color: #0f172a;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-suporte input:focus,
+.form-suporte select:focus,
+.form-suporte textarea:focus {
+    border-color: #2563eb;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.form-suporte textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+.form-suporte button,
+.form-suporte .btn-buscar-vagas {
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-top: 0.5rem;
+}
+
+.form-suporte button:hover,
+.form-suporte .btn-buscar-vagas:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+    .page-suporte main.main {
+        padding: 2rem 1rem 3.5rem;
+    }
+
+    .hero-suporte .titulo-secao {
+        font-size: 1.75rem;
+    }
+
+    .form-suporte {
+        padding: 1.5rem;
+    }
+}
