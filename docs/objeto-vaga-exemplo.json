@@ -1,0 +1,28 @@
+{
+  "titulo": "Analista de RH",
+  "departamento": "Recursos Humanos",
+  "contratacao": "CLT",
+  "nivel": "Pleno",
+  "regime": "Híbrido",
+  "local": "Sorocaba",
+  "salario": {
+    "minimo": 4000,
+    "maximo": 6000
+  },
+  "descricao": {
+    "resumo": "Responsável pelo processo de recrutamento",
+    "responsabilidades": "Conduzir entrevistas e triagens",
+    "requisitos": "Experiência em recrutamento",
+    "diferenciais": "Experiência com tecnologia",
+    "beneficios": "Vale alimentação e plano de saúde"
+  },
+  "status": "publicada",
+  "visibilidade": "pública",
+  "etapas": [
+    "Triagem de currículos",
+    "Entrevista com RH",
+    "Entrevista técnica",
+    "Proposta"
+  ],
+  "atualizadoEm": "2026-11-04T00:00:00.000Z"
+}

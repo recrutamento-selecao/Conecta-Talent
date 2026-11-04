@@ -1,0 +1,354 @@
+.pagina-recrutamento {
+  min-height: 100vh;
+  display: flex;
+  background: #f3f6fb;
+}
+
+.pagina-recrutamento .sidebar-comum {
+  position: sticky;
+  top: 0;
+  width: 230px;
+  height: 100vh;
+  flex: 0 0 230px;
+  display: flex;
+  flex-direction: column;
+  padding: 28px 16px 20px;
+  color: #fff;
+  background: linear-gradient(180deg, #245de8, #143ca8);
+  box-shadow: 8px 0 26px rgba(20, 60, 168, .18);
+}
+
+.pagina-recrutamento .sidebar-marca {
+  margin: 0 10px 30px;
+  font-size: 21px;
+  font-weight: 700;
+}
+
+.pagina-recrutamento .sidebar-menu {
+  display: grid;
+  gap: 6px;
+}
+
+.pagina-recrutamento .sidebar-menu a {
+  padding: 13px 14px;
+  border-radius: 10px;
+  color: #fff;
+  text-decoration: none;
+  transition: background .18s ease, transform .18s ease;
+}
+
+.pagina-recrutamento .sidebar-menu a:hover,
+.pagina-recrutamento .sidebar-menu a.ativo {
+  background: rgba(255, 255, 255, .14);
+  transform: translateX(2px);
+}
+
+.pagina-recrutamento .sidebar-conta {
+  display: grid;
+  gap: 3px;
+  margin-top: auto;
+  padding: 16px 12px 0;
+  border-top: 1px solid rgba(255, 255, 255, .22);
+}
+
+.pagina-recrutamento .sidebar-conta span {
+  color: #dbe5ff;
+  font-size: 12px;
+}
+
+.pagina-recrutamento .pagina-conteudo {
+  width: calc(100% - 230px);
+  padding: 0 28px 40px;
+}
+
+.pagina-recrutamento .cabecalho-pagina {
+  margin: 0 -28px 24px;
+  padding: 24px 28px;
+  background: #fff;
+  border-bottom: 1px solid #dce3ee;
+}
+
+.pagina-recrutamento .cabecalho-pagina h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -.02em;
+}
+
+.pagina-recrutamento .cabecalho-pagina p {
+  margin: 7px 0 0;
+  color: #667085;
+}
+
+.pagina-recrutamento .formulario-pagina,
+.pagina-recrutamento .resultado-objeto {
+  width: min(1100px, 100%);
+  margin: 0 auto 20px;
+}
+
+.pagina-recrutamento .cartao,
+.pagina-recrutamento .resultado-objeto {
+  margin-bottom: 20px;
+  padding: 26px;
+  border: 1px solid #d9e2ef;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(16, 24, 40, .07);
+}
+
+.pagina-recrutamento .cartao h2,
+.pagina-recrutamento .resultado-objeto h2,
+.pagina-recrutamento .editor-etapas h2 {
+  margin: 0 0 20px;
+  font-size: 19px;
+}
+
+.pagina-recrutamento .grade-campos {
+  display: grid;
+  gap: 18px 22px;
+  margin-bottom: 18px;
+}
+
+.pagina-recrutamento .duas-colunas {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.pagina-recrutamento .grupo-campo {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 17px;
+  color: #344054;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pagina-recrutamento input,
+.pagina-recrutamento textarea,
+.pagina-recrutamento select {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #cbd6e5;
+  border-radius: 9px;
+  color: #101828;
+  background: #fff;
+  outline: none;
+  transition: border .18s ease, box-shadow .18s ease;
+}
+
+.pagina-recrutamento textarea {
+  min-height: 95px;
+  resize: vertical;
+}
+
+.pagina-recrutamento input:focus,
+.pagina-recrutamento textarea:focus,
+.pagina-recrutamento select:focus {
+  border-color: #2457e6;
+  box-shadow: 0 0 0 4px rgba(36, 87, 230, .14);
+}
+
+.pagina-recrutamento .invalido {
+  border-color: #d92d20;
+}
+
+.pagina-recrutamento .campo-erro {
+  color: #b42318;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.pagina-recrutamento .campo-senha {
+  position: relative;
+}
+
+.pagina-recrutamento .campo-senha input {
+  padding-right: 85px;
+}
+
+.pagina-recrutamento .botao-olho {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  height: 30px;
+  border: 0;
+  color: #1d4ed8;
+  background: transparent;
+  cursor: pointer;
+}
+
+.pagina-recrutamento .acoes-formulario {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.pagina-recrutamento .botao-primario,
+.pagina-recrutamento .botao-secundario,
+.pagina-recrutamento .botao-remover {
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.pagina-recrutamento .botao-primario {
+  border: 1px solid #1d4ed8;
+  color: #fff;
+  background: #1d4ed8;
+  box-shadow: 0 8px 18px rgba(29, 78, 216, .22);
+}
+
+.pagina-recrutamento .botao-secundario {
+  border: 1px solid #1d4ed8;
+  color: #1d4ed8;
+  background: #fff;
+}
+
+.pagina-recrutamento .botao-remover {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 0;
+  color: #b42318;
+  background: #fff0ee;
+}
+
+.pagina-recrutamento .mensagem-formulario {
+  margin: 0 0 18px;
+  padding: 13px 15px;
+  border-radius: 9px;
+  color: #067647;
+  background: #ecfdf3;
+}
+
+.pagina-recrutamento .mensagem-formulario.erro {
+  color: #b42318;
+  background: #fef3f2;
+}
+
+.pagina-recrutamento .editor-etapas {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid #e4e9f1;
+}
+
+.pagina-recrutamento .lista-etapas {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.pagina-recrutamento .etapa-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 42px;
+  padding: 6px 10px 6px 14px;
+  border: 1px solid #d8e2f2;
+  border-radius: 9px;
+  background: #f8faff;
+}
+
+.pagina-recrutamento .editor-etapas > input {
+  width: calc(100% - 150px);
+  margin-right: 10px;
+}
+
+.pagina-recrutamento .grupo-permissoes {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
+  padding: 18px;
+  border: 1px solid #d9e2ef;
+  border-radius: 10px;
+}
+
+.pagina-recrutamento .opcao-marcacao {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.pagina-recrutamento .opcao-marcacao input {
+  width: 18px;
+  min-height: 18px;
+}
+
+.pagina-recrutamento .resultado-objeto pre {
+  overflow: auto;
+  max-height: 360px;
+  margin: 0;
+  padding: 16px;
+  border-radius: 10px;
+  color: #d7e4ff;
+  background: #101828;
+  font: 13px/1.5 Consolas, monospace;
+}
+
+.pagina-recrutamento .previa-configuracao {
+  margin: 0 0 20px;
+  padding: 12px 14px;
+  border-radius: 9px;
+  color: #1849a9;
+  background: #eef4ff;
+}
+
+.pagina-recrutamento .regras-senha {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px 20px;
+  color: #475467;
+  font-size: 13px;
+}
+
+@media (max-width: 760px) {
+  .pagina-recrutamento {
+    display: block;
+  }
+
+  .pagina-recrutamento .sidebar-comum {
+    position: static;
+    width: 100%;
+    height: auto;
+    padding: 14px;
+  }
+
+  .pagina-recrutamento .sidebar-marca,
+  .pagina-recrutamento .sidebar-conta {
+    display: none;
+  }
+
+  .pagina-recrutamento .sidebar-menu {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .pagina-recrutamento .sidebar-menu a {
+    flex: 0 0 auto;
+  }
+
+  .pagina-recrutamento .pagina-conteudo {
+    width: 100%;
+    padding: 0 16px 30px;
+  }
+
+  .pagina-recrutamento .cabecalho-pagina {
+    margin: 0 -16px 18px;
+    padding: 20px 16px;
+  }
+
+  .pagina-recrutamento .duas-colunas,
+  .pagina-recrutamento .regras-senha {
+    grid-template-columns: 1fr;
+  }
+
+  .pagina-recrutamento .cartao,
+  .pagina-recrutamento .resultado-objeto {
+    padding: 18px;
+  }
+
+  .pagina-recrutamento .editor-etapas > input {
+    width: 100%;
+    margin: 0 0 10px;
+  }
+}
