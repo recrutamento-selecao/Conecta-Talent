@@ -24,12 +24,13 @@ body {
 
 .sidebar {
     min-height: 100vh;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     background: linear-gradient(180deg,
-            #1A3BBF 0%,
-            #1735AE 45%,
-            #11297F 100%);
+        #1A3BBF 0%,
+        #1735AE 45%,
+        #11297F 100%);
     width: 270px;
     padding: 30px 20px;
 }
