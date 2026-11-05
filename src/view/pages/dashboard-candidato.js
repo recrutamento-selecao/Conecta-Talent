@@ -136,7 +136,7 @@ function criarGridInferior(candidaturas, vagas) {
                     <td>
                         <div class="vaga-detalhes">
                             <strong>${item.cargo}</strong>
-                            <small>${item.empresa} •${item.local}</small>
+                            <small>${item.empresa} • ${item.local}</small>
                         </div>
                     </td>
                     <td>
@@ -170,9 +170,8 @@ function criarGridInferior(candidaturas, vagas) {
 
         const inicial = obterInicialEmpresa(vaga.empresa);
 
-        
         const avatarHTML = vaga.logo 
-            ? `<img class="vaga-avatar-img" src="${vaga.logo}" alt="Logo ${vaga.empresa}" onerror="this.outerHTML='<div class=\\'vaga-avatar-admin\\'>${inicial}</div>'">`
+            ? `<img class="vaga-avatar-img" src="${vaga.logo}" alt="Logo ${vaga.empresa}">`
             : `<div class="vaga-avatar-admin">${inicial}</div>`;
 
         itemVaga.innerHTML = `
@@ -206,11 +205,16 @@ function criarGridInferior(candidaturas, vagas) {
     return section;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// Exporta a função que o router.js espera encontrar
+export function renderDashboardCandidato() {
+    const container = document.createElement('div');
+    container.classList.add('page-dashboard-candidato');
 
+    // Cria a sidebar do candidato
     const sidebar = criarSidebar(DADOS_CANDIDATO.usuario.perfil, DADOS_CANDIDATO.usuario.nome);
-    document.body.appendChild(sidebar);
+    container.appendChild(sidebar);
 
+    // Cria a área de conteúdo principal
     const main = document.createElement("main");
     main.classList.add("conteudo-principal");
 
@@ -219,5 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
     main.appendChild(criarGridKPIs(DADOS_CANDIDATO.kpis));
     main.appendChild(criarGridInferior(DADOS_CANDIDATO.candidaturasRecentes, DADOS_CANDIDATO.vagasRecomendadas));
 
-    document.body.appendChild(main);
-});
+    container.appendChild(main);
+
+    return container;
+}

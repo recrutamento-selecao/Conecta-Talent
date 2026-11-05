@@ -51,10 +51,11 @@ export function renderTipoCadastro() {
             const perfil = card.getAttribute("data-perfil");
             modalTipoConta.remove();
             
+            // Alterado para SPA Hash Routing em conformidade com o router.js
             if (perfil === 'candidato') {
-                window.location.href = 'candidato-vagas.html';
+                window.location.hash = '#dashboard-candidato';
             } else {
-                window.location.href = 'empresa-dashboard.html';
+                window.location.hash = '#dashboard-empresa';
             }
         });
     });

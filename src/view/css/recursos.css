@@ -1,42 +1,63 @@
+/* --- ESTILOS DA PÁGINA RECURSOS (LARGURA TOTAL EXPANDIDA) --- */
 .page-recursos {
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #ffffff;
-    color: #334155;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-white);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+.page-recursos *, 
+.page-recursos *::before, 
+.page-recursos *::after {
+    box-sizing: border-box;
+}
+
+/* Área principal expandida cobrindo 100% sem restrições globais */
 .page-recursos main.recursos {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    padding: 3rem 6% 5rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    gap: 4rem;
+    padding: 3rem 5% 5rem;
     width: 100%;
-    box-sizing: border-box;
+    max-width: 100% !important; 
+    margin: 0 !important;
 }
 
+/* Se por acaso o HTML usar .container dentro da página de recursos, isto força a ignorar */
+.page-recursos .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+}
+
+/* --- CABEÇALHO / APRESENTAÇÃO --- */
 .apresentacao-recursos,
 .cabecalho-secao-centro {
     text-align: center;
-    max-width: 780px;
+    max-width: 850px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 1rem;
+    width: 100%;
 }
 
 .titulo-recursos,
 .tag-secao {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #2563eb;
+    color: var(--primary-color);
     text-transform: uppercase;
     letter-spacing: 0.8px;
     margin-bottom: 0.75rem;
@@ -47,7 +68,7 @@
 .titulo-secao {
     font-size: 2.5rem;
     font-weight: 800;
-    color: #0f172a;
+    color: var(--text-primary);
     line-height: 1.2;
     margin-bottom: 1.25rem;
     letter-spacing: -0.5px;
@@ -56,41 +77,37 @@
 .descricao-recursos,
 .subtitulo-secao {
     font-size: 1.05rem;
-    color: #64748b;
+    color: var(--text-secondary);
     line-height: 1.6;
-    max-width: 680px;
+    max-width: 750px;
     margin: 0 auto;
 }
 
+/* --- ÁREA / GRID DE RECURSOS --- */
 .area-recursos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     width: 100%;
 }
 
 .card-recurso {
-    background: #ffffff;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
+    background: var(--bg-white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
     padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    width: 100%;
+    height: 100%;
+    transition: var(--transition);
 }
 
 .card-recurso:hover {
     transform: translateY(-4px);
-    border-color: #2563eb;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-}
-
-.icone-recurso {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-    margin-bottom: 0; 
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-md);
 }
 
 .cabecalho-card-recurso {
@@ -100,19 +117,28 @@
     margin-bottom: 1rem;
 }
 
+.icone-recurso {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
 .titulo-card-recurso {
     font-size: 1.2rem;
     font-weight: 700;
-    color: #0f172a;
-    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+    margin: 0;
 }
 
 .descricao-card-recurso {
     font-size: 0.95rem;
-    color: #64748b;
+    color: var(--text-secondary);
     line-height: 1.6;
+    margin: 0;
 }
 
+/* --- RESPONSIVIDADE --- */
 @media (max-width: 768px) {
     .page-recursos main.recursos {
         padding: 2rem 1.5rem 3.5rem;

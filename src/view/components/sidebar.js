@@ -1,170 +1,168 @@
-// Mapeamento das rotas para cada perfil de utilizador
+// Mapeamento das rotas por hash para cada perfil de utilizador
 const MENUS_POR_PERFIL = {
     administrador: [
-        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "dashboard-administrador.html" },
+        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "#dashboard-administrador" },
         {
             id: "usuarios", icone: "assets/icons/users-branco.svg", texto: "Usuários",
             submenu: [
-                { texto: "Gerenciar usuários", href: "gerenciar-usuarios.html" }
+                { texto: "Gerenciar usuários", href: "#gerenciar-usuarios" }
             ]
         },
         {
             id: "planos", icone: "assets/icons/box-branco.svg", texto: "Planos",
             submenu: [
-                { texto: "Gerenciar planos", href: "gerenciar-planos.html" }
+                { texto: "Gerenciar planos", href: "#gerenciar-planos" }
             ]
         },
         {
             id: "assinaturas", icone: "assets/icons/license-branco.svg", texto: "Assinaturas",
             submenu: [
-                { texto: "Gerenciar assinaturas", href: "gerenciar-assinaturas.html" },
-                { texto: "Pagamentos", href: "pagamentos-admin.html" }
+                { texto: "Gerenciar assinaturas", href: "#gerenciar-assinaturas" },
+                { texto: "Pagamentos", href: "#pagamentos-admin" }
             ]
         },
         {
             id: "relatorios", icone: "assets/icons/file-analytics-branco.svg", texto: "Relatórios",
             submenu: [
-                { texto: "Relatório de usuários", href: "relatorio-usuarios.html" },
-                { texto: "Relatório de assinaturas", href: "relatorio-assinaturas.html" }
+                { texto: "Relatório de usuários", href: "#relatorio-usuarios" },
+                { texto: "Relatório de assinaturas", href: "#relatorio-assinaturas" }
             ]
         },
         {
             id: "configuracao", icone: "assets/icons/settings-branco.svg", texto: "Configurações",
             submenu: [
-                { texto: "Geral", href: "configuracoes-geral.html" },
-                { texto: "Segurança", href: "configuracoes-seguranca.html" }
+                { texto: "Geral", href: "#configuracoes-geral" },
+                { texto: "Segurança", href: "#configuracoes-seguranca" }
             ]
         }
     ],
 
     empresa: [
-        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "dashboard-empresa.html" },
+        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "#dashboard-empresa" },
         {
             id: "recrutadores", icone: "assets/icons/users-branco.svg", texto: "Recrutadores",
             submenu: [
-                { texto: "Gerenciar recrutadores", href: "gerenciar-recrutadores.html" }
+                { texto: "Gerenciar recrutadores", href: "#gerenciar-recrutadores" }
             ]
         },
         {
             id: "vagas", icone: "assets/icons/clipboard-text-branco.svg", texto: "Gestão de vagas",
             submenu: [
-                { texto: "Gerenciar vagas", href: "gerenciar-vagas.html" },
-                { texto: "Vagas ativas", href: "vagas-ativas-empresa.html" },
-                { texto: "Vagas encerradas", href: "vagas-encerradas-empresa.html" }
+                { texto: "Gerenciar vagas", href: "#gerenciar-vagas" },
+                { texto: "Vagas ativas", href: "#vagas-ativas-empresa" },
+                { texto: "Vagas encerradas", href: "#vagas-encerradas-empresa" }
             ]
         },
         {
             id: "assinaturas", icone: "assets/icons/license-branco.svg", texto: "Assinaturas",
             submenu: [
-                { texto: "Meu plano", href: "meu-plano.html" },
-                { texto: "Pagamentos", href: "historico-pagamentos.html" }
+                { texto: "Meu plano", href: "#meu-plano" },
+                { texto: "Pagamentos", href: "#historico-pagamentos" }
             ]
         },
         {
             id: "relatorios", icone: "assets/icons/file-analytics-branco.svg", texto: "Relatórios",
             submenu: [
-                { texto: "Relatório de vagas", href: "relatorio-vagas-empresa.html" },
-                { texto: "Relatório de contratações", href: "relatorio-contratacoes.html" }
+                { texto: "Relatório de vagas", href: "#relatorio-vagas-empresa" },
+                { texto: "Relatório de contratações", href: "#relatorio-contratacoes" }
             ]
         },
         {
             id: "configuracao", icone: "assets/icons/settings-branco.svg", texto: "Configuração",
             submenu: [
-                { texto: "Dados da empresa", href: "dados-empresa.html" },
-                { texto: "Segurança", href: "seguranca-empresa.html" }
+                { texto: "Dados da empresa", href: "#dados-empresa" },
+                { texto: "Segurança", href: "#seguranca-empresa" }
             ]
         }
     ],
 
     recrutador: [
-        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "dashboard-recrutador.html" },
+        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "#dashboard-recrutador" },
         {
             id: "vagas", icone: "assets/icons/briefcase-branco.svg", texto: "Vagas",
             submenu: [
-                { texto: "Criar Vaga", href: "criar-vaga.html" },
-                { texto: "Minhas Vagas", href: "minhas-vagas.html" },
-                { texto: "Vagas Ativas", href: "vagas-ativas.html" },
-                { texto: "Vagas Encerradas", href: "vagas-encerradas.html" }
+                { texto: "Criar Vaga", href: "#criar-vaga" },
+                { texto: "Minhas Vagas", href: "#minhas-vagas" },
+                { texto: "Vagas Ativas", href: "#vagas-ativas" },
+                { texto: "Vagas Encerradas", href: "#vagas-encerradas" }
             ]
         },
         {
             id: "processos", icone: "assets/icons/clipboard-text-branco.svg", texto: "Processos Seletivos",
             submenu: [
-                { texto: "Criar Processo", href: "criar-processo.html" },
-                { texto: "Meus Processos", href: "meus-processos.html" }
+                { texto: "Criar Processo", href: "#criar-processo" },
+                { texto: "Meus Processos", href: "#meus-processos" }
             ]
         },
         {
             id: "talentos", icone: "assets/icons/users-branco.svg", texto: "Banco de Talentos",
             submenu: [
-                { texto: "Buscar Candidatos", href: "buscar-candidatos.html" },
-                { texto: "Favoritos", href: "candidatos-favoritos.html" }
+                { texto: "Buscar Candidatos", href: "#buscar-candidatos" },
+                { texto: "Favoritos", href: "#candidatos-favoritos" }
             ]
         },
         {
             id: "candidaturas", icone: "assets/icons/file-description-branco.svg", texto: "Candidaturas",
             submenu: [
-                { texto: "Recebidas", href: "candidaturas-recebidas.html" },
-                { texto: "Em Triagem", href: "candidaturas-triagem.html" }
+                { texto: "Recebidas", href: "#candidaturas-recebidas" },
+                { texto: "Em Triagem", href: "#candidaturas-triagem" }
             ]
         },
         {
             id: "agenda", icone: "assets/icons/calendar-week-branco.svg", texto: "Agenda",
             submenu: [
-                { texto: "Calendário", href: "agenda-calendario.html" },
-                { texto: "Entrevistas", href: "agenda-entrevistas.html" }
+                { texto: "Calendário", href: "#agenda-calendario" },
+                { texto: "Entrevistas", href: "#agenda-entrevistas" }
             ]
         },
         {
             id: "perfil", icone: "assets/icons/settings-branco.svg", texto: "Perfil",
             submenu: [
-                { texto: "Meus Dados", href: "meus-dados-recrutador.html" },
-                { texto: "Alterar Senha", href: "alterar-senha-recrutador.html" }
+                { texto: "Meus Dados", href: "#meus-dados-recrutador" },
+                { texto: "Alterar Senha", href: "#alterar-senha-recrutador" }
             ]
         }
     ],
 
     candidato: [
-        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "dashboard-candidato.html" },
+        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "#dashboard-candidato" },
         {
             id: "vagas", icone: "assets/icons/search-branco.svg", texto: "Vagas",
             submenu: [
-                { texto: "Buscar vagas", href: "buscar-vagas.html" },
-                { texto: "Vagas favoritas", href: "vagas-favoritas.html" }
+                { texto: "Buscar vagas", href: "#buscar-vagas" },
+                { texto: "Vagas favoritas", href: "#vagas-favoritas" }
             ]
         },
         {
             id: "candidaturas", icone: "assets/icons/clipboard-text-branco.svg", texto: "Candidaturas",
             submenu: [
-                { texto: "Minhas candidaturas", href: "minhas-candidaturas.html" }
+                { texto: "Minhas candidaturas", href: "#minhas-candidaturas" }
             ]
         },
         {
             id: "curriculo", icone: "assets/icons/file-description-branco.svg", texto: "Currículo",
             submenu: [
-                { texto: "Meu currículo", href: "meu-curriculo.html" }
+                { texto: "Meu currículo", href: "#meu-curriculo" }
             ]
         },
         {
             id: "agenda", icone: "assets/icons/calendar-week-branco.svg", texto: "Agenda",
             submenu: [
-                { texto: "Entrevistas", href: "entrevistas-candidato.html" },
-                { texto: "Calendário", href: "calendario-candidato.html" }
+                { texto: "Entrevistas", href: "#entrevistas-candidato" },
+                { texto: "Calendário", href: "#calendario-candidato" }
             ]
         },
         {
             id: "perfil", icone: "assets/icons/settings-branco.svg", texto: "Perfil",
             submenu: [
-                { texto: "Meus Dados", href: "meus-dados-candidato.html" },
-                { texto: "Alterar Senha", href: "alterar-senha-candidato.html" }
+                { texto: "Meus Dados", href: "#meus-dados-candidato" },
+                { texto: "Alterar Senha", href: "#alterar-senha-candidato" }
             ]
         }
     ]
 };
 
 function criarItemSidebar(item) {
-    const paginaAtual = window.location.pathname.split("/").pop();
-
     const container = document.createElement("div");
     container.classList.add("container-menu-item");
 
@@ -172,9 +170,18 @@ function criarItemSidebar(item) {
     itemSidebar.classList.add("item-sidebar");
     itemSidebar.href = item.submenu ? "#" : item.href;
 
-    if (!item.submenu && item.href === paginaAtual) {
-        itemSidebar.classList.add("ativo");
-    }
+    // Função interna para atualizar o estado ativo com base no hash atual
+    const atualizarEstadoAtivo = () => {
+        const hashAtual = window.location.hash || '#dashboard-candidato';
+        if (!item.submenu && item.href === hashAtual) {
+            itemSidebar.classList.add("ativo");
+        } else {
+            itemSidebar.classList.remove("ativo");
+        }
+    };
+
+    atualizarEstadoAtivo();
+    window.addEventListener("hashchange", atualizarEstadoAtivo);
 
     const icone = document.createElement("img");
     icone.classList.add("icone-sidebar");
@@ -198,7 +205,7 @@ function criarItemSidebar(item) {
         const submenu = document.createElement("div");
         submenu.classList.add("submenu");
 
-        let submenuContemPaginaAtual = false;
+        let submenuContemHashAtual = false;
 
         item.submenu.forEach((sub) => {
             const linkSub = document.createElement("a");
@@ -206,15 +213,29 @@ function criarItemSidebar(item) {
             linkSub.href = sub.href;
             linkSub.textContent = sub.texto;
 
-            if (sub.href === paginaAtual) {
-                linkSub.classList.add("ativo");
-                submenuContemPaginaAtual = true;
+            const atualizarSubAtivo = () => {
+                const hashAtual = window.location.hash;
+                if (sub.href === hashAtual) {
+                    linkSub.classList.add("ativo");
+                    submenu.classList.add("ativo");
+                    seta.classList.add("ativa");
+                    itemSidebar.classList.add("ativo");
+                } else {
+                    linkSub.classList.remove("ativo");
+                }
+            };
+
+            atualizarSubAtivo();
+            window.addEventListener("hashchange", atualizarSubAtivo);
+
+            if (sub.href === window.location.hash) {
+                submenuContemHashAtual = true;
             }
 
             submenu.appendChild(linkSub);
         });
 
-        if (submenuContemPaginaAtual) {
+        if (submenuContemHashAtual) {
             submenu.classList.add("ativo");
             seta.classList.add("ativa");
             itemSidebar.classList.add("ativo");
@@ -245,7 +266,7 @@ function criarItemSidebar(item) {
     return container;
 }
 
-export function criarSidebar(tipoUsuario, nomeUsuario) {
+export function criarSidebar(tipoUsuario = "candidato", nomeUsuario = "Utilizador") {
     const sidebar = document.createElement("aside");
     sidebar.classList.add("sidebar");
 
@@ -332,7 +353,7 @@ export function criarSidebar(tipoUsuario, nomeUsuario) {
 
     const campoSair = document.createElement("a");
     campoSair.classList.add("campo-sair");
-    campoSair.href = "login.html"; 
+    campoSair.href = "#login"; // Ajustado para hash se necessário
 
     const iconeSair = document.createElement("img");
     iconeSair.classList.add("icone-sair");

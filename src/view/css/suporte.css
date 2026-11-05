@@ -1,24 +1,55 @@
+/* --- FORÇAR LARGURA TOTAL ISOLADA NO SUPORTE.CSS --- */
+body:has(.page-suporte), 
+html:has(.page-suporte) {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden;
+}
+
+/* --- ESTILOS DA PÁGINA SUPORTE (LARGURA TOTAL EXPANDIDA) --- */
 .page-suporte {
-    width: 100%;
+    width: 100vw !important;
+    max-width: 100% !important;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #ffffff;
-    color: #334155;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--bg-white);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+.page-suporte *, 
+.page-suporte *::before, 
+.page-suporte *::after {
+    box-sizing: border-box;
+}
+
+/* Área principal expandida cobrindo 100% de forma fluida */
 .page-suporte main.main {
     flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 3rem 1.5rem 5rem;
-    max-width: 800px;
-    margin: 0 auto;
-    width: 100%;
-    box-sizing: border-box;
+    gap: 3rem;
+    padding: 3rem 4% 5rem;
+    width: 100% !important;
+    max-width: 100% !important; 
+    margin: 0 !important;
+}
+
+/* Garante que se houver .container dentro da página, ele ignore o limite global */
+.page-suporte .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
 }
 
 .hero-suporte {
@@ -35,12 +66,14 @@
     align-items: center;
     text-align: center;
     width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
 .hero-suporte .tag-secao {
     font-size: 0.85rem;
     font-weight: 700;
-    color: #2563eb;
+    color: var(--primary-color);
     text-transform: uppercase;
     letter-spacing: 0.8px;
     margin-bottom: 0.75rem;
@@ -50,7 +83,7 @@
 .hero-suporte .titulo-secao {
     font-size: 2.25rem;
     font-weight: 800;
-    color: #0f172a;
+    color: var(--text-primary);
     line-height: 1.25;
     margin-bottom: 1rem;
     letter-spacing: -0.5px;
@@ -58,7 +91,7 @@
 
 .hero-suporte .subtitulo-secao {
     font-size: 1.05rem;
-    color: #64748b;
+    color: var(--text-secondary);
     line-height: 1.6;
     max-width: 600px;
     margin-bottom: 0;
@@ -75,12 +108,12 @@
     flex-direction: column;
     gap: 1.25rem;
     width: 100%;
-    max-width: 600px;
-    background: #ffffff;
+    max-width: 650px;
+    background: var(--bg-white);
     padding: 2.5rem;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.03);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
     box-sizing: border-box;
 }
 
@@ -90,21 +123,21 @@
     width: 100%;
     box-sizing: border-box;
     padding: 0.85rem 1rem;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    background-color: #f8fafc;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-light);
     font-size: 0.95rem;
-    color: #0f172a;
+    color: var(--text-primary);
     outline: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    transition: var(--transition);
 }
 
 .form-suporte input:focus,
 .form-suporte select:focus,
 .form-suporte textarea:focus {
-    border-color: #2563eb;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    border-color: var(--primary-color);
+    background-color: var(--bg-white);
+    box-shadow: 0 0 0 3px rgba(11, 87, 208, 0.15);
 }
 
 .form-suporte textarea {
@@ -116,20 +149,20 @@
 .form-suporte .btn-buscar-vagas {
     width: 100%;
     padding: 0.9rem 1.5rem;
-    background-color: #2563eb;
-    color: #ffffff;
+    background-color: var(--primary-color);
+    color: var(--bg-white);
     border: none;
-    border-radius: 8px;
+    border-radius: var(--radius-md);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
+    transition: var(--transition);
     margin-top: 0.5rem;
 }
 
 .form-suporte button:hover,
 .form-suporte .btn-buscar-vagas:hover {
-    background-color: #1d4ed8;
+    background-color: var(--primary-hover);
     transform: translateY(-1px);
 }
 

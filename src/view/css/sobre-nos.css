@@ -7,6 +7,16 @@
     background-color: #ffffff;
     color: #334155;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.page-sobre *, 
+.page-sobre *::before, 
+.page-sobre *::after {
+    box-sizing: border-box;
 }
 
 .page-sobre main.sobre-nos {
@@ -15,10 +25,9 @@
     flex-direction: column;
     gap: 4rem;
     padding: 3rem 6% 5rem;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     width: 100%;
-    box-sizing: border-box;
 }
 
 .cabecalho-secao-centro,
@@ -30,6 +39,7 @@
     flex-direction: column;
     align-items: center;
     padding-top: 1rem;
+    width: 100%;
 }
 
 .tag-secao,
@@ -63,7 +73,6 @@
     margin: 0 auto;
 }
 
-/* --- SECÇÃO HISTÓRIA (LADO A LADO) --- */
 .historia {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -73,7 +82,6 @@
     margin-top: 1rem;
 }
 
-/* Imagem à esquerda em tamanho proporcional */
 .sobre-imagem-container,
 .historia-imagem {
     width: 100%;
@@ -88,14 +96,15 @@
     max-width: 500px;
     height: auto;
     object-fit: contain;
+    display: block;
 }
 
-/* Conteúdo de texto à direita */
 .historia-conteudo {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
+    width: 100%;
 }
 
 .titulo-historia {
@@ -113,12 +122,12 @@
     line-height: 1.65;
 }
 
-/* --- SECÇÃO PROPÓSITO / VALORES --- */
 .proposito {
     display: flex;
     flex-direction: column;
     gap: 2.5rem;
     margin-top: 2rem;
+    width: 100%;
 }
 
 .sobre-cards,
@@ -139,6 +148,7 @@
     flex-direction: column;
     align-items: flex-start;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
 }
 
 .card-sobre:hover,

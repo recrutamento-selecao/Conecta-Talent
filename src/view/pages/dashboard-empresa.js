@@ -74,7 +74,7 @@ function criarTabelaVagas(vagas) {
                 <h3>Vagas Cadastradas</h3>
                 <small>Gerenciamento dos processos seletivos abertos</small>
             </div>
-            <a href="gerenciar-vagas.html" class="link-acao">Ver todas as vagas →</a>
+            <a href="#gerenciar-vagas" class="link-acao">Ver todas as vagas →</a>
         </div>
         <div class="tabela-responsive">
             <table class="tabela-empresas">
@@ -211,9 +211,12 @@ function criarGraficoContratacoes(dados) {
     return card;
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+export function renderDashboardEmpresa() {
+    const container = document.createElement('div');
+    container.classList.add('page-dashboard-empresa');
+
     const sidebar = criarSidebar(DADOS_EMPRESA.usuario.perfil, DADOS_EMPRESA.usuario.nome);
-    document.body.appendChild(sidebar);
+    container.appendChild(sidebar);
 
     const main = document.createElement("main");
     main.classList.add("conteudo-principal");
@@ -238,5 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
     gridGeral.appendChild(colunaDireita);
 
     main.appendChild(gridGeral);
-    document.body.appendChild(main);
-});
+    container.appendChild(main);
+
+    return container;
+}
