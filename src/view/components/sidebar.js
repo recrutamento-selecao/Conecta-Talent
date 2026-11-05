@@ -1078,4 +1078,3 @@ export function criarSidebar(tipoUsuario, nomeUsuario) { //disponibilizando a fu
     return sidebar;
 
 }
-

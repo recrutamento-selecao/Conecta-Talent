@@ -1,13 +1,4 @@
-import { criartabela } from '../components/table.js';
-
-// Dados fake no formato que virá do backend.
-// Futuramente:
-// const resposta = await fetch('/api/entrevistas/proximas');
-// const entrevistas = await resposta.json();
-const entrevistas = [
-    { id: 1, candidato: 'Ana Carolina Silva', vaga: 'Desenvolvedora Full Stack', dataHora: '2026-09-25T14:00:00', status: 'Agendada' },
-    { id: 2, candidato: 'Ricardo Mendes',     vaga: 'Designer UX/UI',           dataHora: '2026-09-26T10:30:00', status: 'Confirmada' }
-];
+import { criarTabela } from '../components/table.js';
 
 const coresStatus = {
     Agendada: 'amarelo',
@@ -55,9 +46,15 @@ const colunas = [
     { chave: 'dataHora',  titulo: 'DATA',      render: criarDataStatus, alinhamento: 'direita' }
 ];
 
-criartabela(colunas, entrevistas, {
-    container: 'app-entrevistas',
-    titulo: 'Próximas Entrevistas',
-    cabecalho: false,
-    acoes: false
-});
+export function renderProximasEntrevistas(entrevistas = []) {
+    const bloco = document.createElement('div');
+
+    criarTabela(colunas, entrevistas, {
+        container: bloco,
+        titulo: 'Próximas Entrevistas',
+        cabecalho: false,
+        acoes: false
+    });
+
+    return bloco;
+}

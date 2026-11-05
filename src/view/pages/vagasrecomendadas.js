@@ -1,16 +1,4 @@
-import { criartabela, criarLinkAcao, ICONES } from '../components/table.js';
-
-// Dados fake no formato que virá do backend.
-// Futuramente:
-// const resposta = await fetch('/api/candidato/vagas-recomendadas');
-// const vagas = await resposta.json();
-const vagas = [
-    { id: 1, titulo: 'Desenvolvedor Full Stack', empresa: 'TechCorp Brasil', local: 'São Paulo - SP',      sigla: 'TC', salva: false },
-    { id: 2, titulo: 'Designer de Produto',      empresa: 'Recruta+',        local: 'Rio de Janeiro - RJ', sigla: 'R+', salva: false },
-    { id: 3, titulo: 'Engenheiro de Dados',      empresa: 'StartUp Valley',  local: 'Florianópolis - SC',  sigla: 'SV', salva: false },
-    { id: 4, titulo: 'Gerente de Projetos',      empresa: 'Global RH',       local: 'Belo Horizonte - MG', sigla: 'GR', salva: false },
-    { id: 5, titulo: 'Analista de Marketing',    empresa: 'Educa Talentos',  local: 'Curitiba - PR',       sigla: 'ET', salva: false }
-];
+import { criarTabela, criarLinkAcao, ICONES } from '../components/table.js';
 
 const coresAvatar = ['verde', 'azul', 'lavanda', 'rosa', 'amarelo'];
 
@@ -56,12 +44,18 @@ const colunas = [
     { chave: 'salva',  titulo: 'SALVAR', render: criarBotaoSalvar, alinhamento: 'direita', largura: '48px' }
 ];
 
-criartabela(colunas, vagas, {
-    container: 'app-recomendadas',
-    titulo: 'Vagas recomendadas para você',
-    acaoTitulo: criarLinkAcao('Ver todas →'), // trocar o href pela rota real
-    cabecalho: false,
-    lista: false,
-    zebra: true,
-    acoes: false
-});
+export function renderVagasRecomendadas(vagas = []) {
+    const bloco = document.createElement('div');
+
+    criarTabela(colunas, vagas, {
+        container: bloco,
+        titulo: 'Vagas recomendadas para você',
+        acaoTitulo: criarLinkAcao('Ver todas →'), // trocar o href pela rota real
+        cabecalho: false,
+        lista: false,
+        zebra: true,
+        acoes: false
+    });
+
+    return bloco;
+}
