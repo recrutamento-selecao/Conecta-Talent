@@ -1,4 +1,4 @@
-import { criarSidebar } from "../components/sidebar.js";
+import { criarSidebar } from "../../src/components/sidebar.js";
 
 const app = document.getElementById('app');
 

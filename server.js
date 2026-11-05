@@ -1,20 +1,20 @@
-require('dotenv').config();
-const express = require('express');
-const path = require('path');
-
+import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+ 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+ 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
-app.use('/src', express.static(path.join(__dirname, 'src')));
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+ 
+app.use(express.json());
+ 
+app.use(express.static(path.join(__dirname, 'src', 'view')));
+ 
+app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
+ 
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-app.get('/:pagina', (req, res, next) => {
-  const arquivo = path.join(__dirname, 'testes', `${req.params.pagina}.html`);
-  res.sendFile(arquivo, (err) => err && next());
-});
-
-app.listen(PORT, () => console.log(`Servidor em http://localhost:${PORT}`));
+ 

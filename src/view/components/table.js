@@ -126,12 +126,17 @@ function criarRodape({ esquerda, direita }) {
 }
 
 /**
+ * Cria uma instância de tabela dentro de `opcoes.container`.
+ * Cada instância tem estado próprio (seleção, ordenação, dados) e só mexe no
+ * próprio card: nunca limpa o container nem o app inteiro. Use um container
+ * por instância.
+ *
  * colunas: [{ chave, titulo, render?(valor, item), alinhamento?: 'direita' | 'centro',
  *             largura?: '120px', ordenavel?: boolean }]
  *          render() deve devolver texto ou elemento (nunca HTML em string).
  * dados:   array de objetos (cada um com `id`)
  * opcoes:  {
- *   container?:    id ou elemento onde a tabela é desenhada (padrão 'app'),
+ *   container:     (obrigatório) id ou elemento onde a tabela é desenhada,
  *   titulo?, subtitulo?,
  *   acaoTitulo?:   texto ou elemento à direita do título (link, botão),
  *   rodape?:       { esquerda?, direita? } (texto ou elemento),
@@ -144,10 +149,12 @@ function criarRodape({ esquerda, direita }) {
  *   aoSelecionar?(itensSelecionados),
  *   aoEditar?(item), aoExcluir?(item)
  * }
+ *
+ * Retorna: { atualizar(novosDados), obterSelecionados(), destruir() }
  */
-export function criartabela(colunas, dados, opcoes = {}) {
+export function criarTabela(colunas, dados, opcoes = {}) {
     const {
-        container = 'app',
+        container,
         titulo = '',
         subtitulo = '',
         acaoTitulo = null,
@@ -164,11 +171,12 @@ export function criartabela(colunas, dados, opcoes = {}) {
     } = opcoes;
 
     const app = typeof container === 'string' ? document.getElementById(container) : container;
-    if (!app) return;
+    if (!app) throw new Error('criarTabela: container não encontrado');
 
-    const itens = dados || [];
+    let itens = dados || [];
     const selecionados = new Set();
     let ordem = null; // { chave, direcao }
+    let cardAtual = null;
 
     function desenhar() {
         const linhas = ordem ? ordenar(itens, ordem) : itens;
@@ -184,8 +192,6 @@ export function criartabela(colunas, dados, opcoes = {}) {
             }
             if (aoSelecionar) aoSelecionar(itens.filter(i => selecionados.has(i.id)));
         }
-
-        app.innerHTML = '';
 
         const card = document.createElement('section');
         card.className = variante ? `tabela-card tabela-card--${variante}` : 'tabela-card';
@@ -333,7 +339,10 @@ export function criartabela(colunas, dados, opcoes = {}) {
             card.appendChild(criarRodape(rodape));
         }
 
-        app.appendChild(card);
+        // Troca só o card desta instância; nunca limpa o container.
+        if (cardAtual) cardAtual.replaceWith(card);
+        else app.appendChild(card);
+        cardAtual = card;
 
         if (checkTodos) {
             const todos = linhas.length > 0 && linhas.every(i => selecionados.has(i.id));
@@ -344,4 +353,22 @@ export function criartabela(colunas, dados, opcoes = {}) {
     }
 
     desenhar();
+
+    return {
+        atualizar(novosDados) {
+            itens = novosDados || [];
+            selecionados.clear();
+            desenhar();
+        },
+        obterSelecionados() {
+            return itens.filter(i => selecionados.has(i.id));
+        },
+        destruir() {
+            if (cardAtual) cardAtual.remove();
+            cardAtual = null;
+        }
+    };
 }
+
+// Alias temporário: remover depois de migrar todos os chamadores para criarTabela.
+export { criarTabela as criartabela };
