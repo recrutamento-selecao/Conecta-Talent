@@ -1,7 +1,10 @@
 import createForm from "../components/form.js";
+import renderCadastroPage from "./cadastro.js";
 
 function renderLoginPage() {
     const container = document.getElementById("login-container");
+
+    container.innerHTML = "";
 
     const titulo = document.createElement("h2");
     titulo.innerText = "Acesse sua conta";
@@ -31,8 +34,23 @@ function renderLoginPage() {
         ]
     });
 
+    const linkCadastro = document.createElement("a");
+    linkCadastro.href = "#";
+    linkCadastro.className = "linkNav";
+    linkCadastro.textContent = "Não possui uma conta? Cadastre-se!";
+
+    linkCadastro.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        container.innerHTML = "";
+        container.appendChild(
+            renderCadastroPage(() => renderLoginPage())
+        );
+    });
+
     container.appendChild(titulo);
     container.appendChild(formContainer);
+    container.appendChild(linkCadastro);
 
     const form = formContainer.querySelector("form");
     const inputEmail = form.querySelector('input[type="email"]');
@@ -56,13 +74,13 @@ function renderLoginPage() {
                 })
             });
 
-const dados = await response.json();
+            const dados = await response.json();
 
-if (response.ok) {
-    alert("Login realizado com sucesso!");
-} else {
-    alert(dados.erro || "Não foi possível realizar o login.");
-}
+            if (response.ok) {
+                alert("Login realizado com sucesso!");
+            } else {
+                alert(dados.erro || "Não foi possível realizar o login.");
+            }
 
         } catch (erro) {
             console.log("Erro inesperado!", erro);
