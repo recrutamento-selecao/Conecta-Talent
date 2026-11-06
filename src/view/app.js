@@ -8,14 +8,12 @@ import { USUARIO_SIMULADO } from './utils/fixtures.js';
 
 const app = document.getElementById('app');
 
-const layout = document.createElement('div');
-layout.className = 'layout-app';
-
+// O #app já é o container flex do layout (definido no CSS da sidebar):
+// sidebar e <main> entram direto nele, lado a lado.
 const conteudo = document.createElement('main');
 conteudo.id = 'conteudo';
 
-layout.appendChild(conteudo);
-app.replaceChildren(layout);
+app.replaceChildren(conteudo);
 
 // --- Sidebar comum -------------------------------------------------------
 // Sem autenticação nesta sprint, o perfil do menu sai da rota (#/dashboard-<perfil>).
@@ -40,7 +38,7 @@ function atualizarSidebar() {
         if (sidebar.classList.contains('fechada')) nova.classList.add('fechada');
         sidebar.replaceWith(nova);
     } else {
-        layout.prepend(nova);
+        app.prepend(nova);
     }
 
     sidebar = nova;
