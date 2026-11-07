@@ -1,21 +1,4 @@
-import { criartabela, criarBotaoMenu, ICONES } from '../components/table.js';
-
-// Dados fake no formato que virá do backend.
-// Futuramente:
-// const resposta = await fetch('/api/usuarios');
-// const usuarios = await resposta.json();
-const usuarios = [
-    { id: 1,  nome: 'BlueCore Sistemas',  email: 'contato@bluecore.com',          tipo: 'Empresa',    empresa: null,                 status: 'Ativo',      dataCadastro: '2026-09-20', ultimoAcesso: '2026-09-20T10:24:00' },
-    { id: 2,  nome: 'Ana Souza',          email: 'ana.souza@bluecore.com',        tipo: 'Recrutador', empresa: 'BlueCore Sistemas',  status: 'Ativo',      dataCadastro: '2026-09-21', ultimoAcesso: '2026-09-22T14:18:00' },
-    { id: 3,  nome: 'João Silva',         email: 'joao.silva@email.com',          tipo: 'Candidato',  empresa: null,                 status: 'Ativo',      dataCadastro: '2026-09-22', ultimoAcesso: '2026-09-22T09:15:00' },
-    { id: 4,  nome: 'TechSol Tecnologia', email: 'contato@techsol.com',           tipo: 'Empresa',    empresa: null,                 status: 'Em análise', dataCadastro: '2026-09-18', ultimoAcesso: null },
-    { id: 5,  nome: 'Marina Costa',       email: 'marina.costa@techsol.com',      tipo: 'Recrutador', empresa: 'TechSol Tecnologia', status: 'Ativo',      dataCadastro: '2026-09-18', ultimoAcesso: '2026-09-21T16:40:00' },
-    { id: 6,  nome: 'Pedro Ramos',        email: 'pedro.ramos@email.com',         tipo: 'Candidato',  empresa: null,                 status: 'Inativo',    dataCadastro: '2026-09-15', ultimoAcesso: '2026-09-10T11:23:00' },
-    { id: 7,  nome: 'Innovare RH',        email: 'contato@innovare.com',          tipo: 'Empresa',    empresa: null,                 status: 'Ativo',      dataCadastro: '2026-09-14', ultimoAcesso: '2026-09-22T08:50:00' },
-    { id: 8,  nome: 'Luciana Mendes',     email: 'luciana.mendes@innovare.com',   tipo: 'Recrutador', empresa: 'Innovare RH',        status: 'Ativo',      dataCadastro: '2026-09-14', ultimoAcesso: '2026-09-22T13:27:00' },
-    { id: 9,  nome: 'Carlos Pereira',     email: 'carlos.pereira@email.com',      tipo: 'Candidato',  empresa: null,                 status: 'Ativo',      dataCadastro: '2026-09-12', ultimoAcesso: '2026-09-21T17:05:00' },
-    { id: 10, nome: 'EducaMais',          email: 'contato@educamais.com',         tipo: 'Empresa',    empresa: null,                 status: 'Bloqueado',  dataCadastro: '2026-09-10', ultimoAcesso: null }
-];
+import { criarTabela, criarBotaoMenu, ICONES } from '../components/table.js';
 
 const coresTipo = {
     Empresa: 'azul',
@@ -112,9 +95,16 @@ const colunas = [
     { chave: 'acoes',        titulo: 'Ações',            render: criarMenu, alinhamento: 'direita' }
 ];
 
-criartabela(colunas, usuarios, {
-    variante: 'plana',
-    selecionavel: true,
-    acoes: false,
-    aoSelecionar: selecionados => console.log('Selecionados', selecionados)
-});
+export function renderUsuarios(usuarios = []) {
+    const bloco = document.createElement('div');
+
+    criarTabela(colunas, usuarios, {
+        container: bloco,
+        variante: 'plana',
+        selecionavel: true,
+        acoes: false,
+        aoSelecionar: selecionados => console.log('Selecionados', selecionados)
+    });
+
+    return bloco;
+}

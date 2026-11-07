@@ -1,6 +1,12 @@
-import { criarSidebar } from "../../src/components/sidebar.js";
+import { renderEmpresasCadastradas } from './empresascadastradas.js';
+import { EMPRESAS_CADASTRADAS } from '../utils/fixtures.js';
 
-const app = document.getElementById('app');
+// Só o conteúdo do dashboard: a sidebar é montada uma única vez pelo app.js.
+export function renderDashboardAdministrador() {
+    const pagina = document.createElement('section');
+    pagina.className = 'dashboard-administrador';
 
-app.appendChild(criarSidebar("administrador", "Pedro Vitara"));
+    pagina.append(renderEmpresasCadastradas(EMPRESAS_CADASTRADAS));
 
+    return pagina;
+}

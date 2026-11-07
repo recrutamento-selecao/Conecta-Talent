@@ -1,16 +1,4 @@
-import { criartabela, ICONES } from '../components/table.js';
-
-// Dados fake no formato que virá do backend.
-// Futuramente:
-// const resposta = await fetch('/api/empresas');
-// const empresas = await resposta.json();
-const empresas = [
-    { id: 1, empresa: 'TechCorp Brasil', recrutadores: 12, vagas: 28, plano: 'Empresarial' },
-    { id: 2, empresa: 'Recruta+',        recrutadores: 8,  vagas: 15, plano: 'Profissional' },
-    { id: 3, empresa: 'StartUp Valley',  recrutadores: 3,  vagas: 7,  plano: 'Gratuito' },
-    { id: 4, empresa: 'Global RH',       recrutadores: 22, vagas: 45, plano: 'Empresarial' },
-    { id: 5, empresa: 'Educa Talentos',  recrutadores: 5,  vagas: 12, plano: 'Educacional' }
-];
+import { criarTabela, ICONES } from '../components/table.js';
 
 const coresPlano = {
     Empresarial: 'verde',
@@ -48,9 +36,16 @@ const colunas = [
     { chave: 'plano',        titulo: 'PLANO',        render: criarPlano }
 ];
 
-criartabela(colunas, empresas, {
-    titulo: 'Empresas Cadastradas',
-    zebra: true,
-    aoEditar: empresa => console.log('Editar', empresa),
-    aoExcluir: empresa => console.log('Excluir', empresa)
-});
+export function renderEmpresasCadastradas(empresas = []) {
+    const bloco = document.createElement('div');
+
+    criarTabela(colunas, empresas, {
+        container: bloco,
+        titulo: 'Empresas Cadastradas',
+        zebra: true,
+        aoEditar: empresa => console.log('Editar', empresa),
+        aoExcluir: empresa => console.log('Excluir', empresa)
+    });
+
+    return bloco;
+}

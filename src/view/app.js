@@ -2,7 +2,9 @@ import { criarRoteador } from './utils/router.js';
 import { criarSidebar } from './components/sidebar.js';
 import { renderTeste } from './pages/teste.js';
 import { renderDashboardCandidato } from './pages/dashboard-candidato.js';
-import { USUARIO_SIMULADO } from './utils/fixtures.js';
+import { renderDashboardAdministrador } from './pages/dashboard-administrador.js';
+import { renderUsuarios } from './pages/usuarios.js';
+import { USUARIO_SIMULADO, USUARIOS } from './utils/fixtures.js';
 
 // Entrada única da SPA: monta o layout (sidebar comum + conteúdo) e inicia o roteador.
 
@@ -65,7 +67,8 @@ criarRoteador({
     rotaPadrao: '/teste',
     rotas: {
         '/teste': renderTeste,
-        '/dashboard-administrador': renderEmConstrucao('Dashboard do administrador'),
+        '/dashboard-administrador': renderDashboardAdministrador,
+        '/usuarios': () => renderUsuarios(USUARIOS),
         '/dashboard-empresa': renderEmConstrucao('Dashboard da empresa'),
         '/dashboard-recrutador': renderEmConstrucao('Dashboard do recrutador'),
         '/dashboard-candidato': renderDashboardCandidato
