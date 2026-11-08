@@ -47,3 +47,34 @@ export const EMPRESAS_CADASTRADAS = [
     { id: 4, empresa: 'Global RH',       recrutadores: 22, vagas: 45, plano: 'Empresarial' },
     { id: 5, empresa: 'Educa Talentos',  recrutadores: 5,  vagas: 12, plano: 'Educacional' }
 ];
+
+// Futuramente: fetch('/api/empresa/recrutadores')
+export const RECRUTADORES = {
+    ativos: 3,
+    itens: [
+        { id: 1, nome: 'Rafael Costa', empresa: 'Twelse LTDA', email: 'rafael@email.com',  status: 'Ativo' },
+        { id: 2, nome: 'Beatriz Silva', empresa: 'Twelse LTDA', email: 'beatriz@email.com', status: 'Ativo' },
+        { id: 3, nome: 'Lucas Mendes', empresa: 'Twelse LTDA', email: 'lucas@email.com',   status: 'Ativo' }
+    ]
+};
+
+// Futuramente: fetch('/api/empresa/vagas')
+export const VAGAS_CADASTRADAS = {
+    total: 18,
+    ativas: 2,
+    itens: [
+        { id: 1, cargo: 'Analista de Marketing',   area: 'Marketing',        status: 'Ativa',    candidatos: 48, etapaAtual: 'Triagem' },
+        { id: 2, cargo: 'Desenvolvedor Front-end', area: 'Tecnologia',       status: 'Ativa',    candidatos: 36, etapaAtual: 'Entrevista' },
+        { id: 3, cargo: 'Analista de RH',          area: 'Recursos Humanos', status: 'Pausada',  candidatos: 15, etapaAtual: 'Avaliação' },
+        { id: 4, cargo: 'Designer UI/UX',          area: 'Design',           status: 'Rascunho', candidatos: 0,  etapaAtual: null }
+    ]
+};
+
+// Futuramente: fetch('/api/candidatos/triagem')
+export const CANDIDATOS_TRIAGEM = [
+    { id: 1, nome: 'Juliana Carvalho',     email: 'juliana.carvalho@email.com', telefone: '(11)98765-5698', inscricao: '16/05/2025', diasAtras: 2, experiencia: '3 anos', area: 'Recursos humanos',  status: 'Em triagem' },
+    { id: 2, nome: 'Pedro Henrique Silva', email: 'pedro.hsilva@email.com',     telefone: '(11)98765-5698', inscricao: '11/04/2025', diasAtras: 2, experiencia: '4 anos', area: 'Marketing',         status: 'Em triagem' },
+    { id: 3, nome: 'Amanda Lima',          email: 'amandalima@email.com',       telefone: '(11)98765-5698', inscricao: '05/06/2025', diasAtras: 2, experiencia: '2 anos', area: 'Design gráfico',    status: 'Em triagem' },
+    { id: 4, nome: 'Jurandir Gomes',       email: 'jurandir.gomes@email.com',   telefone: '(11)98765-5698', inscricao: '01/03/2025', diasAtras: 2, experiencia: '5 anos', area: 'Gestão de empresa', status: 'Em triagem' },
+    { id: 5, nome: 'Vitor Preste',         email: 'vitor.preste@email.com',     telefone: '(11)98765-5698', inscricao: '17/05/2025', diasAtras: 2, experiencia: '7 anos', area: 'Marketing',         status: 'Em triagem' }
+];

@@ -1,15 +1,14 @@
-import { criartabela, ICONES } from '../components/table.js';
 
-// Dados fake no formato que virá do backend.
-// Futuramente:
-// const resposta = await fetch('/api/empresa/recrutadores');
-// const dados = await resposta.json();
+import { criarTabela, ICONES } from '../components/table.js';
+
+// Dados simulados temporários.
+// Futuramente: fetch('/api/empresa/recrutadores').
 const dados = {
     ativos: 3,
     itens: [
-        { id: 1, nome: 'Rafael Costa', empresa: 'Twelse LTDA', email: 'rafael@email.com',  status: 'Ativo' },
+        { id: 1, nome: 'Rafael Costa', empresa: 'Twelse LTDA', email: 'rafael@email.com', status: 'Ativo' },
         { id: 2, nome: 'Beatriz Silva', empresa: 'Twelse LTDA', email: 'beatriz@email.com', status: 'Ativo' },
-        { id: 3, nome: 'Lucas Mendes', empresa: 'Twelse LTDA', email: 'lucas@email.com',   status: 'Ativo' }
+        { id: 3, nome: 'Lucas Mendes', empresa: 'Twelse LTDA', email: 'lucas@email.com', status: 'Ativo' }
     ]
 };
 
@@ -38,6 +37,7 @@ function criarRecrutador(nome, recrutador) {
     email.textContent = recrutador.email;
 
     div.append(linha, email);
+
     return div;
 }
 
@@ -45,6 +45,7 @@ function criarStatus(status) {
     const span = document.createElement('span');
     span.className = `status-pill ${coresStatus[status] || 'cinza'}`;
     span.textContent = status;
+
     return span;
 }
 
@@ -53,25 +54,35 @@ function criarBotaoAdicionar() {
     botao.type = 'button';
     botao.className = 'btn-pill';
     botao.innerHTML = `${ICONES.usuarioMais}<span>Adicionar+</span>`;
-    botao.addEventListener('click', () => console.log('Adicionar recrutador'));
+
+    botao.addEventListener('click', () => {
+        console.log('Adicionar recrutador');
+    });
+
     return botao;
 }
 
 const colunas = [
-    { chave: 'nome',   titulo: 'RECRUTADOR', render: criarRecrutador },
-    { chave: 'status', titulo: 'STATUS',     render: criarStatus }
+    { chave: 'nome', titulo: 'RECRUTADOR', render: criarRecrutador },
+    { chave: 'status', titulo: 'STATUS', render: criarStatus }
 ];
 
-criartabela(colunas, dados.itens, {
-    container: 'app-recrutadores',
-    titulo: 'Recrutadores',
-    subtitulo: 'Equipe responsável pelas seleções',
-    acaoTitulo: criarBotaoAdicionar(),
-    variante: 'limpa',
-    cabecalho: false,
-    rodape: {
-        esquerda: `Total de recrutadores: ${dados.ativos} ativos`
-    },
-    aoEditar: recrutador => console.log('Editar', recrutador),
-    aoExcluir: recrutador => console.log('Excluir', recrutador)
-});
+export function renderRecrutadores(recrutadores = dados.itens) {
+    const bloco = document.createElement('section');
+
+    criarTabela(colunas, recrutadores, {
+        container: bloco,
+        titulo: 'Recrutadores',
+        subtitulo: 'Equipe responsável pelas seleções',
+        acaoTitulo: criarBotaoAdicionar(),
+        variante: 'limpa',
+        cabecalho: false,
+        rodape: {
+            esquerda: `Total de recrutadores: ${dados.ativos} ativos`
+        },
+        aoEditar: recrutador => console.log('Editar', recrutador),
+        aoExcluir: recrutador => console.log('Excluir', recrutador)
+    });
+
+    return bloco;
+}
