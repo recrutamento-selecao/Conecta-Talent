@@ -1,3 +1,3 @@
-import renderLoginPage from "./view/pages/login.js";
+import renderloginPage from "./view/pages/login"
 
 renderLoginPage();

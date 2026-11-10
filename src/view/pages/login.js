@@ -74,18 +74,5 @@ function renderLoginPage() {
                 })
             });
 
-            const dados = await response.json();
-
-            if (response.ok) {
-                alert("Login realizado com sucesso!");
-            } else {
-                alert(dados.erro || "Não foi possível realizar o login.");
-            }
-
-        } catch (erro) {
-            console.log("Erro inesperado!", erro);
-        }
-    });
-}
 
 export default renderLoginPage;
