@@ -26,8 +26,8 @@ function trocarEstiloPagina(nomePagina) {
         caminhoCss = './view/css/dashboard-recrutador.css';
     } else if (nomePagina === 'dashboard-administrador') {
         caminhoCss = './view/css/dashboard-administrador.css'; 
-    } else if (nomePagina === 'verificacao') {
-        caminhoCss = './view/css/verificacao.css';
+    } else if (nomePagina === 'autenticacao2FA') {
+        caminhoCss = './view/css/autenticacao2FA.css';
     }
 
     if (caminhoCss) {
