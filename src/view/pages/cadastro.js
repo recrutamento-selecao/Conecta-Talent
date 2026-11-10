@@ -1,53 +1,53 @@
+
+import createForm from "../components/form.js";
+
 const renderCadastroPage = (navegarParaLogin) => {
     const container = document.createElement("div");
     container.className = "cadastro-container";
 
-    const form = document.createElement("form");
+    const formContainer = createForm({
+        campos: [
+            {
+                nome: "nome",
+                label: "Nome",
+                tipo: "text",
+                placeholder: "Digite seu nome"
+            },
+            {
+                nome: "email",
+                label: "E-mail",
+                tipo: "email",
+                placeholder: "Digite seu e-mail"
+            },
+            {
+                nome: "senha",
+                label: "Senha",
+                tipo: "password",
+                placeholder: "Digite sua senha"
+            },
+            {
+                nome: "confirmar-senha",
+                label: "Confirme sua senha",
+                tipo: "password",
+                placeholder: "Confirme sua senha"
+            }
+        ],
+        botoes: [
+            {
+                texto: "Cadastrar",
+                tipo: "submit",
+                className: "btn-submit"
+            }
+        ]
+    });
+
+    const form = formContainer.querySelector("form");
     form.className = "cadastro-form";
 
     const titulo = document.createElement("h2");
     titulo.textContent = "Criar conta";
 
-    const labelNome = document.createElement("label");
-    labelNome.textContent = "Nome";
-
-    const inputNome = document.createElement("input");
-    inputNome.type = "text";
-    inputNome.name = "nome";
-    inputNome.placeholder = "Digite seu nome";
-    inputNome.required = true;
-
-    const labelEmail = document.createElement("label");
-    labelEmail.textContent = "E-mail";
-
-    const inputEmail = document.createElement("input");
-    inputEmail.type = "email";
-    inputEmail.name = "email";
-    inputEmail.placeholder = "Digite seu e-mail";
-    inputEmail.required = true;
-
-    const labelSenha = document.createElement("label");
-    labelSenha.textContent = "Senha";
-
-    const inputSenha = document.createElement("input");
-    inputSenha.type = "password";
-    inputSenha.name = "senha";
-    inputSenha.placeholder = "Digite sua senha";
-    inputSenha.required = true;
-
-    const labelConfirmarSenha = document.createElement("label");
-    labelConfirmarSenha.textContent = "Confirme sua senha";
-
-    const inputConfirmarSenha = document.createElement("input");
-    inputConfirmarSenha.type = "password";
-    inputConfirmarSenha.name = "confirmar-senha";
-    inputConfirmarSenha.placeholder = "Confirme sua senha";
-    inputConfirmarSenha.required = true;
-
-    const button = document.createElement("button");
-    button.type = "submit";
-    button.className = "btn-submit";
-    button.textContent = "Cadastrar";
+    form.prepend(titulo);
 
     const linkNav = document.createElement("a");
     linkNav.href = "#";
@@ -58,6 +58,13 @@ const renderCadastroPage = (navegarParaLogin) => {
         event.preventDefault();
         navegarParaLogin();
     });
+
+    const inputNome = form.querySelector('[name="nome"]');
+    const inputEmail = form.querySelector('[name="email"]');
+    const inputSenha = form.querySelector('[name="senha"]');
+    const inputConfirmarSenha = form.querySelector('[name="confirmar-senha"]');
+
+    form.appendChild(linkNav);
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -100,19 +107,7 @@ const renderCadastroPage = (navegarParaLogin) => {
         }
     });
 
-    form.appendChild(titulo);
-    form.appendChild(labelNome);
-    form.appendChild(inputNome);
-    form.appendChild(labelEmail);
-    form.appendChild(inputEmail);
-    form.appendChild(labelSenha);
-    form.appendChild(inputSenha);
-    form.appendChild(labelConfirmarSenha);
-    form.appendChild(inputConfirmarSenha);
-    form.appendChild(button);
-    form.appendChild(linkNav);
-
-    container.appendChild(form);
+    container.appendChild(formContainer);
 
     return container;
 };

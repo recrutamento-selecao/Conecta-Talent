@@ -1,3 +1,4 @@
+
 import createForm from "../components/form.js";
 import renderCadastroPage from "./cadastro.js";
 
@@ -34,6 +35,34 @@ function renderLoginPage() {
         ]
     });
 
+    const form = formContainer.querySelector("form");
+
+    const selecaoPerfil = document.createElement("div");
+    selecaoPerfil.className = "selecao-perfil";
+
+    const btnCandidato = document.createElement("button");
+    btnCandidato.type = "button";
+    btnCandidato.textContent = "Candidato";
+    btnCandidato.className = "perfil ativo";
+
+    const btnEmpresa = document.createElement("button");
+    btnEmpresa.type = "button";
+    btnEmpresa.textContent = "Empresa";
+    btnEmpresa.className = "perfil";
+
+    btnCandidato.addEventListener("click", () => {
+        btnCandidato.classList.add("ativo");
+        btnEmpresa.classList.remove("ativo");
+    });
+
+    btnEmpresa.addEventListener("click", () => {
+        btnEmpresa.classList.add("ativo");
+        btnCandidato.classList.remove("ativo");
+    });
+
+    selecaoPerfil.append(btnCandidato, btnEmpresa);
+    form.prepend(selecaoPerfil);
+
     const linkCadastro = document.createElement("a");
     linkCadastro.href = "#";
     linkCadastro.className = "linkNav";
@@ -52,7 +81,6 @@ function renderLoginPage() {
     container.appendChild(formContainer);
     container.appendChild(linkCadastro);
 
-    const form = formContainer.querySelector("form");
     const inputEmail = form.querySelector('input[type="email"]');
     const inputSenha = form.querySelector('input[type="password"]');
 

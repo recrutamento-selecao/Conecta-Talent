@@ -13,6 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@iconify-json/fa6-solid": "^1.2.4",
     "@iconify/icons-icons8": "^1.2.3",
     "@iconify/json": "^2.2.550",
     "@iconify/types": "^2.0.0",

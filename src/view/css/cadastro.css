@@ -1,11 +1,25 @@
+
 #login-container:has(.cadastro-container) {
-    background: transparent;
-    padding: 0;
+    display: block;
     width: 100%;
     max-width: none;
+    min-height: 100vh;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    background: transparent;
     border: none;
     border-radius: 0;
     box-shadow: none;
+    text-align: left;
+    grid-template-columns: none;
+    grid-template-rows: none;
+    grid-template-areas: none;
+}
+
+#login-container:has(.cadastro-container)::before {
+    display: none;
+    content: none;
 }
 
 .cadastro-container {
@@ -16,6 +30,12 @@
     min-height: 100vh;
     padding: 30px 20px;
     background-color: #e9f2fe;
+    box-sizing: border-box;
+}
+
+.cadastro-container > div {
+    width: 100%;
+    max-width: 400px;
 }
 
 .cadastro-form {
@@ -24,7 +44,6 @@
     flex-direction: column;
     gap: 12px;
     width: 100%;
-    max-width: 400px;
     padding: 35px 40px;
     background-color: #ffffff;
     border: 1px solid #dbe3ef;
@@ -35,7 +54,15 @@
     color: #1f2937;
     font-size: 24px;
     text-align: center;
+    margin-top: 0;
     margin-bottom: 15px;
+}
+
+.cadastro-form .grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 100%;
 }
 
 .cadastro-form label {
@@ -62,6 +89,36 @@
 
 .cadastro-form input::placeholder {
     color: #9ca3af;
+}
+
+.cadastro-form .divSenha {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.cadastro-form .divSenha input {
+    flex: 1;
+    min-width: 0;
+    padding-right: 45px;
+}
+
+.cadastro-form .btnVisibilidade {
+    position: absolute;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.cadastro-form .btnVisibilidade svg {
+    width: 20px;
+    height: 20px;
 }
 
 .cadastro-form .btn-submit {
@@ -92,4 +149,10 @@
 
 .cadastro-form .linkNav:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .cadastro-form {
+        padding: 30px 22px;
+    }
 }

@@ -1,5 +1,5 @@
-function criarItemSidebar(icone, texto, href, alt, possuiSubmenu){
-    const itemSidebar= document.createElement('div');
+function criarItemSidebar(icone, texto, href, alt, possuiSubmenu) {
+    const itemSidebar = document.createElement('div');
     itemSidebar.classList.add('item-sidebar');
 
     const iconeSidebar = document.createElement('img');
@@ -14,8 +14,8 @@ function criarItemSidebar(icone, texto, href, alt, possuiSubmenu){
 
     itemSidebar.appendChild(iconeSidebar);
     itemSidebar.appendChild(linkSidebar);
-    
-    if(possuiSubmenu){
+
+    if (possuiSubmenu) {
         const iconeSetaDireita = document.createElement('img');
         iconeSetaDireita.classList.add('seta-direita-menu');
         iconeSetaDireita.src = "assets/icons/arrow-right-branco.svg";
@@ -23,23 +23,23 @@ function criarItemSidebar(icone, texto, href, alt, possuiSubmenu){
 
         itemSidebar.appendChild(iconeSetaDireita);
     }
-    
+
 
     return itemSidebar;
-    
+
 }
 
-function criarSubmenu(opcoes){
+function criarSubmenu(opcoes) {
     const submenu = document.createElement('div');
     submenu.classList.add('submenu');
 
-    for(const opcao of opcoes){ //para cada opcao que existir dentro do array opcoes, execute. 
+    for (const opcao of opcoes) { //para cada opcao que existir dentro do array opcoes, execute. 
         const itemSubmenu = document.createElement('a');
         itemSubmenu.classList.add('item-submenu');
 
         itemSubmenu.textContent = opcao.texto;
         itemSubmenu.href = opcao.href;
-        
+
 
         submenu.appendChild(itemSubmenu);
     }
@@ -47,7 +47,7 @@ function criarSubmenu(opcoes){
     return submenu;
 }
 
-export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a função para que outros arquivos possam usar.
+export function criarSidebar(tipoUsuario, nomeUsuario) { //disponibilizando a função para que outros arquivos possam usar.
     const campoLogo = document.createElement('div');
     campoLogo.classList.add("campo-logo");
     const imgLogo = document.createElement('img');
@@ -66,121 +66,121 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
     const menuSidebar = document.createElement('nav');
     menuSidebar.classList.add('menu-sidebar');
 
-    switch(tipoUsuario){
-        case "administrador":{
-            
+    switch (tipoUsuario) {
+        case "administrador": {
+
             const dashboard = criarItemSidebar(
-            "assets/icons/home.svg",
-            "Dashboard",
-            "dashboard-administrador.html",
-            "ícone Dashboard", 
-            false
+                "assets/icons/home.svg",
+                "Dashboard",
+                "dashboard-administrador.html",
+                "ícone Dashboard",
+                false
             )
-             
+
             menuSidebar.appendChild(dashboard);
 
             const usuariosSistema = criarItemSidebar(
-            "assets/icons/users-branco.svg",
-            "Usuários",
-            "dashboard-administrador.html",
-            "ícone Usuários", 
-            true
+                "assets/icons/users-branco.svg",
+                "Usuários",
+                "dashboard-administrador.html",
+                "ícone Usuários",
+                true
             )
 
             menuSidebar.appendChild(usuariosSistema);
 
             const planosSistema = criarItemSidebar(
-            "assets/icons/box-branco.svg",
-            "Planos",
-            "dashboard-administrador.html",
-            "ícone Planos"
+                "assets/icons/box-branco.svg",
+                "Planos",
+                "dashboard-administrador.html",
+                "ícone Planos"
             )
 
-            menuSidebar.appendChild(planosSistema); 
+            menuSidebar.appendChild(planosSistema);
 
             const assinaturaSistema = criarItemSidebar(
-            "assets/icons/license-branco.svg",
-            "Assinaturas",
-            "dashboard-administrador.html",
-            "ícone Assinatura"
+                "assets/icons/license-branco.svg",
+                "Assinaturas",
+                "dashboard-administrador.html",
+                "ícone Assinatura"
             )
 
             menuSidebar.appendChild(assinaturaSistema);
 
-            
+
             const relatorioSistema = criarItemSidebar(
-            "assets/icons/file-analytics-branco.svg",
-            "Relatórios",
-            "dashboard-administrador.html",
-            "ícone Relatório"
+                "assets/icons/file-analytics-branco.svg",
+                "Relatórios",
+                "dashboard-administrador.html",
+                "ícone Relatório"
             )
 
             menuSidebar.appendChild(relatorioSistema);
 
             const configuracaoSistema = criarItemSidebar(
-            "assets/icons/settings-branco.svg",
-            "Configuração",
-            "dashboard-administrador.html",
-            "ícone Configuração"
+                "assets/icons/settings-branco.svg",
+                "Configuração",
+                "dashboard-administrador.html",
+                "ícone Configuração"
             )
 
             menuSidebar.appendChild(configuracaoSistema);
-        
+
             break;
-    }
-            case "empresa": {
+        }
+        case "empresa": {
 
             const dashboard = criarItemSidebar(
-            "assets/icons/home.svg",
-            "Dashboard",
-            "dashboard-administrador.html",
-            "ícone Dashboard"
+                "assets/icons/home.svg",
+                "Dashboard",
+                "dashboard-administrador.html",
+                "ícone Dashboard"
             )
-             
+
             menuSidebar.appendChild(dashboard);
 
             const usuariosSistema = criarItemSidebar(
-            "assets/icons/users-branco.svg",
-            "Recrutadores",
-            "dashboard-administrador.html",
-            "ícone Recrutadores"
+                "assets/icons/users-branco.svg",
+                "Recrutadores",
+                "dashboard-administrador.html",
+                "ícone Recrutadores"
             )
 
             menuSidebar.appendChild(usuariosSistema);
 
             const gestaoVagas = criarItemSidebar(
-            "assets/icons/clipboard-text-branco.svg",
-            "Gestão de vagas",
-            "dashboard-administrador.html",
-            "ícone Planos"
+                "assets/icons/clipboard-text-branco.svg",
+                "Gestão de vagas",
+                "dashboard-administrador.html",
+                "ícone Planos"
             )
 
-            menuSidebar.appendChild(gestaoVagas); 
+            menuSidebar.appendChild(gestaoVagas);
 
             const assinaturaSistema = criarItemSidebar(
-            "assets/icons/license-branco.svg",
-            "Assinaturas",
-            "dashboard-administrador.html",
-            "ícone Assinatura"
+                "assets/icons/license-branco.svg",
+                "Assinaturas",
+                "dashboard-administrador.html",
+                "ícone Assinatura"
             )
 
             menuSidebar.appendChild(assinaturaSistema);
 
-            
+
             const relatorioSistema = criarItemSidebar(
-            "assets/icons/file-analytics-branco.svg",
-            "Relatórios",
-            "dashboard-administrador.html",
-            "ícone Relatório"
+                "assets/icons/file-analytics-branco.svg",
+                "Relatórios",
+                "dashboard-administrador.html",
+                "ícone Relatório"
             )
 
             menuSidebar.appendChild(relatorioSistema);
 
             const configuracaoSistema = criarItemSidebar(
-            "assets/icons/settings-branco.svg",
-            "Configuração",
-            "dashboard-administrador.html",
-            "ícone Configuração"
+                "assets/icons/settings-branco.svg",
+                "Configuração",
+                "dashboard-administrador.html",
+                "ícone Configuração"
             )
 
             menuSidebar.appendChild(configuracaoSistema);
@@ -191,39 +191,39 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
         case "recrutador": {
 
             const dashboard = criarItemSidebar(
-            "assets/icons/home.svg",
-            "Dashboard",
-            "",
-            "ícone Dashboard",
-            false
+                "assets/icons/home.svg",
+                "Dashboard",
+                "",
+                "ícone Dashboard",
+                false
             )
-             
+
             menuSidebar.appendChild(dashboard);
 
             const criacaoVagas = criarItemSidebar(
-            "assets/icons/briefcase-branco.svg",
-            "Vagas",
-            "",
-            "ícone Vagas",
-            true
+                "assets/icons/briefcase-branco.svg",
+                "Vagas",
+                "",
+                "ícone Vagas",
+                true
             )
 
             const submenuVagas = criarSubmenu([
                 {
                     texto: "Criar Vaga",
-                    href:"#"
+                    href: "#"
                 },
                 {
                     texto: "Minhas Vagas",
-                    href:"#"
+                    href: "#"
                 },
                 {
                     texto: "Vagas Ativas",
-                    href:"#"
+                    href: "#"
                 },
                 {
                     texto: "Vagas Encerradas",
-                    href:"#"
+                    href: "#"
                 }
             ]);
 
@@ -234,74 +234,74 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
             containerVagas.appendChild(submenuVagas);
 
             const seta = criacaoVagas.querySelector(".seta-direita-menu");
-            
-            criacaoVagas.addEventListener("click", (event) => {
-            event.preventDefault(); //faz com que o javascript controlar o que acontece.
 
-            submenuVagas.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
-            seta.classList.toggle("ativa")
+            criacaoVagas.addEventListener("click", (event) => {
+                event.preventDefault(); //faz com que o javascript controlar o que acontece.
+
+                submenuVagas.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
+                seta.classList.toggle("ativa")
             });
 
-            
+
             menuSidebar.appendChild(containerVagas);
 
 
             const processosSeletivos = criarItemSidebar(
-            "assets/icons/clipboard-text-branco.svg",
-            "Processos seletivos",
-            "dashboard-administrador.html",
-            "ícone Vagas", 
-            true
+                "assets/icons/clipboard-text-branco.svg",
+                "Processos seletivos",
+                "dashboard-administrador.html",
+                "ícone Vagas",
+                true
             )
 
             menuSidebar.appendChild(processosSeletivos);
 
             const bancoTalentos = criarItemSidebar(
-            "assets/icons/users-branco.svg",
-            "Banco de talentos",
-            "dashboard-administrador.html",
-            "ícone Banco de Talentos", 
-            true
+                "assets/icons/users-branco.svg",
+                "Banco de talentos",
+                "dashboard-administrador.html",
+                "ícone Banco de Talentos",
+                true
             )
 
             menuSidebar.appendChild(bancoTalentos);
 
             const candidaturas = criarItemSidebar(
-            "assets/icons/file-description-branco.svg",
-            "Candidaturas",
-            "dashboard-administrador.html",
-            "ícone Planos", 
-            true
+                "assets/icons/file-description-branco.svg",
+                "Candidaturas",
+                "dashboard-administrador.html",
+                "ícone Planos",
+                true
             )
 
-            menuSidebar.appendChild(candidaturas); 
+            menuSidebar.appendChild(candidaturas);
 
             const agenda = criarItemSidebar(
-            "assets/icons/calendar-week-branco.svg",
-            "Agenda",
-            "dashboard-administrador.html",
-            "ícone Agenda", 
-            true
+                "assets/icons/calendar-week-branco.svg",
+                "Agenda",
+                "dashboard-administrador.html",
+                "ícone Agenda",
+                true
             )
 
-            menuSidebar.appendChild(agenda); 
+            menuSidebar.appendChild(agenda);
 
             const relatorioSistema = criarItemSidebar(
-            "assets/icons/file-analytics-branco.svg",
-            "Relatórios",
-            "dashboard-administrador.html",
-            "ícone Relatório",
-            true
+                "assets/icons/file-analytics-branco.svg",
+                "Relatórios",
+                "dashboard-administrador.html",
+                "ícone Relatório",
+                true
             )
 
             menuSidebar.appendChild(relatorioSistema);
 
             const perfil = criarItemSidebar(
-            "assets/icons/settings-branco.svg",
-            "Perfil",
-            "dashboard-administrador.html",
-            "ícone Perfil",
-            true
+                "assets/icons/settings-branco.svg",
+                "Perfil",
+                "dashboard-administrador.html",
+                "ícone Perfil",
+                true
             )
 
             menuSidebar.appendChild(perfil);
@@ -312,56 +312,56 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
         case "candidato": {
 
             const dashboard = criarItemSidebar(
-            "assets/icons/home.svg",
-            "Dashboard",
-            "dashboard-administrador.html",
-            "ícone Dashboard",
-            false
+                "assets/icons/home.svg",
+                "Dashboard",
+                "dashboard-administrador.html",
+                "ícone Dashboard",
+                false
             )
-             
+
             menuSidebar.appendChild(dashboard);
 
             const procurarVagas = criarItemSidebar(
-            "assets/icons/search-branco.svg",
-            "Vagas",
-            "dashboard-administrador.html",
-            "ícone Vagas"
+                "assets/icons/search-branco.svg",
+                "Vagas",
+                "dashboard-administrador.html",
+                "ícone Vagas"
             )
 
             menuSidebar.appendChild(procurarVagas);
 
             const minhasCandidaturas = criarItemSidebar(
-            "assets/icons/clipboard-text-branco.svg",
-            "Minhas Candidaturas",
-            "dashboard-administrador.html",
-            "ícone Vagas"
+                "assets/icons/clipboard-text-branco.svg",
+                "Minhas Candidaturas",
+                "dashboard-administrador.html",
+                "ícone Vagas"
             )
 
             menuSidebar.appendChild(minhasCandidaturas);
 
             const curriculo = criarItemSidebar(
-            "assets/icons/file-description-branco.svg",
-            "Currículo",
-            "dashboard-administrador.html",
-            "ícone Curriculo"
+                "assets/icons/file-description-branco.svg",
+                "Currículo",
+                "dashboard-administrador.html",
+                "ícone Curriculo"
             )
 
-            menuSidebar.appendChild(curriculo); 
+            menuSidebar.appendChild(curriculo);
 
             const agenda = criarItemSidebar(
-            "assets/icons/calendar-week-branco.svg",
-            "Agenda",
-            "dashboard-administrador.html",
-            "ícone Agenda"
+                "assets/icons/calendar-week-branco.svg",
+                "Agenda",
+                "dashboard-administrador.html",
+                "ícone Agenda"
             )
 
-            menuSidebar.appendChild(agenda); 
+            menuSidebar.appendChild(agenda);
 
             const perfil = criarItemSidebar(
-            "assets/icons/settings-branco.svg",
-            "Perfil",
-            "dashboard-administrador.html",
-            "ícone Perfil"
+                "assets/icons/settings-branco.svg",
+                "Perfil",
+                "dashboard-administrador.html",
+                "ícone Perfil"
             )
 
             menuSidebar.appendChild(perfil);
@@ -371,7 +371,7 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
 
 
     }
-    
+
     const linhaSidebar = document.createElement('hr');
     linhaSidebar.classList.add('linha-sidebar');
 
@@ -381,7 +381,7 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
     const iconePerfil = document.createElement('img');
     iconePerfil.classList.add('icone-perfil');
     iconePerfil.src = "assets/icons/user-circle.svg";
-    
+
     const rodapeSidebar = document.createElement('div');
     rodapeSidebar.classList.add('rodape-sidebar');
 
@@ -394,7 +394,7 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
 
     const funcaoUsuario = document.createElement('p');
     funcaoUsuario.classList.add('funcao-usuario');
-    funcaoUsuario.textContent =  tipoUsuario.charAt(0).toUpperCase() + tipoUsuario.slice(1);
+    funcaoUsuario.textContent = tipoUsuario.charAt(0).toUpperCase() + tipoUsuario.slice(1);
 
     const campoSair = document.createElement('div');
     campoSair.classList.add('campo-sair');
@@ -407,13 +407,13 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
     textoSair.classList.add('texto-sair');
     textoSair.textContent = "Sair";
 
-    
+
     campoLogo.appendChild(imgLogo);
     campoLogo.appendChild(textoLogo);
     textoLogo.appendChild(primeiroNomeLogo);
     textoLogo.appendChild(segundoNomeLogo);
-    
-   
+
+
     rodapeSidebar.appendChild(linhaSidebar);
     rodapeSidebar.appendChild(campoPerfilLogado);
     rodapeSidebar.appendChild(campoSair);
@@ -425,10 +425,10 @@ export function criarSidebar(tipoUsuario, nomeUsuario){ //disponibilizando a fun
     sidebar.appendChild(campoLogo);
     sidebar.appendChild(menuSidebar);
     sidebar.appendChild(rodapeSidebar);
-  
+
     campoSair.appendChild(iconeSair);
     campoSair.appendChild(textoSair);
-    
+
     return sidebar;
 
 }
