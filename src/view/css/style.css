@@ -1,3 +1,8 @@
+
+/* ==============================
+   RESET
+============================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,11 +10,38 @@
     font-family: 'Inter', sans-serif;
 }
 
+/* ==============================
+   ESTRUTURA SPA
+============================== */
+
+body {
+    background: #F8FAFF;
+}
+
+#app {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+#conteudo {
+    flex: 1;
+    min-width: 0;
+    padding: 20px;
+    overflow-x: auto;
+}
+
+/* ==============================
+   CABEÇALHO
+============================== */
+
 .header {
-    background: linear-gradient(90deg,
-            #0A2FD8 0%,
-            #2563EB 45%,
-            #4F8DFF 100%);
+    background: linear-gradient(
+        90deg,
+        #0A2FD8 0%,
+        #2563EB 45%,
+        #4F8DFF 100%
+    );
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,7 +50,7 @@
 }
 
 .logo {
-    color: #ffffff;
+    color: #FFFFFF;
 }
 
 .navegacao {
@@ -27,15 +59,15 @@
     gap: 60px;
 }
 
-.btn-menu {
+.header .btn-menu {
     background-color: transparent;
-    border-style: none;
+    border: none;
     color: white;
     font-size: 15px;
     transition: .25s;
 }
 
-.btn-menu:hover {
+.header .btn-menu:hover {
     color: white;
     transform: scale(1.05);
 }
@@ -62,7 +94,7 @@
 }
 
 .btn-cadastrar {
-    background: #ffffff;
+    background: #FFFFFF;
     padding: 10px 35px;
     border: none;
     border-radius: 5px;
@@ -76,31 +108,30 @@
     box-shadow: 0 8px 20px rgba(0, 0, 0, .15);
 }
 
+/* ==============================
+   HERO
+============================== */
+
 .hero {
     display: flex;
     background-image: url("../../assets/images/hero-bg.png");
     background-size: cover;
-    /*Cobre toda a hero mesmo que tenha que aumentar ou diminuir a imagem e mesmo que tenha que cortar uma parte dela. */
     background-position: center;
     background-repeat: no-repeat;
     height: 400px;
-
 }
 
 .hero-conteudo {
     display: flex;
     flex: 1;
-    /* ocupa 50%*/
     flex-direction: column;
     padding-left: 52px;
     justify-content: center;
-
 }
 
 .hero-imagem {
     display: flex;
     flex: 1;
-    /* ocupa 50%*/
     justify-content: center;
     align-items: end;
 }
@@ -109,10 +140,7 @@
     width: 100%;
     max-width: 600px;
     margin-bottom: 1px;
-    transform: translateY(+28px);
-    /*desce a imagem*/
-
-
+    transform: translateY(28px);
 }
 
 .titulo-hero {
@@ -127,14 +155,19 @@
     font-size: 20px;
     max-width: 480px;
     margin-top: 25px;
-
 }
 
-.area-buscar-vagas{
-    background: linear-gradient(90deg,
-            #0066FF 18%,
-            #408CFF 52%,
-            #5D9EFF 75%);
+/* ==============================
+   BUSCA DE VAGAS
+============================== */
+
+.area-buscar-vagas {
+    background: linear-gradient(
+        90deg,
+        #0066FF 18%,
+        #408CFF 52%,
+        #5D9EFF 75%
+    );
     display: flex;
     flex-direction: column;
     border-radius: 20px;
@@ -145,7 +178,6 @@
 
 .encontre-vaga {
     color: white;
-
 }
 
 .busque-cargos {
@@ -153,24 +185,19 @@
     font-weight: 400;
 }
 
-.area-busca-input{
+.area-busca-input {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 15px;
 }
 
-
-
 .campo-buscar-vagas,
-.campo-buscar-localizacao
-{
+.campo-buscar-localizacao {
     display: flex;
     position: relative;
     padding: 5px;
-
 }
-
 
 .input-buscar,
 .input-localizar {
@@ -184,8 +211,7 @@
 }
 
 .icone-pesquisar,
-.icone-localizacao
-{
+.icone-localizacao {
     position: absolute;
     top: 24%;
     left: 4%;
@@ -199,15 +225,14 @@
     height: 45px;
     padding-left: 15px;
     border-radius: 15px;
-    border-style: none;
+    border: none;
     background: #1A3BBF;
     color: #FFFFFF;
     white-space: nowrap;
     gap: 10px;
-    
 }
 
-.icone-pesquisar-branco{
+.icone-pesquisar-branco {
     width: 20px;
     height: 20px;
 }
@@ -215,50 +240,52 @@
 .input-buscar::placeholder,
 .input-localizar::placeholder {
     color: #8A8A8A;
-
 }
 
-.cards-secao{
+/* ==============================
+   CARDS DE BENEFÍCIOS
+============================== */
+
+.cards-secao {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
 }
 
-.titulo-secao{
+.titulo-secao {
     margin-top: 15px;
     font-size: 30px;
 }
 
-.susbtitulo-beneficio{
+.susbtitulo-beneficio {
     font-size: 18px;
     margin-top: 10px;
     padding-top: 18px;
 }
 
-.cards-container{
+.cards-container {
     display: flex;
     gap: 30px;
     margin: 25px;
     padding-top: 15px;
-    
-    
 }
 
-.card-candidato, .card-empresa, .card-processo, .card-seguranca{
+.card-candidato,
+.card-empresa,
+.card-processo,
+.card-seguranca {
     border: 1px solid rgb(247, 231, 231);
     display: grid;
     grid-template-columns: 60px 1fr;
     border-radius: 20px;
     width: 400px;
-
 }
 
-.icone-beneficio{
-     background: linear-gradient(
+.icone-beneficio {
+    background: linear-gradient(
         180deg,
-        #F5F8FE 0%, 
-        #EAF2FF 50%, 
+        #F5F8FE 0%,
+        #EAF2FF 50%,
         #DCE9FD 100%
     );
     grid-column: 1;
@@ -267,10 +294,9 @@
     height: 50px;
     padding: 5px;
     border-radius: 10px;
-    
 }
 
-.titulo-card{
+.titulo-card {
     display: flex;
     margin-left: 20px;
     grid-column: 2;
@@ -279,13 +305,13 @@
     font-weight: 750;
 }
 
-.descricao-card{
+.descricao-card {
     grid-column: 1 / 3;
     grid-row: 2;
-    margin: 15px 10px ;
+    margin: 15px 10px;
 }
 
-.saiba-mais{
+.saiba-mais {
     grid-column: 1 / 3;
     justify-self: start;
     padding: 8px;
@@ -297,12 +323,16 @@
     transition: all .25s ease;
 }
 
-.saiba-mais:hover{
-    color:#0F2EA3;
+.saiba-mais:hover {
+    color: #0F2EA3;
     transform: translateX(5px);
 }
 
-.secao-funciona{
+/* ==============================
+   SEÇÃO COMO FUNCIONA
+============================== */
+
+.secao-funciona {
     display: flex;
     flex-direction: column;
     width: 97%;
@@ -311,25 +341,26 @@
     border-radius: 5px;
 }
 
-.titulo-funciona{
+.titulo-funciona {
     margin-top: 15px;
     font-size: 16px;
     color: #1A3BBF;
-    
 }
-.subtitulo-funciona{
+
+.subtitulo-funciona {
     margin-top: 20px;
     font-size: 25px;
 }
-.descricao-funciona{
+
+.descricao-funciona {
     margin-top: 10px;
 }
 
-.container-funciona{
+.container-funciona {
     background: linear-gradient(
         180deg,
-        #F5F8FE 0%, 
-        #EAF2FF 50%, 
+        #F5F8FE 0%,
+        #EAF2FF 50%,
         #DCE9FD 100%
     );
     display: flex;
@@ -339,26 +370,26 @@
     border-radius: 25px;
 }
 
-.candidato-funciona{
-    width:50%;
-    
+/* Candidato */
+
+.candidato-funciona {
+    width: 50%;
 }
 
-.cabecalho-candidato{
+.cabecalho-candidato {
     display: flex;
     background: white;
     width: 80%;
     border-radius: 20px;
-    margin:20px auto;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.08);;
-
+    margin: 20px auto;
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.08);
 }
 
-.icone-funciona-candidato{
+.icone-funciona-candidato {
     background: linear-gradient(
         180deg,
-        #F5F8FE 0%, 
-        #EAF2FF 50%, 
+        #F5F8FE 0%,
+        #EAF2FF 50%,
         #DCE9FD 100%
     );
     width: 70px;
@@ -368,35 +399,38 @@
     padding: 5px;
 }
 
-.texto-funciona-candidato{
+.texto-funciona-candidato {
     margin: 20px;
 }
 
-.titulo-funciona-candidato{
+.titulo-funciona-candidato {
     color: #1A3BBF;
 }
 
-.subtitulo-funciona-candidato{
+.subtitulo-funciona-candidato {
     font-size: 15px;
     margin-top: 10px;
 }
 
-.empresa-funciona{
-    width:50%;
+/* Empresa */
+
+.empresa-funciona {
+    width: 50%;
 }
-.cabecalho-empresa{
+
+.cabecalho-empresa {
     display: flex;
     background: white;
     width: 80%;
     border-radius: 20px;
-    margin:20px auto;
+    margin: 20px auto;
 }
 
-.icone-funciona-empresa{
+.icone-funciona-empresa {
     background: linear-gradient(
         180deg,
-        #F5F8FE 0%, 
-        #EAF2FF 50%, 
+        #F5F8FE 0%,
+        #EAF2FF 50%,
         #DCE9FD 100%
     );
     width: 70px;
@@ -405,20 +439,21 @@
     margin: 15px;
     padding: 5px;
 }
-.titulo-funciona-empresa{
+
+.titulo-funciona-empresa {
     color: #1A3BBF;
 }
 
-.texto-funciona-empresa{
+.texto-funciona-empresa {
     margin: 20px;
-    
 }
 
-.subtitulo-funciona-empresa{
+.subtitulo-funciona-empresa {
     font-size: 15px;
     margin-top: 10px;
 }
 
+/* Passos */
 
 .passo-candidato1,
 .passo-candidato2,
@@ -429,7 +464,7 @@
 .passo-empresa2,
 .passo-empresa3,
 .passo-empresa4,
-.passo-empresa5{
+.passo-empresa5 {
     display: flex;
     align-items: flex-start;
     gap: 20px;
@@ -437,8 +472,6 @@
     margin-bottom: 30px;
     margin-top: 20px;
 }
-
-
 
 .numero-candidato-passo1,
 .numero-candidato-passo2,
@@ -449,7 +482,7 @@
 .numero-passo-empresa2,
 .numero-passo-empresa3,
 .numero-passo-empresa4,
-.numero-passo-empresa5{
+.numero-passo-empresa5 {
     display: flex;
     position: relative;
     background: #1A3BBF;
@@ -472,12 +505,12 @@
 .numero-passo-empresa1::after,
 .numero-passo-empresa2::after,
 .numero-passo-empresa3::after,
-.numero-passo-empresa4::after{
+.numero-passo-empresa4::after {
     content: "";
     position: absolute;
     width: 2px;
     height: 55px;
-    background: #c9d1e2;
+    background: #C9D1E2;
     top: 35px;
     left: 50%;
     transform: translateX(-50%);
@@ -492,21 +525,21 @@
 .passo-empresa2:hover .numero-passo-empresa2,
 .passo-empresa3:hover .numero-passo-empresa3,
 .passo-empresa4:hover .numero-passo-empresa4,
-.passo-empresa5:hover .numero-passo-empresa5{
+.passo-empresa5:hover .numero-passo-empresa5 {
     transform: scale(1.12);
     transition: .3s;
 }
 
 .titulo-passo1,
 .titulo-passo2,
-.titulo-passo3, 
-.titulo-passo4, 
+.titulo-passo3,
+.titulo-passo4,
 .titulo-passo5,
 .titulo-passo-empresa1,
 .titulo-passo-empresa2,
 .titulo-passo-empresa3,
 .titulo-passo-empresa4,
-.titulo-passo-empresa5{
+.titulo-passo-empresa5 {
     margin-left: 35px;
     margin-bottom: 5px;
     font-weight: 700;
@@ -521,25 +554,29 @@
 .descricao-passo-empresa2,
 .descricao-passo-empresa3,
 .descricao-passo-empresa4,
-.descricao-passo-empresa5{
+.descricao-passo-empresa5 {
     max-width: 350px;
     margin-left: 35px;
 }
 
-.secao-faq{
+/* ==============================
+   FAQ
+============================== */
+
+.secao-faq {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
-    
 }
 
-.titulo-faq{
+.titulo-faq {
     margin-top: 15px;
     font-size: 16px;
     color: #1A3BBF;
 }
-.container-faq{
+
+.container-faq {
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -547,16 +584,16 @@
     margin-top: 30px;
 }
 
-.item-faq1, 
+.item-faq1,
 .item-faq2,
-.item-faq3, 
-.item-faq4, 
+.item-faq3,
+.item-faq4,
 .item-faq5,
-.item-faq6{
+.item-faq6 {
     background: #FFFFFF;
     border-radius: 15px;
     padding: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
 }
 
 .pergunta-faq1,
@@ -564,132 +601,25 @@
 .pergunta-faq3,
 .pergunta-faq4,
 .pergunta-faq5,
-.pergunta-faq6{
+.pergunta-faq6 {
     color: #1A3BBF;
     font-size: 18px;
     margin-bottom: 12px;
 }
-
-
-
 
 .resposta-faq1,
 .resposta-faq2,
 .resposta-faq3,
 .resposta-faq4,
 .resposta-faq5,
-.resposta-faq6{
+.resposta-faq6 {
     color: #555;
     line-height: 1.6;
 }
 
-
-#app {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
-}
-
-#conteudo {
-    flex: 1;
-    min-width: 0;
-    padding: 20px;
-    overflow-x: auto;
-}
-#conteudo {
-    flex: 1;
-    min-width: 0;
-    padding: 20px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* ==============================
+   RESPONSIVIDADE
+============================== */
 
 @media (max-width: 1366px) {
 
@@ -704,7 +634,8 @@
     .imagem-hero {
         max-width: 500px;
     }
-    .cards-container{
+
+    .cards-container {
         max-width: 1200px;
     }
 
