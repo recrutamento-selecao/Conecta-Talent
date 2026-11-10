@@ -1,321 +1,402 @@
+/* =================================================================
+   DASHBOARD EMPRESA - CORRIGIDO, FLEXÍVEL E RESPONSIVO
+   ================================================================= */
+
 :root {
     --sidebar-width: 260px;
     --sidebar-collapsed-width: 78px;
 }
 
-.conteudo-principal {
+/* Garante que o conteúdo principal ocupa todo o espaço de forma fluida */
+.page-dashboard-empresa .conteudo-principal {
     flex: 1;
-    min-width: 0;
+    width: calc(100vw - var(--sidebar-width));
+    max-width: 100% !important;
     margin-left: var(--sidebar-width); 
-    padding: 2rem;
-    transition: margin-left 0.25s ease;
+    padding: 1.75rem;
+    transition: margin-left 0.25s ease, width 0.25s ease, padding 0.25s ease;
+    box-sizing: border-box;
 }
 
-body:has(.sidebar.fechada) .conteudo-principal {
+/* Quando a sidebar estiver recolhida/fechada, expande o conteúdo a 100% */
+body:has(.sidebar.fechada) .page-dashboard-empresa .conteudo-principal,
+body:has(.sidebar.collapsed) .page-dashboard-empresa .conteudo-principal,
+body.sidebar-fechada .page-dashboard-empresa .conteudo-principal,
+.sidebar.fechada ~ .page-dashboard-empresa .conteudo-principal,
+.sidebar.collapsed ~ .page-dashboard-empresa .conteudo-principal,
+body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-principal {
     margin-left: var(--sidebar-collapsed-width);
+    width: calc(100vw - var(--sidebar-collapsed-width));
 }
 
-.header-saudacao {
-    margin-bottom: 1.5rem;
-}
-
-.header-saudacao h1 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--text-primary);
-}
-
-.header-saudacao p {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin-top: 0.25rem;
-}
-
-.kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.25rem;
-    margin-bottom: 1.75rem;
-}
-
-.kpi-card {
-    background-color: var(--bg-white);
-    padding: 1.1rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
-}
-
-.kpi-titulo {
-    font-size: 0.825rem;
-    color: var(--text-secondary);
-    font-weight: 500;
-}
-
-.kpi-valor {
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0.4rem 0;
-}
-
-.kpi-status {
-    font-size: 0.775rem;
-    display: flex;
-    gap: 0.25rem;
-}
-
-.kpi-status.positivo span { color: #16a34a; font-weight: 600; }
-.kpi-status.neutro span { color: var(--primary-color); font-weight: 600; }
-.kpi-status small { color: var(--text-muted); }
-
-/* --- GRELHA PRINCIPAL DE DUAS COLUNAS --- */
-.grid-dashboard-empresa {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    align-items: start;
-}
-
-.coluna-dashboard {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-/* CARDS GERAIS */
-.tabela-card {
-    background-color: var(--bg-white);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.card-painel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+.page-dashboard-empresa .header-saudacao {
     margin-bottom: 1.25rem;
 }
 
-.card-painel-header h3 {
-    font-size: 1.1rem;
+.page-dashboard-empresa .header-saudacao h1 {
+    font-size: 1.65rem;
     font-weight: 700;
     color: var(--text-primary);
 }
 
-.card-painel-header small {
+.page-dashboard-empresa .header-saudacao p {
     color: var(--text-secondary);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
 }
 
-.card-painel-footer {
+/* --- GRID DE KPIS (4 colunas preenchendo toda a largura) --- */
+.page-dashboard-empresa .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.page-dashboard-empresa .kpi-card {
+    background-color: var(--bg-white);
+    padding: 1rem 1.1rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.page-dashboard-empresa .kpi-titulo {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.page-dashboard-empresa .kpi-valor {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0.25rem 0;
+}
+
+.page-dashboard-empresa .kpi-status {
+    font-size: 0.75rem;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.page-dashboard-empresa .kpi-status.positivo span { color: #16a34a; font-weight: 600; }
+.page-dashboard-empresa .kpi-status.neutro span { color: var(--primary-color); font-weight: 600; }
+.page-dashboard-empresa .kpi-status small { color: var(--text-muted); }
+
+/* --- GRELHA PRINCIPAL DE DUAS COLUNAS (Estirada a 100%) --- */
+.page-dashboard-empresa .grid-dashboard-empresa {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    width: 100%;
+}
+
+.page-dashboard-empresa .coluna-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 0;
+    width: 100%;
+}
+
+/* CARDS GERAIS DE TABELAS E GRÁFICOS */
+.page-dashboard-empresa .tabela-card {
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.page-dashboard-empresa .card-painel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+}
+
+.page-dashboard-empresa .card-painel-header h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.page-dashboard-empresa .card-painel-header small {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+}
+
+.page-dashboard-empresa .card-painel-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 1rem;
-    margin-top: 1.25rem;
+    padding-top: 0.85rem;
+    margin-top: 1rem;
     border-top: 1px solid var(--border-color);
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--text-secondary);
 }
 
 /* TABELA DE VAGAS */
-.tabela-responsive {
+.page-dashboard-empresa .tabela-responsive {
     overflow-x: auto;
+    width: 100%;
 }
 
-.tabela-empresas {
+.page-dashboard-empresa .tabela-empresas {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
-    font-size: 0.85rem;
+    font-size: 0.825rem;
 }
 
-.tabela-empresas th {
+.page-dashboard-empresa .tabela-empresas th {
     color: var(--text-secondary);
     font-weight: 600;
-    padding: 0.6rem 0.5rem;
+    padding: 0.55rem 0.4rem;
     border-bottom: 1px solid var(--border-color);
-    font-size: 0.75rem;
+    font-size: 0.725rem;
     letter-spacing: 0.04em;
     background-color: var(--bg-light);
+    white-space: nowrap;
 }
 
-.tabela-empresas td {
-    padding: 0.85rem 0.5rem;
+.page-dashboard-empresa .tabela-empresas td {
+    padding: 0.75rem 0.4rem;
     border-bottom: 1px solid #f8fafc;
     color: var(--text-primary);
+    vertical-align: middle;
 }
 
-.text-right { text-align: right; }
+.page-dashboard-empresa .text-right { text-align: right; }
 
-.link-acao {
+.page-dashboard-empresa .link-acao {
     color: var(--primary-color);
     text-decoration: none;
-    font-size: 0.825rem;
+    font-size: 0.8rem;
     font-weight: 600;
+    white-space: nowrap;
 }
 
-.link-acao:hover { text-decoration: underline; }
+.page-dashboard-empresa .link-acao:hover { text-decoration: underline; }
 
 /* BADGES DE STATUS */
-.badge {
-    padding: 0.2rem 0.55rem;
+.page-dashboard-empresa .badge {
+    padding: 0.18rem 0.5rem;
     border-radius: var(--radius-sm);
-    font-size: 0.75rem;
+    font-size: 0.725rem;
     font-weight: 600;
+    display: inline-block;
+    white-space: nowrap;
 }
 
-.status-ativa { background-color: #dcfce7; color: #15803d; }
-.status-pausada { background-color: #fef3c7; color: #b45309; }
-.status-rascunho { background-color: #f1f5f9; color: var(--text-secondary); }
+.page-dashboard-empresa .status-ativa { background-color: #dcfce7; color: #15803d; }
+.page-dashboard-empresa .status-pausada { background-color: #fef3c7; color: #b45309; }
+.page-dashboard-empresa .status-rascunho { background-color: #f1f5f9; color: var(--text-secondary); }
 
-.ponto-etapa { font-size: 0.8rem; margin-right: 0.2rem; }
-.ponto-etapa.azul { color: var(--primary-color); }
-.ponto-etapa.roxo { color: #8b5cf6; }
-.ponto-etapa.laranja { color: #f97316; }
-.ponto-etapa.cinza { color: var(--text-muted); }
+.page-dashboard-empresa .ponto-etapa { font-size: 0.8rem; margin-right: 0.2rem; }
+.page-dashboard-empresa .ponto-etapa.azul { color: var(--primary-color); }
+.page-dashboard-empresa .ponto-etapa.roxo { color: #8b5cf6; }
+.page-dashboard-empresa .ponto-etapa.laranja { color: #f97316; }
+.page-dashboard-empresa .ponto-etapa.cinza { color: var(--text-muted); }
 
-.badge-subtil.verde { color: #16a34a; font-weight: 500; }
+.page-dashboard-empresa .badge-subtil.verde { color: #16a34a; font-weight: 500; }
 
-/* LISTA RECRUTADORES */
-.btn-adicionar {
+/* --- RECRUTADORES (Nome completo visível e avatares em círculo perfeito) --- */
+.page-dashboard-empresa .btn-adicionar {
     background-color: #eff6ff;
     color: var(--primary-color);
     border: none;
-    padding: 0.4rem 0.8rem;
+    padding: 0.35rem 0.7rem;
     border-radius: var(--radius-sm);
     font-weight: 600;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     cursor: pointer;
     transition: background-color 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-.btn-adicionar:hover { background-color: #dbeafe; }
+.page-dashboard-empresa .btn-adicionar:hover { background-color: #dbeafe; }
 
-.lista-recrutadores {
+.page-dashboard-empresa .lista-recrutadores {
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
+    gap: 0.6rem;
 }
 
-.item-recrutador {
+.page-dashboard-empresa .item-recrutador {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.65rem 0;
-    border-bottom: 1px solid #f8fafc;
+    padding: 0.6rem 0.75rem;
+    background-color: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #f1f5f9;
+    gap: 0.5rem;
 }
 
-.recrutador-info {
+.page-dashboard-empresa .item-recrutador:hover {
+    background-color: #f8fafc;
+}
+
+.page-dashboard-empresa .recrutador-info {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    min-width: 0;
+    flex: 1;
 }
 
-.recrutador-avatar {
-    width: 36px;
-    height: 36px;
+/* AVATAR COM DIMENSÕES FIXAS PARA GARANTIR CÍRCULO PERFEITO */
+.page-dashboard-empresa .recrutador-avatar {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
     background-color: #e0e7ff;
     color: #4338ca;
-    border-radius: 50%;
+    border-radius: 50% !important;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
     font-size: 0.9rem;
+    flex-shrink: 0 !important;
 }
 
-.tag-empresa {
-    background-color: var(--bg-light);
-    color: var(--text-secondary);
-    padding: 0.1rem 0.4rem;
-    border-radius: 4px;
-    font-size: 0.7rem;
-    margin-left: 0.3rem;
+.page-dashboard-empresa .recrutador-info > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+    flex: 1;
 }
 
-.email-recrutador {
-    font-size: 0.775rem;
-    color: var(--text-secondary);
-}
-
-.recrutador-acoes {
+.page-dashboard-empresa .recrutador-topo {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
+    width: 100%;
 }
 
-.btn-acao-sm {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.2rem;
+.page-dashboard-empresa .recrutador-topo strong {
     font-size: 0.85rem;
-    opacity: 0.7;
-    transition: opacity 0.2s;
+    color: var(--text-primary);
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
 }
 
-.btn-acao-sm:hover { opacity: 1; }
+.page-dashboard-empresa .tag-empresa {
+    background-color: #f1f5f9;
+    color: var(--text-secondary);
+    padding: 0.05rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 500;
+    white-space: nowrap;
+    display: inline-block;
+}
 
-.btn-icone {
+.page-dashboard-empresa .email-recrutador {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+}
+
+.page-dashboard-empresa .recrutador-acoes {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+}
+
+.page-dashboard-empresa .btn-acao-sm, 
+.page-dashboard-empresa .btn-icone {
     background: none;
     border: none;
     cursor: pointer;
     color: var(--text-muted);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
+    padding: 0.15rem;
+    transition: color 0.2s;
 }
 
-/* GRÁFICOS DE BARRAS */
-.legenda-grafico {
-    font-size: 0.75rem;
+.page-dashboard-empresa .btn-acao-sm:hover, 
+.page-dashboard-empresa .btn-icone:hover { color: var(--primary-color); }
+
+/* --- GRÁFICOS DE BARRAS --- */
+.page-dashboard-empresa .legenda-grafico {
+    font-size: 0.725rem;
     color: var(--text-secondary);
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.3rem;
+    white-space: nowrap;
 }
 
-.quadrado-cor {
-    width: 10px;
-    height: 10px;
+.page-dashboard-empresa .quadrado-cor {
+    width: 9px;
+    height: 9px;
     border-radius: 2px;
+    display: inline-block;
 }
 
-.quadrado-cor.azul { background-color: var(--primary-color); }
-.quadrado-cor.verde { background-color: #10b981; }
+.page-dashboard-empresa .quadrado-cor.azul { background-color: var(--primary-color); }
+.page-dashboard-empresa .quadrado-cor.verde { background-color: #10b981; }
 
-.grafico-barras-container {
+.page-dashboard-empresa .grafico-barras-container {
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
     height: 160px;
-    padding-top: 1.5rem;
+    padding-top: 1rem;
+    gap: 0.35rem;
+    width: 100%;
 }
 
-.coluna-grafico {
+.page-dashboard-empresa .coluna-grafico {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
     justify-content: flex-end;
-    gap: 0.35rem;
+    gap: 0.3rem;
     flex: 1;
 }
 
-.valor-coluna {
-    font-size: 0.75rem;
+.page-dashboard-empresa .valor-coluna {
+    font-size: 0.725rem;
     font-weight: 700;
     color: var(--text-primary);
 }
 
-.barra-fundo-vert {
-    width: 28px;
-    height: 100%;
+.page-dashboard-empresa .barra-fundo-vert {
+    width: 24px;
+    height: 100px;
     background-color: var(--bg-light);
     border-radius: var(--radius-sm);
     display: flex;
@@ -323,29 +404,52 @@ body:has(.sidebar.fechada) .conteudo-principal {
     overflow: hidden;
 }
 
-.barra-preenchida-vert {
+.page-dashboard-empresa .barra-preenchida-vert {
     width: 100%;
-    border-radius: 6px 6px 0 0;
+    border-radius: 5px 5px 0 0;
     transition: height 0.4s ease;
 }
 
-.barra-preenchida-vert.azul { background-color: var(--primary-color); }
-.barra-preenchida-vert.verde { background-color: #10b981; }
+.page-dashboard-empresa .barra-preenchida-vert.azul { background-color: var(--primary-color); }
+.page-dashboard-empresa .barra-preenchida-vert.verde { background-color: #10b981; }
 
-.label-coluna {
-    font-size: 0.725rem;
+.page-dashboard-empresa .label-coluna {
+    font-size: 0.7rem;
     color: var(--text-secondary);
     text-align: center;
+    white-space: nowrap;
 }
 
-.texto-positivo {
+.page-dashboard-empresa .texto-positivo {
     color: #16a34a;
     font-weight: 600;
 }
 
-/* --- RESPONSIVIDADE --- */
+/* --- RESPONSIVIDADE & AJUSTES PARA SIDEBAR --- */
+@media (max-width: 1366px) {
+    .page-dashboard-empresa .grid-dashboard-empresa {
+        grid-template-columns: 1.8fr 1fr;
+    }
+}
+
 @media (max-width: 1100px) {
-    .grid-dashboard-empresa {
+    .page-dashboard-empresa .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-dashboard-empresa .grid-dashboard-empresa {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-dashboard-empresa .conteudo-principal {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 1rem;
+    }
+    
+    .page-dashboard-empresa .kpi-grid {
         grid-template-columns: 1fr;
     }
 }

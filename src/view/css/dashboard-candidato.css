@@ -1,27 +1,66 @@
+/* =================================================================
+   DASHBOARD CANDIDATO - CORRIGIDO, FLEXÍVEL E RESPONSIVO
+   ================================================================= */
+
+:root {
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 78px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* Garante que o conteúdo principal ocupa todo o espaço de forma fluida */
+.page-dashboard-candidato .conteudo-principal,
 .conteudo-principal {
-    padding-top: 1rem !important; 
+    flex: 1;
+    width: calc(100vw - var(--sidebar-width));
+    max-width: 100% !important;
+    margin-left: var(--sidebar-width); 
+    padding: 1.75rem;
+    transition: margin-left 0.25s ease, width 0.25s ease, padding 0.25s ease;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+/* Quando a sidebar estiver recolhida/fechada, expande o conteúdo a 100% */
+body:has(.sidebar.fechada) .conteudo-principal,
+body:has(.sidebar.collapsed) .conteudo-principal,
+body.sidebar-fechada .conteudo-principal,
+.sidebar.fechada ~ .conteudo-principal,
+.sidebar.collapsed ~ .conteudo-principal,
+body:has(.sidebar[style*="width: 78px"]) .conteudo-principal {
+    margin-left: var(--sidebar-collapsed-width);
+    width: calc(100vw - var(--sidebar-collapsed-width));
 }
 
 .header-saudacao {
     margin-top: 0;
-    margin-bottom: 1rem; 
+    margin-bottom: 1.25rem; 
 }
 
 .header-saudacao h1 {
-    font-size: 1.875rem;
+    font-size: 1.65rem;
     font-weight: 700;
     color: #0f172a;
     margin-top: 0;
-    margin-bottom: 0.25rem; 
+    margin-bottom: 0.2rem; 
 }
 
 .header-saudacao p {
     color: #64748b;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     margin-top: 0;
 }
 
-
+/* =================================================================
+   BANNER DE BOAS-VINDAS ADAPTÁVEL
+   ================================================================= */
 .banner-boas-vindas {
     display: grid;
     grid-template-columns: 1fr;
@@ -31,6 +70,8 @@
     overflow: hidden;
     margin-bottom: 1.75rem;
     position: relative;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
 }
 
 .banner-boas-vindas .banner-imagem {
@@ -84,14 +125,74 @@
     background-color: #1e40af;
 }
 
+/* =================================================================
+   GRID DE ESTATÍSTICAS / KPIS (Alinhados lado a lado perfeitamente)
+   ================================================================= */
+.kpi-grid,
+.grid-estatisticas, 
+.cards-estatisticas-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    width: 100%;
+}
+
+.kpi-card,
+.kpi-card-candidato,
+.card-estatistica {
+    background-color: #ffffff;
+    padding: 1rem 1.1rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.kpi-titulo {
+    font-size: 0.78rem;
+    color: #64748b;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kpi-valor {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0.25rem 0;
+}
+
+.kpi-status {
+    font-size: 0.75rem;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.kpi-status.positivo span { color: #16a34a; font-weight: 600; }
+.kpi-status small { color: #94a3b8; }
+
+/* =================================================================
+   TABELA / CARD PRINCIPAL E RESPONSIVIDADE
+   ================================================================= */
 .tabela-card {
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-    max-width: 600px;
     width: 100%;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
 }
 
 .card-painel-header {
@@ -210,11 +311,14 @@
     color: #b91c1c;
 }
 
+/* =================================================================
+   GRID PRINCIPAL DO DASHBOARD
+   ================================================================= */
 .grid-dashboard-candidato {
     display: grid;
     grid-template-columns: 1fr 1fr; 
     gap: 1.5rem;                   
-    align-items: start;           
+    align-items: start;            
     width: 100%;
 }
 
@@ -233,6 +337,7 @@
     border: 1px solid #f1f5f9;
     background-color: #ffffff;
     transition: all 0.2s ease-in-out;
+    width: 100%;
 }
 
 .item-vaga-candidato:hover {
@@ -262,6 +367,7 @@
     flex-direction: column;
     gap: 0.2rem;
     flex-grow: 1;
+    min-width: 0;
 }
 
 .vaga-info-admin strong {
@@ -269,6 +375,9 @@
     font-weight: 600;
     color: #0f172a;
     line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .vaga-info-admin small {
@@ -305,4 +414,33 @@
 
 .btn-acao-salvar.salvo svg {
     fill: #2563eb;
+}
+
+/* =================================================================
+   RESPONSIVIDADE GERAL
+   ================================================================= */
+@media (max-width: 1100px) {
+    .kpi-grid,
+    .grid-estatisticas, 
+    .cards-estatisticas-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-dashboard-candidato {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .conteudo-principal {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 1rem;
+    }
+    
+    .kpi-grid,
+    .grid-estatisticas, 
+    .cards-estatisticas-container {
+        grid-template-columns: 1fr;
+    }
 }

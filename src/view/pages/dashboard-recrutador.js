@@ -29,7 +29,7 @@ const DADOS_RECRUTADOR = {
             valor: "22 dias", 
             destaque: "↓ 8,3%", 
             subtexto: "vs. mês anterior",
-            tipo: "positivo" // Redução no tempo de contratação costuma ser positiva
+            tipo: "positivo" 
         }
     ],
     vagasMaisCandidatadas: [
@@ -256,12 +256,16 @@ function criarGridInferior(vagas, entrevistas) {
     return section;
 }
 
+// Exporta a função que o router.js vai chamar
+export function renderDashboardRecrutador() {
+    const container = document.createElement('div');
+    container.classList.add('page-dashboard-recrutador');
 
-document.addEventListener('DOMContentLoaded', () => {
-
+    // Cria a sidebar do recrutador
     const sidebar = criarSidebar(DADOS_RECRUTADOR.usuario.perfil, DADOS_RECRUTADOR.usuario.nome);
-    document.body.appendChild(sidebar);
+    container.appendChild(sidebar);
 
+    // Cria a área de conteúdo principal
     const main = document.createElement("main");
     main.classList.add("conteudo-principal");
 
@@ -270,5 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     main.appendChild(criarSecaoIntermedia());
     main.appendChild(criarGridInferior(DADOS_RECRUTADOR.vagasMaisCandidatadas, DADOS_RECRUTADOR.proximasEntrevistas));
 
-    document.body.appendChild(main);
-});
+    container.appendChild(main);
+
+    return container;
+}

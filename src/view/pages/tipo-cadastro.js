@@ -53,9 +53,9 @@ export function renderTipoCadastro() {
             
             // Alterado para SPA Hash Routing em conformidade com o router.js
             if (perfil === 'candidato') {
-                window.location.hash = '#dashboard-candidato';
+                window.location.hash = '#'; //falta arrumar
             } else {
-                window.location.hash = '#dashboard-empresa';
+                window.location.hash = '#'; //falta arrumar
             }
         });
     });

@@ -1,0 +1,406 @@
+/* =================================================================
+   DASHBOARD ADMINISTRADOR - ESTILOS E RESPONSIVIDADE
+   ================================================================= */
+
+:root {
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 78px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: #f8fafc;
+    color: #0f172a;
+    margin: 0;
+}
+
+/* =================================================================
+   CONTEÚDO PRINCIPAL E FLUIDEZ DA SIDEBAR
+   ================================================================= */
+.page-dashboard-administrador .conteudo-principal,
+.conteudo-principal {
+    flex: 1;
+    width: calc(100vw - var(--sidebar-width));
+    max-width: 100% !important;
+    margin-left: var(--sidebar-width); 
+    padding: 1.75rem;
+    transition: margin-left 0.25s ease, width 0.25s ease, padding 0.25s ease;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Expansão automática quando a sidebar estiver recolhida ou fechada */
+body:has(.sidebar.fechada) .conteudo-principal,
+body:has(.sidebar.collapsed) .conteudo-principal,
+body.sidebar-fechada .conteudo-principal,
+.sidebar.fechada ~ .conteudo-principal,
+.sidebar.collapsed ~ .conteudo-principal,
+body:has(.sidebar[style*="width: 78px"]) .conteudo-principal {
+    margin-left: var(--sidebar-collapsed-width);
+    width: calc(100vw - var(--sidebar-collapsed-width));
+}
+
+/* =================================================================
+   HEADER E FILTRO DE PERÍODO
+   ================================================================= */
+.header-dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+}
+
+.boas-vindas h1 {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.2rem 0;
+}
+
+.boas-vindas p {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.container-filtro-periodo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.btn-periodo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 0.5rem 0.85rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    color: #475569;
+}
+
+.seletor-periodo-select {
+    border: none;
+    background: transparent;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0f172a;
+    outline: none;
+    cursor: pointer;
+}
+
+.wrapper-datas-custom {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 0.35rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.input-data-filtro {
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    color: #1e293b;
+    outline: none;
+}
+
+/* =================================================================
+   GRID DE KPIS (4 CARTÕES LADO A LADO)
+   ================================================================= */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+    width: 100%;
+}
+
+.kpi-card {
+    background-color: #ffffff;
+    padding: 1.2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.kpi-titulo {
+    font-size: 0.78rem;
+    color: #64748b;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.kpi-valor {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0.35rem 0;
+}
+
+.kpi-status {
+    font-size: 0.75rem;
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.kpi-status.positivo span { color: #16a34a; font-weight: 600; }
+.kpi-status small { color: #94a3b8; }
+
+/* =================================================================
+   GRID DE GRÁFICOS (DIMENSÕES RIGOROSAS PARA CHART.JS)
+   ================================================================= */
+.graficos-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 1.75rem;
+    width: 100%;
+}
+
+.grafico-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+}
+
+.grafico-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.grafico-header h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.15rem 0;
+}
+
+.grafico-header p {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.grafico-destaque {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.destaque-numero {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.destaque-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #16a34a;
+}
+
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    max-height: 220px;
+}
+
+.donut-wrapper {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    max-height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart-container canvas,
+.donut-wrapper canvas {
+    max-width: 100% !important;
+    max-height: 220px !important;
+}
+
+/* =================================================================
+   TABELA DE EMPRESAS CADASTRADAS
+   ================================================================= */
+.tabela-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tabela-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 1.25rem 0;
+}
+
+.tabela-empresas {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabela-empresas thead tr {
+    background-color: #f8fafc;
+}
+
+.tabela-empresas th {
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.tabela-empresas tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.15s ease;
+}
+
+.tabela-empresas tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.tabela-empresas td {
+    padding: 1rem;
+    vertical-align: middle;
+    font-size: 0.875rem;
+    color: #334155;
+}
+
+.empresa-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icone-empresa {
+    width: 32px;
+    height: 32px;
+    background-color: #eff6ff;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+}
+
+/* Badges de Planos e Status */
+.badge {
+    display: inline-block;
+    padding: 0.3rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.badge.empresarial { background-color: #dbeafe; color: #1d4ed8; }
+.badge.profissional { background-color: #fef3c7; color: #b45309; }
+.badge.gratuito { background-color: #f1f5f9; color: #475569; }
+.badge.educacional { background-color: #ede9fe; color: #6d28d9; }
+
+.badge.ativa { background-color: #dcfce7; color: #15803d; }
+.badge.rascunho, .badge.inativo { background-color: #fee2e2; color: #b91c1c; }
+
+.acoes {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-acao {
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn-acao:hover {
+    background-color: #f1f5f9;
+}
+
+/* =================================================================
+   RESPONSIVIDADE GERAL
+   ================================================================= */
+@media (max-width: 1280px) {
+    .graficos-grid {
+        grid-template-columns: 1fr;
+    }
+    .chart-container, .donut-wrapper {
+        height: 240px;
+        max-height: 240px;
+    }
+    .chart-container canvas,
+    .donut-wrapper canvas {
+        max-height: 240px !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .conteudo-principal {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 1rem;
+    }
+
+    .kpi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header-dashboard {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

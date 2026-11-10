@@ -1,4 +1,5 @@
 import { criarSidebar } from '../components/sidebar.js';
+
 const DADOS_DASHBOARD_POR_PERIODO = {
     "7": {
         kpis: [
@@ -27,7 +28,7 @@ const DADOS_DASHBOARD_POR_PERIODO = {
         ],
         graficos: {
             crescimento: [0, 0, 0, 0, 0, 0, 3, 55, 75, 80, 0, 0],
-            variacao: "+6,67% vs Set", // <--- Variação dinâmica
+            variacao: "+6,67% vs Set",
             tipos: [63, 21, 16],
             assinaturas: [73, 17, 9]
         },
@@ -48,7 +49,7 @@ const DADOS_DASHBOARD_POR_PERIODO = {
         ],
         graficos: {
             crescimento: [10, 15, 20, 30, 45, 60, 75, 90, 105, 120, 0, 0],
-            variacao: "+15,4% vs trim. ant.", // <--- Variação dinâmica corrigida para 90 dias
+            variacao: "+15,4% vs trim. ant.",
             tipos: [180, 70, 60],
             assinaturas: [190, 75, 45]
         },
@@ -70,7 +71,7 @@ const DADOS_DASHBOARD_POR_PERIODO = {
         ],
         graficos: {
             crescimento: [25, 40, 55, 70, 95, 120, 150, 200, 280, 310, 0, 0],
-            variacao: "+38,2% vs 2025", // <--- Variação dinâmica
+            variacao: "+38,2% vs 2025",
             tipos: [520, 180, 150],
             assinaturas: [500, 220, 130]
         },
@@ -128,24 +129,28 @@ function criarHeaderDashboard(nome) {
         const select = header.querySelector("#seletorPeriodo");
         const wrapperCustom = header.querySelector("#wrapperDatasPersonalizadas");
 
-        select.addEventListener("change", (e) => {
-            if (e.target.value === "custom") {
-                wrapperCustom.style.display = "flex";
-            } else {
-                wrapperCustom.style.display = "none";
-                atualizarDashboardCompleto(e.target.value);
-            }
-        });
+        if (select) {
+            select.addEventListener("change", (e) => {
+                if (e.target.value === "custom") {
+                    wrapperCustom.style.display = "flex";
+                } else {
+                    wrapperCustom.style.display = "none";
+                    atualizarDashboardCompleto(e.target.value);
+                }
+            });
+        }
 
         const dataInicio = header.querySelector("#dataInicio");
         const dataFim = header.querySelector("#dataFim");
 
         [dataInicio, dataFim].forEach(input => {
-            input.addEventListener("change", () => {
-                if (dataInicio.value && dataFim.value) {
-                    atualizarDashboardCompleto("custom", dataInicio.value, dataFim.value);
-                }
-            });
+            if (input) {
+                input.addEventListener("change", () => {
+                    if (dataInicio.value && dataFim.value) {
+                        atualizarDashboardCompleto("custom", dataInicio.value, dataFim.value);
+                    }
+                });
+            }
         });
     }, 0);
 
@@ -269,101 +274,129 @@ function renderizarConteudoTabela(container, empresas) {
     `;
 }
 
-
 function renderizarGraficos(dadosIniciais) {
+    if (typeof Chart === 'undefined') {
+        setTimeout(() => renderizarGraficos(dadosIniciais), 100);
+        return;
+    }
+
     if (typeof ChartDataLabels !== 'undefined') {
         Chart.register(ChartDataLabels);
     }
 
-    const ctxCrescimento = document.getElementById('chartCrescimentoUsuarios').getContext('2d');
-    chartCrescimento = new Chart(ctxCrescimento, {
-        type: 'line',
-        data: {
-            labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
-            datasets: [{
-                label: 'Usuários',
-                data: dadosIniciais.graficos.crescimento,
-                borderColor: '#2563eb',
-                backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                borderWidth: 3,
-                fill: true,
-                tension: 0.4,
-                pointRadius: 4,
-                pointBackgroundColor: '#2563eb'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false }, datalabels: { display: false } },
-            scales: {
-                y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
-                x: { grid: { display: false } }
-            }
-        }
-    });
+    if (chartCrescimento) { chartCrescimento.destroy(); chartCrescimento = null; }
+    if (chartTiposUsuarios) { chartTiposUsuarios.destroy(); chartTiposUsuarios = null; }
+    if (chartAssinaturas) { chartAssinaturas.destroy(); chartAssinaturas = null; }
 
-    const ctxTipos = document.getElementById('chartTiposUsuarios').getContext('2d');
-    chartTiposUsuarios = new Chart(ctxTipos, {
-        type: 'doughnut',
-        data: {
-            labels: ['Candidatos', 'Recrutadores', 'Empresas'],
-            datasets: [{
-                data: dadosIniciais.graficos.tipos,
-                backgroundColor: ['#2563eb', '#f97316', '#10b981'],
-                borderWidth: 2,
-                borderColor: '#ffffff'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { position: 'bottom' },
-                datalabels: {
-                    color: '#1e293b',
-                    font: { weight: 'bold', size: 10 },
-                    formatter: (value, ctx) => {
-                        let sum = ctx.dataset.data.reduce((a, b) => a + b, 0);
-                        if (sum === 0) return "0%";
-                        let percentage = (value * 100 / sum).toFixed(1) + "%";
-                        return `${value}\n(${percentage})`;
+    const canvasCrescimento = document.getElementById('chartCrescimentoUsuarios');
+    if (canvasCrescimento) {
+        chartCrescimento = new Chart(canvasCrescimento.getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+                datasets: [{
+                    label: 'Usuários',
+                    data: dadosIniciais.graficos.crescimento,
+                    borderColor: '#2563eb',
+                    backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointRadius: 4,
+                    pointBackgroundColor: '#2563eb'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false }, datalabels: { display: false } },
+                scales: {
+                    y: { beginAtZero: true, grid: { color: '#f1f5f9' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    }
+
+    const canvasTipos = document.getElementById('chartTiposUsuarios');
+    if (canvasTipos) {
+        chartTiposUsuarios = new Chart(canvasTipos.getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Candidatos', 'Recrutadores', 'Empresas'],
+                datasets: [{
+                    data: dadosIniciais.graficos.tipos,
+                    backgroundColor: ['#2563eb', '#f97316', '#10b981'],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { 
+                        position: 'right', // Legenda posicionada na lateral direita
+                        align: 'center',
+                        labels: {
+                            boxWidth: 12,
+                            font: { size: 11 }
+                        }
+                    },
+                    datalabels: {
+                        color: '#1e293b',
+                        font: { weight: 'bold', size: 10 },
+                        formatter: (value, ctx) => {
+                            let sum = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                            if (sum === 0) return "0%";
+                            let percentage = (value * 100 / sum).toFixed(1) + "%";
+                            return `${value}\n(${percentage})`;
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+    }
 
-    const ctxAssinaturas = document.getElementById('chartAssinaturasPlano').getContext('2d');
-    chartAssinaturas = new Chart(ctxAssinaturas, {
-        type: 'doughnut',
-        data: {
-            labels: ['Gratuito', 'Profissional', 'Empresarial / Educacional'],
-            datasets: [{
-                data: dadosIniciais.graficos.assinaturas,
-                backgroundColor: ['#2563eb', '#f97316', '#10b981'],
-                borderWidth: 2,
-                borderColor: '#ffffff'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { position: 'bottom' },
-                datalabels: {
-                    color: '#1e293b',
-                    font: { weight: 'bold', size: 10 },
-                    formatter: (value, ctx) => {
-                        let sum = ctx.dataset.data.reduce((a, b) => a + b, 0);
-                        if (sum === 0) return "0%";
-                        let percentage = (value * 100 / sum).toFixed(1) + "%";
-                        return `${value}\n(${percentage})`;
+    const canvasAssinaturas = document.getElementById('chartAssinaturasPlano');
+    if (canvasAssinaturas) {
+        chartAssinaturas = new Chart(canvasAssinaturas.getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Gratuito', 'Profissional', 'Empresarial / Educacional'],
+                datasets: [{
+                    data: dadosIniciais.graficos.assinaturas,
+                    backgroundColor: ['#2563eb', '#f97316', '#10b981'],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { 
+                        position: 'right', // Legenda posicionada na lateral direita
+                        align: 'center',
+                        labels: {
+                            boxWidth: 12,
+                            font: { size: 11 }
+                        }
+                    },
+                    datalabels: {
+                        color: '#1e293b',
+                        font: { weight: 'bold', size: 10 },
+                        formatter: (value, ctx) => {
+                            let sum = ctx.dataset.data.reduce((a, b) => a + b, 0);
+                            if (sum === 0) return "0%";
+                            let percentage = (value * 100 / sum).toFixed(1) + "%";
+                            return `${value}\n(${percentage})`;
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+    }
 }
 
 function atualizarDashboardCompleto(periodo, inicio = null, fim = null) {
@@ -423,11 +456,14 @@ function atualizarDashboardCompleto(periodo, inicio = null, fim = null) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+export function renderDashboardAdministrador() {
+    const container = document.createElement('div');
+    container.classList.add('page-dashboard-administrador');
+
     const dadosPadrao = DADOS_DASHBOARD_POR_PERIODO["30"];
 
     const sidebar = criarSidebar(USUARIO_LOGADO.perfil, USUARIO_LOGADO.nome);
-    document.body.appendChild(sidebar);
+    container.appendChild(sidebar);
 
     const main = document.createElement("main");
     main.classList.add("conteudo-principal");
@@ -437,7 +473,11 @@ document.addEventListener('DOMContentLoaded', () => {
     main.appendChild(criarSecaoGraficos());
     main.appendChild(criarTabelaEmpresas(dadosPadrao.empresas));
 
-    document.body.appendChild(main);
+    container.appendChild(main);
 
-    renderizarGraficos(dadosPadrao);
-});
+    requestAnimationFrame(() => {
+        renderizarGraficos(dadosPadrao);
+    });
+
+    return container;
+}

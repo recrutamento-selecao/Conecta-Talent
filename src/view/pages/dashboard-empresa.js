@@ -130,7 +130,9 @@ function criarCardRecrutadores(recrutadores) {
                     <div class="recrutador-info">
                         <div class="recrutador-avatar">${r.nome.charAt(0)}</div>
                         <div>
-                            <strong>${r.nome}</strong> <small class="tag-empresa">${r.empresa}</small>
+                            <div class="recrutador-topo">
+                                <strong>${r.nome}</strong> 
+                            </div>
                             <p class="email-recrutador">${r.email}</p>
                         </div>
                     </div>
@@ -227,11 +229,13 @@ export function renderDashboardEmpresa() {
     const gridGeral = document.createElement("div");
     gridGeral.classList.add("grid-dashboard-empresa");
 
+    // Coluna Esquerda: Vagas e Desempenho Geral
     const colunaEsquerda = document.createElement("div");
     colunaEsquerda.classList.add("coluna-dashboard");
     colunaEsquerda.appendChild(criarTabelaVagas(DADOS_EMPRESA.vagas));
     colunaEsquerda.appendChild(criarGraficoDesempenho(DADOS_EMPRESA.desempenho));
 
+    // Coluna Direita: Recrutadores em cima e Contratações por Mês logo abaixo
     const colunaDireita = document.createElement("div");
     colunaDireita.classList.add("coluna-dashboard");
     colunaDireita.appendChild(criarCardRecrutadores(DADOS_EMPRESA.recrutadores));
