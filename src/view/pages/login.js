@@ -73,11 +73,10 @@ function renderLoginPage() {
                     senha: senha
                 })
             });
-
+// Tarefa
             const dados = await response.json();
-
             if (response.ok) {
-                alert("Login realizado com sucesso!");
+                renderLoginPage();
             } else {
                 alert(dados.erro || "Não foi possível realizar o login.");
             }
