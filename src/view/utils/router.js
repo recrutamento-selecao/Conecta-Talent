@@ -4,11 +4,12 @@ import { renderRecursos } from '../pages/recursos.js';
 import { renderSobreNos } from '../pages/sobre-nos.js';
 import { renderSuporte } from '../pages/suporte.js';
 import { renderTipoCadastro } from '../pages/tipo-cadastro.js';
+import { renderVerificacao } from '../pages/autenticacao2FA.js';
 import { renderDashboardCandidato } from '../pages/dashboard-candidato.js';
 import { renderDashboardEmpresa } from '../pages/dashboard-empresa.js';
 import { renderDashboardRecrutador } from '../pages/dashboard-recrutador.js';
 import { renderDashboardAdministrador } from '../pages/dashboard-administrador.js'; 
-import { renderVerificacao } from '../pages/autenticacao2FA.js';
+import { renderCandidatoVagas } from '../pages/candidato-vagas.js';
 
 // Função auxiliar para carregar o CSS específico de cada página e remover os anteriores
 function trocarEstiloPagina(nomePagina) {
@@ -26,8 +27,14 @@ function trocarEstiloPagina(nomePagina) {
         caminhoCss = './view/css/dashboard-recrutador.css';
     } else if (nomePagina === 'dashboard-administrador') {
         caminhoCss = './view/css/dashboard-administrador.css'; 
-    } else if (nomePagina === 'autenticacao2FA') {
+    } else if (nomePagina === 'autenticacao2FA' || nomePagina === 'verificacao') {
         caminhoCss = './view/css/autenticacao2FA.css';
+    } else if (nomePagina === 'cadastro') {
+        caminhoCss = './view/css/cadastro.css'; 
+    } else if (nomePagina === 'login') {
+        caminhoCss = './view/css/login.css'; 
+    } else if (nomePagina === 'candidato-vagas') {
+        caminhoCss = './view/css/candidato-vagas.css'; 
     }
 
     if (caminhoCss) {
@@ -66,6 +73,10 @@ export function iniciarRouter() {
             case '#tipo-cadastro':
                 trocarEstiloPagina('tipo-cadastro');
                 app.appendChild(renderTipoCadastro());
+                break;
+            case '#candidato-vagas':
+                trocarEstiloPagina('candidato-vagas');
+                app.appendChild(renderCandidatoVagas());
                 break;
             case '#dashboard-candidato':
                 trocarEstiloPagina('dashboard-candidato');

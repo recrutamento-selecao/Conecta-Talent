@@ -1,0 +1,89 @@
+.card-filtros {
+    width: 280px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    flex-shrink: 0;
+}
+ 
+.filtros-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+ 
+.filtros-header h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+ 
+.btn-limpar-filtros {
+    background: transparent;
+    border: none;
+    color: #2563eb;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+ 
+.btn-limpar-filtros:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+ 
+
+.grupo-filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+ 
+.grupo-filtro h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+}
+ 
+
+.item-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: #475569;
+    cursor: pointer;
+    user-select: none;
+}
+
+.item-checkbox input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #000000;
+    cursor: pointer;
+    border-radius: 4px;
+}
+ 
+.item-checkbox span {
+    font-weight: 500;
+}
+ 
+.item-checkbox:hover span {
+    color: #0f172a;
+}
+ 
+
+.divisor-filtro {
+    height: 1px;
+    background-color: #f1f5f9;
+    width: 100%;
+}

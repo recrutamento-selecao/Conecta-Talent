@@ -129,7 +129,7 @@ const MENUS_POR_PERFIL = {
         {
             id: "vagas", icone: "assets/icons/search-branco.svg", texto: "Vagas",
             submenu: [
-                { texto: "Buscar vagas", href: "#buscar-vagas" },
+                { texto: "Buscar vagas", href: "#candidato-vagas" },
                 { texto: "Vagas favoritas", href: "#vagas-favoritas" }
             ]
         },
