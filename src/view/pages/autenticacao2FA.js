@@ -1,8 +1,14 @@
-import { supabase } from '../../utils/supabaseClient.js'; // Ajusta este caminho apenas se o teu cliente estiver noutra pasta (ex: '../../config/supabase.js' se o servidor o suportar)
-
 export function renderVerificacao() {
     const container = document.createElement('div');
     container.className = 'page-auth page-verificacao';
+
+    // ALTERNATIVA 1 (Plano Free): Deteta automaticamente se o utilizador abriu o link do e-mail com um token na URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const tokenUrl = urlParams.get('token') || urlParams.get('token_hash') || urlParams.get('access_token');
+    
+    if (tokenUrl) {
+        autenticarComTokenUrl(tokenUrl);
+    }
 
     container.innerHTML = `
         <!-- Painel Lateral Esquerdo (Branding) -->
@@ -53,7 +59,7 @@ export function renderVerificacao() {
                 <p class="banner-quote">Grandes equipes constroem grandes resultados</p>
             </div>
 
-            <!-- Cartão Flutuante de Segurança (Substitui a imagem de forma limpa) -->
+            <!-- Cartão Flutuante de Segurança -->
             <div class="banner-card-float">
                 <div class="float-icon">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -73,7 +79,7 @@ export function renderVerificacao() {
             <div class="auth-card">
                 <h2 class="auth-title">Verificação de segurança</h2>
                 <p class="auth-instructions">
-                    Para continuar, digite o código de 6 dígitos enviado para o seu autenticador ou para o seu e-mail.
+                    Para continuar, digite o código de 6 dígitos ou clique no link enviado para o seu e-mail.
                 </p>
 
                 <form id="form-verificacao" class="otp-form">
@@ -102,10 +108,38 @@ export function renderVerificacao() {
         </main>
     `;
 
-    // Lógica interativa dos inputs OTP e Supabase
     initOTPBehavior(container);
 
     return container;
+}
+
+// Função auxiliar da Alternativa 1 para validar automaticamente o token recebido por URL do e-mail
+async function autenticarComTokenUrl(token) {
+    const emailGuardado = sessionStorage.getItem('auth_email');
+    if (!emailGuardado) return;
+
+    try {
+        const response = await fetch('/api/auth/verify-otp', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: emailGuardado,
+                token: token
+            })
+        });
+
+        const resultado = await response.json();
+
+        if (response.ok && resultado.session) {
+            localStorage.setItem('token', resultado.session.access_token);
+            sessionStorage.removeItem('auth_email');
+            window.location.hash = '#/dashboard-administrador';
+        }
+    } catch (error) {
+        console.error('Erro na validação automática do token via URL:', error);
+    }
 }
 
 function initOTPBehavior(container) {
@@ -114,7 +148,6 @@ function initOTPBehavior(container) {
     const btnReenviar = container.querySelector('#btn-reenviar');
 
     inputs.forEach((input, index) => {
-        // Avança para o próximo campo ao digitar
         input.addEventListener('input', (e) => {
             const value = e.target.value;
             if (value.length === 1 && index < inputs.length - 1) {
@@ -122,14 +155,12 @@ function initOTPBehavior(container) {
             }
         });
 
-        // Retrocede com Backspace
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Backspace' && !input.value && index > 0) {
                 inputs[index - 1].focus();
             }
         });
 
-        // Suporta Cole (Paste) do código completo de 6 dígitos
         input.addEventListener('paste', (e) => {
             e.preventDefault();
             const pasteData = e.clipboardData.getData('text').trim().slice(0, 6);
@@ -146,7 +177,7 @@ function initOTPBehavior(container) {
         });
     });
 
-    // Submissão ligada ao Supabase (Verificação do OTP)
+    // Submissão manual dos dígitos OTP através do BACKEND
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -163,37 +194,46 @@ function initOTPBehavior(container) {
             submitBtn.textContent = 'A verificar...';
             submitBtn.disabled = true;
 
-            // Obtém o e-mail guardado na sessão anterior (ex: tela de login/registo)
             const emailGuardado = sessionStorage.getItem('auth_email');
             
             if (!emailGuardado) {
                 alert('E-mail de verificação não encontrado. Por favor, faça login novamente.');
-                window.location.hash = '#/login'; // Redireciona para o login se faltar o email
+                window.location.hash = '#/login';
                 return;
             }
 
-            // Chamada real ao Supabase para validar o código OTP enviado por email
-            const { data, error } = await supabase.auth.verifyOtp({
-                email: emailGuardado,
-                token: code,
-                type: 'email' // Ajusta para 'signup' ou 'recovery' se aplicável ao teu fluxo específico
+            const response = await fetch('/api/auth/verify-otp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: emailGuardado,
+                    token: code
+                })
             });
 
-            if (error) throw error;
+            const resultado = await response.json();
 
-            console.log('Autenticação bem-sucedida!', data);
+            if (!response.ok) {
+                throw new Error(resultado.error || 'Erro na verificação.');
+            }
+
+            console.log('Autenticação bem-sucedida via backend!', resultado);
             
-            // Limpa o dado temporário de sessão
+            if (resultado.session) {
+                localStorage.setItem('token', resultado.session.access_token);
+            }
+
             sessionStorage.removeItem('auth_email');
 
-            // Redireciona o utilizador para o dashboard ou painel principal da SPA
-            window.location.hash = '#/dashboard'; 
+            // Redireciona para o dashboard do administrador
+            window.location.hash = '#/dashboard-administrador'; 
 
         } catch (error) {
             console.error('Erro na verificação do código:', error.message);
             alert('Código inválido ou expirado. Tente novamente.');
             
-            // Limpa os campos para tentar de novo
             inputs.forEach(input => input.value = '');
             inputs[0].focus();
         } finally {
@@ -202,11 +242,11 @@ function initOTPBehavior(container) {
         }
     });
 
-    // Funcionalidade opcional: Reenviar código via Supabase
+    // Funcionalidade do botão Reenviar código ligada ao backend (/api/auth/send-otp)
     btnReenviar.addEventListener('click', async () => {
         const emailGuardado = sessionStorage.getItem('auth_email');
         if (!emailGuardado) {
-            alert('E-mail não encontrado na sessão.');
+            alert('E-mail não encontrado na sessão. Por favor, reinicie o processo.');
             return;
         }
 
@@ -214,16 +254,24 @@ function initOTPBehavior(container) {
             btnReenviar.textContent = 'A reenviar...';
             btnReenviar.disabled = true;
 
-            const { error } = await supabase.auth.signInWithOtp({
-                email: emailGuardado
+            const response = await fetch('/api/auth/send-otp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email: emailGuardado })
             });
 
-            if (error) throw error;
+            const resultado = await response.json();
 
-            alert('Novo código de verificação enviado com sucesso para o seu e-mail!');
+            if (!response.ok) {
+                throw new Error(resultado.error || 'Erro ao reenviar o código.');
+            }
+
+            alert('Novo código/link de acesso enviado com sucesso para o seu e-mail!');
         } catch (error) {
             console.error('Erro ao reenviar:', error.message);
-            alert('Não foi possível reenviar o código. Tente novamente mais tarde.');
+            alert('Não foi possível reenviar o código: ' + error.message);
         } finally {
             btnReenviar.textContent = 'Reenviar código';
             btnReenviar.disabled = false;
