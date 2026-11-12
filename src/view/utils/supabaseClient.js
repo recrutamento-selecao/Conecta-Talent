@@ -21,9 +21,13 @@ async function getSupabase() {
     }
 }
 
-// Objeto proxy exportado para manter a mesma interface compatível com o resto da aplicação
+// Objeto proxy completo com suporte ao signInWithPassword, MFA e métodos essenciais
 export const supabase = {
     auth: {
+        async signInWithPassword(...args) {
+            const client = await getSupabase();
+            return client.auth.signInWithPassword(...args);
+        },
         async verifyOtp(...args) {
             const client = await getSupabase();
             return client.auth.verifyOtp(...args);
@@ -39,6 +43,28 @@ export const supabase = {
         async getSession(...args) {
             const client = await getSupabase();
             return client.auth.getSession(...args);
+        },
+        mfa: {
+            async enroll(...args) {
+                const client = await getSupabase();
+                return client.auth.mfa.enroll(...args);
+            },
+            async challenge(...args) {
+                const client = await getSupabase();
+                return client.auth.mfa.challenge(...args);
+            },
+            async verify(...args) {
+                const client = await getSupabase();
+                return client.auth.mfa.verify(...args);
+            },
+            async unenroll(...args) {
+                const client = await getSupabase();
+                return client.auth.mfa.unenroll(...args);
+            },
+            async listFactors(...args) {
+                const client = await getSupabase();
+                return client.auth.mfa.listFactors(...args);
+            }
         }
     }
 };

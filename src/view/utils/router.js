@@ -5,6 +5,7 @@ import { renderSobreNos } from '../pages/sobre-nos.js';
 import { renderSuporte } from '../pages/suporte.js';
 import { renderTipoCadastro } from '../pages/tipo-cadastro.js';
 import { renderVerificacao } from '../pages/autenticacao2FA.js';
+import { renderMFAConfig } from '../pages/mfaConfig.js';
 import { renderDashboardCandidato } from '../pages/dashboard-candidato.js';
 import { renderDashboardEmpresa } from '../pages/dashboard-empresa.js';
 import { renderDashboardRecrutador } from '../pages/dashboard-recrutador.js';
@@ -29,6 +30,8 @@ function trocarEstiloPagina(nomePagina) {
         caminhoCss = './view/css/dashboard-administrador.css'; 
     } else if (nomePagina === 'autenticacao2FA' || nomePagina === 'verificacao') {
         caminhoCss = './view/css/autenticacao2FA.css';
+    } else if (nomePagina === 'mfa-config') {
+        caminhoCss = './view/css/mfaConfig.css'; 
     } else if (nomePagina === 'cadastro') {
         caminhoCss = './view/css/cadastro.css'; 
     } else if (nomePagina === 'login') {
@@ -98,6 +101,11 @@ export function iniciarRouter() {
             case '#2fa':
                 trocarEstiloPagina('verificacao');
                 app.appendChild(renderVerificacao());
+                break;
+            case '#mfa-config':
+            case '#mfa':
+                trocarEstiloPagina('mfa-config');
+                app.appendChild(renderMFAConfig());
                 break;
             case '#home':
             case '':

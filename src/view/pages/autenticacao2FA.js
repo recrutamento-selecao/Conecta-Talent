@@ -1,14 +1,8 @@
+import { supabase } from '../utils/supabaseClient.js';
+
 export function renderVerificacao() {
     const container = document.createElement('div');
     container.className = 'page-auth page-verificacao';
-
-    // ALTERNATIVA 1 (Plano Free): Deteta automaticamente se o utilizador abriu o link do e-mail com um token na URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const tokenUrl = urlParams.get('token') || urlParams.get('token_hash') || urlParams.get('access_token');
-    
-    if (tokenUrl) {
-        autenticarComTokenUrl(tokenUrl);
-    }
 
     container.innerHTML = `
         <!-- Painel Lateral Esquerdo (Branding) -->
@@ -77,9 +71,9 @@ export function renderVerificacao() {
         <!-- Área Principal de Verificação (Direita) -->
         <main class="auth-main">
             <div class="auth-card">
-                <h2 class="auth-title">Verificação de segurança</h2>
+                <h2 class="auth-title">Verificação em duas etapas</h2>
                 <p class="auth-instructions">
-                    Para continuar, digite o código de 6 dígitos ou clique no link enviado para o seu e-mail.
+                    Abra o seu aplicativo autenticador (Google ou Microsoft Authenticator) e digite o código de 6 dígitos gerado para a sua conta.
                 </p>
 
                 <form id="form-verificacao" class="otp-form">
@@ -97,12 +91,12 @@ export function renderVerificacao() {
                             <circle cx="12" cy="12" r="10"></circle>
                             <polyline points="12 6 12 12 16 14"></polyline>
                         </svg>
-                        <span>O código é válido por <strong id="timer-text">5 minutos</strong>.</span>
+                        <span>O código é renovado a cada <strong>30 segundos</strong> no aplicativo.</span>
                     </div>
 
                     <button type="submit" class="btn-primary btn-block">Verificar código</button>
                     
-                    <button type="button" id="btn-reenviar" class="btn-link">Reenviar código</button>
+                    <button type="button" id="btn-voltar-config" class="btn-link">Configurar novo autenticador</button>
                 </form>
             </div>
         </main>
@@ -113,44 +107,23 @@ export function renderVerificacao() {
     return container;
 }
 
-// Função auxiliar da Alternativa 1 para validar automaticamente o token recebido por URL do e-mail
-async function autenticarComTokenUrl(token) {
-    const emailGuardado = sessionStorage.getItem('auth_email');
-    if (!emailGuardado) return;
-
-    try {
-        const response = await fetch('/api/auth/verify-otp', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: emailGuardado,
-                token: token
-            })
-        });
-
-        const resultado = await response.json();
-
-        if (response.ok && resultado.session) {
-            localStorage.setItem('token', resultado.session.access_token);
-            sessionStorage.removeItem('auth_email');
-            window.location.hash = '#/dashboard-administrador';
-        }
-    } catch (error) {
-        console.error('Erro na validação automática do token via URL:', error);
-    }
-}
-
 function initOTPBehavior(container) {
     const inputs = container.querySelectorAll('.otp-input');
     const form = container.querySelector('#form-verificacao');
-    const btnReenviar = container.querySelector('#btn-reenviar');
+    const btnVoltarConfig = container.querySelector('#btn-voltar-config');
 
+    // Foco automático no primeiro quadradinho ao carregar a tela
+    setTimeout(() => {
+        if (inputs[0]) inputs[0].focus();
+    }, 100);
+
+    // Comportamento de avanço, retrocesso (Backspace) e colar (Ctrl+V) nos 6 dígitos
     inputs.forEach((input, index) => {
         input.addEventListener('input', (e) => {
-            const value = e.target.value;
-            if (value.length === 1 && index < inputs.length - 1) {
+            // Garante apenas números
+            e.target.value = e.target.value.replace(/[^0-9]/g, '');
+            
+            if (e.target.value.length === 1 && index < inputs.length - 1) {
                 inputs[index + 1].focus();
             }
         });
@@ -163,27 +136,28 @@ function initOTPBehavior(container) {
 
         input.addEventListener('paste', (e) => {
             e.preventDefault();
-            const pasteData = e.clipboardData.getData('text').trim().slice(0, 6);
-            if (/^\d+$/.test(pasteData)) {
+            const pasteData = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 6);
+            if (pasteData) {
                 pasteData.split('').forEach((char, i) => {
                     if (inputs[i]) {
                         inputs[i].value = char;
                     }
                 });
-                if (inputs[Math.min(pasteData.length, inputs.length - 1)]) {
-                    inputs[Math.min(pasteData.length, inputs.length - 1)].focus();
+                const nextIndex = Math.min(pasteData.length, inputs.length - 1);
+                if (inputs[nextIndex]) {
+                    inputs[nextIndex].focus();
                 }
             }
         });
     });
 
-    // Submissão manual dos dígitos OTP através do BACKEND
+    // Submissão dos 6 dígitos do aplicativo autenticador via Supabase MFA
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const code = Array.from(inputs).map(i => i.value).join('');
         if (code.length !== 6) {
-            alert('Por favor, preencha todos os 6 dígitos.');
+            alert('Por favor, preencha todos os 6 dígitos do aplicativo.');
             return;
         }
 
@@ -191,90 +165,70 @@ function initOTPBehavior(container) {
         const originalText = submitBtn.textContent;
 
         try {
-            submitBtn.textContent = 'A verificar...';
+            submitBtn.textContent = 'A validar código...';
             submitBtn.disabled = true;
 
-            const emailGuardado = sessionStorage.getItem('auth_email');
-            
-            if (!emailGuardado) {
-                alert('E-mail de verificação não encontrado. Por favor, faça login novamente.');
-                window.location.hash = '#/login';
+            // 1. Verifica se o utilizador possui sessão ativa (AAL1)
+            const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+            if (sessionError || !session) {
+                alert('Sessão expirada ou utilizador não autenticado. Por favor, faça login novamente.');
+                window.location.hash = '#login';
                 return;
             }
 
-            const response = await fetch('/api/auth/verify-otp', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    email: emailGuardado,
-                    token: code
-                })
-            });
+            // 2. Lista os fatores MFA configurados na conta do utilizador
+            const { data: factorsData, error: factorsError } = await supabase.auth.mfa.listFactors();
+            if (factorsError) throw factorsError;
 
-            const resultado = await response.json();
-
-            if (!response.ok) {
-                throw new Error(resultado.error || 'Erro na verificação.');
+            // Procura o fator TOTP que já foi ativado/verificado
+            const totpFactor = factorsData.totp.find(factor => factor.status === 'verified');
+            if (!totpFactor) {
+                alert('Nenhum aplicativo autenticador configurado nesta conta. Redirecionando para configuração...');
+                window.location.hash = '#mfa-config';
+                return;
             }
 
-            console.log('Autenticação bem-sucedida via backend!', resultado);
-            
-            if (resultado.session) {
-                localStorage.setItem('token', resultado.session.access_token);
+            // 3. Cria o desafio de autenticação (challenge) para esse fator
+            const { data: challengeData, error: challengeError } = await supabase.auth.mfa.challenge({
+                factorId: totpFactor.id
+            });
+            if (challengeError) throw challengeError;
+
+            // 4. Valida o código de 6 dígitos inserido pelo utilizador (eleva a sessão para AAL2)
+            const { data: verifyData, error: verifyError } = await supabase.auth.mfa.verify({
+                factorId: totpFactor.id,
+                challengeId: challengeData.id,
+                code: code
+            });
+            if (verifyError) throw verifyError;
+
+            // Guarda o novo token de sessão atualizado (nível AAL2)
+            if (verifyData && verifyData.access_token) {
+                localStorage.setItem('token', verifyData.access_token);
             }
 
             sessionStorage.removeItem('auth_email');
+            alert('Verificação concluída com sucesso!');
 
-            // Redireciona para o dashboard do administrador
-            window.location.hash = '#/dashboard-administrador'; 
+            // Redireciona para o dashboard principal
+            window.location.hash = '#dashboard-administrador'; 
 
         } catch (error) {
-            console.error('Erro na verificação do código:', error.message);
-            alert('Código inválido ou expirado. Tente novamente.');
+            console.error('Erro na verificação do 2FA:', error.message);
+            alert('Código incorreto ou expirado. Verifique o seu aplicativo autenticador e tente novamente.');
             
             inputs.forEach(input => input.value = '');
-            inputs[0].focus();
+            if (inputs[0]) inputs[0].focus();
         } finally {
             submitBtn.textContent = originalText;
             submitBtn.disabled = false;
         }
     });
 
-    // Funcionalidade do botão Reenviar código ligada ao backend (/api/auth/send-otp)
-    btnReenviar.addEventListener('click', async () => {
-        const emailGuardado = sessionStorage.getItem('auth_email');
-        if (!emailGuardado) {
-            alert('E-mail não encontrado na sessão. Por favor, reinicie o processo.');
-            return;
-        }
-
-        try {
-            btnReenviar.textContent = 'A reenviar...';
-            btnReenviar.disabled = true;
-
-            const response = await fetch('/api/auth/send-otp', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ email: emailGuardado })
-            });
-
-            const resultado = await response.json();
-
-            if (!response.ok) {
-                throw new Error(resultado.error || 'Erro ao reenviar o código.');
-            }
-
-            alert('Novo código/link de acesso enviado com sucesso para o seu e-mail!');
-        } catch (error) {
-            console.error('Erro ao reenviar:', error.message);
-            alert('Não foi possível reenviar o código: ' + error.message);
-        } finally {
-            btnReenviar.textContent = 'Reenviar código';
-            btnReenviar.disabled = false;
-        }
-    });
+    // Redireciona caso o utilizador precise configurar o QR Code pela primeira vez
+    if (btnVoltarConfig) {
+        btnVoltarConfig.addEventListener('click', () => {
+            window.location.hash = '#mfa-config';
+        });
+    }
 }
