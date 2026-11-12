@@ -1,10 +1,8 @@
 import createForm from "../components/form.js";
-import renderCadastroPage from "./cadastro.js";
 
 function renderLoginPage() {
-    const container = document.getElementById("login-container");
-
-    container.innerHTML = "";
+    const container = document.createElement("div");
+    container.className = "login-page-wrapper";
 
     const titulo = document.createElement("h2");
     titulo.innerText = "Acesse sua conta";
@@ -34,25 +32,48 @@ function renderLoginPage() {
         ]
     });
 
+    const form = formContainer.querySelector("form");
+
+    const selecaoPerfil = document.createElement("div");
+    selecaoPerfil.className = "selecao-perfil";
+
+    const btnCandidato = document.createElement("button");
+    btnCandidato.type = "button";
+    btnCandidato.textContent = "Candidato";
+    btnCandidato.className = "perfil ativo";
+
+    const btnEmpresa = document.createElement("button");
+    btnEmpresa.type = "button";
+    btnEmpresa.textContent = "Empresa";
+    btnEmpresa.className = "perfil";
+
+    btnCandidato.addEventListener("click", () => {
+        btnCandidato.classList.add("ativo");
+        btnEmpresa.classList.remove("ativo");
+    });
+
+    btnEmpresa.addEventListener("click", () => {
+        btnEmpresa.classList.add("ativo");
+        btnCandidato.classList.remove("ativo");
+    });
+
+    selecaoPerfil.append(btnCandidato, btnEmpresa);
+    form.prepend(selecaoPerfil);
+
     const linkCadastro = document.createElement("a");
-    linkCadastro.href = "#";
+    linkCadastro.href = "#tipo-cadastro";
     linkCadastro.className = "linkNav";
     linkCadastro.textContent = "Não possui uma conta? Cadastre-se!";
 
     linkCadastro.addEventListener("click", (event) => {
         event.preventDefault();
-
-        container.innerHTML = "";
-        container.appendChild(
-            renderCadastroPage(() => renderLoginPage())
-        );
+        window.location.hash = "#tipo-cadastro";
     });
 
     container.appendChild(titulo);
     container.appendChild(formContainer);
     container.appendChild(linkCadastro);
 
-    const form = formContainer.querySelector("form");
     const inputEmail = form.querySelector('input[type="email"]');
     const inputSenha = form.querySelector('input[type="password"]');
 
@@ -73,10 +94,12 @@ function renderLoginPage() {
                     senha: senha
                 })
             });
-// Tarefa
+
             const dados = await response.json();
+
             if (response.ok) {
-                renderLoginPage();
+                alert("Login realizado com sucesso!");
+                window.location.hash = "#candidatoVagas";
             } else {
                 alert(dados.erro || "Não foi possível realizar o login.");
             }
@@ -85,6 +108,9 @@ function renderLoginPage() {
             console.log("Erro inesperado!", erro);
         }
     });
+
+    // Retorna o container criado, e não o #app global
+    return container;
 }
 
 export default renderLoginPage;

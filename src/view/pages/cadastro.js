@@ -1,4 +1,4 @@
-const renderCadastroPage = (navegarParaLogin) => {
+const renderCadastroPage = () => {
     const container = document.createElement("div");
     container.className = "cadastro-container";
 
@@ -50,13 +50,13 @@ const renderCadastroPage = (navegarParaLogin) => {
     button.textContent = "Cadastrar";
 
     const linkNav = document.createElement("a");
-    linkNav.href = "#";
+    linkNav.href = "#login";
     linkNav.className = "linkNav";
     linkNav.textContent = "Já possui uma conta? Faça login!";
 
     linkNav.addEventListener("click", (event) => {
         event.preventDefault();
-        navegarParaLogin();
+        window.location.hash = "#login";
     });
 
     form.addEventListener("submit", async (event) => {
@@ -89,7 +89,7 @@ const renderCadastroPage = (navegarParaLogin) => {
 
             if (resultado.ok) {
                 alert("Cadastro realizado com sucesso!");
-                navegarParaLogin();
+                window.location.hash = "#login";
             } else {
                 alert(dados.erro || "Erro ao realizar cadastro!");
             }

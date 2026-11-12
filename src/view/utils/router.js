@@ -1,41 +1,80 @@
-/**
- * Roteador único da SPA, baseado em hash (#/caminho).
- *
- * Contrato: cada rota é uma função render() que devolve um HTMLElement.
- * O roteador é quem coloca o elemento no container; a página nunca escreve
- * em document.body.
- *
- * Se um render lançar erro, o erro vai para o Console e aparece na tela,
- * em vez de deixar a área de conteúdo em branco.
- *
- * @param {Object} config
- * @param {HTMLElement} config.container                   onde as páginas são montadas
- * @param {Record<string, () => HTMLElement>} config.rotas  ex.: { '/dashboard-candidato': render }
- * @param {string} config.rotaPadrao                       usada quando o hash está vazio ou desconhecido
- */
-export function criarRoteador({ container, rotas, rotaPadrao }) {
-    function navegar() {
-        const caminho = window.location.hash.slice(1) || rotaPadrao;
-        const render = rotas[caminho] ?? rotas[rotaPadrao];
+import renderCadastroPage from '../pages/cadastro.js';
+import renderLoginPage from '../pages/login.js';
+import { renderHome } from '../pages/home.js';
 
-        try {
-            container.replaceChildren(render());
-        } catch (erro) {
-            console.error(`Erro ao renderizar a rota ${caminho}:`, erro);
-
-            const aviso = document.createElement('pre');
-            aviso.textContent = `Erro ao renderizar ${caminho}\n${erro.message}`;
-            container.replaceChildren(aviso);
-        }
+function trocarEstiloPagina(nomePagina) {
+    const estiloAnterior = document.getElementById('estilo-Dinamico-pagina');
+    if (estiloAnterior) {
+        estiloAnterior.remove();
     }
 
-    window.addEventListener('hashchange', navegar);
-    navegar();
+    let caminhoCss = null;
+    if (nomePagina === 'login') {
+        caminhoCss = './css/login.css';
+    } else if (nomePagina === 'cadastro') {
+        caminhoCss = '../css/cadastro.css';
+    }
 
-    return { navegar };
+    if (caminhoCss) {
+        const link = document.createElement('link');
+        link.id = 'estilo-Dinamico-pagina';
+        link.rel = 'stylesheet';
+        link.href = caminhoCss;
+        document.head.appendChild(link);
+    }
 }
 
-// Navegação programática (ex.: depois de concluir o cadastro).
-export function irPara(caminho) {
-    window.location.hash = caminho;
+function navegar() {
+    const app = document.getElementById('app');
+    if (!app) return;
+
+    const hash = window.location.hash || '#home';
+    app.innerHTML = '';
+
+    let conteudo = null;
+
+    switch (hash) {
+        case '#login':
+            trocarEstiloPagina('login');
+            conteudo = renderLoginPage();
+            break;
+
+        case '#tipo-cadastro':
+        case '#cadastro':
+            trocarEstiloPagina('cadastro');
+            conteudo = renderCadastroPage();
+            break;
+
+        case '#home':
+        default:
+            trocarEstiloPagina('home');
+            conteudo = renderHome();
+            break;
+    }
+
+    if (conteudo) {
+        // Se a página retornou o próprio app por engano, criamos um container novo para salvar a pátria
+        if (conteudo === app) {
+            const wrapperSeguro = document.createElement('div');
+            wrapperSeguro.innerHTML = `<p style="color: red; padding: 20px;">Erro: A função da página retornou o elemento #app diretamente.</p>`;
+            app.appendChild(wrapperSeguro);
+            return;
+        }
+
+        if (conteudo instanceof Node) {
+            app.appendChild(conteudo);
+        } else if (typeof conteudo === 'string') {
+            app.innerHTML = conteudo;
+        }
+    }
+}
+
+export function iniciarRouter() {
+    if (!window.__routerInitialized) {
+        window.__routerInitialized = true;
+        window.addEventListener('hashchange', navegar);
+        window.addEventListener('load', navegar);
+    }
+
+    navegar();
 }
