@@ -2,7 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { createClient } from '@supabase/supabase-js'; // Importa o cliente do Supabase
+import { createClient } from '@supabase/supabase-js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,12 +12,19 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, 'src', 'view'))); 
-
+// --- CONFIGURAÇÃO DE FICHEIROS ESTÁTICOS ---
+app.use(express.static(path.join(__dirname, 'src', 'view')));
+app.use('/view', express.static(path.join(__dirname, 'src', 'view'))); // Garante que /view/... funciona sem erros
 app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
+app.use('/src', express.static(path.join(__dirname, 'src')));
 
 // Inicializa o cliente do Supabase no backend
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_PUBLISHABLE_KEY);
+
+// --- ROTA RAIZ ---
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'src', 'view', 'index.html'));
+});
 
 // --- ROTA DE CONFIGURAÇÃO DO SUPABASE ---
 app.get('/api/supabase-config', (req, res) => {
@@ -63,18 +70,16 @@ app.post('/api/auth/verify-otp', async (req, res) => {
     }
 
     try {
-        // Valida o OTP de forma segura através do servidor
         const { data, error } = await supabase.auth.verifyOtp({
             email: email,
             token: token,
-            type: 'email' // ou 'signup' dependendo do fluxo
+            type: 'email'
         });
 
         if (error) {
             return res.status(400).json({ error: error.message });
         }
 
-        // Sucesso: Retorna a sessão e utilizador para o front-end
         return res.status(200).json({
             message: 'Autenticação bem-sucedida!',
             session: data.session,
