@@ -68,7 +68,7 @@
     width: 100%;
     padding: 14px;
     margin-top: 10px;
-    background-color: #305aff;
+    background-color: #1e40af;
     color: white;
     border: none;
     border-radius: 7px;
@@ -92,4 +92,41 @@
 
 .cadastro-form .linkNav:hover {
     text-decoration: underline;
+}
+/* Garante que o container da SPA e a página ocupem 100% da largura da tela */
+#app:has(.cadastro-container) {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.cadastro-container {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;               /* Ocupa 100% da largura da viewport */
+    min-height: 100vh;          /* Ocupa 100% da altura da viewport */
+    margin: 0;
+    padding: 30px 20px;
+    background-color: #e9f2fe;  /* Seu azul claro preenchendo a tela toda */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.cadastro-form {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 400px;           /* Limita apenas a caixa branca */
+    padding: 35px 40px;
+    background-color: #ffffff;
+    border: 1px solid #dbe3ef;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }

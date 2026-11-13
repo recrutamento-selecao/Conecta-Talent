@@ -1,11 +1,12 @@
 import createForm from "../components/form.js";
-import renderCadastroPage from "./cadastro.js";
+
 
 function renderLoginPage() {
-    const container = document.getElementById("login-container");
-
+    const container = document.getElementById("login-container") || document.createElement("div");
+    container.id = "login-container";
     container.innerHTML = "";
-
+    
+    // ... restante do seu código continua exatamente igual ...
     const titulo = document.createElement("h2");
     titulo.innerText = "Acesse sua conta";
     titulo.className = "titulo-login";
@@ -63,17 +64,14 @@ function renderLoginPage() {
     form.prepend(selecaoPerfil);
 
     const linkCadastro = document.createElement("a");
-    linkCadastro.href = "#";
+    linkCadastro.href = "#tipo-cadastro";
     linkCadastro.className = "linkNav";
     linkCadastro.textContent = "Não possui uma conta? Cadastre-se!";
 
     linkCadastro.addEventListener("click", (event) => {
         event.preventDefault();
-
-        container.innerHTML = "";
-        container.appendChild(
-            renderCadastroPage(() => renderLoginPage())
-        );
+        // Redireciona através do roteador por hash para a tela de cadastro
+        window.location.hash = "#tipo-cadastro";
     });
 
     container.appendChild(titulo);
@@ -105,6 +103,8 @@ function renderLoginPage() {
 
             if (response.ok) {
                 alert("Login realizado com sucesso!");
+                // Direciona o utilizador logado para a tela de vagas
+                window.location.hash = "#candidatoVagas";
             } else {
                 alert(dados.erro || "Não foi possível realizar o login.");
             }
@@ -113,6 +113,9 @@ function renderLoginPage() {
             console.log("Erro inesperado!", erro);
         }
     });
+
+  
+    return container;
 }
 
 export default renderLoginPage;

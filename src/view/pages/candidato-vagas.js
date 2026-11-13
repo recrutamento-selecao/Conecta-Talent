@@ -1,77 +1,73 @@
-
 import { criarSidebar } from '../components/sidebar.js';
 import { criarBarraBusca } from '../components/barra-busca.js';
-import { criarFiltrosVagas } from '../components/filtros-vagas.js';
+import { criarFiltrosVagas } from '../components/filtros-vaga.js';
 import { criarListaVagas } from '../components/lista-vagas.js';
 
-export default function candidatoVagas(dadosIniciais = {}) {
+const USUARIO_LOGADO = { nome: "João Oliveira", perfil: "candidato" };
 
-    const {
-        usuario = { nome: "João Oliveira", perfil: "candidato" },
-        vagas = [
-            { id: 1, titulo: "Analista de dados júnior", empresa: "Tech Data", localizacao: "Sorocaba, SP", modelo: "Híbrido", contrato: "CLT", nivel: "Júnior", salario: "3.500", dias: 2 },
-            { id: 2, titulo: "Analista de dados Pleno", empresa: "FinTech SA", localizacao: "São Paulo, SP", modelo: "Híbrido", contrato: "CLT", nivel: "Pleno", salario: "6.800", dias: 2 },
-            { id: 3, titulo: "Analista de dados júnior", empresa: "BlueCore Sistemas", localizacao: "Porto Feliz, SP", modelo: "Híbrido", contrato: "PJ", nivel: "Júnior", salario: "4.014", dias: 3 },
-            { id: 4, titulo: "Desenvolvedor Frontend", empresa: "TechCorp", localizacao: "São Paulo, SP", modelo: "Remoto", contrato: "CLT", nivel: "Sênior", salario: "10.000", dias: 1 }
-        ],
-        filtrosIniciais = { cargo: "", local: "" } // Começa vazio por padrão
-    } = dadosIniciais;
+const TODAS_AS_VAGAS = [
+    { id: 1, titulo: "Analista de dados júnior", empresa: "", localizacao: "Sorocaba, SP", modelo: "Híbrido", contrato: "CLT", nivel: "Júnior", salario: "3.500", dias: 2 },
+    { id: 2, titulo: "Analista de dados Pleno", empresa: "", localizacao: "São Paulo, SP", modelo: "Híbrido", contrato: "CLT", nivel: "Pleno", salario: "6.800", dias: 2 },
+    { id: 3, titulo: "Analista de dados júnior", empresa: "BlueCore Sistemas", localizacao: "Porto Feliz, SP", modelo: "Híbrido", contrato: "PJ", nivel: "Júnior", salario: "4.014", dias: 3 },
+    { id: 4, titulo: "Desenvolvedor Frontend", empresa: "TechCorp", localizacao: "São Paulo, SP", modelo: "Remoto", contrato: "CLT", nivel: "Sênior", salario: "10.000", dias: 1 }
+];
 
-    const FILTROS_DO_BANCO = [
-        {
-            chave: "localizacao",
-            titulo: "Localização",
-            opcoes: [
-                { rotulo: "São Paulo, SP", valor: "São Paulo, SP", selecionado: true },
-                { rotulo: "Sorocaba, SP", valor: "Sorocaba, SP", selecionado: true },
-                { rotulo: "Porto Feliz, SP", valor: "Porto Feliz, SP", selecionado: true }
-            ]
-        },
-        {
-            chave: "modelo",
-            titulo: "Modelo de trabalho",
-            opcoes: [
-                { rotulo: "Híbrido", valor: "Híbrido", selecionado: true },
-                { rotulo: "Presencial", valor: "Presencial", selecionado: false },
-                { rotulo: "Remoto", valor: "Remoto", selecionado: false }
-            ]
-        },
-        {
-            chave: "contrato",
-            titulo: "Tipo de contrato",
-            opcoes: [
-                { rotulo: "CLT", valor: "CLT", selecionado: true },
-                { rotulo: "PJ", valor: "PJ", selecionado: true }
-            ]
-        },
-        {
-            chave: "nivel",
-            titulo: "Nível de experiência",
-            opcoes: [
-                { rotulo: "Júnior", valor: "Júnior", selecionado: true },
-                { rotulo: "Pleno", valor: "Pleno", selecionado: true },
-                { rotulo: "Sênior", valor: "Sênior", selecionado: false }
-            ]
-        }
-    ];
+const FILTROS_DO_BANCO = [
+    {
+        chave: "localizacao",
+        titulo: "Localização",
+        opcoes: [
+            { rotulo: "São Paulo, SP", valor: "São Paulo, SP", selecionado: true },
+            { rotulo: "Sorocaba, SP", valor: "Sorocaba, SP", selecionado: true },
+            { rotulo: "Porto Feliz, SP", valor: "Porto Feliz, SP", selecionado: true }
+        ]
+    },
+    {
+        chave: "modelo",
+        titulo: "Modelo de trabalho",
+        opcoes: [
+            { rotulo: "Híbrido", valor: "Híbrido", selecionado: true },
+            { rotulo: "Presencial", valor: "Presencial", selecionado: false },
+            { rotulo: "Remoto", valor: "Remoto", selecionado: false }
+        ]
+    },
+    {
+        chave: "contrato",
+        titulo: "Tipo de contrato",
+        opcoes: [
+            { rotulo: "CLT", valor: "CLT", selecionado: true },
+            { rotulo: "PJ", valor: "PJ", selecionado: true }
+        ]
+    },
+    {
+        chave: "nivel",
+        titulo: "Nível de experiência",
+        opcoes: [
+            { rotulo: "Júnior", valor: "Júnior", selecionado: true },
+            { rotulo: "Pleno", valor: "Pleno", selecionado: true },
+            { rotulo: "Sênior", valor: "Sênior", selecionado: false }
+        ]
+    }
+];
 
-    // Variáveis de estado locais
-    let filtroTextoBusca = filtrosIniciais;
+export function renderCandidatoVagas() {
+    let filtroTextoBusca = { cargo: "Analista de Dados", local: "Sorocaba - SP" };
     let filtrosCheckbox = {};
 
-    // 1. Criação do Contêiner Principal da Página
-    const containerPagina = document.createElement("div");
-    containerPagina.style.display = "flex";
-    containerPagina.style.width = "100%";
-    containerPagina.style.minHeight = "100vh";
+    const containerPrincipal = document.createElement("div");
+    containerPrincipal.className = "pagina-candidato-vagas-wrapper";
+    containerPrincipal.style.display = "flex";
+    containerPrincipal.style.width = "100%";
+    containerPrincipal.style.minHeight = "100vh";
 
-    // 2. Instanciação da Sidebar
-    const sidebar = criarSidebar(usuario.perfil, usuario.nome);
-    containerPagina.appendChild(sidebar);
+    const sidebar = criarSidebar(USUARIO_LOGADO.perfil, USUARIO_LOGADO.nome);
+    containerPrincipal.appendChild(sidebar);
 
-    // 3. Criação da Área Principal de Conteúdo (Main)
+    // 2. Área de conteúdo principal
     const main = document.createElement("main");
     main.classList.add("conteudo-principal");
+    main.style.flex = "1";
+    main.style.padding = "2rem";
 
     const layout = document.createElement("div");
     layout.style.display = "flex";
@@ -81,9 +77,8 @@ export default function candidatoVagas(dadosIniciais = {}) {
     const containerListaVagasWrapper = document.createElement("div");
     containerListaVagasWrapper.style.flex = "1";
 
-    // 4. Lógica de Filtragem e Atualização
     const atualizarVagasExibidas = () => {
-        const vagasFiltradas = vagas.filter((vaga) => {
+        const vagasFiltradas = TODAS_AS_VAGAS.filter((vaga) => {
             const atendeCargo = !filtroTextoBusca.cargo ||
                 vaga.titulo.toLowerCase().includes(filtroTextoBusca.cargo.toLowerCase()) ||
                 vaga.empresa.toLowerCase().includes(filtroTextoBusca.cargo.toLowerCase());
@@ -103,7 +98,6 @@ export default function candidatoVagas(dadosIniciais = {}) {
         containerListaVagasWrapper.appendChild(criarListaVagas(vagasFiltradas));
     };
 
-    // 5. Montagem dos Componentes de Busca e Filtro
     const barraBuscaComponente = criarBarraBusca((cargo, local) => {
         filtroTextoBusca = { cargo, local };
         atualizarVagasExibidas();
@@ -115,16 +109,15 @@ export default function candidatoVagas(dadosIniciais = {}) {
         atualizarVagasExibidas();
     });
 
-    // 6. Junção de toda a estrutura
     layout.appendChild(filtrosComponente);
     layout.appendChild(containerListaVagasWrapper);
 
     main.appendChild(layout);
-    containerPagina.appendChild(main);
+    containerPrincipal.appendChild(main);
 
-    // 7. Chamada inicial para renderizar a lista
-    atualizarVagasExibidas();
+    setTimeout(() => {
+        atualizarVagasExibidas();
+    }, 0);
 
-    // 8. Retorno do elemento completo para o Router anexar à tela
-    return containerPagina;
+    return containerPrincipal;
 }
