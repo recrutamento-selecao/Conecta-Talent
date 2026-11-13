@@ -13,6 +13,9 @@ export function renderHome() {
     const heroSection = document.createElement('section');
     heroSection.classList.add('hero');
 
+    const heroWrapper = document.createElement('div');
+    heroWrapper.classList.add('hero-wrapper');
+
     const heroConteudo = document.createElement('div');
     heroConteudo.classList.add('hero-conteudo');
 
@@ -97,9 +100,9 @@ export function renderHome() {
     metricsBox.classList.add('container-metricas-flutuantes');
 
     const metricas = [
-        { icone: "/assets/icons/briefcase-azul.svg", valor: "+10.000", desc: "Vagas publicadas na plataforma" },
-        { icone: "/assets/icons/users-azul.svg", valor: "+8.000", desc: "Candidatos conectados" },
-        { icone: "/assets/icons/building-azul.svg", valor: "Empresas", desc: "de diversos segmentos" }
+        { icone: "/assets/icons/briefcase-branco.svg", valor: "+10.000", desc: "Vagas publicadas na plataforma" },
+        { icone: "/assets/icons/people.svg", valor: "+8.000", desc: "Candidatos conectados" },
+        { icone: "/assets/icons/building.svg", valor: "Empresas", desc: "de diversos segmentos" }
     ];
 
     metricas.forEach(m => {
@@ -118,8 +121,9 @@ export function renderHome() {
     heroImagemArea.appendChild(imagemHero);
     heroImagemArea.appendChild(metricsBox);
 
-    heroSection.appendChild(heroConteudo);
-    heroSection.appendChild(heroImagemArea);
+    heroWrapper.appendChild(heroConteudo);
+    heroWrapper.appendChild(heroImagemArea);
+    heroSection.appendChild(heroWrapper);
     main.appendChild(heroSection);
 
     const cardsBeneficio = document.createElement('section');
@@ -185,7 +189,7 @@ export function renderHome() {
     const dadosFluxos = [
         {
             tipo: 'candidato',
-            iconeHeader: '/assets/icons/user-group.svg', 
+            iconeHeader: '/assets/icons/people.svg',
             tituloHeader: 'Para Candidatos',
             subtituloHeader: 'Encontre vagas e impulsione sua carreira.',
             passos: [
@@ -198,7 +202,7 @@ export function renderHome() {
         },
         {
             tipo: 'empresa',
-            iconeHeader: '/assets/icons/building.svg', 
+            iconeHeader: '/assets/icons/building.svg',
             tituloHeader: 'Para Empresas',
             subtituloHeader: 'Encontre os melhores talentos para sua equipe.',
             passos: [
