@@ -4,13 +4,11 @@ import { criarListaVagas } from '../components/lista-vagas.js';
 import { criarHeader } from '../components/header.js';
 
 const TODAS_AS_VAGAS = [
-    // Vagas originais
+   
     { id: 1, titulo: "Analista de dados júnior", empresa: "Tech Data", localizacao: "Sorocaba, SP", modelo: "Híbrido", contrato: "CLT", nivel: "Júnior", salario: "3.500", dias: 2 },
     { id: 2, titulo: "Analista de dados Pleno", empresa: "FinTech SA", localizacao: "São Paulo, SP", modelo: "Híbrido", contrato: "CLT", nivel: "Pleno", salario: "6.800", dias: 2 },
     { id: 3, titulo: "Analista de dados júnior", empresa: "BlueCore Sistemas", localizacao: "Porto Feliz, SP", modelo: "Híbrido", contrato: "PJ", nivel: "Júnior", salario: "4.014", dias: 3 },
     { id: 4, titulo: "Desenvolvedor Frontend", empresa: "TechCorp", localizacao: "São Paulo, SP", modelo: "Remoto", contrato: "CLT", nivel: "Sênior", salario: "10.000", dias: 1 },
-
-    // Novas vagas variadas
     { id: 5, titulo: "Assistente Administrativo", empresa: "Grupo Votorantim Logística", localizacao: "Sorocaba, SP", modelo: "Presencial", contrato: "CLT", nivel: "Júnior", salario: "2.450", dias: 1 },
     { id: 6, titulo: "Atendente de Loja / Vendas", empresa: "Moda & Estilo Brasil", localizacao: "Sorocaba, SP", modelo: "Presencial", contrato: "CLT", nivel: "Júnior", salario: "2.100", dias: 1 },
     { id: 7, titulo: "Auxiliar de Logística e Estoque", empresa: "TransRápido Express", localizacao: "Porto Feliz, SP", modelo: "Presencial", contrato: "CLT", nivel: "Júnior", salario: "2.300", dias: 3 },
