@@ -1,24 +1,84 @@
 /* =========================================
-   1. LAYOUT GERAL DA PÁGINA PÚBLICA
+   1. LAYOUT GERAL DA PÁGINA PÚBLICA DE VAGAS
    ========================================= */
-.inicio-container-publico {
+.page-vagas-inicio {
     width: 100%;
     min-height: 100vh;
     background-color: #f8fafc;
     font-family: 'Inter', 'Lato', sans-serif;
-    padding-bottom: 4rem;
+    display: flex;
+    flex-direction: column;
     margin: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 /* Esconde o botão de favoritar (bandeirinha) na área pública */
-.inicio-container-publico .btn-favoritar {
+.page-vagas-inicio .btn-favoritar {
     display: none !important;
 }
 
+/* =========================================
+   2. BARRA DE BUSCA (TOPO)
+   ========================================= */
+.topo-busca-container {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 2.5rem 1rem 2.5rem;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.barra-busca-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0;
+}
 
 /* =========================================
-   2. COMPONENTE: LISTA DE VAGAS E CARDS
-   (Baseado no seu design original)
+   3. CORPO: LAYOUT DE FILTROS + LISTA DE VAGAS
+   ========================================= */
+.layout-vagas-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 1rem 2.5rem 3rem 1.25rem;
+    /* ⬅️ Reduzido o padding esquerdo (de 2.5rem para 1.25rem) para o filtro ir mais à esquerda */
+    box-sizing: border-box;
+    padding: 1rem 2.5rem 3rem 0; /* ⬅️ Mude de 1.25rem para 0 (ou 0.5rem se quiser um respiro mínimo) */
+}
+
+.filtros-lateral {
+    flex-shrink: 0;
+}
+
+.area-central-vagas {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.lista-vagas-wrapper {
+    width: 100%;
+    max-width: 980px;
+    /* ⬅️ Aumentado de 860px para 980px para esticar os cards */
+}
+
+/* =========================================
+   4. COMPONENTE: LISTA DE VAGAS E CARDS
    ========================================= */
 .container-lista-vagas {
     display: flex;
@@ -27,52 +87,18 @@
     width: 100%;
 }
 
-.lista-vagas-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-}
-
-.vagas-contador {
-    font-size: 1rem;
-    font-weight: 700;
-    color: #0f172a;
-}
-
-.ordenar-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    color: #475569;
-}
-
-.select-ordenar {
-    padding: 0.4rem 0.8rem;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    background-color: #ffffff;
-    font-size: 0.875rem;
-    color: #0f172a;
-    outline: none;
-    cursor: pointer;
-}
-
-.cards-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
+/* ... (cabeçalho da lista continua igual) ... */
 
 .card-vaga {
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-    padding: 1.25rem 1.5rem;
+    padding: 2rem 2rem;
+    /* ⬅️ Aumentado o padding interno para o card ficar mais robusto e espaçoso */
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1.5rem;
+    /* ⬅️ Espaçamento interno um pouco maior entre os elementos */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
@@ -82,6 +108,11 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+.cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* ⬅️ Aumente de 1rem para 1.5rem ou 2rem para dar mais espaço entre os cards */
+}
 .card-vaga-logo {
     width: 48px;
     height: 48px;
@@ -94,8 +125,8 @@
 }
 
 .card-vaga-logo img {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     object-fit: contain;
 }
 
@@ -163,26 +194,6 @@
     font-weight: 500;
 }
 
-.btn-favoritar {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0.2rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.15s ease;
-}
-
-.btn-favoritar:hover {
-    transform: scale(1.1);
-}
-
-.btn-favoritar.salvo .icone-bookmark {
-    fill: #2563eb;
-    stroke: #2563eb;
-}
-
 .card-vaga-botoes {
     display: flex;
     align-items: center;
@@ -231,101 +242,36 @@
     text-align: center;
 }
 
-.inicio-layout-corpo {
-    display: flex;
-    align-items: flex-start;
-    gap: 2.5rem;
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 1.5rem 2.5rem 3rem 1.25rem;
-    box-sizing: border-box;
-}
-
-.inicio-area-vagas {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.inicio-vagas-wrapper {
-    width: 100%;
-    max-width: 860px;
-}
-
-/* Remove margens/paddings do container principal que seguram o header nas laterais */
-.inicio-conteudo-principal.inicio-container-publico {
-    width: 100%;
-    max-width: 100%;
-    padding-left: 0;
-    padding-right: 0;
-    margin: 0;
-}
-
-/* Faz o header preencher 100% da largura de ponta a ponta */
-.inicio-container-publico .header {
+/* =========================================
+   5. HEADER PÚBLICO E LOGO
+   ========================================= */
+.page-vagas-inicio .header {
     width: 100%;
     max-width: 100%;
     margin: 0;
-    padding: 1rem 3rem;
-    background-color: #1d4ed8;
-    /* ou o azul exato que já estava aparecendo */
-    box-sizing: border-box;
-    border-radius: 0;
-}
-
-
-body:has(.inicio-container-publico),
-#app:has(.inicio-container-publico) {
-    width: 100%;
-    max-width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin: 0 !important;
-}
-
-
-.inicio-container-publico .header {
-    width: 100vw;
-    max-width: 100vw !important;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
     padding: 1rem 3rem;
     box-sizing: border-box;
     border-radius: 0;
 }
 
-/* Texto "Conecta Talent" ao lado do ícone no header público */
-.inicio-container-publico .logo-container {
+.page-vagas-inicio .logo-container {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 700;
-    
     margin: 0;
 }
 
-.inicio-container-publico .logo-texto {
+.page-vagas-inicio .logo-texto {
     color: #93c5fd;
     font-size: 1.25rem;
     font-weight: 400;
     letter-spacing: -0.01em;
-    padding: 0.35rem 0.9rem;
     white-space: nowrap;
-    font-size: 1.1rem;
     margin-left: 0.25rem;
-    font-size: 1.25rem;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    white-space: nowrap;
 }
 
-
-
-.inicio-container-publico .logo-texto strong {
+.page-vagas-inicio .logo-texto strong {
     color: #ffffff;
     font-weight: 700;
-    /* Bold para "Conecta" */
 }

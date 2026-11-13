@@ -4,8 +4,7 @@ import { renderRecursos } from '../pages/recursos.js';
 import { renderSobreNos } from '../pages/sobre-nos.js';
 import { renderSuporte } from '../pages/suporte.js';
 import { renderCandidatoVagas } from '../pages/candidato-vagas.js';
-
-// Função auxiliar para carregar o CSS específico de cada página e remover os anteriores
+import { renderLogin } from '../pages/login.js';
 function trocarEstiloPagina(nomePagina) {
     const estiloAnterior = document.getElementById('estilo-Dinamico-pagina');
     if (estiloAnterior) {
@@ -31,6 +30,8 @@ function trocarEstiloPagina(nomePagina) {
         caminhoCss = './view/css/login.css'; 
     } else if (nomePagina === 'candidato-vagas') {
         caminhoCss = './view/css/candidato-vagas.css'; 
+    } else if (nomePagina === 'vagas-inicio') {
+        caminhoCss = './view/css/vagas-inicio.css'; // <-- 2. Caminho do CSS da nova página (ajuste o nome se necessário)
     }
 
     if (caminhoCss) {
@@ -70,11 +71,16 @@ export function iniciarRouter() {
                 trocarEstiloPagina('candidato-vagas');
                 app.appendChild(renderCandidatoVagas());
                 break;
+          
             case '#home':
             case '':
             default:
                 trocarEstiloPagina('home');
                 app.appendChild(renderHome());
+                break;
+               case '#login':
+                trocarEstiloPagina('login');
+                app.appendChild(renderLogin());
                 break;
         }
 
