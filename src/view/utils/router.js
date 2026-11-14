@@ -1,7 +1,11 @@
-import renderCadastroPage from '../pages/cadastro.js';
-import renderLoginPage from '../pages/login.js';
 import { renderHome } from '../pages/home.js';
+import { renderSobreNos } from '../pages/sobre-nos.js';
+import { renderRecursos } from '../pages/recursos.js';
+import { renderPlanos } from '../pages/planos.js';
+import { renderSuporte } from '../pages/suporte.js';
+import renderLoginPage from '../pages/login.js'; // <--- 1. IMPORTAR A PÁGINA DE LOGIN (ajuste o caminho se necessário)
 
+// Função auxiliar para carregar o CSS específico de cada página e remover os anteriores
 function trocarEstiloPagina(nomePagina) {
     const estiloAnterior = document.getElementById('estilo-Dinamico-pagina');
     if (estiloAnterior) {
@@ -9,10 +13,24 @@ function trocarEstiloPagina(nomePagina) {
     }
 
     let caminhoCss = null;
-    if (nomePagina === 'login') {
-        caminhoCss = './css/login.css';
+    if (nomePagina === 'dashboard-empresa') {
+        caminhoCss = './view/css/dashboard-empresa.css';
+    } else if (nomePagina === 'dashboard-candidato') {
+        caminhoCss = './view/css/dashboard-candidato.css';
+    } else if (nomePagina === 'dashboard-recrutador') {
+        caminhoCss = './view/css/dashboard-recrutador.css';
+    } else if (nomePagina === 'dashboard-administrador') {
+        caminhoCss = './view/css/dashboard-administrador.css'; 
+    } else if (nomePagina === 'autenticacao2FA' || nomePagina === 'verificacao') {
+        caminhoCss = './view/css/autenticacao2FA.css';
+    } else if (nomePagina === 'mfa-config') {
+        caminhoCss = './view/css/mfaConfig.css'; 
     } else if (nomePagina === 'cadastro') {
-        caminhoCss = '../css/cadastro.css';
+        caminhoCss = './view/css/cadastro.css'; 
+    } else if (nomePagina === 'login') {
+        caminhoCss = './view/css/login.css'; 
+    } else if (nomePagina === 'candidato-vagas') {
+        caminhoCss = './view/css/candidato-vagas.css'; 
     }
 
     if (caminhoCss) {
@@ -24,57 +42,71 @@ function trocarEstiloPagina(nomePagina) {
     }
 }
 
-function navegar() {
-    const app = document.getElementById('app');
-    if (!app) return;
-
-    const hash = window.location.hash || '#home';
-    app.innerHTML = '';
-
-    let conteudo = null;
-
-    switch (hash) {
-        case '#login':
-            trocarEstiloPagina('login');
-            conteudo = renderLoginPage();
-            break;
-
-        case '#tipo-cadastro':
-        case '#cadastro':
-            trocarEstiloPagina('cadastro');
-            conteudo = renderCadastroPage();
-            break;
-
-        case '#home':
-        default:
-            trocarEstiloPagina('home');
-            conteudo = renderHome();
-            break;
-    }
-
-    if (conteudo) {
-        // Se a página retornou o próprio app por engano, criamos um container novo para salvar a pátria
-        if (conteudo === app) {
-            const wrapperSeguro = document.createElement('div');
-            wrapperSeguro.innerHTML = `<p style="color: red; padding: 20px;">Erro: A função da página retornou o elemento #app diretamente.</p>`;
-            app.appendChild(wrapperSeguro);
-            return;
-        }
-
-        if (conteudo instanceof Node) {
-            app.appendChild(conteudo);
-        } else if (typeof conteudo === 'string') {
-            app.innerHTML = conteudo;
-        }
-    }
-}
-
 export function iniciarRouter() {
-    if (!window.__routerInitialized) {
-        window.__routerInitialized = true;
-        window.addEventListener('hashchange', navegar);
-        window.addEventListener('load', navegar);
+    const app = document.getElementById('app');
+
+    function navegar() {
+        const hash = window.location.hash;
+        app.innerHTML = '';
+
+        switch (hash) {
+            case '#sobre-nos':
+                trocarEstiloPagina('sobre-nos');
+                app.appendChild(renderSobreNos());
+                break;
+            case '#recursos':
+                trocarEstiloPagina('recursos');
+                app.appendChild(renderRecursos());
+                break;
+            case '#planos':
+                trocarEstiloPagina('planos');
+                app.appendChild(renderPlanos());
+                break;
+            case '#suporte':
+                trocarEstiloPagina('suporte');
+                app.appendChild(renderSuporte());
+                break;
+            case '#login': // <--- 2. ADICIONAR O CASE DO LOGIN AQUI
+                trocarEstiloPagina('login');
+                app.appendChild(renderLoginPage());
+              break;
+            case '#dashboard-candidato':
+                trocarEstiloPagina('dashboard-candidato');
+                app.appendChild(renderDashboardCandidato());
+                break;
+            case '#dashboard-empresa':
+                trocarEstiloPagina('dashboard-empresa');
+                app.appendChild(renderDashboardEmpresa());
+                break;
+            case '#dashboard-recrutador':
+                trocarEstiloPagina('dashboard-recrutador');
+                app.appendChild(renderDashboardRecrutador());
+                break;
+            case '#dashboard-administrador': 
+                trocarEstiloPagina('dashboard-administrador');
+                app.appendChild(renderDashboardAdministrador());
+                break;
+            case '#verificacao':
+            case '#2fa':
+                trocarEstiloPagina('verificacao');
+                app.appendChild(renderVerificacao());
+                break;
+            case '#mfa-config':
+            case '#mfa':
+                trocarEstiloPagina('mfa-config');
+                app.appendChild(renderMFAConfig());
+                break;
+            case '#home':
+            case '':
+            default:
+                trocarEstiloPagina('home');
+                app.appendChild(renderHome());
+                break;
+        }
+
+        window.scrollTo(0, 0);
     }
 
-    navegar();
+    window.addEventListener('hashchange', navegar);
+    window.addEventListener('load', navegar);
 }
