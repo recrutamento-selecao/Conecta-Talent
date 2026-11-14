@@ -5,34 +5,29 @@ import { renderSobreNos } from '../pages/sobre-nos.js';
 import { renderSuporte } from '../pages/suporte.js';
 import { renderCandidatoVagas } from '../pages/candidato-vagas.js';
 import { renderLogin } from '../pages/login.js';
+import { renderCadastro } from '../pages/cadastro.js'; 
+import { renderVagasInicio } from '../pages/vagas-inicio.js'; // ou o caminho correspondente
+
 function trocarEstiloPagina(nomePagina) {
     const estiloAnterior = document.getElementById('estilo-Dinamico-pagina');
     if (estiloAnterior) {
         estiloAnterior.remove();
     }
 
-    let caminhoCss = null;
-    if (nomePagina === 'dashboard-empresa') {
-        caminhoCss = './view/css/dashboard-empresa.css';
-    } else if (nomePagina === 'dashboard-candidato') {
-        caminhoCss = './view/css/dashboard-candidato.css';
-    } else if (nomePagina === 'dashboard-recrutador') {
-        caminhoCss = './view/css/dashboard-recrutador.css';
-    } else if (nomePagina === 'dashboard-administrador') {
-        caminhoCss = './view/css/dashboard-administrador.css'; 
-    } else if (nomePagina === 'autenticacao2FA' || nomePagina === 'verificacao') {
-        caminhoCss = './view/css/autenticacao2FA.css';
-    } else if (nomePagina === 'mfa-config') {
-        caminhoCss = './view/css/mfaConfig.css'; 
-    } else if (nomePagina === 'cadastro') {
-        caminhoCss = './view/css/cadastro.css'; 
-    } else if (nomePagina === 'login') {
-        caminhoCss = './view/css/login.css'; 
-    } else if (nomePagina === 'candidato-vagas') {
-        caminhoCss = './view/css/candidato-vagas.css'; 
-    } else if (nomePagina === 'vagas-inicio') {
-        caminhoCss = './view/css/vagas-inicio.css'; // <-- 2. Caminho do CSS da nova página (ajuste o nome se necessário)
-    }
+    const estilosMap = {
+        'cadastro': './view/css/cadastro.css',
+        'login': './view/css/login.css',
+        'candidato-vagas': './view/css/candidato-vagas.css',
+        'vagas-inicio': './view/css/vagas-inicio.css',
+        'home': './view/css/home.css',
+        'sobre-nos': './view/css/sobre-nos.css',
+        'recursos': './view/css/recursos.css',
+        'planos': './view/css/planos.css',
+        'suporte': './view/css/suporte.css'
+        
+    };
+
+    const caminhoCss = estilosMap[nomePagina];
 
     if (caminhoCss) {
         const link = document.createElement('link');
@@ -51,6 +46,18 @@ export function iniciarRouter() {
         app.innerHTML = '';
 
         switch (hash) {
+            case '#vagasinicio':
+                trocarEstiloPagina('vagasinicio')
+                app.appendChild(renderVagasInicio());
+                break;
+            case '#login':
+                trocarEstiloPagina('login');
+                app.appendChild(renderLogin());
+                break;
+            case '#cadastro': // <-- Rota de cadastro adicionada
+                trocarEstiloPagina('cadastro');
+                app.appendChild(renderCadastro());
+                break;
             case '#sobre-nos':
                 trocarEstiloPagina('sobre-nos');
                 app.appendChild(renderSobreNos());
@@ -71,16 +78,11 @@ export function iniciarRouter() {
                 trocarEstiloPagina('candidato-vagas');
                 app.appendChild(renderCandidatoVagas());
                 break;
-          
             case '#home':
             case '':
             default:
                 trocarEstiloPagina('home');
                 app.appendChild(renderHome());
-                break;
-               case '#login':
-                trocarEstiloPagina('login');
-                app.appendChild(renderLogin());
                 break;
         }
 

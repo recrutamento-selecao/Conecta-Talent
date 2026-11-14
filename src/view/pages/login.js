@@ -1,12 +1,11 @@
 import createForm from "../components/form.js";
 
-
 export function renderLogin() {
     const container = document.getElementById("login-container") || document.createElement("div");
     container.id = "login-container";
     container.innerHTML = "";
     
-    // ... todo o seu código do meio continua exatamente igual ...
+ 
     const titulo = document.createElement("h2");
     titulo.innerText = "Acesse sua conta";
     titulo.className = "titulo-login";
@@ -63,16 +62,16 @@ export function renderLogin() {
     selecaoPerfil.append(btnCandidato, btnEmpresa);
     form.prepend(selecaoPerfil);
 
-    const linkCadastro = document.createElement("a");
-    linkCadastro.href = "#tipo-cadastro";
-    linkCadastro.className = "linkNav";
-    linkCadastro.textContent = "Não possui uma conta? Cadastre-se!";
+    // Localiza esta parte no teu login.js e altera o hash para "#cadastro":
+const linkCadastro = document.createElement("a");
+linkCadastro.href = "#cadastro";
+linkCadastro.className = "linkNav";
+linkCadastro.textContent = "Não possui uma conta? Cadastre-se!";
 
-    linkCadastro.addEventListener("click", (event) => {
-        event.preventDefault();
-        window.location.hash = "#tipo-cadastro";
-    });
-
+linkCadastro.addEventListener("click", (event) => {
+    event.preventDefault();
+    window.location.hash = "#cadastro";
+});
     container.appendChild(titulo);
     container.appendChild(formContainer);
     container.appendChild(linkCadastro);

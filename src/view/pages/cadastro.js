@@ -1,4 +1,4 @@
-const renderCadastroPage = () => {
+export const renderCadastro = () => {
     const container = document.createElement("div");
     container.className = "cadastro-container";
 
@@ -116,5 +116,3 @@ const renderCadastroPage = () => {
 
     return container;
 };
-
-export default renderCadastroPage;
