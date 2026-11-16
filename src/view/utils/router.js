@@ -43,7 +43,7 @@ export function iniciarRouter() {
 
     function navegar() {
         const hash = window.location.hash;
-        app.innerHTML = '';
+        app.innerHTML = ''
 
         switch (hash) {
             case '#vagasinicio':
@@ -54,7 +54,7 @@ export function iniciarRouter() {
                 trocarEstiloPagina('login');
                 app.appendChild(renderLogin());
                 break;
-            case '#cadastro': // <-- Rota de cadastro adicionada
+            case '#cadastro': 
                 trocarEstiloPagina('cadastro');
                 app.appendChild(renderCadastro());
                 break;

@@ -9,15 +9,7 @@ const TODAS_AS_VAGAS = [
     { id: 2, titulo: "Analista de dados Pleno", empresa: "FinTech SA", localizacao: "São Paulo, SP", modelo: "Híbrido", contrato: "CLT", nivel: "Pleno", salario: "6.800", dias: 2 },
     { id: 3, titulo: "Analista de dados júnior", empresa: "BlueCore Sistemas", localizacao: "Porto Feliz, SP", modelo: "Híbrido", contrato: "PJ", nivel: "Júnior", salario: "4.014", dias: 3 },
     { id: 4, titulo: "Desenvolvedor Frontend", empresa: "TechCorp", localizacao: "São Paulo, SP", modelo: "Remoto", contrato: "CLT", nivel: "Sênior", salario: "10.000", dias: 1 },
-    { id: 5, titulo: "Assistente Administrativo", empresa: "Grupo Votorantim Logística", localizacao: "Sorocaba, SP", modelo: "Presencial", contrato: "CLT", nivel: "Júnior", salario: "2.450", dias: 1 },
-    { id: 6, titulo: "Atendente de Loja / Vendas", empresa: "Moda & Estilo Brasil", localizacao: "Sorocaba, SP", modelo: "Presencial", contrato: "CLT", nivel: "Júnior", salario: "2.100", dias: 1 },
-    { id: 7, titulo: "Auxiliar de Logística e Estoque", empresa: "TransRápido Express", localizacao: "Porto Feliz, SP", modelo: "Presencial", contrato: "CLT", nivel: "Júnior", salario: "2.300", dias: 3 },
-    { id: 8, titulo: "Analista de Marketing Digital", empresa: "Agência Impulso", localizacao: "São Paulo, SP", modelo: "Remoto", contrato: "PJ", nivel: "Pleno", salario: "4.800", dias: 2 },
-    { id: 9, titulo: "Recepcionista Bilíngue", empresa: "Hotel Plaza Executive", localizacao: "Sorocaba, SP", modelo: "Presencial", contrato: "CLT", nivel: "Júnior", salario: "2.600", dias: 4 },
-    { id: 10, titulo: "Técnico de Suporte em TI", empresa: "InovaSistemas", localizacao: "Votorantim, SP", modelo: "Híbrido", contrato: "CLT", nivel: "Júnior", salario: "2.900", dias: 1 },
-    { id: 11, titulo: "Consultor Comercial Interno", empresa: "Conecta Soluções", localizacao: "Porto Feliz, SP", modelo: "Híbrido", contrato: "CLT", nivel: "Pleno", salario: "3.400", dias: 5 },
-    { id: 12, titulo: "Assistente de Recursos Humanos", empresa: "RH Integrado", localizacao: "Sorocaba, SP", modelo: "Híbrido", contrato: "CLT", nivel: "Júnior", salario: "2.750", dias: 2 }
-];
+   ];
 
 const FILTROS_DO_BANCO = [
     {

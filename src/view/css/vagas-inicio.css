@@ -32,8 +32,8 @@
 .topo-busca-container {
     display: flex;
     justify-content: center;
-    padding: 1.5rem 2.5rem 1rem 2.5rem;
-    max-width: 1600px;
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+    max-width: 1250px;
     margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
@@ -51,30 +51,30 @@
 .layout-vagas-container {
     display: flex;
     align-items: flex-start;
+    justify-content: center;
     gap: 2.5rem;
     width: 100%;
-    max-width: 1600px;
+    max-width: 1250px;
     margin: 0 auto;
-    padding: 1rem 2.5rem 3rem 1.25rem;
-    /* ⬅️ Reduzido o padding esquerdo (de 2.5rem para 1.25rem) para o filtro ir mais à esquerda */
+    padding: 1rem 1.5rem 3rem 1.5rem;
     box-sizing: border-box;
-    padding: 1rem 2.5rem 3rem 0; /* ⬅️ Mude de 1.25rem para 0 (ou 0.5rem se quiser um respiro mínimo) */
 }
 
 .filtros-lateral {
     flex-shrink: 0;
+    width: 280px;
 }
 
 .area-central-vagas {
     flex: 1;
     display: flex;
     justify-content: center;
+    min-width: 0;
 }
 
 .lista-vagas-wrapper {
     width: 100%;
-    max-width: 980px;
-    /* ⬅️ Aumentado de 860px para 980px para esticar os cards */
+    max-width: 860px;
 }
 
 /* =========================================
@@ -87,18 +87,14 @@
     width: 100%;
 }
 
-/* ... (cabeçalho da lista continua igual) ... */
-
 .card-vaga {
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
     padding: 2rem 2rem;
-    /* ⬅️ Aumentado o padding interno para o card ficar mais robusto e espaçoso */
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    /* ⬅️ Espaçamento interno um pouco maior entre os elementos */
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
     transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
@@ -111,8 +107,9 @@
 .cards-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 2rem; /* ⬅️ Aumente de 1rem para 1.5rem ou 2rem para dar mais espaço entre os cards */
+    gap: 2rem;
 }
+
 .card-vaga-logo {
     width: 48px;
     height: 48px;
