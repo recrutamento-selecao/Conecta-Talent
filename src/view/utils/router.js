@@ -11,6 +11,7 @@ import { renderDashboardEmpresa } from '../pages/dashboard-empresa.js';
 import { renderDashboardRecrutador } from '../pages/dashboard-recrutador.js';
 import { renderDashboardAdministrador } from '../pages/dashboard-administrador.js'; 
 import { renderCandidatoVagas } from '../pages/candidato-vagas.js';
+import { renderMeusDados } from '../pages/meus-dados.js'; // <- Importação correta
 
 // Função auxiliar para carregar o CSS específico de cada página e remover os anteriores
 function trocarEstiloPagina(nomePagina) {
@@ -38,6 +39,8 @@ function trocarEstiloPagina(nomePagina) {
         caminhoCss = './view/css/login.css'; 
     } else if (nomePagina === 'candidato-vagas') {
         caminhoCss = './view/css/candidato-vagas.css'; 
+    } else if (nomePagina === 'meus-dados') {
+        caminhoCss = './view/css/meus-dados.css'; 
     }
 
     if (caminhoCss) {
@@ -107,8 +110,12 @@ export function iniciarRouter() {
                 trocarEstiloPagina('mfa-config');
                 app.appendChild(renderMFAConfig());
                 break;
+            case '#meus-dados':
+            case '#meus-dados-candidato':
+                trocarEstiloPagina('meus-dados');
+                app.appendChild(renderMeusDados());
+                break;
             case '#home':
-            case '':
             default:
                 trocarEstiloPagina('home');
                 app.appendChild(renderHome());

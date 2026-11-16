@@ -1,0 +1,317 @@
+/* ==========================================================================
+   Layout Geral da Página de Gerenciar Vagas
+   ========================================================================== */
+.pagina-layout-dashboard {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1e293b;
+}
+
+.conteudo-principal {
+    flex: 1;
+    padding: 32px 40px;
+    overflow-y: auto;
+    max-width: calc(100vw - 260px);
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 16px;
+}
+
+.breadcrumb span:last-child {
+    color: #1e293b;
+    font-weight: 500;
+}
+
+/* Título e Subtítulo */
+.titulo-pagina {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+}
+
+.subtitulo-pagina {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 24px;
+}
+
+/* ==========================================================================
+   Cards de Resumo (KPIs no topo)
+   ========================================================================== */
+.container-kpis-vagas {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.card-kpi {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.card-kpi span {
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.card-kpi h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.indicador-ponto {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.ponto-verde { background-color: #22c55e; }
+.ponto-amarelo { background-color: #eab308; }
+.ponto-vermelho { background-color: #ef4444; }
+
+/* ==========================================================================
+   Barra de Filtros
+   ========================================================================== */
+.barra-filtros-tabela {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    align-items: center;
+    width: 100%;
+}
+
+.filtro-busca {
+    flex: 2;
+    min-width: 260px;
+}
+
+.filtro-busca input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    background-color: #fff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.filtro-busca input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.filtro-selects {
+    display: flex;
+    gap: 12px;
+    flex: 3;
+}
+
+.filtro-selects select {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #334155;
+    outline: none;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   Grid Principal (Tabela + Painel Lateral)
+   ========================================================================== */
+.layout-tabela-detalhes {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.container-tabela-principal {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* ==========================================================================
+   Painel Lateral de Detalhes da Vaga
+   ========================================================================== */
+.painel-detalhes-lateral {
+    width: 420px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.cabecalho-detalhes-vaga {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.titulo-vaga-painel h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+}
+
+.codigo-vaga-painel {
+    font-size: 12px;
+    color: #64748b;
+    font-family: monospace;
+}
+
+.btn-fechar-painel {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #64748b;
+}
+
+/* Abas de Detalhes */
+.abas-detalhes {
+    display: flex;
+    width: 100%;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 20px;
+}
+
+.aba-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    position: relative;
+}
+
+.aba-btn.ativo {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+.aba-btn.ativo::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #2563eb;
+}
+
+.lista-infos-detalhes {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 10px;
+}
+
+.rotulo-info {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.valor-info {
+    color: #0f172a;
+    font-weight: 500;
+}
+
+/* Seção Recrutador Responsável no Painel */
+.secao-recrutador-responsavel {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 24px;
+}
+
+.secao-recrutador-responsavel h5 {
+    font-size: 12px;
+    color: #64748b;
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+}
+
+/* Rodapé de Ações do Painel de Aprovação */
+.rodape-acoes-aprovacao {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btn-aprovar {
+    background-color: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-aprovar:hover { background-color: #15803d; }
+
+.btn-solicitar {
+    background-color: #fff;
+    border: 1px solid #cbd5e1;
+    color: #2563eb;
+    border-radius: 6px;
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-solicitar:hover { background-color: #f1f5f9; }
+
+.btn-reprovar {
+    background-color: #fff;
+    border: 1px solid #fca5a5;
+    color: #dc2626;
+    border-radius: 6px;
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-reprovar:hover { background-color: #fef2f2; }
