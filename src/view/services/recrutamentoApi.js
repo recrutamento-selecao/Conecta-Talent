@@ -1,15 +1,30 @@
-const CHAVE_DEMO = "conectaTalentThiago";
+const CHAVE_DEMO = "conectaTalentAtividade";
 
-function salvarTemporariamente(tipo, dados) {
-  const registros = JSON.parse(localStorage.getItem(CHAVE_DEMO) || "{}");
-  registros[tipo] = dados;
-  localStorage.setItem(CHAVE_DEMO, JSON.stringify(registros));
-  return Promise.resolve({ sucesso: true, dados });
+function lerRegistros() {
+  try {
+    return JSON.parse(localStorage.getItem(CHAVE_DEMO) || "{}");
+  } catch {
+    return {};
+  }
 }
 
-// Contratos temporários da View. Na integração, estas funções devem usar fetch relativo em /api.
+function salvarTemporariamente(tipo, dados) {
+  const registros = lerRegistros();
+  registros[tipo] = dados;
+  localStorage.setItem(CHAVE_DEMO, JSON.stringify(registros));
+  return Promise.resolve({ sucesso: true, dados, armazenamento: "localStorage" });
+}
+
+export function obterDadosLocais(tipo) {
+  return lerRegistros()[tipo] || null;
+}
+
 export function criarVaga(dados) {
   return salvarTemporariamente("vagaCriada", dados);
+}
+
+export function salvarRascunhoVaga(dados) {
+  return salvarTemporariamente("rascunhoVaga", dados);
 }
 
 export function atualizarVaga(dados) {
@@ -17,13 +32,32 @@ export function atualizarVaga(dados) {
 }
 
 export function criarRecrutador(dados) {
-  return salvarTemporariamente("recrutador", dados);
+  const dadosSeguros = { ...dados };
+  delete dadosSeguros.senha;
+  delete dadosSeguros.confirmacaoSenha;
+  return salvarTemporariamente("recrutador", dadosSeguros);
 }
 
 export function atualizarPerfil(dados) {
   return salvarTemporariamente("perfil", dados);
 }
 
-export function alterarSenha(dados) {
-  return salvarTemporariamente("alteracaoSenha", { alteradaEm: dados.alteradaEm });
+export function alterarEmail(dados) {
+  return salvarTemporariamente("alteracaoEmail", {
+    email: dados.email,
+    alteradoEm: new Date().toISOString()
+  });
+}
+
+export function alterarSenha() {
+  return salvarTemporariamente("alteracaoSenha", {
+    alteradaEm: new Date().toISOString()
+  });
+}
+
+export function solicitarExclusaoConta() {
+  return salvarTemporariamente("solicitacaoExclusao", {
+    solicitadaEm: new Date().toISOString(),
+    status: "simulacao-local"
+  });
 }

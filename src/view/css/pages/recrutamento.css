@@ -1,354 +1,948 @@
+.pagina-recrutamento [hidden] {
+  display: none !important;
+}
+
 .pagina-recrutamento {
+  --ct-azul: #1746d1;
+  --ct-azul-escuro: #12369e;
+  --ct-azul-claro: #edf3ff;
+  --ct-ciano: #22b8cf;
+  --ct-texto: #15213a;
+  --ct-suave: #64718b;
+  --ct-borda: #dbe3f0;
+  --ct-fundo: #f4f7fc;
+  --ct-verde: #18a875;
+  --ct-vermelho: #d83b4d;
+  width: 100%;
   min-height: 100vh;
-  display: flex;
-  background: #f3f6fb;
-}
-
-.pagina-recrutamento .sidebar-comum {
-  position: sticky;
-  top: 0;
-  width: 230px;
-  height: 100vh;
-  flex: 0 0 230px;
-  display: flex;
-  flex-direction: column;
-  padding: 28px 16px 20px;
-  color: #fff;
-  background: linear-gradient(180deg, #245de8, #143ca8);
-  box-shadow: 8px 0 26px rgba(20, 60, 168, .18);
-}
-
-.pagina-recrutamento .sidebar-marca {
-  margin: 0 10px 30px;
-  font-size: 21px;
-  font-weight: 700;
-}
-
-.pagina-recrutamento .sidebar-menu {
-  display: grid;
-  gap: 6px;
-}
-
-.pagina-recrutamento .sidebar-menu a {
-  padding: 13px 14px;
-  border-radius: 10px;
-  color: #fff;
-  text-decoration: none;
-  transition: background .18s ease, transform .18s ease;
-}
-
-.pagina-recrutamento .sidebar-menu a:hover,
-.pagina-recrutamento .sidebar-menu a.ativo {
-  background: rgba(255, 255, 255, .14);
-  transform: translateX(2px);
-}
-
-.pagina-recrutamento .sidebar-conta {
-  display: grid;
-  gap: 3px;
-  margin-top: auto;
-  padding: 16px 12px 0;
-  border-top: 1px solid rgba(255, 255, 255, .22);
-}
-
-.pagina-recrutamento .sidebar-conta span {
-  color: #dbe5ff;
-  font-size: 12px;
+  background:
+    radial-gradient(circle at 88% 5%, rgba(40, 101, 255, .12), transparent 24rem),
+    linear-gradient(135deg, #f8faff 0%, #f1f5fc 58%, #eef4ff 100%);
+  color: var(--ct-texto);
 }
 
 .pagina-recrutamento .pagina-conteudo {
-  width: calc(100% - 230px);
-  padding: 0 28px 40px;
+  min-height: 100vh;
+  padding: 28px clamp(24px, 3vw, 48px) 56px;
 }
 
 .pagina-recrutamento .cabecalho-pagina {
-  margin: 0 -28px 24px;
-  padding: 24px 28px;
-  background: #fff;
-  border-bottom: 1px solid #dce3ee;
+  max-width: 1480px;
+  margin: 0 auto 22px;
+}
+
+.pagina-recrutamento .breadcrumb-pagina {
+  color: #71809b;
+  font-size: .78rem;
+  font-weight: 600;
+  margin-bottom: 11px;
+}
+
+.pagina-recrutamento .cabecalho-pagina-linha {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
 }
 
 .pagina-recrutamento .cabecalho-pagina h1 {
-  margin: 0;
-  font-size: 28px;
-  letter-spacing: -.02em;
+  font-size: clamp(1.65rem, 2.4vw, 2.35rem);
+  line-height: 1.15;
+  letter-spacing: -.045em;
+  margin: 0 0 7px;
 }
 
 .pagina-recrutamento .cabecalho-pagina p {
-  margin: 7px 0 0;
-  color: #667085;
+  color: var(--ct-suave);
+  font-size: .95rem;
 }
 
-.pagina-recrutamento .formulario-pagina,
-.pagina-recrutamento .resultado-objeto {
-  width: min(1100px, 100%);
-  margin: 0 auto 20px;
+.pagina-recrutamento .badge-cabecalho,
+.pagina-recrutamento .badge-status {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  border-radius: 999px;
+  background: #e8efff;
+  color: var(--ct-azul);
+  font-size: .72rem;
+  font-weight: 800;
+  padding: 7px 12px;
+  white-space: nowrap;
 }
 
-.pagina-recrutamento .cartao,
-.pagina-recrutamento .resultado-objeto {
-  margin-bottom: 20px;
-  padding: 26px;
-  border: 1px solid #d9e2ef;
-  border-radius: 15px;
-  background: #fff;
-  box-shadow: 0 12px 32px rgba(16, 24, 40, .07);
+.pagina-recrutamento .cartao {
+  background: rgba(255, 255, 255, .96);
+  border: 1px solid rgba(203, 214, 232, .82);
+  border-radius: 18px;
+  box-shadow: 0 14px 38px rgba(28, 55, 110, .07);
 }
 
-.pagina-recrutamento .cartao h2,
-.pagina-recrutamento .resultado-objeto h2,
-.pagina-recrutamento .editor-etapas h2 {
-  margin: 0 0 20px;
-  font-size: 19px;
+.pagina-recrutamento .stepper-cartao {
+  max-width: 1480px;
+  margin: 0 auto 22px;
+  padding: 5px 30px 0;
+  overflow: hidden;
+}
+
+.pagina-recrutamento .stepper-container {
+  max-width: 1000px;
+  margin: 18px auto 16px;
+}
+
+.pagina-recrutamento .stepper-circulo {
+  background: #dce3ee;
+  color: #75839d;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 1px #d7dfec;
+}
+
+.pagina-recrutamento .stepper-item.ativo .stepper-circulo,
+.pagina-recrutamento .stepper-item.concluido .stepper-circulo {
+  color: #fff;
+  background: linear-gradient(145deg, #2b66f4, #143dbd);
+}
+
+.pagina-recrutamento .stepper-item.concluido .stepper-circulo::after {
+  content: "✓";
+  font-size: 1rem;
+}
+
+.pagina-recrutamento .stepper-item.concluido .stepper-circulo {
+  font-size: 0;
+}
+
+.pagina-recrutamento .stepper-linha-bg {
+  background: #dfe6f0;
+}
+
+.pagina-recrutamento .stepper-titulo {
+  max-width: 145px;
+  color: #7a879d;
+}
+
+.pagina-recrutamento .layout-vaga {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 350px;
+  gap: 22px;
+  align-items: start;
+  max-width: 1480px;
+  margin: 0 auto;
+}
+
+.pagina-recrutamento .coluna-formulario,
+.pagina-recrutamento .formulario-recrutador,
+.pagina-recrutamento .formulario-perfil,
+.pagina-recrutamento .layout-conta {
+  display: grid;
+  gap: 18px;
+}
+
+.pagina-recrutamento .cartao-formulario {
+  overflow: hidden;
+}
+
+.pagina-recrutamento .corpo-formulario,
+.pagina-recrutamento .cartao-formulario > .cabecalho-cartao,
+.pagina-recrutamento .cartao-formulario > .grade-campos,
+.pagina-recrutamento .cartao-formulario > .editor-etapas-avancado,
+.pagina-recrutamento .cartao-formulario > .bloco-marca,
+.pagina-recrutamento .cartao-formulario > .grupo-campo,
+.pagina-recrutamento .cartao-formulario > .email-atual,
+.pagina-recrutamento .cartao-formulario > .regras-senha,
+.pagina-recrutamento .cartao-formulario > .alerta-perigo {
+  padding-left: clamp(20px, 3vw, 34px);
+  padding-right: clamp(20px, 3vw, 34px);
+}
+
+.pagina-recrutamento .corpo-formulario {
+  padding-top: 30px;
+  padding-bottom: 28px;
+}
+
+.pagina-recrutamento .cartao-formulario > .cabecalho-cartao {
+  padding-top: 27px;
+  padding-bottom: 19px;
+  border-bottom: 1px solid #edf0f5;
+  margin-bottom: 26px;
+}
+
+.pagina-recrutamento .corpo-formulario > .cabecalho-cartao {
+  padding-bottom: 18px;
+  border-bottom: 1px solid #edf0f5;
+  margin-bottom: 25px;
+}
+
+.pagina-recrutamento .cabecalho-cartao h2 {
+  color: var(--ct-texto);
+  font-size: 1.18rem;
+  letter-spacing: -.025em;
+  margin-bottom: 5px;
+}
+
+.pagina-recrutamento .cabecalho-cartao p,
+.pagina-recrutamento .editor-etapas-cabecalho p,
+.pagina-recrutamento .lista-editavel-cabecalho p {
+  color: var(--ct-suave);
+  font-size: .82rem;
 }
 
 .pagina-recrutamento .grade-campos {
   display: grid;
-  gap: 18px 22px;
-  margin-bottom: 18px;
+  grid-template-columns: 1fr;
+  gap: 18px 20px;
 }
 
-.pagina-recrutamento .duas-colunas {
+.pagina-recrutamento .grade-campos.duas-colunas {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.pagina-recrutamento .grade-endereco {
+  grid-template-columns: .8fr 1.7fr .65fr 1fr 1fr 1fr;
+}
+
+.pagina-recrutamento .campo-largo {
+  grid-column: 1 / -1;
+}
+
 .pagina-recrutamento .grupo-campo {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 7px;
-  margin-bottom: 17px;
-  color: #344054;
-  font-size: 13px;
-  font-weight: 600;
+  min-width: 0;
+}
+
+.pagina-recrutamento .campo-rotulo {
+  color: #35435f;
+  font-size: .76rem;
+  font-weight: 750;
+}
+
+.pagina-recrutamento .campo-obrigatorio {
+  color: #e6465d;
 }
 
 .pagina-recrutamento input,
-.pagina-recrutamento textarea,
-.pagina-recrutamento select {
+.pagina-recrutamento select,
+.pagina-recrutamento textarea {
   width: 100%;
-  min-height: 44px;
-  padding: 10px 12px;
-  border: 1px solid #cbd6e5;
-  border-radius: 9px;
-  color: #101828;
-  background: #fff;
-  outline: none;
-  transition: border .18s ease, box-shadow .18s ease;
+  min-height: 45px;
+  border: 1px solid #d7dfeb;
+  border-radius: 10px;
+  background: #fbfcff;
+  color: #1f2c46;
+  padding: 11px 13px;
+  transition: border .2s, box-shadow .2s, background .2s;
 }
 
 .pagina-recrutamento textarea {
-  min-height: 95px;
+  min-height: 108px;
   resize: vertical;
 }
 
 .pagina-recrutamento input:focus,
-.pagina-recrutamento textarea:focus,
-.pagina-recrutamento select:focus {
-  border-color: #2457e6;
-  box-shadow: 0 0 0 4px rgba(36, 87, 230, .14);
+.pagina-recrutamento select:focus,
+.pagina-recrutamento textarea:focus {
+  border-color: #4f7df0;
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(39, 92, 224, .1);
 }
 
-.pagina-recrutamento .invalido {
-  border-color: #d92d20;
+.pagina-recrutamento input.invalido,
+.pagina-recrutamento select.invalido,
+.pagina-recrutamento textarea.invalido {
+  border-color: var(--ct-vermelho);
+}
+
+.pagina-recrutamento .campo-ajuda,
+.pagina-recrutamento .campo-erro {
+  font-size: .72rem;
 }
 
 .pagina-recrutamento .campo-erro {
-  color: #b42318;
-  font-size: 12px;
-  font-weight: 500;
+  color: var(--ct-vermelho);
 }
 
 .pagina-recrutamento .campo-senha {
+  display: flex;
   position: relative;
 }
 
 .pagina-recrutamento .campo-senha input {
-  padding-right: 85px;
+  padding-right: 72px;
 }
 
 .pagina-recrutamento .botao-olho {
   position: absolute;
-  top: 7px;
-  right: 7px;
-  height: 30px;
-  border: 0;
-  color: #1d4ed8;
-  background: transparent;
-  cursor: pointer;
-}
-
-.pagina-recrutamento .acoes-formulario {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
+  right: 8px;
+  top: 8px;
+  bottom: 8px;
+  padding: 0 9px;
+  color: var(--ct-azul);
+  background: #edf3ff;
+  border-radius: 7px;
+  font-size: .68rem;
+  font-weight: 750;
 }
 
 .pagina-recrutamento .botao-primario,
 .pagina-recrutamento .botao-secundario,
-.pagina-recrutamento .botao-remover {
-  min-height: 42px;
-  padding: 0 18px;
-  border-radius: 9px;
-  cursor: pointer;
+.pagina-recrutamento .botao-terciario,
+.pagina-recrutamento .botao-perigo,
+.pagina-recrutamento .link-como-botao {
+  min-height: 43px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  padding: 10px 19px;
+  font-size: .8rem;
+  font-weight: 750;
+  border: 1px solid transparent;
 }
 
 .pagina-recrutamento .botao-primario {
-  border: 1px solid #1d4ed8;
   color: #fff;
-  background: #1d4ed8;
-  box-shadow: 0 8px 18px rgba(29, 78, 216, .22);
+  background: linear-gradient(135deg, #2460ed, #173eb5);
+  box-shadow: 0 8px 18px rgba(22, 66, 190, .2);
 }
 
-.pagina-recrutamento .botao-secundario {
-  border: 1px solid #1d4ed8;
-  color: #1d4ed8;
+.pagina-recrutamento .botao-primario:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 11px 23px rgba(22, 66, 190, .28);
+}
+
+.pagina-recrutamento .botao-secundario,
+.pagina-recrutamento .botao-terciario {
+  color: var(--ct-azul);
   background: #fff;
+  border-color: #bfd0f7;
 }
 
-.pagina-recrutamento .botao-remover {
-  min-height: 30px;
-  padding: 0 10px;
-  border: 0;
-  color: #b42318;
-  background: #fff0ee;
+.pagina-recrutamento .botao-terciario {
+  margin-left: auto;
+  border-color: transparent;
+  background: #eef3ff;
+}
+
+.pagina-recrutamento .botao-perigo {
+  color: #fff;
+  background: #ce3349;
+}
+
+.pagina-recrutamento .botao-compacto {
+  min-height: 35px;
+  padding: 7px 12px;
+  font-size: .72rem;
+}
+
+.pagina-recrutamento .acoes-formulario-vaga,
+.pagina-recrutamento .cartao-acoes,
+.pagina-recrutamento .barra-acoes-flutuante {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  border-top: 1px solid #edf0f5;
+  background: #fbfcff;
+  padding: 18px clamp(20px, 3vw, 34px);
+}
+
+.pagina-recrutamento .cartao-acoes .mensagem-formulario,
+.pagina-recrutamento .barra-acoes-flutuante .mensagem-formulario {
+  margin-right: auto;
+}
+
+.pagina-recrutamento .barra-acoes-flutuante {
+  position: sticky;
+  bottom: 13px;
+  z-index: 20;
+  border: 1px solid #dce4f1;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(26, 50, 94, .13);
 }
 
 .pagina-recrutamento .mensagem-formulario {
-  margin: 0 0 18px;
-  padding: 13px 15px;
   border-radius: 9px;
-  color: #067647;
-  background: #ecfdf3;
+  padding: 11px 14px;
+  font-size: .76rem;
+  font-weight: 650;
 }
 
-.pagina-recrutamento .mensagem-formulario.erro {
-  color: #b42318;
-  background: #fef3f2;
+.pagina-recrutamento .cartao-formulario > .mensagem-formulario {
+  margin: 0 30px 16px;
 }
 
-.pagina-recrutamento .editor-etapas {
-  margin-top: 22px;
-  padding-top: 20px;
-  border-top: 1px solid #e4e9f1;
+.pagina-recrutamento .mensagem-formulario.sucesso { color: #087654; background: #e6f8f1; }
+.pagina-recrutamento .mensagem-formulario.erro { color: #ac2439; background: #ffebee; }
+.pagina-recrutamento .mensagem-formulario.aviso { color: #8a5c06; background: #fff5d8; }
+
+.pagina-recrutamento .preview-vaga {
+  position: sticky;
+  top: 22px;
+  padding: 24px;
+  overflow: hidden;
 }
 
-.pagina-recrutamento .lista-etapas {
+.pagina-recrutamento .preview-vaga::before {
+  content: "";
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  right: -105px;
+  top: -120px;
+  border-radius: 50%;
+  background: rgba(52, 105, 238, .1);
+}
+
+.pagina-recrutamento .preview-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 21px;
+}
+
+.pagina-recrutamento .preview-rotulo {
+  color: #7a87a0;
+  font-size: .67rem;
+  font-weight: 850;
+  letter-spacing: .12em;
+}
+
+.pagina-recrutamento .preview-icone,
+.pagina-recrutamento .logo-empresa-preview {
   display: grid;
-  gap: 8px;
-  margin-bottom: 12px;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 15px;
+  color: #fff;
+  background: linear-gradient(145deg, #2f72ff, #1639a8);
+  font-size: .88rem;
+  font-weight: 850;
+  box-shadow: 0 10px 24px rgba(23, 70, 209, .23);
 }
 
-.pagina-recrutamento .etapa-item {
+.pagina-recrutamento .preview-vaga h2 {
+  margin: 17px 0 4px;
+  font-size: 1.3rem;
+  line-height: 1.25;
+}
+
+.pagina-recrutamento .preview-empresa,
+.pagina-recrutamento .preview-descricao {
+  color: var(--ct-suave);
+  font-size: .78rem;
+}
+
+.pagina-recrutamento .preview-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 17px 0;
+}
+
+.pagina-recrutamento .chip {
+  border-radius: 999px;
+  background: #eaf1ff;
+  color: #3157ad;
+  padding: 6px 9px;
+  font-size: .65rem;
+  font-weight: 700;
+}
+
+.pagina-recrutamento .chip-neutro { background: #f0f2f6; color: #6d788c; }
+
+.pagina-recrutamento .preview-descricao {
+  line-height: 1.65;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.pagina-recrutamento .preview-dados {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  padding: 18px 0;
+}
+
+.pagina-recrutamento .preview-dado {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pagina-recrutamento .preview-dado span,
+.pagina-recrutamento .preview-progresso span {
+  color: #7a879d;
+  font-size: .65rem;
+}
+
+.pagina-recrutamento .preview-dado strong,
+.pagina-recrutamento .preview-progresso strong {
+  color: #28364f;
+  font-size: .72rem;
+}
+
+.pagina-recrutamento .preview-progresso > div:first-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagina-recrutamento .progresso-trilho {
+  height: 7px;
+  border-radius: 999px;
+  background: #e6ebf3;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.pagina-recrutamento .progresso-barra {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1a50d9, #31b7c7);
+  transition: width .25s ease;
+}
+
+.pagina-recrutamento .lista-editavel,
+.pagina-recrutamento .editor-etapas-avancado {
+  margin-top: 25px;
+  border: 1px solid #e0e6f0;
+  border-radius: 14px;
+  background: #fbfcff;
+  padding: 19px;
+}
+
+.pagina-recrutamento .grade-listas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.pagina-recrutamento .grade-listas .lista-editavel:last-child {
+  grid-column: 1 / -1;
+}
+
+.pagina-recrutamento .lista-editavel-cabecalho,
+.pagina-recrutamento .editor-etapas-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+.pagina-recrutamento .lista-editavel h3,
+.pagina-recrutamento .editor-etapas-cabecalho h3 {
+  font-size: .91rem;
+  margin-bottom: 3px;
+}
+
+.pagina-recrutamento .lista-editavel-entrada {
+  display: flex;
+  gap: 8px;
+}
+
+.pagina-recrutamento .lista-editavel-itens,
+.pagina-recrutamento .lista-etapas-avancada,
+.pagina-recrutamento .lista-perguntas {
+  display: grid;
+  gap: 9px;
+  margin-top: 13px;
+}
+
+.pagina-recrutamento .lista-editavel-item,
+.pagina-recrutamento .etapa-card,
+.pagina-recrutamento .pergunta-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid #e0e6f0;
+  border-radius: 11px;
+  background: #fff;
+  padding: 11px 12px;
+}
+
+.pagina-recrutamento .lista-editavel-numero,
+.pagina-recrutamento .etapa-ordem {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #eaf1ff;
+  color: var(--ct-azul);
+  font-size: .7rem;
+  font-weight: 800;
+}
+
+.pagina-recrutamento .lista-editavel-texto,
+.pagina-recrutamento .etapa-card-corpo,
+.pagina-recrutamento .pergunta-item > div {
+  flex: 1;
+  min-width: 0;
+  font-size: .76rem;
+}
+
+.pagina-recrutamento .lista-editavel-acoes,
+.pagina-recrutamento .etapa-card-acoes {
+  display: flex;
+  gap: 4px;
+}
+
+.pagina-recrutamento .botao-icone,
+.pagina-recrutamento .modal-fechar {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 7px;
+  background: #f0f4fa;
+  color: #53627b;
+}
+
+.pagina-recrutamento .botao-icone.perigo { color: #c62f46; background: #fff0f2; }
+.pagina-recrutamento .botao-icone:disabled { opacity: .35; cursor: not-allowed; }
+.pagina-recrutamento .lista-vazia { color: #8994a7; font-size: .75rem; padding: 9px 0; }
+
+.pagina-recrutamento .aviso-informativo,
+.pagina-recrutamento .faixa-dica,
+.pagina-recrutamento .regras-senha,
+.pagina-recrutamento .alerta-perigo {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  border: 1px solid #cddcff;
+  border-radius: 12px;
+  background: #edf3ff;
+  color: #345389;
+  padding: 14px 16px;
+  font-size: .76rem;
+}
+
+.pagina-recrutamento .aviso-informativo {
+  flex-direction: column;
+  gap: 3px;
+}
+
+.pagina-recrutamento .faixa-dica {
+  max-width: 1480px;
+  margin: 0 auto 18px;
+}
+
+.pagina-recrutamento .faixa-dica-icone {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  color: #fff;
+  background: var(--ct-azul);
+  border-radius: 50%;
+}
+
+.pagina-recrutamento .etapa-card-topo,
+.pagina-recrutamento .etapa-metadados {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.pagina-recrutamento .etapa-card-corpo > p {
+  color: var(--ct-suave);
+  font-size: .73rem;
+  margin: 5px 0;
+}
+
+.pagina-recrutamento .etapa-metadados span,
+.pagina-recrutamento .tipo-etapa {
+  border-radius: 999px;
+  background: #f0f3f8;
+  color: #617089;
+  padding: 4px 7px;
+  font-size: .61rem;
+  font-weight: 700;
+}
+
+.pagina-recrutamento .tipo-etapa {
+  background: #e8efff;
+  color: #315dca;
+}
+
+.pagina-recrutamento .estado-vazio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #758197;
+  padding: 28px;
+}
+
+.pagina-recrutamento .modal-recrutamento {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(10, 21, 44, .62);
+  backdrop-filter: blur(4px);
+}
+
+.pagina-recrutamento .modal-recrutamento[hidden] { display: none; }
+
+.pagina-recrutamento .modal-painel {
+  width: min(760px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 25px 80px rgba(5, 14, 34, .3);
+}
+
+.pagina-recrutamento .modal-pergunta-painel { width: min(620px, 100%); }
+
+.pagina-recrutamento .modal-cabecalho,
+.pagina-recrutamento .modal-rodape {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 42px;
-  padding: 6px 10px 6px 14px;
-  border: 1px solid #d8e2f2;
-  border-radius: 9px;
-  background: #f8faff;
+  gap: 20px;
+  border-bottom: 1px solid #e9edf4;
+  padding: 19px 23px;
 }
 
-.pagina-recrutamento .editor-etapas > input {
-  width: calc(100% - 150px);
-  margin-right: 10px;
-}
+.pagina-recrutamento .modal-cabecalho h2 { font-size: 1.15rem; }
+.pagina-recrutamento .modal-cabecalho p { color: var(--ct-suave); font-size: .75rem; margin-top: 4px; }
+.pagina-recrutamento .modal-conteudo { display: grid; gap: 20px; padding: 23px; }
+.pagina-recrutamento .modal-rodape { justify-content: flex-end; border: 0; border-top: 1px solid #e9edf4; padding: 18px 0 0; }
+.pagina-recrutamento .modal-erro { color: var(--ct-vermelho); background: #fff0f2; border-radius: 8px; padding: 9px; font-size: .74rem; }
 
-.pagina-recrutamento .grupo-permissoes {
-  display: grid;
-  gap: 10px;
-  margin-top: 22px;
-  padding: 18px;
-  border: 1px solid #d9e2ef;
-  border-radius: 10px;
-}
-
-.pagina-recrutamento .opcao-marcacao {
+.pagina-recrutamento .opcao-switch,
+.pagina-recrutamento .opcao-radio,
+.pagina-recrutamento .permissao-item {
   display: flex;
-  gap: 9px;
+  align-items: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.pagina-recrutamento .opcao-switch input,
+.pagina-recrutamento .opcao-radio input,
+.pagina-recrutamento .permissao-item input {
+  width: 17px;
+  min-height: 17px;
+  margin-top: 2px;
+  accent-color: var(--ct-azul);
+}
+
+.pagina-recrutamento .opcao-switch span,
+.pagina-recrutamento .permissao-item span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pagina-recrutamento .opcao-switch small,
+.pagina-recrutamento .permissao-item small {
+  color: var(--ct-suave);
+  font-size: .7rem;
+}
+
+.pagina-recrutamento .configuracao-teste {
+  border: 1px solid #dfe6f2;
+  border-radius: 13px;
+  background: #f7f9fd;
+  padding: 17px;
+}
+
+.pagina-recrutamento .configuracao-teste-titulo { margin-bottom: 14px; }
+.pagina-recrutamento .configuracao-teste-titulo p { color: var(--ct-suave); font-size: .72rem; }
+.pagina-recrutamento .perguntas-cabecalho { display: flex; justify-content: space-between; align-items: center; margin-top: 15px; font-size: .78rem; font-weight: 700; }
+.pagina-recrutamento .pergunta-item small { display: block; color: var(--ct-suave); margin-top: 4px; }
+
+.pagina-recrutamento .grade-revisao {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, .8fr);
+  gap: 16px;
+}
+
+.pagina-recrutamento .painel-revisao {
+  border: 1px solid #e0e6f0;
+  border-radius: 14px;
+  padding: 19px;
+}
+
+.pagina-recrutamento .painel-revisao-topo {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  text-transform: capitalize;
+  gap: 12px;
+  margin-bottom: 15px;
 }
 
-.pagina-recrutamento .opcao-marcacao input {
-  width: 18px;
-  min-height: 18px;
+.pagina-recrutamento .painel-revisao h3 { font-size: .94rem; }
+.pagina-recrutamento .link-botao { color: var(--ct-azul); background: transparent; font-size: .7rem; font-weight: 750; }
+
+.pagina-recrutamento .resumo-grade {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #edf0f5;
 }
 
-.pagina-recrutamento .resultado-objeto pre {
-  overflow: auto;
-  max-height: 360px;
-  margin: 0;
-  padding: 16px;
-  border-radius: 10px;
-  color: #d7e4ff;
-  background: #101828;
-  font: 13px/1.5 Consolas, monospace;
+.pagina-recrutamento .resumo-grade > div,
+.pagina-recrutamento .resumo-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.pagina-recrutamento .previa-configuracao {
-  margin: 0 0 20px;
-  padding: 12px 14px;
-  border-radius: 9px;
-  color: #1849a9;
-  background: #eef4ff;
+.pagina-recrutamento .resumo-grade span,
+.pagina-recrutamento .texto-suave { color: var(--ct-suave); font-size: .66rem; }
+.pagina-recrutamento .resumo-grade strong { font-size: .74rem; }
+.pagina-recrutamento .resumo-lista { margin-top: 14px; font-size: .73rem; }
+.pagina-recrutamento .resumo-lista ul { margin: 5px 0 0 18px; color: #536179; }
+.pagina-recrutamento .configuracao-publicacao { display: grid; gap: 15px; }
+.pagina-recrutamento .linha-etapas-revisao { display: flex; flex-wrap: wrap; gap: 10px; }
+.pagina-recrutamento .etapa-revisao { display: flex; align-items: center; gap: 7px; border: 1px solid #dce4f0; border-radius: 999px; padding: 6px 10px 6px 6px; font-size: .69rem; }
+.pagina-recrutamento .etapa-revisao span { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; color: #fff; background: var(--ct-azul); }
+
+.pagina-recrutamento .formulario-recrutador,
+.pagina-recrutamento .formulario-perfil,
+.pagina-recrutamento .layout-conta,
+.pagina-recrutamento .pagina-configuracao-vaga .cartao-formulario,
+.pagina-recrutamento .pagina-conteudo > .cartao-formulario {
+  max-width: 1480px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+.pagina-recrutamento .grade-permissoes-status {
+  display: grid;
+  grid-template-columns: 1.45fr .75fr;
+  gap: 28px;
+  padding: 0 clamp(20px, 3vw, 34px) 30px;
+}
+
+.pagina-recrutamento .lista-permissoes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.pagina-recrutamento .permissao-item {
+  border: 1px solid #e0e6f0;
+  border-radius: 11px;
+  padding: 13px;
+  background: #fbfcff;
+}
+
+.pagina-recrutamento .permissao-item strong { font-size: .75rem; }
+.pagina-recrutamento .painel-status { border-left: 1px solid #e2e7ef; padding-left: 27px; }
+.pagina-recrutamento .painel-status h3 { font-size: .9rem; }
+.pagina-recrutamento .painel-status p { color: var(--ct-suave); font-size: .72rem; margin: 5px 0 17px; }
+.pagina-recrutamento .painel-status .opcao-radio { margin: 12px 0; font-size: .78rem; }
 
 .pagina-recrutamento .regras-senha {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px 20px;
-  color: #475467;
-  font-size: 13px;
+  margin: 19px clamp(20px, 3vw, 34px) 26px;
+  flex-wrap: wrap;
 }
 
-@media (max-width: 760px) {
-  .pagina-recrutamento {
-    display: block;
-  }
+.pagina-recrutamento .regras-senha-grade {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  color: #147253;
+  background: #ebf8f3;
+  border-color: #ccecdf;
+}
 
-  .pagina-recrutamento .sidebar-comum {
-    position: static;
-    width: 100%;
-    height: auto;
-    padding: 14px;
-  }
+.pagina-recrutamento .layout-conta {
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+}
 
-  .pagina-recrutamento .sidebar-marca,
-  .pagina-recrutamento .sidebar-conta {
-    display: none;
-  }
+.pagina-recrutamento .layout-conta .zona-perigo { grid-column: 1 / -1; border-color: #f1c8ce; }
+.pagina-recrutamento .email-atual { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; color: var(--ct-suave); font-size: .76rem; }
+.pagina-recrutamento .email-atual strong { color: var(--ct-texto); }
+.pagina-recrutamento .alerta-perigo { color: #983346; background: #fff0f2; border-color: #f0c6cd; margin-bottom: 18px; flex-direction: column; gap: 3px; }
+.pagina-recrutamento .zona-perigo > .grupo-campo { max-width: 470px; padding-bottom: 25px; }
 
-  .pagina-recrutamento .sidebar-menu {
-    display: flex;
-    overflow-x: auto;
-  }
+.pagina-recrutamento .bloco-marca {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 24px;
+}
 
-  .pagina-recrutamento .sidebar-menu a {
-    flex: 0 0 auto;
-  }
+.pagina-recrutamento .bloco-marca > div:nth-child(2) { display: flex; flex: 1; flex-direction: column; }
+.pagina-recrutamento .bloco-marca span { color: var(--ct-suave); font-size: .7rem; }
+.pagina-recrutamento .logo-empresa-preview { width: 66px; height: 66px; border-radius: 18px; }
 
+@media (max-width: 1180px) {
+  .pagina-recrutamento .layout-vaga { grid-template-columns: 1fr; }
+  .pagina-recrutamento .preview-vaga { position: static; display: grid; grid-template-columns: auto 1fr; column-gap: 17px; }
+  .pagina-recrutamento .preview-topo { grid-column: 1 / -1; }
+  .pagina-recrutamento .preview-icone { grid-row: 2 / 6; }
+  .pagina-recrutamento .preview-vaga h2 { margin-top: 0; }
+  .pagina-recrutamento .preview-chips,
+  .pagina-recrutamento .preview-descricao,
+  .pagina-recrutamento .preview-dados,
+  .pagina-recrutamento .preview-progresso { grid-column: 2; }
+  .pagina-recrutamento .grade-endereco { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .pagina-recrutamento .sidebar { width: var(--sidebar-collapsed-width); }
+  .pagina-recrutamento .sidebar .campo-texto,
+  .pagina-recrutamento .sidebar .link-sidebar,
+  .pagina-recrutamento .sidebar .seta-direita-menu,
+  .pagina-recrutamento .sidebar .campo-informacoes-usuario,
+  .pagina-recrutamento .sidebar .texto-sair { display: none; }
+  .pagina-recrutamento .sidebar .submenu { display: none !important; }
   .pagina-recrutamento .pagina-conteudo {
-    width: 100%;
-    padding: 0 16px 30px;
+    margin-left: var(--sidebar-collapsed-width) !important;
+    width: calc(100vw - var(--sidebar-collapsed-width)) !important;
+    max-width: calc(100vw - var(--sidebar-collapsed-width));
+    min-width: 0;
   }
+  .pagina-recrutamento .layout-conta,
+  .pagina-recrutamento .grade-revisao { grid-template-columns: 1fr; }
+  .pagina-recrutamento .layout-conta .zona-perigo { grid-column: auto; }
+  .pagina-recrutamento .grade-permissoes-status { grid-template-columns: 1fr; }
+  .pagina-recrutamento .painel-status { border-left: 0; border-top: 1px solid #e2e7ef; padding: 20px 0 0; }
+}
 
-  .pagina-recrutamento .cabecalho-pagina {
-    margin: 0 -16px 18px;
-    padding: 20px 16px;
+@media (max-width: 680px) {
+  .pagina-recrutamento .pagina-conteudo { padding: 18px 14px 40px; }
+  .pagina-recrutamento .cabecalho-pagina-linha { align-items: flex-start; flex-direction: column; gap: 12px; }
+  .pagina-recrutamento .stepper-cartao { padding: 8px; overflow: hidden; }
+  .pagina-recrutamento .stepper-container {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 8px;
   }
-
-  .pagina-recrutamento .duas-colunas,
-  .pagina-recrutamento .regras-senha {
-    grid-template-columns: 1fr;
-  }
-
-  .pagina-recrutamento .cartao,
-  .pagina-recrutamento .resultado-objeto {
-    padding: 18px;
-  }
-
-  .pagina-recrutamento .editor-etapas > input {
-    width: 100%;
-    margin: 0 0 10px;
-  }
+  .pagina-recrutamento .stepper-linha-bg { display: none; }
+  .pagina-recrutamento .stepper-titulo { max-width: 120px; }  .pagina-recrutamento .grade-campos.duas-colunas,
+  .pagina-recrutamento .grade-listas,
+  .pagina-recrutamento .lista-permissoes,
+  .pagina-recrutamento .grade-endereco,
+  .pagina-recrutamento .resumo-grade,
+  .pagina-recrutamento .regras-senha-grid { grid-template-columns: 1fr; }
+  .pagina-recrutamento .grade-listas .lista-editavel:last-child { grid-column: auto; }
+  .pagina-recrutamento .acoes-formulario-vaga,
+  .pagina-recrutamento .barra-acoes-flutuante,
+  .pagina-recrutamento .cartao-acoes { flex-wrap: wrap; }
+  .pagina-recrutamento .botao-terciario { margin-left: 0; }
+  .pagina-recrutamento .lista-editavel-entrada,
+  .pagina-recrutamento .editor-etapas-cabecalho { flex-direction: column; }
+  .pagina-recrutamento .etapa-card { align-items: flex-start; flex-wrap: wrap; }
+  .pagina-recrutamento .etapa-card-acoes { width: 100%; justify-content: flex-end; }
+  .pagina-recrutamento .preview-vaga { display: block; }
+  .pagina-recrutamento .preview-icone { margin-bottom: 12px; }
+  .pagina-recrutamento .bloco-marca { align-items: flex-start; flex-wrap: wrap; }
 }

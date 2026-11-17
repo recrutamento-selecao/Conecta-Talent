@@ -1,0 +1,347 @@
+/* Layout Principal da Página de Dashboard / Meus Dados */
+.pagina-layout-dashboard {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #ffffff;
+}
+
+.conteudo-principal {
+    flex: 1;
+    margin-left: 260px; /* Espaço para a sidebar fixa */
+    padding: 28px 48px;
+    box-sizing: border-box;
+    transition: margin-left 0.25s ease;
+}
+
+body:has(.sidebar.fechada) .conteudo-principal {
+    margin-left: 78px; /* Ajuste quando a sidebar estiver recolhida */
+}
+
+/* Breadcrumb e Títulos */
+.breadcrumb {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.breadcrumb span:last-child {
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.titulo-pagina {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+}
+
+.subtitulo-pagina {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0 0 24px 0;
+}
+
+/* Wrapper Geral do Formulário Modular */
+.formulario-modular-wrapper {
+    max-width: 980px;
+    margin: 0 auto;
+}
+
+.secao-form-bloco {
+    padding-bottom: 24px;
+}
+
+.secao-separada {
+    border-top: 1px solid #e2e8f0;
+    padding-top: 28px;
+    margin-top: 24px;
+}
+
+.secao-form-titulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 20px;
+}
+
+.secao-form-titulo svg {
+    color: #1d4ed8;
+}
+
+/* Estrutura da Seção com Foto de Perfil (Lado a Lado) */
+.grid-secao-com-foto {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.grid-secao-simples {
+    padding-left: 0;
+}
+
+/* Bloco da Foto de Perfil */
+.bloco-foto-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.foto-titulo {
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    margin-bottom: 12px;
+}
+
+.avatar-circulo {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: #090d16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.avatar-circulo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-alterar-foto {
+    width: 130px;
+    padding: 7px 10px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #334155;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-alterar-foto:hover {
+    background-color: #f8fafc;
+}
+
+.foto-legenda {
+    font-size: 10px;
+    color: #64748b;
+    margin-top: 6px;
+}
+
+/* Organização de Linhas e Inputs em Grelha */
+.container-inputs-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.linha-formulario-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+}
+
+/* Distribuição personalizada das colunas na 1ª Seção (Dados Pessoais) */
+.secao-form-bloco:not(.secao-separada) .linha-formulario-grid:nth-child(1) {
+    grid-template-columns: 2fr 1.2fr 1.2fr; /* Nome, Nascimento, Gênero */
+}
+
+.secao-form-bloco:not(.secao-separada) .linha-formulario-grid:nth-child(2) {
+    grid-template-columns: 1fr 1.2fr 1.2fr; /* Estado Civil, CPF, RG */
+}
+
+.secao-form-bloco:not(.secao-separada) .linha-formulario-grid:nth-child(3) {
+    grid-template-columns: 1.4fr 1.2fr 1.2fr; /* E-mail, Celular, Telefone */
+}
+
+.secao-form-bloco:not(.secao-separada) .linha-formulario-grid:nth-child(4) {
+    grid-template-columns: 1fr 1fr; /* LinkedIn, Portfólio */
+}
+
+/* Distribuição personalizada das colunas na 2ª Seção (Endereço) */
+.secao-separada .linha-formulario-grid:nth-child(1) {
+    grid-template-columns: 1fr 2fr 0.8fr 1.2fr; /* CEP, Logradouro, Número, Complemento */
+}
+
+.secao-separada .linha-formulario-grid:nth-child(2) {
+    grid-template-columns: 1fr 1fr 1fr; /* Bairro, Cidade, Estado */
+}
+
+/* Campos Individuais e Rótulos */
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.grupo-campo label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.grupo-campo label span {
+    color: #ef4444;
+    margin-left: 2px;
+}
+
+/* Envelopes de Inputs e Selects */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #1e293b;
+    background-color: #ffffff;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-wrapper input::placeholder {
+    color: #94a3b8;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+/* Ícones nos Inputs (Esquerda e Direita) */
+.input-wrapper.com-icone-esq input {
+    padding-left: 36px;
+}
+
+.icone-esq {
+    position: absolute;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.input-wrapper.com-icone-dir input {
+    padding-right: 34px;
+}
+
+.icone-dir {
+    position: absolute;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    color: #475569;
+    pointer-events: none;
+}
+
+/* Rodapé de Ações (Botões Cancelar e Continuar) */
+.acoes-formulario {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.btn-cancelar {
+    background: #ffffff;
+    border: 1px solid #3b82f6;
+    color: #1d4ed8;
+    padding: 9px 36px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-cancelar:hover {
+    background-color: #eff6ff;
+}
+
+.btn-continuar {
+    background: #1d4ed8;
+    border: none;
+    color: #ffffff;
+    padding: 10px 32px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.btn-continuar:hover {
+    background: #1e40af;
+}
+
+/* Alerta global de erro no topo do formulário */
+.alerta-erro-formulario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #991b1b;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.alerta-erro-formulario svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    color: #dc2626;
+    margin-left: 0;
+    display: inline-block;
+    /* Garante que o desenho do SVG interno fique centralizado */
+    overflow: visible; 
+}
+
+/* Estado de erro aplicado ao campo obrigatório vazio */
+.grupo-campo.erro-campo input,
+.grupo-campo.erro-campo select {
+    border-color: #dc2626 !important;
+    background-color: #fff5f5;
+}
+
+.grupo-campo.erro-campo label {
+    color: #dc2626;
+}

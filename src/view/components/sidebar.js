@@ -1,29 +1,375 @@
-import { criarElemento } from "../utils/dom.js";
+// Mapeamento das rotas por hash para cada perfil de utilizador
+const MENUS_POR_PERFIL = {
+    administrador: [
+        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "#dashboard-administrador" },
+        {
+            id: "usuarios", icone: "assets/icons/users-branco.svg", texto: "Usuários",
+            submenu: [
+                { texto: "Gerenciar usuários", href: "#gerenciar-usuarios" }
+            ]
+        },
+        {
+            id: "planos", icone: "assets/icons/box-branco.svg", texto: "Planos",
+            submenu: [
+                { texto: "Gerenciar planos", href: "#gerenciar-planos" }
+            ]
+        },
+        {
+            id: "assinaturas", icone: "assets/icons/license-branco.svg", texto: "Assinaturas",
+            submenu: [
+                { texto: "Gerenciar assinaturas", href: "#gerenciar-assinaturas" },
+                { texto: "Pagamentos", href: "#pagamentos-admin" }
+            ]
+        },
+        {
+            id: "relatorios", icone: "assets/icons/file-analytics-branco.svg", texto: "Relatórios",
+            submenu: [
+                { texto: "Relatório de usuários", href: "#relatorio-usuarios" },
+                { texto: "Relatório de assinaturas", href: "#relatorio-assinaturas" }
+            ]
+        },
+        {
+            id: "configuracao", icone: "assets/icons/settings-branco.svg", texto: "Configurações",
+            submenu: [
+                { texto: "Geral", href: "#configuracoes-geral" },
+                { texto: "Segurança", href: "#configuracoes-seguranca" }
+            ]
+        }
+    ],
 
-const itens = [
-  ["criar-vaga", "Criar vaga"],
-  ["configuracao-vaga", "Configurar vaga"],
-  ["cadastrar-recrutador", "Cadastrar recrutador"],
-  ["meu-perfil", "Meu perfil"],
-  ["alterar-senha", "Alterar senha"],
-];
+    empresa: [
+        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "#dashboard-empresa" },
+        {
+            id: "recrutadores", icone: "assets/icons/users-branco.svg", texto: "Recrutadores",
+            submenu: [
+                { texto: "Gerenciar recrutadores", href: "#gerenciar-recrutadores" },
+                { texto: "Cadastrar recrutador", href: "#cadastrar-recrutador" }
+            ]
+        },
+        {
+            id: "vagas", icone: "assets/icons/clipboard-text-branco.svg", texto: "Gestão de vagas",
+            submenu: [
+                { texto: "Criar nova vaga", href: "#criar-vaga" },
+                { texto: "Configurar processo", href: "#configuracao-vaga" },
+                { texto: "Gerenciar vagas", href: "#gerenciar-vagas" }
+            ]
+        },
+        {
+            id: "assinaturas", icone: "assets/icons/license-branco.svg", texto: "Assinatura",
+            submenu: [
+                { texto: "Meu plano", href: "#meu-plano" },
+                { texto: "Pagamentos", href: "#historico-pagamentos" }
+            ]
+        },
+        {
+            id: "configuracao", icone: "assets/icons/settings-branco.svg", texto: "Configuração",
+            submenu: [
+                { texto: "Dados da empresa", href: "#meu-perfil" },
+                { texto: "Conta e segurança", href: "#configuracao-conta" }
+            ]
+        }
+    ],
 
-export function criarSidebar() {
-  const sidebar = criarElemento("aside", "sidebar-comum");
-  const marca = criarElemento("div", "sidebar-marca", "Conecta Talent");
-  const navegacao = criarElemento("nav", "sidebar-menu");
-  const rotaAtual = window.location.hash.replace(/^#\/?/, "");
+    recrutador: [
+        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "#dashboard-recrutador" },
+        {
+            id: "vagas", icone: "assets/icons/briefcase-branco.svg", texto: "Vagas",
+            submenu: [
+                { texto: "Criar Vaga", href: "#criar-vaga" },
+                { texto: "Minhas Vagas", href: "#minhas-vagas" },
+                { texto: "Vagas Ativas", href: "#vagas-ativas" },
+                { texto: "Vagas Encerradas", href: "#vagas-encerradas" }
+            ]
+        },
+        {
+            id: "processos", icone: "assets/icons/clipboard-text-branco.svg", texto: "Processos Seletivos",
+            submenu: [
+                { texto: "Criar Processo", href: "#criar-processo" },
+                { texto: "Meus Processos", href: "#meus-processos" }
+            ]
+        },
+        {
+            id: "talentos", icone: "assets/icons/users-branco.svg", texto: "Banco de Talentos",
+            submenu: [
+                { texto: "Buscar Candidatos", href: "#buscar-candidatos" },
+                { texto: "Favoritos", href: "#candidatos-favoritos" }
+            ]
+        },
+        {
+            id: "candidaturas", icone: "assets/icons/file-description-branco.svg", texto: "Candidaturas",
+            submenu: [
+                { texto: "Recebidas", href: "#candidaturas-recebidas" },
+                { texto: "Em Triagem", href: "#candidaturas-triagem" }
+            ]
+        },
+        {
+            id: "agenda", icone: "assets/icons/calendar-week-branco.svg", texto: "Agenda",
+            submenu: [
+                { texto: "Calendário", href: "#agenda-calendario" },
+                { texto: "Entrevistas", href: "#agenda-entrevistas" }
+            ]
+        },
+        {
+            id: "perfil", icone: "assets/icons/settings-branco.svg", texto: "Perfil",
+            submenu: [
+                { texto: "Meus Dados", href: "#meus-dados-recrutador" },
+                { texto: "Alterar Senha", href: "#alterar-senha-recrutador" }
+            ]
+        }
+    ],
 
-  itens.forEach(([rota, rotulo]) => {
-    const link = criarElemento("a", rotaAtual === rota ? "ativo" : "", rotulo);
-    link.href = `#${rota}`;
-    navegacao.append(link);
-  });
+    candidato: [
+        { id: "dashboard", icone: "assets/icons/home.svg", texto: "Dashboard", href: "#dashboard-candidato" },
+        {
+            id: "vagas", icone: "assets/icons/search-branco.svg", texto: "Vagas",
+            submenu: [
+                { texto: "Buscar vagas", href: "#candidato-vagas" },
+                { texto: "Vagas favoritas", href: "#vagas-favoritas" }
+            ]
+        },
+        {
+            id: "candidaturas", icone: "assets/icons/clipboard-text-branco.svg", texto: "Candidaturas",
+            submenu: [
+                { texto: "Minhas candidaturas", href: "#minhas-candidaturas" }
+            ]
+        },
+        {
+            id: "curriculo", icone: "assets/icons/file-description-branco.svg", texto: "Currículo",
+            submenu: [
+                { texto: "Meu currículo", href: "#meu-curriculo" }
+            ]
+        },
+        {
+            id: "agenda", icone: "assets/icons/calendar-week-branco.svg", texto: "Agenda",
+            submenu: [
+                { texto: "Entrevistas", href: "#entrevistas-candidato" },
+                { texto: "Calendário", href: "#calendario-candidato" }
+            ]
+        },
+        {
+            id: "perfil", icone: "assets/icons/settings-branco.svg", texto: "Perfil",
+            submenu: [
+                { texto: "Meus Dados", href: "#meus-dados-candidato" },
+                { texto: "Alterar Senha", href: "#alterar-senha-candidato" }
+            ]
+        }
+    ]
+};
 
-  const conta = criarElemento("div", "sidebar-conta");
-  conta.append(criarElemento("strong", "", "Empresa01"));
-  conta.append(criarElemento("span", "", "Recrutamento"));
-  sidebar.append(marca, navegacao, conta);
+function criarItemSidebar(item) {
+    const container = document.createElement("div");
+    container.classList.add("container-menu-item");
 
-  return sidebar;
+    const itemSidebar = document.createElement("a");
+    itemSidebar.classList.add("item-sidebar");
+    itemSidebar.href = item.submenu ? "#" : item.href;
+
+    // Função interna para atualizar o estado ativo com base no hash atual
+    const atualizarEstadoAtivo = () => {
+        const hashAtual = window.location.hash || '#dashboard-candidato';
+        if (!item.submenu && item.href === hashAtual) {
+            itemSidebar.classList.add("ativo");
+        } else {
+            itemSidebar.classList.remove("ativo");
+        }
+    };
+
+    atualizarEstadoAtivo();
+    window.addEventListener("hashchange", atualizarEstadoAtivo);
+
+    const icone = document.createElement("img");
+    icone.classList.add("icone-sidebar");
+    icone.src = item.icone;
+    icone.alt = `Ícone ${item.texto}`;
+
+    const spanTexto = document.createElement("span");
+    spanTexto.classList.add("link-sidebar");
+    spanTexto.textContent = item.texto;
+
+    itemSidebar.appendChild(icone);
+    itemSidebar.appendChild(spanTexto);
+
+    if (item.submenu && item.submenu.length > 0) {
+        const seta = document.createElement("img");
+        seta.classList.add("seta-direita-menu");
+        seta.src = "assets/icons/arrow-right-branco.svg";
+        seta.alt = "Seta";
+        itemSidebar.appendChild(seta);
+
+        const submenu = document.createElement("div");
+        submenu.classList.add("submenu");
+
+        let submenuContemHashAtual = false;
+
+        item.submenu.forEach((sub) => {
+            const linkSub = document.createElement("a");
+            linkSub.classList.add("item-submenu");
+            linkSub.href = sub.href;
+            linkSub.textContent = sub.texto;
+
+            const atualizarSubAtivo = () => {
+                const hashAtual = window.location.hash;
+                if (sub.href === hashAtual) {
+                    linkSub.classList.add("ativo");
+                    submenu.classList.add("ativo");
+                    seta.classList.add("ativa");
+                    itemSidebar.classList.add("ativo");
+                } else {
+                    linkSub.classList.remove("ativo");
+                }
+            };
+
+            atualizarSubAtivo();
+            window.addEventListener("hashchange", atualizarSubAtivo);
+
+            if (sub.href === window.location.hash) {
+                submenuContemHashAtual = true;
+            }
+
+            submenu.appendChild(linkSub);
+        });
+
+        if (submenuContemHashAtual) {
+            submenu.classList.add("ativo");
+            seta.classList.add("ativa");
+            itemSidebar.classList.add("ativo");
+        }
+
+        itemSidebar.addEventListener("click", (e) => {
+            e.preventDefault();
+            const estaAtivo = submenu.classList.contains("ativo");
+
+            // Fecha outros submenus
+            document.querySelectorAll(".submenu.ativo").forEach((s) => {
+                if (s !== submenu) {
+                    s.classList.remove("ativo");
+                    s.parentElement.querySelector(".seta-direita-menu")?.classList.remove("ativa");
+                }
+            });
+
+            submenu.classList.toggle("ativo", !estaAtivo);
+            seta.classList.toggle("ativa", !estaAtivo);
+        });
+
+        container.appendChild(itemSidebar);
+        container.appendChild(submenu);
+    } else {
+        container.appendChild(itemSidebar);
+    }
+
+    return container;
+}
+
+export function criarSidebar(tipoUsuario = "candidato", nomeUsuario = "Utilizador") {
+    const sidebar = document.createElement("aside");
+    sidebar.classList.add("sidebar");
+
+    const cabecalhoSidebar = document.createElement("div");
+    cabecalhoSidebar.classList.add("cabecalho-sidebar");
+
+    const campoLogo = document.createElement("div");
+    campoLogo.classList.add("campo-logo");
+
+    const imgLogo = document.createElement("img");
+    imgLogo.classList.add("img-logo");
+    imgLogo.src = "assets/images/icone-logo.png";
+
+    const textoLogo = document.createElement("div");
+    textoLogo.classList.add("campo-texto");
+
+    const primeiroNomeLogo = document.createElement("h1");
+    primeiroNomeLogo.classList.add("primeiro-nome-logo");
+    primeiroNomeLogo.textContent = "Conecta";
+
+    const segundoNomeLogo = document.createElement("span");
+    segundoNomeLogo.classList.add("segundo-nome-logo");
+    segundoNomeLogo.textContent = "Talent";
+
+    textoLogo.appendChild(primeiroNomeLogo);
+    textoLogo.appendChild(segundoNomeLogo);
+    campoLogo.appendChild(imgLogo);
+    campoLogo.appendChild(textoLogo);
+
+    const botaoMenu = document.createElement("button");
+    botaoMenu.classList.add("btn-menu");
+    botaoMenu.title = "Recolher Menu";
+
+    const iconeMenu = document.createElement("img");
+    iconeMenu.classList.add("icone-menu");
+    iconeMenu.src = "assets/icons/menu-branco.svg";
+    iconeMenu.alt = "Ícone menu";
+    botaoMenu.appendChild(iconeMenu);
+
+    cabecalhoSidebar.appendChild(campoLogo);
+    cabecalhoSidebar.appendChild(botaoMenu);
+
+    // Wrapper com scroll dedicado para os itens do menu
+    const wrapperScroll = document.createElement("div");
+    wrapperScroll.classList.add("conteudo-menu-scroll");
+
+    const navMenu = document.createElement("nav");
+    navMenu.classList.add("menu-sidebar");
+
+    const itensMenu = MENUS_POR_PERFIL[tipoUsuario] || MENUS_POR_PERFIL["candidato"];
+    itensMenu.forEach((item) => {
+        navMenu.appendChild(criarItemSidebar(item));
+    });
+
+    wrapperScroll.appendChild(navMenu);
+
+    const rodapeSidebar = document.createElement("div");
+    rodapeSidebar.classList.add("rodape-sidebar");
+
+    const campoPerfilLogado = document.createElement("div");
+    campoPerfilLogado.classList.add("campo-perfil-logado");
+
+    const iconePerfil = document.createElement("img");
+    iconePerfil.classList.add("icone-perfil");
+    iconePerfil.src = "assets/icons/user-circle-branco.svg";
+    iconePerfil.alt = "Foto Perfil";
+
+    const informacoesUsuario = document.createElement("div");
+    informacoesUsuario.classList.add("campo-informacoes-usuario");
+
+    const usuario = document.createElement("p");
+    usuario.classList.add("nome-usuario");
+    usuario.textContent = nomeUsuario;
+
+    const funcaoUsuario = document.createElement("span");
+    funcaoUsuario.classList.add("funcao-usuario");
+    funcaoUsuario.textContent = tipoUsuario;
+
+    informacoesUsuario.appendChild(usuario);
+    informacoesUsuario.appendChild(funcaoUsuario);
+
+    campoPerfilLogado.appendChild(iconePerfil);
+    campoPerfilLogado.appendChild(informacoesUsuario);
+
+    const campoSair = document.createElement("a");
+    campoSair.classList.add("campo-sair");
+    campoSair.href = "#login"; // Ajustado para hash se necessário
+
+    const iconeSair = document.createElement("img");
+    iconeSair.classList.add("icone-sair");
+    iconeSair.src = "assets/icons/logout.svg";
+
+    const textoSair = document.createElement("span");
+    textoSair.classList.add("texto-sair");
+    textoSair.textContent = "Sair";
+
+    campoSair.appendChild(iconeSair);
+    campoSair.appendChild(textoSair);
+
+    rodapeSidebar.appendChild(campoPerfilLogado);
+    rodapeSidebar.appendChild(campoSair);
+
+    botaoMenu.addEventListener("click", () => {
+        sidebar.classList.toggle("fechada");
+    });
+
+    sidebar.appendChild(cabecalhoSidebar);
+    sidebar.appendChild(wrapperScroll);
+    sidebar.appendChild(rodapeSidebar);
+
+    return sidebar;
 }
