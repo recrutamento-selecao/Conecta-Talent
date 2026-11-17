@@ -55,7 +55,7 @@ body:has(.sidebar.fechada) .conteudo-principal {
     margin-left: var(--sidebar-collapsed-width); 
 }
 
-/* Cabeçalho */
+
 .cabecalho-sidebar {
     display: flex;
     align-items: center;
