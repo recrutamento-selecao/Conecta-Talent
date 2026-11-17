@@ -1,211 +1,319 @@
+
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f6fc;
     margin: 0;
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fc;
 }
 
 #login-container {
-    display: grid;
-    grid-template-columns: 58% 42%;
-    grid-template-rows: 180px auto 70px;
-    grid-template-areas:
-        ". titulo"
-        ". formulario"
-        ". link";
+    display: block;
     width: 100%;
     max-width: none;
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-color: #f5f8ff;
-    background-image: linear-gradient(135deg, #0646b5, #0875ed);
-    background-size: 58% 100%;
-    background-position: left top;
-    background-repeat: no-repeat;
+    border: none;
     border-radius: 0;
+    background: transparent;
     box-shadow: none;
-    text-align: center;
+    text-align: left;
+}
+
+#login-container::before {
+    display: none;
+    content: none;
+}
+
+.login-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    border-top: 3px solid #2448c5;
+}
+
+.painel-esquerdo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 58%;
+    min-height: 100vh;
+    padding: 0;
+    overflow: hidden;
+    background-color: #0755c5;
+}
+
+.painel-esquerdo img {
+    display: block;
+    width: 95%;
+    height: 95vh;
+    object-fit: contain;
+    object-position: center;
+}
+
+.painel-direito {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 42%;
+    min-height: 100vh;
+    padding: 35px 5%;
+    background-color: #f5f7fc;
 }
 
 .titulo-login {
-    grid-area: titulo;
-    align-self: end;
+    margin: 0 0 35px;
     color: #111827;
-    font-size: 38px;
-    margin: 0 20px 35px;
-    font-weight: 700;
+    font-size: 32px;
+    text-align: center;
 }
 
-#login-container > div {
-    grid-area: formulario;
-    align-self: center;
-    width: 100%;
-    padding: 0 10%;
-    background: transparent;
-    box-shadow: none;
-}
-
-.meu-formulario {
+.login-form {
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 22px;
     width: 100%;
 }
 
-.grupo-campo {
+.login-form .grupo-campo {
     display: flex;
     flex-direction: column;
-    text-align: left;
-    gap: 10px;
+    gap: 8px;
     width: 100%;
 }
 
-.grupo-campo label {
+.login-form label {
     color: #737b89;
-    font-size: 16px;
-    font-weight: normal;
+    font-size: 14px;
 }
 
-.campo-texto {
+.login-form .campo-texto {
     box-sizing: border-box;
     width: 100%;
-    height: 52px;
-    padding: 0 14px;
-    border: 1px solid #dbe3ef;
+    height: 45px;
+    padding: 0 12px;
+    border: 1px solid #d9dfe9;
     border-radius: 0;
     outline: none;
+    background-color: white;
     font-size: 14px;
-    color: #1f2937;
-    background-color: #ffffff;
 }
 
-.campo-texto:focus {
-    border-color: #2563eb;
+.login-form .campo-texto:focus {
+    border-color: #2448c5;
 }
 
-.campo-texto::placeholder {
-    color: #9ca3af;
-}
-
-.divSenha {
+.login-form .divSenha {
+    position: relative;
     display: flex;
     align-items: center;
     width: 100%;
-    position: relative;
 }
 
-.divSenha input {
-    flex: 1;
-    min-width: 0;
+.login-form .divSenha input {
     padding-right: 45px;
 }
 
-.btnVisibilidade {
+.login-form .btnVisibilidade {
     position: absolute;
     right: 8px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    padding: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.btnVisibilidade svg {
-    width: 20px;
-    height: 20px;
-}
-
-.botao-enviar {
-    background-color: #203fbd;
-    color: #ffffff;
+    padding: 8px;
     border: none;
-    padding: 15px;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 17px;
+    background: transparent;
     cursor: pointer;
-    width: 100%;
 }
 
-.botao-enviar:hover {
-    background-color: #173399;
-}
-
-.linkNav {
-    grid-area: link;
-    align-self: start;
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-    color: #2563eb;
-    font-size: 14px;
-    text-decoration: none;
-}
-
-.linkNav:hover {
-    text-decoration: underline;
-}
-
-@media (max-width: 700px) {
-    #login-container {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        padding: 0;
-        
-        padding-top: 250px; 
-        background-size: 100% 250px;
-        background-position: top;
-    }
-
-    .titulo-login {
-        margin: 35px 15px;
-        font-size: 29px;
-    }
-
-    #login-container > div {
-        padding: 0 25px;
-    }
-
-    .meu-formulario {
-        gap: 22px;
-    }
-
-    .linkNav {
-        margin: 25px 0;
-    }
+.login-form .btnVisibilidade svg {
+    width: 19px;
+    height: 19px;
 }
 
 .selecao-perfil {
     display: flex;
     width: 100%;
     padding: 3px;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    border: 1px solid #e1e6f0;
     border-radius: 9px;
-    background-color: #203fbd;
+    background-color: white;
 }
 
 .selecao-perfil .perfil {
     flex: 1;
-    padding: 12px;
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    background: transparent;
+    color: #2448c5;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.selecao-perfil .perfil.ativo {
+    background-color: #203fbd;
+    color: white;
+    font-weight: bold;
+}
+
+.esqueceu-senha {
+    align-self: flex-end;
+    margin-top: -12px;
+    color: #2448c5;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.botao-enviar {
+    width: 100%;
+    padding: 13px;
     border: none;
     border-radius: 8px;
-    background-color: transparent;
+    background-color: #203fbd;
     color: white;
     font-size: 15px;
     cursor: pointer;
 }
 
-.selecao-perfil .perfil.ativo {
+.botao-enviar:hover {
+    background-color: #173399;
+}
+
+.divisor-login {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 25px 0 15px;
+}
+
+.divisor-login span {
+    flex: 1;
+    height: 1px;
+    background-color: #d9dfe9;
+}
+
+.divisor-login p {
+    color: #9299a7;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.botoes-sociais {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.botao-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    flex: 1;
+    padding: 10px 5px;
+    border: 1px solid #e1e6f0;
+    border-radius: 7px;
     background-color: white;
-    color: #203fbd;
+    color: #374151;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.google-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    font-size: 19px;
     font-weight: bold;
+    font-family: Arial, sans-serif;
+    background: conic-gradient(
+        from -45deg,
+        #4285F4 0deg 90deg,
+        #34A853 90deg 180deg,
+        #FBBC05 180deg 260deg,
+        #EA4335 260deg 310deg,
+        #4285F4 310deg 360deg
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.microsoft-icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    font-size: 0;
+    background:
+        linear-gradient(#F25022, #F25022) left top / 8px 8px no-repeat,
+        linear-gradient(#7FBA00, #7FBA00) right top / 8px 8px no-repeat,
+        linear-gradient(#00A4EF, #00A4EF) left bottom / 8px 8px no-repeat,
+        linear-gradient(#FFB900, #FFB900) right bottom / 8px 8px no-repeat;
+}
+
+.painel-direito .linkNav {
+    display: block;
+    margin-top: 25px;
+    color: #2448c5;
+    font-size: 12px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.painel-direito .linkNav:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 850px) {
+    .painel-esquerdo {
+        width: 48%;
+    }
+
+    .painel-direito {
+        width: 52%;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 650px) {
+    .login-layout {
+        flex-direction: column;
+    }
+
+    .painel-esquerdo {
+        width: 100%;
+        min-height: auto;
+        padding: 0;
+    }
+
+    .painel-esquerdo img {
+        width: 95%;
+        height: auto;
+        max-height: 400px;
+        object-fit: contain;
+    }
+
+    .painel-direito {
+        width: 100%;
+        min-height: auto;
+        padding: 40px 25px;
+    }
+
+    .titulo-login {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 400px) {
+    .botoes-sociais {
+        flex-direction: column;
+    }
 }
