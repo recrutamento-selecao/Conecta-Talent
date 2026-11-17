@@ -1,0 +1,438 @@
+/* ==========================================================================
+   Layout Geral da Página de Gerenciar Candidaturas
+   ========================================================================== */
+.pagina-layout-dashboard {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1e293b;
+}
+
+.conteudo-principal {
+    flex: 1;
+    padding: 32px 40px;
+    overflow-y: auto;
+    max-width: calc(100vw - 260px);
+}
+
+.breadcrumb {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+.breadcrumb span {
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.titulo-pagina {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+}
+
+.subtitulo-pagina {
+    font-size: 14px;
+    color: #64748b;
+    margin: 0 0 24px 0;
+}
+
+/* ==========================================================================
+   Barra de Filtros Superior
+   ========================================================================== */
+.barra-filtros-candidaturas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: flex-end;
+    background: #ffffff;
+    padding: 16px 20px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    margin-bottom: 24px;
+}
+
+.grupo-filtro-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 140px;
+}
+
+.grupo-filtro-item label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.select-filtro {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 13px;
+    background-color: #fff;
+    color: #334155;
+    outline: none;
+    cursor: pointer;
+}
+
+.acoes-filtro-botoes {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.btn-filtrar {
+    background-color: #1d4ed8;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-filtrar:hover {
+    background-color: #1e40af;
+}
+
+.btn-limpar-filtros {
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.btn-limpar-filtros:hover {
+    color: #0f172a;
+}
+
+/* ==========================================================================
+   Layout Conteúdo (Tabela + Painel Lateral Dinâmico)
+   ========================================================================== */
+.layout-conteudo-candidaturas {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    transition: grid-template-columns 0.3s ease;
+}
+
+.layout-conteudo-candidaturas.painel-ativo {
+    grid-template-columns: 1fr 420px;
+}
+
+#container-tabela-candidaturas {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Célula da Tabela
+   ========================================================================== */
+.celula-perfil-candidato {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-iniciais-cand {
+    width: 36px;
+    height: 36px;
+    background-color: #e0e7ff;
+    color: #3730a3;
+    font-weight: 600;
+    font-size: 13px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.celula-perfil-candidato strong {
+    font-size: 14px;
+    color: #0f172a;
+    display: block;
+}
+
+.celula-perfil-candidato span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.btn-acoes-linha {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    padding: 6px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-acoes-linha:hover {
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+.linha-selecionada {
+    background-color: #f0f7ff !important;
+}
+
+/* Badges de Status Personalizados */
+.badge-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.badge-nova { background-color: #e0f2fe; color: #0369a1; }
+.badge-analise { background-color: #fef3c7; color: #92400e; }
+.badge-entrevista { background-color: #f3e8ff; color: #7e22ce; }
+.badge-teste { background-color: #ffedd5; color: #c2410c; }
+.badge-aprovada { background-color: #dcfce7; color: #166534; }
+.badge-reprovada { background-color: #fee2e2; color: #991b1b; }
+
+/* ==========================================================================
+   Painel Lateral de Detalhes
+   ========================================================================== */
+.painel-detalhes-candidatura {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+}
+
+.painel-topo-perfil {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.painel-info-principal h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 2px 0;
+}
+
+.painel-info-principal span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #2563eb;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.detalhes-sub-infos {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+.btn-fechar-painel {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.painel-acoes-topo {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.btn-acao-azul {
+    flex: 1;
+    background-color: #1d4ed8;
+    color: #fff;
+    border: none;
+    padding: 9px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-acao-azul:hover { background-color: #1e40af; }
+
+.btn-acao-branco {
+    flex: 1;
+    background-color: #ffffff;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    padding: 9px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-acao-branco:hover { background-color: #f1f5f9; }
+
+/* Abas do Painel Lateral */
+.painel-abas-candidato {
+    display: flex;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 20px;
+}
+
+.aba-candidato-item {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 8px 4px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+
+.aba-candidato-item.ativo {
+    color: #1d4ed8;
+    font-weight: 600;
+}
+
+.aba-candidato-item.ativo::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #1d4ed8;
+}
+
+.painel-corpo-conteudo {
+    font-size: 13px;
+    color: #334155;
+}
+
+.secao-painel-bloco h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 6px 0;
+}
+
+.texto-descricao-painel {
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.bloco-card-info-pequeno {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tags-habilidades-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag-habilidade {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.grid-experiencia-formacao {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.caixa-pequena-info {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.caixa-pequena-info span {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.caixa-pequena-info strong {
+    font-size: 13px;
+    color: #0f172a;
+}
+
+.linha-tempo-historico {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    padding-left: 12px;
+    border-left: 2px solid #e2e8f0;
+    margin-top: 8px;
+}
+
+.item-historico-ponto {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    position: relative;
+}
+
+.ponto-azul {
+    width: 8px;
+    height: 8px;
+    background-color: #1d4ed8;
+    border-radius: 50%;
+    position: absolute;
+    left: -17px;
+    top: 4px;
+}
+
+.item-historico-ponto strong {
+    display: block;
+    font-size: 12px;
+    color: #0f172a;
+}
+
+.item-historico-ponto small {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.mt-4 { margin-top: 16px; }

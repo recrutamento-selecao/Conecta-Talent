@@ -9,11 +9,25 @@ import { renderMFAConfig } from '../pages/mfaConfig.js';
 import { renderDashboardCandidato } from '../pages/dashboard-candidato.js';
 import { renderDashboardEmpresa } from '../pages/dashboard-empresa.js';
 import { renderDashboardRecrutador } from '../pages/dashboard-recrutador.js';
-import { renderDashboardAdministrador } from '../pages/dashboard-administrador.js'; 
+import { renderDashboardAdministrador } from '../pages/dashboard-administrador.js';
 import { renderCandidatoVagas } from '../pages/candidato-vagas.js';
-import { renderMeusDados } from '../pages/meus-dados.js'; // <- Importação correta
+import { renderMeusDados } from '../pages/meus-dados.js';
+import { renderMinhasVagas } from '../pages/gerenciar-vagas.js';
+import { renderGerenciarRecrutadores } from '../pages/gerenciar-recrutadores.js';
+import { renderGerenciarCandidaturas } from '../pages/gerenciar-candidaturas.js';
+import { renderVagasInicio } from '../pages/vagas-inicio.js';
+import { abrirModalCandidatar } from '../pages/modal-candidatar-se.js';
 
-// Função auxiliar para carregar o CSS específico de cada página e remover os anteriores
+function garantirCssModal() {
+    if (!document.getElementById('estilo-modal-global')) {
+        const linkModal = document.createElement('link');
+        linkModal.id = 'estilo-modal-global';
+        linkModal.rel = 'stylesheet';
+        linkModal.href = './view/css/modal.css';
+        document.head.appendChild(linkModal);
+    }
+}
+
 function trocarEstiloPagina(nomePagina) {
     const estiloAnterior = document.getElementById('estilo-Dinamico-pagina');
     if (estiloAnterior) {
@@ -28,19 +42,27 @@ function trocarEstiloPagina(nomePagina) {
     } else if (nomePagina === 'dashboard-recrutador') {
         caminhoCss = './view/css/dashboard-recrutador.css';
     } else if (nomePagina === 'dashboard-administrador') {
-        caminhoCss = './view/css/dashboard-administrador.css'; 
+        caminhoCss = './view/css/dashboard-administrador.css';
     } else if (nomePagina === 'autenticacao2FA' || nomePagina === 'verificacao') {
         caminhoCss = './view/css/autenticacao2FA.css';
     } else if (nomePagina === 'mfa-config') {
-        caminhoCss = './view/css/mfaConfig.css'; 
+        caminhoCss = './view/css/mfaConfig.css';
     } else if (nomePagina === 'cadastro') {
-        caminhoCss = './view/css/cadastro.css'; 
+        caminhoCss = './view/css/cadastro.css';
     } else if (nomePagina === 'login') {
-        caminhoCss = './view/css/login.css'; 
+        caminhoCss = './view/css/login.css';
     } else if (nomePagina === 'candidato-vagas') {
-        caminhoCss = './view/css/candidato-vagas.css'; 
+        caminhoCss = './view/css/candidato-vagas.css';
     } else if (nomePagina === 'meus-dados') {
-        caminhoCss = './view/css/meus-dados.css'; 
+        caminhoCss = './view/css/meus-dados.css';
+    } else if (nomePagina === 'minhas-vagas') {
+        caminhoCss = './view/css/minhas-vagas.css';
+    } else if (nomePagina === 'gerenciar-recrutadores') {
+        caminhoCss = './view/css/gerenciar-recrutador.css';
+    } else if (nomePagina === 'gerenciar-candidaturas') {
+        caminhoCss = './view/css/gerenciar-candidaturas.css';
+    } else if (nomePagina === 'vagas-inicio') {
+        caminhoCss = './view/css/vagas-inicio.css';
     }
 
     if (caminhoCss) {
@@ -54,6 +76,17 @@ function trocarEstiloPagina(nomePagina) {
 
 export function iniciarRouter() {
     const app = document.getElementById('app');
+    garantirCssModal();
+
+    document.addEventListener('click', (e) => {
+        const btnCandidatar = e.target.closest('.btn-candidatar');
+    
+        if (btnCandidatar && window.location.hash === '#vagas-inicio') {
+            e.preventDefault();
+            e.stopPropagation();
+            abrirModalCandidatar();
+        }
+    });
 
     function navegar() {
         const hash = window.location.hash;
@@ -61,6 +94,7 @@ export function iniciarRouter() {
 
         switch (hash) {
             case '#sobre-nos':
+            case '#sobre':
                 trocarEstiloPagina('sobre-nos');
                 app.appendChild(renderSobreNos());
                 break;
@@ -80,6 +114,11 @@ export function iniciarRouter() {
                 trocarEstiloPagina('tipo-cadastro');
                 app.appendChild(renderTipoCadastro());
                 break;
+            case '#login':
+                // Caso já tenha a função renderLogin(), importe-a no topo e descomente abaixo:
+                trocarEstiloPagina('login');
+                // app.appendChild(renderLogin());
+                break;
             case '#candidato-vagas':
                 trocarEstiloPagina('candidato-vagas');
                 app.appendChild(renderCandidatoVagas());
@@ -96,7 +135,7 @@ export function iniciarRouter() {
                 trocarEstiloPagina('dashboard-recrutador');
                 app.appendChild(renderDashboardRecrutador());
                 break;
-            case '#dashboard-administrador': 
+            case '#dashboard-administrador':
                 trocarEstiloPagina('dashboard-administrador');
                 app.appendChild(renderDashboardAdministrador());
                 break;
@@ -114,6 +153,22 @@ export function iniciarRouter() {
             case '#meus-dados-candidato':
                 trocarEstiloPagina('meus-dados');
                 app.appendChild(renderMeusDados());
+                break;
+            case '#gerenciar-vagas':
+                trocarEstiloPagina('gerenciar-vagas');
+                app.appendChild(renderMinhasVagas());
+                break;
+            case '#gerenciar-recrutadores':
+                trocarEstiloPagina('gerenciar-recrutadores');
+                app.appendChild(renderGerenciarRecrutadores());
+                break;
+            case '#gerenciar-candidaturas':
+                trocarEstiloPagina('gerenciar-candidaturas');
+                app.appendChild(renderGerenciarCandidaturas());
+                break;
+            case '#vagas-inicio':
+                trocarEstiloPagina('vagas-inicio');
+                app.appendChild(renderVagasInicio());
                 break;
             case '#home':
             default:

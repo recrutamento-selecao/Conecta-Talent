@@ -60,6 +60,31 @@ export function renderHome() {
     areaBuscaInput.appendChild(campoBuscarLocalizacao);
     areaBuscaInput.appendChild(btnBuscarVagas);
 
+    // --- LÓGICA DE INTERATIVIDADE DA BUSCA ---
+    const inputCargo = campoBuscarVagas.querySelector('.input-buscar');
+    const inputLocal = campoBuscarLocalizacao.querySelector('.input-localizar');
+
+    const executarBuscaHome = () => {
+        const cargo = inputCargo.value.trim();
+        const localizacao = inputLocal.value.trim();
+
+        // Guarda os parâmetros na sessionStorage para a página de vagas ler
+        sessionStorage.setItem('buscaInicial', JSON.stringify({ cargo, localizacao }));
+
+        // Redireciona para a página de vagas via router de hash
+        window.location.hash = '#vagas-inicio';
+    };
+
+    btnBuscarVagas.addEventListener('click', executarBuscaHome);
+
+    inputCargo.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') executarBuscaHome();
+    });
+    inputLocal.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') executarBuscaHome();
+    });
+    // ----------------------------------------
+
     const areaTags = document.createElement('div');
     areaTags.classList.add('area-tags-populares');
 
@@ -68,11 +93,18 @@ export function renderHome() {
     labelTags.textContent = "Vagas populares:";
     areaTags.appendChild(labelTags);
 
-    const tagsList = ["Análise de Dados", "Desenvolvedor", "Designer", "Marketing", "Administrativo"];
+    const tagsList = ["Analista de Dados", "Desenvolvedor", "Designer", "Marketing", "Administrativo"];
     tagsList.forEach(tagText => {
         const btnTag = document.createElement('button');
         btnTag.classList.add('btn-tag-popular');
         btnTag.textContent = tagText;
+
+
+        btnTag.addEventListener('click', () => {
+            sessionStorage.setItem('buscaInicial', JSON.stringify({ cargo: tagText, localizacao: '' }));
+            window.location.hash = '#vagas-inicio';
+        });
+
         areaTags.appendChild(btnTag);
     });
 

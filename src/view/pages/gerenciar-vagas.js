@@ -1,7 +1,8 @@
-import { criarTabela } from '../components/table.js';
 import { criarSidebar } from '../components/sidebar.js';
+import { criarCard } from '../components/card.js';
+import { criarTabela } from '../components/table.js';
 
-export function renderGerenciarVagas() {
+export function renderMinhasVagas() {
     const containerPagina = document.createElement('div');
     containerPagina.className = 'pagina-layout-dashboard';
 
@@ -11,251 +12,627 @@ export function renderGerenciarVagas() {
     const conteudoPrincipal = document.createElement('main');
     conteudoPrincipal.className = 'conteudo-principal';
 
-    const h1 = document.createElement('h1');
-    h1.className = 'titulo-pagina';
-    h1.textContent = 'Gerenciar vagas';
-    conteudoPrincipal.appendChild(h1);
-
-    const pSub = document.createElement('p');
-    pSub.className = 'subtitulo-pagina';
-    pSub.textContent = 'Visualize e gerencie todas as vagas da sua empresa.';
-    conteudoPrincipal.appendChild(pSub);
-
-    // Dados base de exemplo (KPIs e tabela)
-    const dadosVagas = [
-        { id: 1, codigo: '#VAG-0012', titulo: 'Analista de Dados Jr.', recrutador: 'Ana Souza', iniciais: 'AS', tipo: 'Efetivo', modalidade: 'Híbrido', candidatos: 28, status: 'Aguardando aprovação', dataCriacao: '22/09/2026 às 14:30', localizacao: 'Sorocaba - SP', faixaSalaria: 'R$ 3.000 - R$ 5.000' },
-        { id: 2, codigo: '#VAG-0011', titulo: 'Desenvolvedor Front-end', recrutador: 'Carlos Lima', iniciais: 'CL', tipo: 'Efetivo', modalidade: 'Remoto', candidatos: 45, status: 'Ativa', dataCriacao: '20/09/2026 às 10:12', localizacao: 'São Paulo - SP', faixaSalaria: 'R$ 6.000 - R$ 8.000' },
-        { id: 3, codigo: '#VAG-0010', titulo: 'Assistente Administrativo', recrutador: 'Mariana Alves', iniciais: 'MA', tipo: 'Efetivo', modalidade: 'Presencial', candidatos: 12, status: 'Ativa', dataCriacao: '18/09/2026 às 10:45', localizacao: 'Votorantim - SP', faixaSalaria: 'R$ 2.200 - R$ 2.800' },
-        { id: 4, codigo: '#VAG-0009', titulo: 'Designer UX/UI', recrutador: 'João Pereira', iniciais: 'JP', tipo: 'Efetivo', modalidade: 'Remoto', candidatos: 0, status: 'Rascunho', dataCriacao: '15/09/2026 às 09:18', localizacao: 'Remoto', faixaSalaria: 'R$ 5.000 - R$ 7.000' },
-        { id: 5, codigo: '#VAG-0008', titulo: 'Analista de RH', recrutador: 'Natália Rocha', iniciais: 'NR', tipo: 'Efetivo', modalidade: 'Híbrido', candidatos: 67, status: 'Encerrada', dataCriacao: '10/09/2026 às 11:20', localizacao: 'Itu - SP', faixaSalaria: 'R$ 4.000 - R$ 5.500' },
-        { id: 6, codigo: '#VAG-0007', titulo: 'Estagiário de Marketing', recrutador: 'Lucas Mendes', iniciais: 'LM', tipo: 'Estágio', modalidade: 'Remoto', candidatos: 19, status: 'Ativa', dataCriacao: '08/09/2026 às 08:50', localizacao: 'Remoto', faixaSalaria: 'R$ 1.500' },
-        { id: 7, codigo: '#VAG-0006', titulo: 'Analista de Suporte TI', recrutador: 'Fernanda Silva', iniciais: 'FS', tipo: 'Efetivo', modalidade: 'Presencial', candidatos: 23, status: 'Aguardando aprovação', dataCriacao: '01/09/2026 às 14:22', localizacao: 'Sorocaba - SP', faixaSalaria: 'R$ 3.500 - R$ 4.500' }
-    ];
-
-    // Cards de KPI no Topo
-    const totalVagas = dadosVagas.length;
-    const ativas = dadosVagas.filter(v => v.status === 'Ativa').length;
-    const aguardando = dadosVagas.filter(v => v.status === 'Aguardando aprovação').length;
-    const encerradas = dadosVagas.filter(v => v.status === 'Encerrada').length;
-    const rascunhos = dadosVagas.filter(v => v.status === 'Rascunho').length;
-
-    const containerKpis = document.createElement('div');
-    containerKpis.className = 'container-kpis-vagas';
-    containerKpis.innerHTML = `
-        <div class="card-kpi"><span>Total de vagas</span><h3>${totalVagas}</h3></div>
-        <div class="card-kpi"><span>Vagas ativas</span><h3>${ativas} <span class="indicador-ponto ponto-verde"></span></h3></div>
-        <div class="card-kpi"><span>Aguardando aprovação</span><h3>${aguardando} <span class="indicador-ponto ponto-amarelo"></span></h3></div>
-        <div class="card-kpi"><span>Encerradas</span><h3>${encerradas} <span class="indicador-ponto ponto-vermelho"></span></h3></div>
-        <div class="card-kpi"><span>Rascunhos</span><h3>${rascunhos}</h3></div>
-    `;
-    conteudoPrincipal.appendChild(containerKpis);
-
-    // Barra de Filtros
-    const tiposUnicos = [...new Set(dadosVagas.map(v => v.tipo))];
-    const modalidadesUnicas = [...new Set(dadosVagas.map(v => v.modalidade))];
-    const statusUnicos = [...new Set(dadosVagas.map(v => v.status))];
-
-    const barraFiltros = document.createElement('div');
-    barraFiltros.className = 'barra-filtros-tabela';
-    barraFiltros.innerHTML = `
-        <div class="filtro-busca">
-            <input type="text" placeholder="Buscar por título da vaga, recrutador ou código..." id="input-busca-vaga" />
-        </div>
-        <div class="filtro-selects">
-            <select id="filtro-status">
-                <option value="">Status: Todos</option>
-                ${statusUnicos.map(st => `<option value="${st}">${st}</option>`).join('')}
-            </select>
-            <select id="filtro-tipo">
-                <option value="">Tipo de vaga: Todos</option>
-                ${tiposUnicos.map(tp => `<option value="${tp}">${tp}</option>`).join('')}
-            </select>
-            <select id="filtro-modalidade">
-                <option value="">Modalidade: Todas</option>
-                ${modalidadesUnicas.map(md => `<option value="${md}">${md}</option>`).join('')}
-            </select>
-        </div>
-    `;
-    conteudoPrincipal.appendChild(barraFiltros);
-
-    // Layout Grid (Tabela + Painel Lateral)
-    const layoutGrid = document.createElement('div');
-    layoutGrid.className = 'layout-tabela-detalhes';
-
-    const containerTabelaWrapper = document.createElement('div');
-    containerTabelaWrapper.className = 'container-tabela-principal';
-    
-    const containerDetalhes = document.createElement('div');
-    containerDetalhes.className = 'painel-detalhes-lateral';
-    containerDetalhes.style.display = 'none';
-
-    layoutGrid.appendChild(containerTabelaWrapper);
-    layoutGrid.appendChild(containerDetalhes);
-    conteudoPrincipal.appendChild(layoutGrid);
-    containerPagina.appendChild(conteudoPrincipal);
-
-    // Definição das Colunas da Tabela
-    const colunas = [
-        {
-            chave: 'titulo',
-            titulo: 'Título da vaga',
-            ordenavel: true,
-            render: (valor, item) => {
-                const wrapper = document.createElement('div');
-                wrapper.innerHTML = `<strong>${valor}</strong><br/><small style="color: #64748b; font-family: monospace;">${item.codigo}</small>`;
-                return wrapper;
-            }
-        },
-        {
-            chave: 'recrutador',
-            titulo: 'Recrutador responsável',
-            render: (valor, item) => {
-                const wrapper = document.createElement('div');
-                wrapper.className = 'celula-perfil-tabela';
-                wrapper.innerHTML = `
-                    <div class="avatar-iniciais">${item.iniciais}</div>
-                    <span>${valor}</span>
-                `;
-                return wrapper;
-            }
-        },
-        { chave: 'tipo', titulo: 'Tipo' },
-        { chave: 'modalidade', titulo: 'Modalidade' },
-        { chave: 'candidatos', titulo: 'Candidatos', alinhamento: 'centro' },
-        {
-            chave: 'status',
-            titulo: 'Status',
-            alinhamento: 'centro',
-            render: (valor) => {
-                const badge = document.createElement('span');
-                const classe = valor === 'Ativa' ? 'badge-ativo' : (valor === 'Aguardando aprovação' ? 'badge-pendente' : 'badge-inativo');
-                badge.className = `badge-status ${classe}`;
-                badge.textContent = valor;
-                return badge;
-            }
-        },
-        { chave: 'dataCriacao', titulo: 'Data de criação' }
-    ];
-
-    // Painel Lateral de Detalhes da Vaga
-    function mostrarDetalhesVaga(item) {
-        containerDetalhes.style.display = 'block';
-        containerDetalhes.innerHTML = `
-            <div class="cabecalho-detalhes-vaga">
-                <div class="titulo-vaga-painel">
-                    <h3>${item.titulo}</h3>
-                    <span class="codigo-vaga-painel">${item.codigo}</span>
-                </div>
-                <button type="button" class="btn-fechar-painel" id="fechar-painel">✕</button>
+    conteudoPrincipal.innerHTML = `
+        <div class="cabecalho-pagina-flex">
+            <div>
+                <h1 class="titulo-pagina">Gerenciar vagas</h1>
+                <p class="subtitulo-pagina">Gerencie suas vagas e acompanhe os processos seletivos da sua empresa.</p>
             </div>
+            <button type="button" class="btn-criar-vaga" id="btn-criar-vaga">+ Criar vaga</button>
+        </div>
+
+        <!-- Cards de Estatísticas -->
+        <div class="cards-estatisticas-grid" id="container-cards-estatisticas"></div>
+
+        <!-- Barra de Filtros e Pesquisa -->
+        <div class="barra-filtros-vagas">
+            <div class="input-busca-vaga">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="input-busca" placeholder="Buscar vaga por título, área ou localização..." />
+            </div>
+            <div class="filtros-selecao-grupo">
+                <select class="select-filtro" id="filtro-status">
+                    <option value="">Status: Todos</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Pausada">Pausada</option>
+                    <option value="Concluída">Concluída</option>
+                </select>
+                <select class="select-filtro" id="filtro-area">
+                    <option value="">Área: Todas</option>
+                    <option value="Dados">Dados</option>
+                    <option value="TI">TI</option>
+                    <option value="Recursos Humanos">Recursos Humanos</option>
+                    <option value="Design">Design</option>
+                </select>
+                <select class="select-filtro" id="filtro-contrato">
+                    <option value="">Tipo de contrato: Todos</option>
+                    <option value="CLT">CLT</option>
+                    <option value="PJ">PJ</option>
+                </select>
+                <select class="select-filtro" id="filtro-localizacao">
+                    <option value="">Localização: Todas</option>
+                    <option value="Sorocaba - SP">Sorocaba - SP</option>
+                    <option value="São Paulo - SP">São Paulo - SP</option>
+                </select>
+                <button type="button" class="btn-limpar-filtros" id="btn-limpar">↺ Limpar filtros</button>
+            </div>
+        </div>
+
+        <!-- Layout Principal: Tabela à Esquerda + Painel de Detalhes à Direita -->
+        <div class="layout-conteudo-vagas">
             
-            <div style="margin-bottom: 16px;">
-                <span class="badge-status badge-pendente">${item.status}</span>
-            </div>
+            <!-- Tabela de Vagas -->
+            <div id="container-tabela-vagas"></div>
 
-            <div class="abas-detalhes">
-                <button class="aba-btn ativo">Informações</button>
-                <button class="aba-btn">Descrição</button>
-                <button class="aba-btn">Requisitos</button>
-                <button class="aba-btn">Etapas</button>
-            </div>
-
-            <div class="lista-infos-detalhes">
-                <div class="item-info"><span class="rotulo-info">Tipo de contratação</span><span class="valor-info">${item.tipo}</span></div>
-                <div class="item-info"><span class="rotulo-info">Modalidade</span><span class="valor-info">${item.modalidade}</span></div>
-                <div class="item-info"><span class="rotulo-info">Localização</span><span class="valor-info">${item.localizacao}</span></div>
-                <div class="item-info"><span class="rotulo-info">Faixa salarial</span><span class="valor-info">${item.faixaSalaria}</span></div>
-                <div class="item-info"><span class="rotulo-info">Data de criação</span><span class="valor-info">${item.dataCriacao}</span></div>
-            </div>
-
-            <div class="secao-recrutador-responsavel">
-                <h5>Recrutador responsável</h5>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <div class="avatar-iniciais">${item.iniciais}</div>
-                    <div>
-                        <strong>${item.recrutador}</strong><br/>
-                        <span style="font-size: 12px; color: #64748b;">Recrutador(a)</span>
+            <!-- Painel Lateral de Detalhes da Vaga Selecionada -->
+            <div class="painel-detalhes-vaga" id="painel-detalhes" style="display: none;">
+                <div class="painel-detalhes-topo">
+                    <div class="painel-titulo-empresa">
+                        <div class="icone-vaga-mini" id="painel-icone">📊</div>
+                        <div>
+                            <h3 id="painel-titulo">Selecione uma vaga</h3>
+                            <span id="painel-empresa">-</span>
+                        </div>
+                    </div>
+                    <div class="painel-topo-acoes">
+                        <span class="badge-status" id="painel-status-badge"></span>
+                        <button class="btn-fechar-painel" id="btn-fechar-painel" title="Fechar detalhes">✕</button>
                     </div>
                 </div>
-            </div>
 
-            <div class="rodape-acoes-aprovacao">
-                <button type="button" class="btn-aprovar">✓ Aprovar e publicar</button>
-                <button type="button" class="btn-solicitar">Solicitar alterações</button>
-                <button type="button" class="btn-reprovar">✕ Reprovar</button>
-            </div>
-        `;
-
-        containerDetalhes.querySelector('#fechar-painel').addEventListener('click', () => {
-            containerDetalhes.style.display = 'none';
-        });
-    }
-
-    let dadosAtuais = [...dadosVagas];
-
-    let instanciaTabela = criarTabela(colunas, dadosAtuais, {
-        container: containerTabelaWrapper,
-        selecionavel: true,
-        zebra: false,
-        rodape: {
-            esquerda: `Mostrando 1 a ${dadosAtuais.length} de ${dadosVagas.length} vagas`,
-            direita: `
-                <div class="paginacao-container">
-                    <button class="pag-btn">‹</button>
-                    <button class="pag-btn ativo">1</button>
-                    <button class="pag-btn">›</button>
-                    <span class="texto-itens-pagina">Itens por página</span>
-                    <select class="select-itens-pagina"><option>8</option><option>15</option></select>
+                <div class="painel-abas" id="painel-abas-container">
+                    <button class="aba-item ativo" data-aba="informacoes">Informações</button>
+                    <button class="aba-item" data-aba="processo">Processo seletivo</button>
+                    <button class="aba-item" data-aba="testes">Testes</button>
+                    <button class="aba-item" data-aba="candidaturas">Candidaturas</button>
                 </div>
-            `
-        },
-        aoEditar: (item) => mostrarDetalhesVaga(item),
-        aoExcluir: (item) => {
-            if(confirm(`Deseja realmente excluir a vaga ${item.titulo}?`)) {
-                alert('Vaga excluída com sucesso.');
-            }
-        }
-    });
 
-    // Lógica de Filtros Reativos
-    function aplicarFiltros() {
-        const termoBusca = document.getElementById('input-busca-vaga').value.toLowerCase().trim();
-        const statusSel = document.getElementById('filtro-status').value;
-        const tipoSel = document.getElementById('filtro-tipo').value;
-        const modalidadeSel = document.getElementById('filtro-modalidade').value;
+                <!-- Conteúdo Dinâmico das Abas -->
+                <div class="painel-conteudo-secao" id="painel-conteudo-corpo"></div>
+            </div>
 
-        dadosAtuais = dadosVagas.filter(item => {
-            const matchBusca = !termoBusca || 
-                               item.titulo.toLowerCase().includes(termoBusca) ||
-                               item.recrutador.toLowerCase().includes(termoBusca) ||
-                               item.codigo.toLowerCase().includes(termoBusca);
-            
-            const matchStatus = !statusSel || item.status === statusSel;
-            const matchTipo = !tipoSel || item.tipo === tipoSel;
-            const matchModalidade = !modalidadeSel || item.modalidade === modalidadeSel;
+        </div>
+    `;
 
-            return matchBusca && matchStatus && matchTipo && matchModalidade;
-        });
-
-        instanciaTabela.atualizar(dadosAtuais);
-    }
+    // Menu flutuante único reutilizável para os 3 pontos de Ações
+    const menuFlutuante = document.createElement('div');
+    menuFlutuante.className = 'menu-acoes-flutuante';
+    menuFlutuante.style.display = 'none';
+    containerPagina.appendChild(menuFlutuante);
 
     setTimeout(() => {
-        document.getElementById('input-busca-vaga').addEventListener('input', aplicarFiltros);
-        document.getElementById('filtro-status').addEventListener('change', aplicarFiltros);
-        document.getElementById('filtro-tipo').addEventListener('change', aplicarFiltros);
-        document.getElementById('filtro-modalidade').addEventListener('change', aplicarFiltros);
-    }, 50);
+        // Base de Dados de Vagas
+        let dadosVagasOriginais = [
+            { 
+                id: 1, vaga: 'Analista de Dados', contrato: 'CLT', iconeEmoji: '📊', corIcone: 'azul', area: 'Dados', localizacao: 'Sorocaba - SP', modalidade: 'Híbrido', candidatos: 48, processo: '4 etapas', status: 'Em andamento', statusClasse: 'em-andamento', empresa: 'Tech Soluções', descricao: 'Buscamos um Analista de Dados para atuar na análise, construção de dashboards e apoio à tomada de decisão.',
+                etapas: [
+                    { nome: 'Inscrição', status: 'concluida' },
+                    { nome: 'Triagem', status: 'concluida' },
+                    { nome: 'Teste técnico', status: 'ativo' },
+                    { nome: 'Entrevista', status: '' }
+                ],
+                testes: [
+                    { titulo: 'Case de SQL e Power BI', prazo: '48 horas', status: 'Enviado (32 concluídos)' },
+                    { titulo: 'Teste Lógico Comportamental', prazo: '24 horas', status: 'Pendente' }
+                ],
+                candidatosLista: [
+                    { nome: 'Ana Paula Silva', match: '94%', etapa: 'Teste técnico' },
+                    { nome: 'Carlos Eduardo', match: '88%', etapa: 'Teste técnico' },
+                    { nome: 'Mariana Costa', match: '82%', etapa: 'Triagem' }
+                ]
+            },
+            { 
+                id: 2, vaga: 'Desenvolvedor Front-end', contrato: 'CLT', iconeEmoji: '💻', corIcone: 'laranja', area: 'TI', localizacao: 'São Paulo - SP', modalidade: 'Remoto', candidatos: 35, processo: '5 etapas', status: 'Em andamento', statusClasse: 'em-andamento', empresa: 'Inova Web', descricao: 'Desenvolvimento de interfaces modernas, responsivas e de alta performance utilizando frameworks atuais.',
+                etapas: [
+                    { nome: 'Inscrição', status: 'concluida' },
+                    { nome: 'Triagem', status: 'ativo' },
+                    { nome: 'Code Challenge', status: '' },
+                    { nome: 'Entrevista Tech', status: '' },
+                    { nome: 'Final', status: '' }
+                ],
+                testes: [
+                    { titulo: 'Desafio Prático React/JS', prazo: '3 dias', status: 'Ativo' }
+                ],
+                candidatosLista: [
+                    { nome: 'Lucas Gabriel', match: '96%', etapa: 'Triagem' },
+                    { nome: 'Beatriz Lima', match: '90%', etapa: 'Triagem' }
+                ]
+            },
+            { 
+                id: 3, vaga: 'Analista de RH', contrato: 'CLT', iconeEmoji: '👥', corIcone: 'rosa', area: 'Recursos Humanos', localizacao: 'Sorocaba - SP', modalidade: 'Presencial', candidatos: 27, processo: '3 etapas', status: 'Pausada', statusClasse: 'pausada', empresa: 'Tech Soluções', descricao: 'Condução de processos de recrutamento e seleção, alinhamento de perfil com gestores e onboarding.',
+                etapas: [
+                    { nome: 'Inscrição', status: 'concluida' },
+                    { nome: 'Entrevista RH', status: 'ativo' },
+                    { nome: 'Diretoria', status: '' }
+                ],
+                testes: [
+                    { titulo: 'Redação e Case de Recrutamento', prazo: '24 horas', status: 'Concluído' }
+                ],
+                candidatosLista: [
+                    { nome: 'Juliana Mendes', match: '92%', etapa: 'Entrevista RH' }
+                ]
+            },
+            { 
+                id: 4, vaga: 'Designer UI/UX', contrato: 'PJ', iconeEmoji: '🎨', corIcone: 'roxo', area: 'Design', localizacao: 'São Paulo - SP', modalidade: 'Híbrido', candidatos: 61, processo: '4 etapas', status: 'Concluída', statusClasse: 'concluida', empresa: 'Design Studio', descricao: 'Criação de fluxos de usuário, wireframes, protótipos de alta fidelidade e testes de usabilidade.',
+                etapas: [
+                    { nome: 'Inscrição', status: 'concluida' },
+                    { nome: 'Portfólio', status: 'concluida' },
+                    { nome: 'Case UX', status: 'concluida' },
+                    { nome: 'Contratação', status: 'concluida' }
+                ],
+                testes: [
+                    { titulo: 'Avaliação de Portfólio Figma', prazo: 'Encerrado', status: 'Finalizado' }
+                ],
+                candidatosLista: [
+                    { nome: 'Gabriel Souza', match: '98%', etapa: 'Contratado' }
+                ]
+            }
+        ];
 
-    containerTabelaWrapper.addEventListener('click', (e) => {
-        const linha = e.target.closest('tr');
-        if (linha && !e.target.closest('button') && !e.target.closest('input')) {
-            const indexTR = Array.from(linha.parentNode.children).indexOf(linha);
-            if (indexTR >= 0 && dadosAtuais[indexTR]) {
-                mostrarDetalhesVaga(dadosAtuais[indexTR]);
+        let tabelaInstancia = null;
+        let vagaSelecionada = null;
+        let abaAtiva = 'informacoes';
+
+        const gridCards = conteudoPrincipal.querySelector('#container-cards-estatisticas');
+        const containerTabela = conteudoPrincipal.querySelector('#container-tabela-vagas');
+        const painelDetalhes = conteudoPrincipal.querySelector('#painel-detalhes');
+        const layoutGrid = conteudoPrincipal.querySelector('.layout-conteudo-vagas');
+        const corpoPainel = conteudoPrincipal.querySelector('#painel-conteudo-corpo');
+
+        // Atualiza os 4 cards superiores dinamicamente
+        function atualizarCards() {
+            if (!gridCards) return;
+            gridCards.innerHTML = '';
+
+            const total = dadosVagasOriginais.length;
+            const emAndamento = dadosVagasOriginais.filter(v => v.status === 'Em andamento').length;
+            const pausadas = dadosVagasOriginais.filter(v => v.status === 'Pausada').length;
+            const concluidas = dadosVagasOriginais.filter(v => v.status === 'Concluída').length;
+
+            gridCards.appendChild(criarCard({ label: 'VAGAS TOTAIS', valor: String(total), subtituloDestaque: '+3 novas', subtituloTexto: 'esta semana' }));
+            gridCards.appendChild(criarCard({ label: 'EM ANDAMENTO', valor: String(emAndamento), subtituloDestaque: 'Ativas', subtituloTexto: 'no processo' }));
+            gridCards.appendChild(criarCard({ label: 'PAUSADAS', valor: String(pausadas), subtituloDestaque: 'Atenção', subtituloTexto: 'necessária' }));
+            gridCards.appendChild(criarCard({ label: 'CONCLUÍDAS', valor: String(concluidas), subtituloDestaque: 'Finalizadas', subtituloTexto: 'este mês' }));
+        }
+
+        atualizarCards();
+
+        // Fechar menu flutuante de 3 pontos
+        function fecharMenuAcoes() {
+            menuFlutuante.style.display = 'none';
+        }
+
+        document.addEventListener('click', (e) => {
+            if (!menuFlutuante.contains(e.target) && !e.target.closest('.btn-acoes-linha')) {
+                fecharMenuAcoes();
+            }
+        });
+
+        // Ações de gestão da vaga (usadas tanto no menu dos 3 pontos quanto nos botões do painel lateral)
+        function alternarPausaVaga(item) {
+            if (item.status === 'Pausada') {
+                item.status = 'Em andamento';
+                item.statusClasse = 'em-andamento';
+            } else {
+                item.status = 'Pausada';
+                item.statusClasse = 'pausada';
+            }
+            atualizarCards();
+            aplicarFiltros();
+            if (vagaSelecionada && vagaSelecionada.id === item.id) {
+                abrirPainel(item);
             }
         }
-    });
+
+        function duplicarVaga(item) {
+            const novoId = dadosVagasOriginais.length > 0 ? Math.max(...dadosVagasOriginais.map(v => v.id)) + 1 : 1;
+            const copia = {
+                ...item,
+                id: novoId,
+                vaga: `${item.vaga} (Cópia)`,
+                candidatos: 0,
+                status: 'Em andamento',
+                statusClasse: 'em-andamento',
+                etapas: item.etapas.map(e => ({ ...e })),
+                testes: item.testes.map(t => ({ ...t })),
+                candidatosLista: []
+            };
+            dadosVagasOriginais.unshift(copia);
+            atualizarCards();
+            aplicarFiltros();
+        }
+
+        function excluirVaga(item) {
+            if (!confirm(`Tem certeza que deseja excluir a vaga "${item.vaga}"?`)) return;
+            dadosVagasOriginais = dadosVagasOriginais.filter(v => v.id !== item.id);
+            if (vagaSelecionada && vagaSelecionada.id === item.id) {
+                atualizarLayoutPainel(false);
+            }
+            atualizarCards();
+            aplicarFiltros();
+        }
+
+        function editarVaga(item) {
+            const novoTitulo = prompt('Editar título da vaga:', item.vaga);
+            if (novoTitulo && novoTitulo.trim()) {
+                item.vaga = novoTitulo.trim();
+                aplicarFiltros();
+                if (vagaSelecionada && vagaSelecionada.id === item.id) {
+                    abrirPainel(item);
+                }
+            }
+        }
+
+        // Abre o menu dropdown posicionado junto ao botão de 3 pontos clicado
+        function abrirMenuAcoes(botaoElemento, item) {
+            const rect = botaoElemento.getBoundingClientRect();
+            const isPausada = item.status === 'Pausada';
+
+            menuFlutuante.innerHTML = `
+                <button type="button" class="menu-acao-item" data-acao="detalhes">
+                    <span>👁️</span> Ver detalhes
+                </button>
+                <button type="button" class="menu-acao-item" data-acao="editar">
+                    <span>✏️</span> Editar vaga
+                </button>
+                <button type="button" class="menu-acao-item" data-acao="duplicar">
+                    <span>📋</span> Duplicar vaga
+                </button>
+                <button type="button" class="menu-acao-item" data-acao="pausar">
+                    <span>${isPausada ? '▶️' : '⏸️'}</span> ${isPausada ? 'Reativar vaga' : 'Pausar vaga'}
+                </button>
+                <div class="menu-acao-divisor"></div>
+                <button type="button" class="menu-acao-item perigo" data-acao="excluir">
+                    <span>🗑️</span> Remover vaga
+                </button>
+            `;
+
+            menuFlutuante.style.display = 'flex';
+            const larguraMenu = 175;
+            const leftPos = Math.min(rect.right - larguraMenu + window.scrollX, window.innerWidth - larguraMenu - 16);
+            menuFlutuante.style.top = `${rect.bottom + window.scrollY + 4}px`;
+            menuFlutuante.style.left = `${Math.max(16, leftPos)}px`;
+
+            menuFlutuante.querySelector('[data-acao="detalhes"]').onclick = () => {
+                fecharMenuAcoes();
+                abrirPainel(item);
+            };
+            menuFlutuante.querySelector('[data-acao="editar"]').onclick = () => {
+                fecharMenuAcoes();
+                editarVaga(item);
+            };
+            menuFlutuante.querySelector('[data-acao="duplicar"]').onclick = () => {
+                fecharMenuAcoes();
+                duplicarVaga(item);
+            };
+            menuFlutuante.querySelector('[data-acao="pausar"]').onclick = () => {
+                fecharMenuAcoes();
+                alternarPausaVaga(item);
+            };
+            menuFlutuante.querySelector('[data-acao="excluir"]').onclick = () => {
+                fecharMenuAcoes();
+                excluirVaga(item);
+            };
+        }
+
+        // Renderiza o conteúdo da aba selecionada no painel lateral
+        function renderizarConteudoAba() {
+            if (!vagaSelecionada) return;
+            const isPausada = vagaSelecionada.status === 'Pausada';
+
+            if (abaAtiva === 'informacoes') {
+                corpoPainel.innerHTML = `
+                    <h4>Dados da vaga</h4>
+                    <div class="grid-detalhes-duplo">
+                        <div><span>Área</span><strong>${vagaSelecionada.area}</strong></div>
+                        <div><span>Localização</span><strong>${vagaSelecionada.localizacao}</strong></div>
+                        <div><span>Modalidade</span><strong>${vagaSelecionada.modalidade}</strong></div>
+                        <div><span>Tipo de contrato</span><strong>${vagaSelecionada.contrato}</strong></div>
+                        <div><span>Quantidade de vagas</span><strong>2</strong></div>
+                        <div><span>Data de criação</span><strong>10/09/2026</strong></div>
+                    </div>
+                    <div class="detalhes-linha-simples">
+                        <span>Última atualização</span><strong>25/09/2026</strong>
+                    </div>
+
+                    <h4 class="mt-4">Descrição</h4>
+                    <p class="descricao-vaga-texto">
+                        ${vagaSelecionada.descricao}
+                    </p>
+
+                    <h4 class="mt-4">Processo seletivo</h4>
+                    <div class="etapas-processo-mini">
+                        ${vagaSelecionada.etapas.map((etapa, idx) => `
+                            <div class="etapa-mini ${etapa.status}"><span>${idx + 1}</span><small>${etapa.nome}</small></div>
+                            ${idx < vagaSelecionada.etapas.length - 1 ? `<div class="linha-etapa ${etapa.status === 'concluida' ? 'concluida' : ''}"></div>` : ''}
+                        `).join('')}
+                    </div>
+
+                    <h4 class="mt-4">Ações</h4>
+                    <div class="acoes-painel-grid">
+                        <button type="button" class="btn-acao-secundaria" id="painel-btn-editar">Editar vaga</button>
+                        <button type="button" class="btn-acao-secundaria" id="painel-btn-duplicar">Duplicar vaga</button>
+                        <button type="button" class="btn-acao-principal" id="painel-btn-candidaturas">Candidaturas</button>
+                    </div>
+                    <button type="button" class="btn-acao-alerta w-100 mt-2" id="painel-btn-pausar">
+                        ${isPausada ? 'Reativar vaga' : 'Pausar vaga'}
+                    </button>
+                `;
+
+                corpoPainel.querySelector('#painel-btn-editar').onclick = () => editarVaga(vagaSelecionada);
+                corpoPainel.querySelector('#painel-btn-duplicar').onclick = () => duplicarVaga(vagaSelecionada);
+                corpoPainel.querySelector('#painel-btn-pausar').onclick = () => alternarPausaVaga(vagaSelecionada);
+                corpoPainel.querySelector('#painel-btn-candidaturas').onclick = () => {
+                    conteudoPrincipal.querySelectorAll('.aba-item').forEach(b => b.classList.remove('ativo'));
+                    conteudoPrincipal.querySelector('[data-aba="candidaturas"]').classList.add('ativo');
+                    abaAtiva = 'candidaturas';
+                    renderizarConteudoAba();
+                };
+
+            } else if (abaAtiva === 'processo') {
+                corpoPainel.innerHTML = `
+                    <h4>Etapas do Processo Seletivo</h4>
+                    <p class="subtitulo-pagina" style="margin-bottom: 12px;">Acompanhe o fluxo configurado para esta vaga:</p>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        ${vagaSelecionada.etapas.map((etapa, idx) => `
+                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px;">
+                                <div style="display: flex; align-items: center; gap: 8px;">
+                                    <span style="width: 20px; height: 20px; background: #1d4ed8; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600;">${idx + 1}</span>
+                                    <strong>${etapa.nome}</strong>
+                                </div>
+                                <span class="badge-status ${etapa.status === 'concluida' ? 'concluida' : etapa.status === 'ativo' ? 'em-andamento' : ''}">${etapa.status ? etapa.status : 'Pendente'}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (abaAtiva === 'testes') {
+                corpoPainel.innerHTML = `
+                    <h4>Testes Técnicos e Questionários</h4>
+                    <p class="subtitulo-pagina" style="margin-bottom: 12px;">Testes aplicados aos candidatos desta vaga:</p>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        ${vagaSelecionada.testes.map(teste => `
+                            <div style="padding: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px;">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                    <strong style="color: #0f172a;">${teste.titulo}</strong>
+                                    <span style="color: #64748b; font-size: 11px;">Prazo: ${teste.prazo}</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                                    <span class="badge-status em-andamento">${teste.status}</span>
+                                    <button type="button" class="btn-acao-secundaria" style="padding: 4px 8px; font-size: 11px;">Ver relatórios</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (abaAtiva === 'candidaturas') {
+                corpoPainel.innerHTML = `
+                    <h4>Candidatos em Destaque (${vagaSelecionada.candidatos} total)</h4>
+                    <p class="subtitulo-pagina" style="margin-bottom: 12px;">Principais perfis alinhados à vaga:</p>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                        ${vagaSelecionada.candidatosLista.length > 0 ? vagaSelecionada.candidatosLista.map(cand => `
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px;">
+                                <div>
+                                    <strong style="display: block; color: #0f172a;">${cand.nome}</strong>
+                                    <small style="color: #64748b;">Etapa atual: ${cand.etapa}</small>
+                                </div>
+                                <div style="text-align: right;">
+                                    <span style="background: #f0fdf4; color: #16a34a; padding: 2px 6px; border-radius: 4px; font-weight: 600; font-size: 11px;">Match ${cand.match}</span>
+                                </div>
+                            </div>
+                        `).join('') : '<p style="font-size: 12px; color: #64748b;">Nenhum candidato inscrito ainda.</p>'}
+                    </div>
+                `;
+            }
+        }
+
+        conteudoPrincipal.querySelectorAll('.aba-item').forEach(botaoAba => {
+            botaoAba.addEventListener('click', (e) => {
+                conteudoPrincipal.querySelectorAll('.aba-item').forEach(b => b.classList.remove('ativo'));
+                e.currentTarget.classList.add('ativo');
+                abaAtiva = e.currentTarget.getAttribute('data-aba');
+                renderizarConteudoAba();
+            });
+        });
+
+        function atualizarLayoutPainel(aberto) {
+            if (aberto) {
+                painelDetalhes.style.display = 'block';
+                layoutGrid.classList.add('painel-ativo');
+            } else {
+                painelDetalhes.style.display = 'none';
+                layoutGrid.classList.remove('painel-ativo');
+                vagaSelecionada = null;
+                containerTabela.querySelectorAll('tbody tr').forEach(tr => tr.classList.remove('linha-selecionada'));
+            }
+        }
+
+        function abrirPainel(item, linhaElemento) {
+            vagaSelecionada = item;
+            atualizarLayoutPainel(true);
+
+            containerTabela.querySelectorAll('tbody tr').forEach(tr => tr.classList.remove('linha-selecionada'));
+            if (linhaElemento) {
+                linhaElemento.classList.add('linha-selecionada');
+            }
+
+            conteudoPrincipal.querySelector('#painel-icone').textContent = item.iconeEmoji;
+            conteudoPrincipal.querySelector('#painel-icone').className = `icone-vaga-mini ${item.corIcone}`;
+            conteudoPrincipal.querySelector('#painel-titulo').textContent = item.vaga;
+            conteudoPrincipal.querySelector('#painel-empresa').textContent = item.empresa;
+            
+            const badge = conteudoPrincipal.querySelector('#painel-status-badge');
+            badge.className = `badge-status ${item.statusClasse}`;
+            badge.textContent = item.status;
+
+            conteudoPrincipal.querySelectorAll('.aba-item').forEach(b => b.classList.remove('ativo'));
+            conteudoPrincipal.querySelector('[data-aba="informacoes"]').classList.add('ativo');
+            abaAtiva = 'informacoes';
+
+            renderizarConteudoAba();
+        }
+
+        function vincularEventosLinhas(listaAtual) {
+            const linhasTabela = containerTabela.querySelectorAll('tbody tr');
+            linhasTabela.forEach((tr, index) => {
+                const item = listaAtual[index];
+                if (!item) return;
+
+                tr.style.cursor = 'pointer';
+                if (vagaSelecionada && item.id === vagaSelecionada.id) {
+                    tr.classList.add('linha-selecionada');
+                }
+
+                tr.addEventListener('click', (e) => {
+                    if (e.target.type === 'checkbox' || e.target.closest('.btn-acoes-linha')) return;
+                    abrirPainel(item, tr);
+                });
+            });
+        }
+
+        conteudoPrincipal.querySelector('#btn-fechar-painel').addEventListener('click', () => {
+            atualizarLayoutPainel(false);
+        });
+
+        // Colunas da tabela com botão de 3 pontos na coluna Ações
+        const colunasVagas = [
+            {
+                chave: 'vaga',
+                titulo: 'Vaga',
+                ordenavel: true,
+                render: (valor, item) => {
+                    const div = document.createElement('div');
+                    div.className = 'celula-vaga-info';
+                    div.innerHTML = `
+                        <div class="icone-vaga-mini ${item.corIcone}">${item.iconeEmoji}</div>
+                        <div>
+                            <strong>${item.vaga}</strong>
+                            <span>${item.contrato}</span>
+                        </div>
+                    `;
+                    return div;
+                }
+            },
+            { chave: 'area', titulo: 'Área', ordenavel: true },
+            {
+                chave: 'localizacao',
+                titulo: 'Localização',
+                render: (valor, item) => {
+                    const div = document.createElement('div');
+                    div.innerHTML = `${item.localizacao}<br/><small>${item.modalidade}</small>`;
+                    return div;
+                }
+            },
+            { chave: 'candidatos', titulo: 'Candidatos', alinhamento: 'centro', ordenavel: true },
+            { chave: 'processo', titulo: 'Processo' },
+            {
+                chave: 'status',
+                titulo: 'Status',
+                render: (valor, item) => {
+                    const span = document.createElement('span');
+                    span.className = `badge-status ${item.statusClasse}`;
+                    span.textContent = item.status;
+                    return span;
+                }
+            },
+            {
+                chave: 'acoesMenu',
+                titulo: 'Ações',
+                alinhamento: 'centro',
+                render: (valor, item) => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'btn-acoes-linha';
+                    btn.title = 'Ações da vaga';
+                    btn.innerHTML = `
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="5" r="1"></circle>
+                            <circle cx="12" cy="12" r="1"></circle>
+                            <circle cx="12" cy="19" r="1"></circle>
+                        </svg>
+                    `;
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        abrirMenuAcoes(btn, item);
+                    });
+                    return btn;
+                }
+            }
+        ];
+
+        // Renderizar Tabela inicial
+        if (containerTabela) {
+            tabelaInstancia = criarTabela(colunasVagas, dadosVagasOriginais, {
+                container: containerTabela,
+                selecionavel: true,
+                acoes: false,
+                rodape: {
+                    esquerda: `Mostrando ${dadosVagasOriginais.length} registros`,
+                    direita: `
+                        <div class="paginacao-botoes">
+                            <button>&lt;</button>
+                            <button class="ativo">1</button>
+                            <button>&gt;</button>
+                        </div>
+                    `
+                }
+            });
+
+            vincularEventosLinhas(dadosVagasOriginais);
+        }
+
+        // Lógica de Filtragem Dinâmica
+        const inputBusca = conteudoPrincipal.querySelector('#input-busca');
+        const selectStatus = conteudoPrincipal.querySelector('#filtro-status');
+        const selectArea = conteudoPrincipal.querySelector('#filtro-area');
+        const selectContrato = conteudoPrincipal.querySelector('#filtro-contrato');
+        const selectLocalizacao = conteudoPrincipal.querySelector('#filtro-localizacao');
+        const btnLimpar = conteudoPrincipal.querySelector('#btn-limpar');
+
+        function aplicarFiltros() {
+            const termoBusca = inputBusca.value.toLowerCase().trim();
+            const statusVal = selectStatus.value;
+            const areaVal = selectArea.value;
+            const contratoVal = selectContrato.value;
+            const localVal = selectLocalizacao.value;
+
+            const dadosFiltrados = dadosVagasOriginais.filter(item => {
+                const matchBusca = !termoBusca || 
+                    item.vaga.toLowerCase().includes(termoBusca) || 
+                    item.area.toLowerCase().includes(termoBusca) || 
+                    item.localizacao.toLowerCase().includes(termoBusca);
+
+                const matchStatus = !statusVal || item.status === statusVal;
+                const matchArea = !areaVal || item.area === areaVal;
+                const matchContrato = !contratoVal || item.contrato === contratoVal;
+                const matchLocal = !localVal || item.localizacao === localVal;
+
+                return matchBusca && matchStatus && matchArea && matchContrato && matchLocal;
+            });
+
+            if (tabelaInstancia) {
+                tabelaInstancia.atualizar(dadosFiltrados);
+                vincularEventosLinhas(dadosFiltrados);
+            }
+        }
+
+        inputBusca.addEventListener('input', aplicarFiltros);
+        selectStatus.addEventListener('change', aplicarFiltros);
+        selectArea.addEventListener('change', aplicarFiltros);
+        selectContrato.addEventListener('change', aplicarFiltros);
+        selectLocalizacao.addEventListener('change', aplicarFiltros);
+
+        btnLimpar.addEventListener('click', () => {
+            inputBusca.value = '';
+            selectStatus.value = '';
+            selectArea.value = '';
+            selectContrato.value = '';
+            selectLocalizacao.value = '';
+            aplicarFiltros();
+        });
+
+    }, 0);
+
+    containerPagina.appendChild(conteudoPrincipal);
 
     return containerPagina;
 }

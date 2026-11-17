@@ -19,7 +19,7 @@ export function criarFooter() {
     colEmpresa.innerHTML = `
         <h4 class="footer-titulo">Empresa</h4>
         <ul class="footer-links">
-            <li><a href="#sobre"><span>›</span> Sobre nós</a></li>
+            <li><a href="#sobre-nos"><span>›</span> Sobre nós</a></li>
             <li><a href="#recursos"><span>›</span> Recursos</a></li>
             <li><a href="#planos"><span>›</span> Planos</a></li>
             <li><a href="#suporte"><span>›</span> Suporte</a></li>
