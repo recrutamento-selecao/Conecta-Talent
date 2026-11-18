@@ -3,7 +3,10 @@ import { renderPlanos } from '../pages/planos.js';
 import { renderRecursos } from '../pages/recursos.js';
 import { renderSobreNos } from '../pages/sobre-nos.js';
 import { renderSuporte } from '../pages/suporte.js';
- 
+import { renderTipoCadastro } from '../pages/tipo-cadastro.js';  
+// Certifique-se de importar o renderLogin se for usar a rota de login:
+// import { renderLogin } from '../pages/login.js';  
+
 function trocarEstiloPagina(nomePagina) {
     const estiloAnterior = document.getElementById('estilo-Dinamico-pagina');
     if (estiloAnterior) {
@@ -16,7 +19,9 @@ function trocarEstiloPagina(nomePagina) {
         'sobre-nos': './view/css/sobre-nos.css',
         'recursos': './view/css/recursos.css',
         'planos': './view/css/planos.css',
-        'suporte': './view/css/suporte.css'
+        'suporte': './view/css/suporte.css',
+        'tipo-cadastro': './view/css/tipo-cadastro.css', // Adicionado o CSS correspondente
+        'login': './view/css/login.css'                 // Adicionado caso precise
     };
  
     const caminhoCss = estilosMap[nomePagina];
@@ -40,7 +45,11 @@ export function iniciarRouter() {
         switch (hash) {
             case '#login':
                 trocarEstiloPagina('login');
-                app.appendChild(renderLogin());
+                // app.appendChild(renderLogin()); // Descomente quando importar a função de login
+                break;
+            case '#tipo-cadastro': // <-- ADICIONADO AQUI
+                trocarEstiloPagina('tipo-cadastro');
+                app.appendChild(renderTipoCadastro());
                 break;
             case '#sobre-nos':
                 trocarEstiloPagina('sobre-nos');
