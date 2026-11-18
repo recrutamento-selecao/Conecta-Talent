@@ -1,0 +1,93 @@
+.barra-busca-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.campo-busca {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.75rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    transition: border-color 0.2s ease;
+}
+
+.campo-busca:focus-within {
+    border-color: #2563eb;
+}
+ 
+
+.icone-busca {
+    color: #1d4ed8;
+    flex-shrink: 0;
+}
+ 
+
+.inputs-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+ 
+.inputs-wrapper label {
+    font-size: 0.75rem;
+    color: #64748b;
+    font-weight: 500;
+    margin-bottom: 0.15rem;
+}
+ 
+.inputs-wrapper input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0f172a;
+    width: 100%;
+    font-family: inherit;
+}
+ 
+.inputs-wrapper input::placeholder {
+    color: #94a3b8;
+    font-weight: 400;
+}
+ 
+.btn-buscar-vagas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    background-color: #1d4ed8;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 1.1rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+}
+ 
+.btn-buscar-vagas:hover {
+    background-color: #1e40af;
+}
+ 
+
+@media (max-width: 768px) {
+    .barra-busca-container {
+        flex-direction: column;
+    }
+ 
+    .campo-busca,
+    .btn-buscar-vagas {
+        width: 100%;
+    }
+}
