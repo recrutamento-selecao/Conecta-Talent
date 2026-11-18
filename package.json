@@ -6,7 +6,7 @@
     "currículo"
   ],
   "license": "ISC",
-  "author": "Murilo Binelli",
+  "author": "",
   "type": "module",
   "main": "server.js",
   "scripts": {

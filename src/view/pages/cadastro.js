@@ -1,6 +1,3 @@
-
-import createForm from "../components/form.js";
-
 const renderCadastroPage = (navegarParaLogin) => {
     const container = document.createElement("div");
     container.className = "cadastro-container";
@@ -32,12 +29,14 @@ const renderCadastroPage = (navegarParaLogin) => {
     entrar.className = "cadastro-entrar";
     entrar.textContent = "Já tem uma conta? ";
 
-    const linkEntrar = document.createElement("a");
-    linkEntrar.href = "#";
-    linkEntrar.textContent = "Entrar";
-    linkEntrar.addEventListener("click", (event) => {
+    const linkNav = document.createElement("a");
+    linkNav.href = "#";
+    linkNav.className = "linkNav";
+    linkNav.textContent = "Já possui uma conta? Faça login!";
+
+    linkNav.addEventListener("click", (event) => {
         event.preventDefault();
-        navegarParaLogin();
+        window.location.hash = "#login";
     });
 
     entrar.appendChild(linkEntrar);
@@ -207,10 +206,7 @@ const renderCadastroPage = (navegarParaLogin) => {
             const dados = await resultado.json();
 
             if (resultado.ok) {
-                alert(dados.requerConfirmacao
-                    ? "Cadastro realizado! Verifique seu e-mail para confirmar a conta."
-                    : "Cadastro realizado com sucesso!");
-
+                alert("Cadastro realizado com sucesso!");
                 navegarParaLogin();
             } else {
                 alert(dados.erro || "Erro ao realizar cadastro!");

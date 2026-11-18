@@ -1,0 +1,563 @@
+/* ===== Card ===== */
+.tabela-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 24px;
+    font-family: 'Inter', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    color: #111827;
+}
+
+.tabela-card--limpa {
+    border-color: #e6e8ee;
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(16, 24, 40, 0.06);
+}
+
+.tabela-cabecalho {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.tabela-titulo {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.tabela-subtitulo {
+    margin: 4px 0 0;
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.tabela-cabecalho-acao {
+    flex-shrink: 0;
+}
+
+/* Link e botão do cabeçalho do card */
+.link-acao {
+    font-size: 12px;
+    font-weight: 500;
+    color: #3730a3;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.link-acao:hover {
+    text-decoration: underline;
+}
+
+.btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 999px;
+    background: #eceefb;
+    color: #3730a3;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+}
+
+.btn-pill:hover {
+    background: #dfe3f8;
+}
+
+.btn-pill svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ===== Rodapé do card ===== */
+.tabela-rodape {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #eceef3;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.indicador-ativo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #4b5563;
+}
+
+.indicador-ativo::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+}
+
+/* ===== Tabela ===== */
+.tabela-wrapper {
+    overflow-x: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+}
+
+.tabela {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.tabela thead tr {
+    background: #f5f5f4;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tabela th {
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #6b7280;
+    white-space: nowrap;
+}
+
+.tabela td {
+    padding: 12px 16px;
+    vertical-align: middle;
+    color: #1f2937;
+}
+
+.tabela tbody tr {
+    border-bottom: 1px solid #eeeeec;
+}
+
+.tabela tbody tr:last-child {
+    border-bottom: none;
+}
+
+.tabela--zebra tbody tr:nth-child(even) {
+    background: #f9f9f8;
+}
+
+.tabela tbody tr:hover {
+    background: #f3f4f6;
+}
+
+.tabela td.tabela-vazia {
+    padding: 24px 16px;
+    text-align: center;
+    color: #6b7280;
+}
+
+.texto-forte {
+    font-weight: 600;
+    color: #111827;
+}
+
+/* ===== Variante limpa (sem borda interna, cabeçalho cinza) ===== */
+.tabela-card--limpa .tabela-wrapper {
+    border: none;
+    border-radius: 0;
+}
+
+.tabela-card--limpa .tabela thead tr {
+    background: #f7f8fb;
+    border-bottom: none;
+}
+
+.tabela-card--limpa .tabela th {
+    color: #4b5563;
+}
+
+.tabela-card--limpa .tabela-wrapper--lista {
+    border-top: 1px solid #eceef3;
+}
+
+.tabela-card--limpa .tabela-wrapper--lista .tabela td {
+    padding-top: 16px;
+    padding-bottom: 16px;
+}
+
+/* ===== Alinhamento ===== */
+.tabela th.col-acoes,
+.tabela td.col-acoes,
+.tabela th.col-direita,
+.tabela td.col-direita {
+    text-align: right;
+}
+
+.tabela th.col-centro,
+.tabela td.col-centro {
+    text-align: center;
+}
+
+/* ===== Empresa ===== */
+.empresa {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.icone-empresa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #6b7280;
+}
+
+.icone-empresa svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ===== Status / Plano ===== */
+.status-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.4;
+    background: #e5e7eb;
+    color: #4b5563;
+}
+
+.status-pill.verde    { background: #dcfce7; color: #15803d; }
+.status-pill.azul     { background: #dbeafe; color: #1d4ed8; }
+.status-pill.cinza    { background: #e5e7eb; color: #4b5563; }
+.status-pill.roxo     { background: #f3e8ff; color: #7e22ce; }
+.status-pill.amarelo  { background: #fef3c7; color: #b45309; }
+.status-pill.laranja  { background: #ffedd5; color: #c2410c; }
+.status-pill.vermelho { background: #fee2e2; color: #b91c1c; }
+
+/* ===== Etapa (ponto colorido + texto) ===== */
+.etapa {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+.etapa::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.etapa.azul    { color: #2563eb; }
+.etapa.indigo  { color: #4f46e5; }
+.etapa.laranja { color: #d97706; }
+.etapa.vazia   { color: #9ca3af; }
+.etapa.vazia::before { display: none; }
+
+/* ===== Texto com duas linhas / tag ===== */
+.celula-dupla strong {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.celula-dupla small {
+    display: block;
+    margin-top: 2px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+.celula-dupla .linha-nome {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.celula-dupla .linha-nome strong {
+    display: inline;
+}
+
+.tag {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: #eef0f6;
+    color: #4b5563;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.data-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    font-size: 12px;
+    color: #4b5563;
+}
+
+/* ===== Item com avatar / salvar ===== */
+.item-com-avatar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    padding: 3px 4px;
+    border-radius: 4px;
+    background: #e5e7eb;
+    color: #374151;
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.avatar.verde    { background: #c9f3a4; }
+.avatar.azul     { background: #8fc2fb; }
+.avatar.lavanda  { background: #e9dcfb; }
+.avatar.rosa     { background: #fbd3e0; }
+.avatar.amarelo  { background: #fdf1b0; }
+
+.btn-salvar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #2563eb;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.btn-salvar svg {
+    width: 20px;
+    height: 20px;
+}
+
+.btn-salvar.salva svg {
+    fill: currentColor;
+}
+
+.btn-salvar:hover {
+    opacity: 0.7;
+}
+
+/* ===== Seleção e ordenação ===== */
+.tabela th.col-check,
+.tabela td.col-check {
+    width: 40px;
+    padding-right: 0;
+}
+
+.tabela-check {
+    width: 13px;
+    height: 13px;
+    margin: 0;
+    vertical-align: middle;
+    accent-color: #1d3fbf;
+    cursor: pointer;
+}
+
+.tabela tbody tr.selecionada {
+    background: #f5f7ff;
+}
+
+.btn-ordenar {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font: inherit;
+    color: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    cursor: pointer;
+}
+
+.btn-ordenar svg {
+    width: 12px;
+    height: 12px;
+    opacity: 0.6;
+}
+
+.btn-ordenar:hover svg,
+th[aria-sort] .btn-ordenar svg {
+    opacity: 1;
+}
+
+/* ===== Data e hora em duas linhas ===== */
+.data-hora span {
+    display: block;
+}
+
+.data-hora span + span {
+    margin-top: 2px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+/* ===== Avatar redondo ===== */
+.avatar.redondo {
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    background: #e3eafc;
+    color: #1e3a8a;
+    font-size: 10px;
+}
+
+.avatar.redondo svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* ===== Variante plana (sem card, cabeçalho simples) ===== */
+.tabela-card--plana {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.tabela-card--plana .tabela-wrapper {
+    border: none;
+    border-radius: 0;
+}
+
+.tabela-card--plana .tabela thead tr {
+    background: transparent;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tabela-card--plana .tabela th {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #1f2937;
+}
+
+/* ===== Ações ===== */
+.acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 14px;
+}
+
+.btn-editar,
+.btn-excluir,
+.btn-menu {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+}
+
+.btn-editar svg,
+.btn-excluir svg,
+.btn-menu svg {
+    width: 16px;
+    height: 16px;
+}
+
+.btn-editar  { color: #2563eb; }
+.btn-excluir { color: #ef4444; }
+.btn-menu    { color: #6b7280; }
+
+.btn-editar:hover,
+.btn-excluir:hover,
+.btn-menu:hover {
+    opacity: 0.7;
+}
+
+/* ===== Lista (tabela sem cabeçalho) ===== */
+.tabela-wrapper--lista {
+    border: none;
+    border-radius: 0;
+}
+
+.tabela-wrapper--lista .tabela td {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.tabela-wrapper--lista .tabela td:not(:first-child) {
+    width: 1%;
+    white-space: nowrap;
+    padding-left: 12px;
+}
+
+/* ===== Várias tabelas na mesma página ===== */
+.tabelas-grid {
+    display: grid;
+    grid-template-columns: minmax(0, var(--col-esq, 1.15fr)) minmax(0, var(--col-dir, 1fr));
+    gap: 16px;
+    align-items: start;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 900px) {
+    .tabelas-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .tabela-card {
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .tabela th,
+    .tabela td {
+        padding: 10px 12px;
+    }
+
+    .tabela {
+        min-width: 560px;
+    }
+
+    .tabela-wrapper--lista .tabela {
+        min-width: 0;
+    }
+}

@@ -1,4 +1,5 @@
-function criarItemSidebar(icone, texto, href, alt, possuiSubmenu) {
+
+function criarItemSidebar(icone, texto, href, alt, possuiSubmenu = false) {
     const itemSidebar = document.createElement('div');
     itemSidebar.classList.add('item-sidebar');
 
@@ -8,38 +9,33 @@ function criarItemSidebar(icone, texto, href, alt, possuiSubmenu) {
     iconeSidebar.alt = alt;
 
     const linkSidebar = document.createElement('a');
-    linkSidebar.classList.add('link-sidebar')
+    linkSidebar.classList.add('link-sidebar');
     linkSidebar.href = href;
     linkSidebar.textContent = texto;
 
-    itemSidebar.appendChild(iconeSidebar);
-    itemSidebar.appendChild(linkSidebar);
+    itemSidebar.append(iconeSidebar, linkSidebar);
 
     if (possuiSubmenu) {
         const iconeSetaDireita = document.createElement('img');
         iconeSetaDireita.classList.add('seta-direita-menu');
-        iconeSetaDireita.src = "assets/icons/arrow-right-branco.svg";
-        iconeSetaDireita.alt = "Seta Direita";
+        iconeSetaDireita.src = 'assets/icons/arrow-right-branco.svg';
+        iconeSetaDireita.alt = 'Seta Direita';
 
         itemSidebar.appendChild(iconeSetaDireita);
     }
 
-
     return itemSidebar;
-
 }
 
 function criarSubmenu(opcoes) {
     const submenu = document.createElement('div');
     submenu.classList.add('submenu');
 
-    for (const opcao of opcoes) { //para cada opcao que existir dentro do array opcoes, execute. 
+    for (const opcao of opcoes) {
         const itemSubmenu = document.createElement('a');
         itemSubmenu.classList.add('item-submenu');
-
         itemSubmenu.textContent = opcao.texto;
         itemSubmenu.href = opcao.href;
-
 
         submenu.appendChild(itemSubmenu);
     }
@@ -47,330 +43,402 @@ function criarSubmenu(opcoes) {
     return submenu;
 }
 
-export function criarSidebar(tipoUsuario, nomeUsuario) { //disponibilizando a função para que outros arquivos possam usar.
-    const campoLogo = document.createElement('div');
-    campoLogo.classList.add("campo-logo");
-    const imgLogo = document.createElement('img');
-    imgLogo.classList.add("img-logo");
-    imgLogo.src = "assets/images/icone-logo.png"
-    const textoLogo = document.createElement('div');
-    textoLogo.classList.add('campo-texto');
-    const primeiroNomeLogo = document.createElement('h1');
-    primeiroNomeLogo.classList.add('primeiro-nome-logo');
-    primeiroNomeLogo.textContent = "Conecta"
-    const segundoNomeLogo = document.createElement('p');
-    segundoNomeLogo.classList.add('segundo-nome-logo');
-    segundoNomeLogo.textContent = "Talent";
+function criarGrupoMenu(icone, texto, alt, opcoes) {
+    const container = document.createElement('div');
+    container.classList.add('container-submenu');
+
+    const item = criarItemSidebar(
+        icone,
+        texto,
+        '#',
+        alt,
+        true
+    );
+
+    const submenu = criarSubmenu(opcoes);
+    const seta = item.querySelector('.seta-direita-menu');
+
+    item.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        submenu.classList.toggle('ativo');
+        seta.classList.toggle('ativa');
+    });
+
+    container.append(item, submenu);
+
+    return container;
+}
+
+function criarDashboard(href) {
+    return criarItemSidebar(
+        'assets/icons/home.svg',
+        'Dashboard',
+        href,
+        'Ícone Dashboard',
+        false
+    );
+}
+
+export function criarSidebar(tipoUsuario, nomeUsuario) {
     const sidebar = document.createElement('aside');
     sidebar.classList.add('sidebar');
+
+    const cabecalhoSidebar = document.createElement('div');
+    cabecalhoSidebar.classList.add('cabecalho-sidebar');
+
+    const botaoMenu = document.createElement('button');
+    botaoMenu.type = 'button';
+    botaoMenu.classList.add('btn-menu');
+
+    const iconeMenu = document.createElement('img');
+    iconeMenu.classList.add('icone-menu');
+    iconeMenu.src = 'assets/icons/menu-branco.svg';
+    iconeMenu.alt = 'Ícone menu';
+
+    botaoMenu.appendChild(iconeMenu);
+
+    botaoMenu.addEventListener('click', () => {
+        sidebar.classList.toggle('fechada');
+    });
+
+    const campoLogo = document.createElement('div');
+    campoLogo.classList.add('campo-logo');
+
+    const imgLogo = document.createElement('img');
+    imgLogo.classList.add('img-logo');
+    imgLogo.src = 'assets/images/icone-logo.png';
+    imgLogo.alt = 'Logo Conecta Talent';
+
+    const textoLogo = document.createElement('div');
+    textoLogo.classList.add('campo-texto');
+
+    const primeiroNomeLogo = document.createElement('h1');
+    primeiroNomeLogo.classList.add('primeiro-nome-logo');
+    primeiroNomeLogo.textContent = 'Conecta';
+
+    const segundoNomeLogo = document.createElement('p');
+    segundoNomeLogo.classList.add('segundo-nome-logo');
+    segundoNomeLogo.textContent = 'Talent';
+
+    textoLogo.append(primeiroNomeLogo, segundoNomeLogo);
+    campoLogo.append(imgLogo, textoLogo);
+
+    cabecalhoSidebar.append(botaoMenu, campoLogo);
+
     const menuSidebar = document.createElement('nav');
     menuSidebar.classList.add('menu-sidebar');
 
     switch (tipoUsuario) {
-        case "administrador": {
+        case 'administrador': {
+            menuSidebar.appendChild(criarDashboard('#/dashboard-administrador'));
 
-            const dashboard = criarItemSidebar(
-                "assets/icons/home.svg",
-                "Dashboard",
-                "dashboard-administrador.html",
-                "ícone Dashboard",
-                false
-            )
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/users-branco.svg',
+                    'Usuários',
+                    'Ícone Usuários',
+                    [
+                        { texto: 'Gerenciar usuários', href: '#/usuarios' }
+                    ]
+                )
+            );
 
-            menuSidebar.appendChild(dashboard);
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/box-branco.svg',
+                    'Planos',
+                    'Ícone Planos',
+                    [
+                        { texto: 'Gerenciar planos', href: '#' }
+                    ]
+                )
+            );
 
-            const usuariosSistema = criarItemSidebar(
-                "assets/icons/users-branco.svg",
-                "Usuários",
-                "dashboard-administrador.html",
-                "ícone Usuários",
-                true
-            )
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/license-branco.svg',
+                    'Assinaturas',
+                    'Ícone Assinaturas',
+                    [
+                        { texto: 'Gerenciar assinaturas', href: '#' },
+                        { texto: 'Pagamentos', href: '#' }
+                    ]
+                )
+            );
 
-            menuSidebar.appendChild(usuariosSistema);
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/file-analytics-branco.svg',
+                    'Relatórios',
+                    'Ícone Relatórios',
+                    [
+                        { texto: 'Relatório de usuários', href: '#' },
+                        { texto: 'Relatório de assinaturas', href: '#' }
+                    ]
+                )
+            );
 
-            const planosSistema = criarItemSidebar(
-                "assets/icons/box-branco.svg",
-                "Planos",
-                "dashboard-administrador.html",
-                "ícone Planos"
-            )
-
-            menuSidebar.appendChild(planosSistema);
-
-            const assinaturaSistema = criarItemSidebar(
-                "assets/icons/license-branco.svg",
-                "Assinaturas",
-                "dashboard-administrador.html",
-                "ícone Assinatura"
-            )
-
-            menuSidebar.appendChild(assinaturaSistema);
-
-
-            const relatorioSistema = criarItemSidebar(
-                "assets/icons/file-analytics-branco.svg",
-                "Relatórios",
-                "dashboard-administrador.html",
-                "ícone Relatório"
-            )
-
-            menuSidebar.appendChild(relatorioSistema);
-
-            const configuracaoSistema = criarItemSidebar(
-                "assets/icons/settings-branco.svg",
-                "Configuração",
-                "dashboard-administrador.html",
-                "ícone Configuração"
-            )
-
-            menuSidebar.appendChild(configuracaoSistema);
-
-            break;
-        }
-        case "empresa": {
-
-            const dashboard = criarItemSidebar(
-                "assets/icons/home.svg",
-                "Dashboard",
-                "dashboard-administrador.html",
-                "ícone Dashboard"
-            )
-
-            menuSidebar.appendChild(dashboard);
-
-            const usuariosSistema = criarItemSidebar(
-                "assets/icons/users-branco.svg",
-                "Recrutadores",
-                "dashboard-administrador.html",
-                "ícone Recrutadores"
-            )
-
-            menuSidebar.appendChild(usuariosSistema);
-
-            const gestaoVagas = criarItemSidebar(
-                "assets/icons/clipboard-text-branco.svg",
-                "Gestão de vagas",
-                "dashboard-administrador.html",
-                "ícone Planos"
-            )
-
-            menuSidebar.appendChild(gestaoVagas);
-
-            const assinaturaSistema = criarItemSidebar(
-                "assets/icons/license-branco.svg",
-                "Assinaturas",
-                "dashboard-administrador.html",
-                "ícone Assinatura"
-            )
-
-            menuSidebar.appendChild(assinaturaSistema);
-
-
-            const relatorioSistema = criarItemSidebar(
-                "assets/icons/file-analytics-branco.svg",
-                "Relatórios",
-                "dashboard-administrador.html",
-                "ícone Relatório"
-            )
-
-            menuSidebar.appendChild(relatorioSistema);
-
-            const configuracaoSistema = criarItemSidebar(
-                "assets/icons/settings-branco.svg",
-                "Configuração",
-                "dashboard-administrador.html",
-                "ícone Configuração"
-            )
-
-            menuSidebar.appendChild(configuracaoSistema);
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/settings-branco.svg',
+                    'Configuração',
+                    'Ícone Configuração',
+                    [
+                        { texto: 'Preferências', href: '#' },
+                        { texto: 'Segurança', href: '#' }
+                    ]
+                )
+            );
 
             break;
         }
 
-        case "recrutador": {
+        case 'empresa': {
+            menuSidebar.appendChild(criarDashboard('#/dashboard-empresa'));
 
-            const dashboard = criarItemSidebar(
-                "assets/icons/home.svg",
-                "Dashboard",
-                "",
-                "ícone Dashboard",
-                false
-            )
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/users-branco.svg',
+                    'Recrutadores',
+                    'Ícone Recrutadores',
+                    [
+                        { texto: 'Gerenciar recrutadores', href: '#' }
+                    ]
+                )
+            );
 
-            menuSidebar.appendChild(dashboard);
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/clipboard-text-branco.svg',
+                    'Gestão de vagas',
+                    'Ícone Gestão de vagas',
+                    [
+                        { texto: 'Gerenciar vagas', href: '#' },
+                        { texto: 'Vagas ativas', href: '#' },
+                        { texto: 'Vagas encerradas', href: '#' }
+                    ]
+                )
+            );
 
-            const criacaoVagas = criarItemSidebar(
-                "assets/icons/briefcase-branco.svg",
-                "Vagas",
-                "",
-                "ícone Vagas",
-                true
-            )
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/license-branco.svg',
+                    'Assinaturas',
+                    'Ícone Assinaturas',
+                    [
+                        { texto: 'Meu plano', href: '#' },
+                        { texto: 'Pagamentos', href: '#' },
+                        { texto: 'Histórico', href: '#' }
+                    ]
+                )
+            );
 
-            const submenuVagas = criarSubmenu([
-                {
-                    texto: "Criar Vaga",
-                    href: "#"
-                },
-                {
-                    texto: "Minhas Vagas",
-                    href: "#"
-                },
-                {
-                    texto: "Vagas Ativas",
-                    href: "#"
-                },
-                {
-                    texto: "Vagas Encerradas",
-                    href: "#"
-                }
-            ]);
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/file-analytics-branco.svg',
+                    'Relatórios',
+                    'Ícone Relatórios',
+                    [
+                        { texto: 'Relatório de vagas', href: '#' },
+                        { texto: 'Relatório de recrutadores', href: '#' },
+                        { texto: 'Relatório de contratações', href: '#' }
+                    ]
+                )
+            );
 
-            const containerVagas = document.createElement("div");
-            containerVagas.classList.add("container-submenu");
-
-            containerVagas.appendChild(criacaoVagas);
-            containerVagas.appendChild(submenuVagas);
-
-            const seta = criacaoVagas.querySelector(".seta-direita-menu");
-
-            criacaoVagas.addEventListener("click", (event) => {
-                event.preventDefault(); //faz com que o javascript controlar o que acontece.
-
-                submenuVagas.classList.toggle("ativo"); //se a classe já existir, ele remove, se existir aparece.
-                seta.classList.toggle("ativa")
-            });
-
-
-            menuSidebar.appendChild(containerVagas);
-
-
-            const processosSeletivos = criarItemSidebar(
-                "assets/icons/clipboard-text-branco.svg",
-                "Processos seletivos",
-                "dashboard-administrador.html",
-                "ícone Vagas",
-                true
-            )
-
-            menuSidebar.appendChild(processosSeletivos);
-
-            const bancoTalentos = criarItemSidebar(
-                "assets/icons/users-branco.svg",
-                "Banco de talentos",
-                "dashboard-administrador.html",
-                "ícone Banco de Talentos",
-                true
-            )
-
-            menuSidebar.appendChild(bancoTalentos);
-
-            const candidaturas = criarItemSidebar(
-                "assets/icons/file-description-branco.svg",
-                "Candidaturas",
-                "dashboard-administrador.html",
-                "ícone Planos",
-                true
-            )
-
-            menuSidebar.appendChild(candidaturas);
-
-            const agenda = criarItemSidebar(
-                "assets/icons/calendar-week-branco.svg",
-                "Agenda",
-                "dashboard-administrador.html",
-                "ícone Agenda",
-                true
-            )
-
-            menuSidebar.appendChild(agenda);
-
-            const relatorioSistema = criarItemSidebar(
-                "assets/icons/file-analytics-branco.svg",
-                "Relatórios",
-                "dashboard-administrador.html",
-                "ícone Relatório",
-                true
-            )
-
-            menuSidebar.appendChild(relatorioSistema);
-
-            const perfil = criarItemSidebar(
-                "assets/icons/settings-branco.svg",
-                "Perfil",
-                "dashboard-administrador.html",
-                "ícone Perfil",
-                true
-            )
-
-            menuSidebar.appendChild(perfil);
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/settings-branco.svg',
+                    'Configuração',
+                    'Ícone Configuração',
+                    [
+                        { texto: 'Dados da empresa', href: '#' },
+                        { texto: 'Preferências', href: '#' },
+                        { texto: 'Segurança', href: '#' }
+                    ]
+                )
+            );
 
             break;
         }
 
-        case "candidato": {
+        case 'recrutador': {
+            menuSidebar.appendChild(criarDashboard('#/dashboard-recrutador'));
 
-            const dashboard = criarItemSidebar(
-                "assets/icons/home.svg",
-                "Dashboard",
-                "dashboard-administrador.html",
-                "ícone Dashboard",
-                false
-            )
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/briefcase-branco.svg',
+                    'Vagas',
+                    'Ícone Vagas',
+                    [
+                        { texto: 'Criar vaga', href: '#' },
+                        { texto: 'Minhas vagas', href: '#' },
+                        { texto: 'Vagas ativas', href: '#' },
+                        { texto: 'Vagas encerradas', href: '#' }
+                    ]
+                )
+            );
 
-            menuSidebar.appendChild(dashboard);
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/clipboard-text-branco.svg',
+                    'Processos seletivos',
+                    'Ícone Processos seletivos',
+                    [
+                        { texto: 'Criar processo seletivo', href: '#' },
+                        { texto: 'Meus processos', href: '#' },
+                        { texto: 'Processos ativos', href: '#' },
+                        { texto: 'Processos encerrados', href: '#' }
+                    ]
+                )
+            );
 
-            const procurarVagas = criarItemSidebar(
-                "assets/icons/search-branco.svg",
-                "Vagas",
-                "dashboard-administrador.html",
-                "ícone Vagas"
-            )
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/users-branco.svg',
+                    'Banco de talentos',
+                    'Ícone Banco de Talentos',
+                    [
+                        { texto: 'Buscar candidatos', href: '#' },
+                        { texto: 'Favoritos', href: '#' },
+                        { texto: 'Candidatos salvos', href: '#' },
+                        { texto: 'Convites enviados', href: '#' }
+                    ]
+                )
+            );
 
-            menuSidebar.appendChild(procurarVagas);
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/file-description-branco.svg',
+                    'Candidaturas',
+                    'Ícone Candidaturas',
+                    [
+                        { texto: 'Recebidas', href: '#' },
+                        { texto: 'Em triagem', href: '#' },
+                        { texto: 'Em processo', href: '#' },
+                        { texto: 'Finalizadas', href: '#' }
+                    ]
+                )
+            );
 
-            const minhasCandidaturas = criarItemSidebar(
-                "assets/icons/clipboard-text-branco.svg",
-                "Minhas Candidaturas",
-                "dashboard-administrador.html",
-                "ícone Vagas"
-            )
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/calendar-week-branco.svg',
+                    'Agenda',
+                    'Ícone Agenda',
+                    [
+                        { texto: 'Calendário', href: '#' },
+                        { texto: 'Entrevistas', href: '#' },
+                        { texto: 'Reuniões', href: '#' },
+                        { texto: 'Eventos', href: '#' }
+                    ]
+                )
+            );
 
-            menuSidebar.appendChild(minhasCandidaturas);
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/file-analytics-branco.svg',
+                    'Relatórios',
+                    'Ícone Relatórios',
+                    [
+                        { texto: 'Relatório de vagas', href: '#' },
+                        { texto: 'Relatório de processos seletivos', href: '#' },
+                        { texto: 'Relatório de candidaturas', href: '#' }
+                    ]
+                )
+            );
 
-            const curriculo = criarItemSidebar(
-                "assets/icons/file-description-branco.svg",
-                "Currículo",
-                "dashboard-administrador.html",
-                "ícone Curriculo"
-            )
-
-            menuSidebar.appendChild(curriculo);
-
-            const agenda = criarItemSidebar(
-                "assets/icons/calendar-week-branco.svg",
-                "Agenda",
-                "dashboard-administrador.html",
-                "ícone Agenda"
-            )
-
-            menuSidebar.appendChild(agenda);
-
-            const perfil = criarItemSidebar(
-                "assets/icons/settings-branco.svg",
-                "Perfil",
-                "dashboard-administrador.html",
-                "ícone Perfil"
-            )
-
-            menuSidebar.appendChild(perfil);
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/settings-branco.svg',
+                    'Perfil',
+                    'Ícone Perfil',
+                    [
+                        { texto: 'Meus dados', href: '#' },
+                        { texto: 'Alterar senha', href: '#' },
+                        { texto: 'Preferências', href: '#' },
+                        { texto: 'Notificações', href: '#' }
+                    ]
+                )
+            );
 
             break;
         }
 
+        case 'candidato': {
+            menuSidebar.appendChild(criarDashboard('#/dashboard-candidato'));
 
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/search-branco.svg',
+                    'Vagas',
+                    'Ícone Vagas',
+                    [
+                        { texto: 'Buscar vagas', href: '#' },
+                        { texto: 'Vagas favoritas', href: '#' }
+                    ]
+                )
+            );
+
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/clipboard-text-branco.svg',
+                    'Candidaturas',
+                    'Ícone Candidaturas',
+                    [
+                        { texto: 'Minhas candidaturas', href: '#' }
+                    ]
+                )
+            );
+
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/file-description-branco.svg',
+                    'Currículo',
+                    'Ícone Currículo',
+                    [
+                        { texto: 'Meu currículo', href: '#/cadastro' }
+                    ]
+                )
+            );
+
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/calendar-week-branco.svg',
+                    'Agenda',
+                    'Ícone Agenda',
+                    [
+                        { texto: 'Entrevistas', href: '#' },
+                        { texto: 'Calendário', href: '#' }
+                    ]
+                )
+            );
+
+            menuSidebar.appendChild(
+                criarGrupoMenu(
+                    'assets/icons/settings-branco.svg',
+                    'Perfil',
+                    'Ícone Perfil',
+                    [
+                        { texto: 'Meus dados', href: '#' },
+                        { texto: 'Alterar senha', href: '#' },
+                        { texto: 'Preferências', href: '#' }
+                    ]
+                )
+            );
+
+            break;
+        }
+
+        default: {
+            console.error(`Tipo de usuário inválido: ${tipoUsuario}`);
+            break;
+        }
     }
+
+    const rodapeSidebar = document.createElement('div');
+    rodapeSidebar.classList.add('rodape-sidebar');
 
     const linhaSidebar = document.createElement('hr');
     linhaSidebar.classList.add('linha-sidebar');
@@ -380,56 +448,49 @@ export function criarSidebar(tipoUsuario, nomeUsuario) { //disponibilizando a fu
 
     const iconePerfil = document.createElement('img');
     iconePerfil.classList.add('icone-perfil');
-    iconePerfil.src = "assets/icons/user-circle.svg";
-
-    const rodapeSidebar = document.createElement('div');
-    rodapeSidebar.classList.add('rodape-sidebar');
+    iconePerfil.src = 'assets/icons/user-circle.svg';
+    iconePerfil.alt = 'Perfil do usuário';
 
     const informacoesUsuario = document.createElement('div');
     informacoesUsuario.classList.add('campo-informacoes-usuario');
 
-    const usuario = document.createElement('p')
+    const usuario = document.createElement('p');
     usuario.classList.add('nome-usuario');
     usuario.textContent = nomeUsuario;
 
     const funcaoUsuario = document.createElement('p');
     funcaoUsuario.classList.add('funcao-usuario');
-    funcaoUsuario.textContent = tipoUsuario.charAt(0).toUpperCase() + tipoUsuario.slice(1);
+    funcaoUsuario.textContent =
+        tipoUsuario.charAt(0).toUpperCase() + tipoUsuario.slice(1);
+
+    informacoesUsuario.append(usuario, funcaoUsuario);
+    campoPerfilLogado.append(iconePerfil, informacoesUsuario);
 
     const campoSair = document.createElement('div');
     campoSair.classList.add('campo-sair');
 
     const iconeSair = document.createElement('img');
     iconeSair.classList.add('icone-sair');
-    iconeSair.src = "assets/icons/logout.svg";
+    iconeSair.src = 'assets/icons/logout.svg';
+    iconeSair.alt = 'Sair';
 
     const textoSair = document.createElement('p');
     textoSair.classList.add('texto-sair');
-    textoSair.textContent = "Sair";
+    textoSair.textContent = 'Sair';
 
+    campoSair.append(iconeSair, textoSair);
 
-    campoLogo.appendChild(imgLogo);
-    campoLogo.appendChild(textoLogo);
-    textoLogo.appendChild(primeiroNomeLogo);
-    textoLogo.appendChild(segundoNomeLogo);
+    rodapeSidebar.append(
+        linhaSidebar,
+        campoPerfilLogado,
+        campoSair
+    );
 
-
-    rodapeSidebar.appendChild(linhaSidebar);
-    rodapeSidebar.appendChild(campoPerfilLogado);
-    rodapeSidebar.appendChild(campoSair);
-    campoPerfilLogado.appendChild(iconePerfil);
-    campoPerfilLogado.appendChild(informacoesUsuario);
-    informacoesUsuario.appendChild(usuario);
-    informacoesUsuario.appendChild(funcaoUsuario);
-
-    sidebar.appendChild(campoLogo);
-    sidebar.appendChild(menuSidebar);
-    sidebar.appendChild(rodapeSidebar);
-
-    campoSair.appendChild(iconeSair);
-    campoSair.appendChild(textoSair);
+    sidebar.append(
+        cabecalhoSidebar,
+        menuSidebar,
+        rodapeSidebar
+    );
 
     return sidebar;
-
 }
-

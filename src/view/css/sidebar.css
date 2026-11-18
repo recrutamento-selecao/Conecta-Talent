@@ -1,3 +1,8 @@
+
+/* ==============================
+   RESET E VARIÁVEIS
+============================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -5,17 +10,27 @@
     font-family: 'Inter', sans-serif;
 }
 
+:root {
+    --azul-principal: #1A3BBF;
+    --azul-secundario: #2E5BFF;
+    --azul-escuro: #15309B;
+    --azul-hover: #284ED4;
+    --azul-claro: #EAF1FF;
+    --branco: #FFFFFF;
+    --cinza: #8A94A6;
+}
 
 body{
-    background: #F8FAFF;
+    background: #F8FAFF;/*verificar #F5F7FC*/
 }
 .sidebar{
     min-height: 100vh;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     background: linear-gradient(
         180deg,
-        #1A3BBF 0%,
+        var(--azul-principal) 0%,
         #1735AE 45%,
         #11297F 100%
     );
@@ -23,163 +38,257 @@ body{
     padding: 30px 20px;
 }
 
-.menu-sidebar{
-    flex: 1;
+/* Sidebar recolhida */
+
+.sidebar.fechada {
+    width: 80px;
+    padding: 30px 0;
 }
 
-.campo-logo{
-    display: flex;
-    margin: 5px 5px 10px 5px;
-    
+.sidebar.fechada .campo-texto,
+.sidebar.fechada .link-sidebar,
+.sidebar.fechada .texto-sair,
+.sidebar.fechada .campo-informacoes-usuario,
+.sidebar.fechada .seta-direita-menu {
+    display: none;
 }
 
-.img-logo{
-    width: 60px;
-    height: 60px;
-    margin-top: 10px;
-    margin-left: 20px;
-}
-
-.campo-texto{
+.sidebar.fechada .cabecalho-sidebar {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
-
+    align-items: center;
 }
 
-.primeiro-nome-logo{
-    color: #ffffff;
+.sidebar.fechada .campo-logo {
+    margin: 0;
+    justify-content: center;
+}
+
+.sidebar.fechada .img-logo {
+    width: 30px;
+    height: 30px;
+}
+
+.sidebar.fechada .item-sidebar {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.sidebar.fechada .campo-perfil-logado,
+.sidebar.fechada .campo-sair {
+    justify-content: center;
+    padding: 5px 0;
+}
+
+.sidebar.fechada .linha-sidebar {
+    width: 40px;
+    margin: 0 auto 15px auto;
+}
+
+.sidebar.fechada .submenu {
+    display: none;
+}
+
+/* ==============================
+   CABEÇALHO
+============================== */
+
+.cabecalho-sidebar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.campo-logo {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.img-logo {
+    width: 60px;
+    height: 60px;
+}
+
+.campo-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    margin: 0;
+}
+
+.primeiro-nome-logo {
+    color: var(--branco);
     font-size: 1.15rem;
     text-transform: uppercase;
     font-weight: 500;
-    margin-top: 25px;
     line-height: 1;
-
+    margin: 0;
 }
 
-.segundo-nome-logo{
-    color: #ffffff;
+.segundo-nome-logo {
+    color: var(--branco);
     font-size: 0.85rem;
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: 7px;
-    margin-left: 30px;
-    margin-top: 6px;
+    margin: 0;
 }
 
-.item-sidebar{
+/* Botão de recolher */
+
+.btn-menu {
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 14px 18px;
     border-radius: 12px;
     cursor: pointer;
-    transition: .3s;
-}
-
-.item-sidebar:hover{
-    background: #284ED4;
-}
-
-.link-sidebar{
-    text-decoration: none;
-    color:white;
-    font-size:16px;
-    font-weight: 500;
-}
-
-.icone-dashboard{
-    width: 22px;
-    height: 22px;
-}
-
-.linha-sidebar{
+    transition: 0.3s;
+    background: transparent;
     border: none;
-    border-top: 0.5px solid rgba(255,255,255,0.5);
 }
 
-.campo-perfil-logado{
+/* ==============================
+   MENU
+============================== */
+
+.menu-sidebar {
+    flex: 1;
+}
+
+.item-sidebar {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 5px 18px;
-    transition: .3s;
+    padding: 14px 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.campo-informacoes-usuario{
-    display: flex;
-    flex-direction: column;
-    padding-left: 6px;
-    margin-bottom: 7px;
-    
+.item-sidebar:hover {
+    background: var(--azul-hover);
 }
 
-.nome-usuario{
-    color: white;
-    font-size: 15px;
+.link-sidebar {
+    text-decoration: none;
+    color: var(--branco);
+    font-size: 16px;
+    font-weight: 500;
 }
 
-.funcao-usuario{
-    color: white;
-    font-size: 13px;
-    align-items: center;
-    margin-top: 2px;
+/* Ícones */
 
+.icone-sidebar,
+.icone-dashboard {
+    width: 22px;
+    height: 22px;
+    display: block;
 }
 
-.rodape-sidebar{
-    margin-top: auto;
+/* Separador */
+
+.linha-sidebar {
+    border: none;
+    border-top: 0.5px solid rgba(255, 255, 255, 0.5);
 }
 
-.icone-sair{
-    padding: 5px 18px;
-}
+/* ==============================
+   SUBMENU
+============================== */
 
-.campo-sair{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    cursor:pointer;
-    border-radius:12px;
-    transition:.3s;
-    color: white;
-}
-
-.campo-sair:hover{
-    background:#284ED4;
-}
-
-.submenu{
+.submenu {
     display: none;
     flex-direction: column;
     margin-left: 60px;
     gap: 8px;
     margin-bottom: 8px;
-
 }
 
-.submenu.ativo{
-    display:flex;
+.submenu.ativo {
+    display: flex;
 }
 
-.item-submenu{
+.item-submenu {
     text-decoration: none;
-    color: white;
+    color: var(--branco);
     font-size: 14px;
-    transition: .3s;
+    transition: 0.3s;
 }
 
-.seta-direita-menu{
+/* Seta do submenu */
+
+.seta-direita-menu {
     margin-left: auto;
     width: 16px;
     height: 16px;
-    transition: transform .3s ease;
+    transition: transform 0.3s ease;
 }
 
-.seta-direita-menu.ativa{
+.seta-direita-menu.ativa {
     transform: rotate(90deg);
 }
 
+/* ==============================
+   PERFIL DO USUÁRIO
+============================== */
 
+.campo-perfil-logado {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 5px 18px;
+    transition: 0.3s;
+}
 
+.campo-informacoes-usuario {
+    display: flex;
+    flex-direction: column;
+    padding-left: 6px;
+    margin-bottom: 7px;
+}
 
+.nome-usuario {
+    color: var(--branco);
+    font-size: 15px;
+}
+
+.funcao-usuario {
+    color: var(--branco);
+    font-size: 13px;
+    margin-top: 2px;
+}
+
+/* ==============================
+   RODAPÉ
+============================== */
+
+.rodape-sidebar {
+    margin-top: auto;
+}
+
+.icone-sair {
+    padding: 5px 18px;
+}
+
+.campo-sair {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: 0.3s;
+    color: var(--branco);
+}
+
+.campo-sair:hover {
+    background: var(--azul-hover);
+}
