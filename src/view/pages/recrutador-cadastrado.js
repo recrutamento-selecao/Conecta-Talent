@@ -69,4 +69,4 @@ export function renderRecrutadorCadastrado() {
     containerPrincipal.appendChild(main);
 
     return containerPrincipal;
-}
+}   

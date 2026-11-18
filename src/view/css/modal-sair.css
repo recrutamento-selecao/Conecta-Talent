@@ -1,0 +1,111 @@
+/* =========================================
+   ESTILOS DO MODAL DE SAÍDA (modal-sair.css)
+   ========================================= */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-card {
+    background: #ffffff;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 420px;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+    animation: scaleUp 0.2s ease-out;
+}
+
+.modal-icone-wrapper {
+    width: 48px;
+    height: 48px;
+    background-color: #fee2e2; /* Fundo suave */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-icone {
+    width: 22px;
+    height: 22px;
+    stroke: #dc2626; /* Vermelho mais forte e fechado */
+}
+
+.modal-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.modal-botoes {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.btn-cancelar-modal,
+.btn-confirmar-sair {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-cancelar-modal {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #475569;
+}
+
+.btn-cancelar-modal:hover {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+/* Botão Sair com um vermelho mais forte e vibrante (#dc2626) */
+.btn-confirmar-sair {
+    background-color: #dc2626;
+    border: 1px solid #dc2626;
+    color: #ffffff;
+}
+
+.btn-confirmar-sair:hover {
+    background-color: #b91c1c; /* Vermelho ainda mais profundo no hover */
+    border-color: #b91c1c;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}

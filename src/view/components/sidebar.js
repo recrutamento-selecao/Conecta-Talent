@@ -1,3 +1,5 @@
+import { criarModalSair } from './modal-sair.js';
+
 // Mapeamento das rotas por hash para cada perfil de utilizador
 const MENUS_POR_PERFIL = {
     administrador: [
@@ -353,7 +355,7 @@ export function criarSidebar(tipoUsuario = "candidato", nomeUsuario = "Utilizado
 
     const campoSair = document.createElement("a");
     campoSair.classList.add("campo-sair");
-    campoSair.href = "#login"; // Ajustado para hash se necessário
+    campoSair.href = "#"; // Alterado para evitar navegação imediata
 
     const iconeSair = document.createElement("img");
     iconeSair.classList.add("icone-sair");
@@ -365,6 +367,15 @@ export function criarSidebar(tipoUsuario = "candidato", nomeUsuario = "Utilizado
 
     campoSair.appendChild(iconeSair);
     campoSair.appendChild(textoSair);
+
+    // Abertura do Modal de Sair ao clicar
+    campoSair.addEventListener("click", (e) => {
+        e.preventDefault();
+        const modal = criarModalSair(() => {
+            window.location.hash = "#login";
+        });
+        document.body.appendChild(modal);
+    });
 
     rodapeSidebar.appendChild(campoPerfilLogado);
     rodapeSidebar.appendChild(campoSair);

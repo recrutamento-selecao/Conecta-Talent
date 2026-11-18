@@ -1,0 +1,243 @@
+/* =========================================
+   ESTILOS DA PÁGINA: CONFIRMAÇÃO DE PLANO
+   ========================================= */
+.pagina-confirmacao-plano-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.pagina-confirmacao-plano-wrapper .conteudo-principal {
+    flex: 1;
+    margin-left: var(--sidebar-width, 260px);
+    padding: 2rem 2.5rem;
+    box-sizing: border-box;
+    transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 0;
+}
+
+body:has(.sidebar.fechada) .pagina-confirmacao-plano-wrapper .conteudo-principal {
+    margin-left: var(--sidebar-collapsed-width, 78px);
+}
+
+.breadcrumb-pagina {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 0.3rem;
+}
+
+.breadcrumb-pagina span {
+    color: #0f172a;
+    font-weight: 500;
+}
+
+.titulo-pagina {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 1.5rem;
+}
+
+/* Layout de Grelha */
+.layout-confirmacao-grid {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 1.5rem;
+    align-items: start;
+    width: 100%;
+}
+
+/* Elementos Internos do Slot */
+.alerta-recurso-extra {
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+    color: #1e40af;
+    margin-bottom: 1.25rem;
+}
+
+.comparativo-planos {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    width: 100%;
+}
+
+.plano-box {
+    flex: 1;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.1rem;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.plano-box.novo {
+    border-color: #3b82f6;
+    background-color: #f8fafc;
+}
+
+.tag-estado {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #64748b;
+    background: #f1f5f9;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.tag-estado.ativo {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.plano-box h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 0.3rem 0;
+}
+
+.plano-box .preco {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.plano-box .periodo {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: #64748b;
+}
+
+.seta-transicao {
+    font-size: 1.25rem;
+    color: #3b82f6;
+    font-weight: bold;
+}
+
+.info-adicional-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.1rem;
+    margin-bottom: 1.25rem;
+    box-sizing: border-box;
+}
+
+.info-item .rotulo {
+    display: block;
+    font-size: 0.75rem;
+    color: #64748b;
+    margin-bottom: 0.2rem;
+}
+
+.info-item strong {
+    font-size: 0.85rem;
+    color: #0f172a;
+}
+
+.aviso-email-confirmacao {
+    background-color: #dcfce7;
+    color: #166534;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 0.825rem;
+}
+
+/* Painel Lateral Direito */
+.painel-resumo-assinatura {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.painel-resumo-assinatura h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 1rem;
+}
+
+.card-resumo-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.info-plano-mini h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 0.2rem 0;
+}
+
+.info-plano-mini p {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.badge-ativo-mini {
+    background-color: #dcfce7;
+    color: #16a34a;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.preco-destaque {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 1rem 0;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 1rem;
+}
+
+.preco-destaque .periodo {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #64748b;
+}
+
+.lista-beneficios-resumo {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    font-size: 0.825rem;
+    color: #334155;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .layout-confirmacao-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -70,7 +70,7 @@ export function renderLogin() {
 
     linkCadastro.addEventListener("click", (event) => {
         event.preventDefault();
-        window.location.hash = "#tipo-cadastro";
+        window.location.hash = "#cadastro";
     });
 
     container.appendChild(titulo);

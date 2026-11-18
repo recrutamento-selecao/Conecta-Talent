@@ -8,6 +8,8 @@ import { renderLogin } from '../pages/login.js';
 import { renderVagasInicio } from '../pages/vagas-inicio.js';
 import { renderCadastroConcluido } from '../pages/cadastro-concluido.js';
 import { renderRecrutadorCadastrado } from '../pages/recrutador-cadastrado.js';
+import { renderPlanoAlterado } from '../pages/plano-alterado.js';
+import renderCadastroPage from '../pages/cadastro.js';
 
 function trocarEstiloPagina(nomePagina) {
     const estiloAnterior = document.getElementById('estilo-Dinamico-pagina');
@@ -16,7 +18,9 @@ function trocarEstiloPagina(nomePagina) {
     }
 
     const estilosMap = {
-        'recrutador-cadastrado': './view/css/recrutador-cadastrado.css',
+        'cadastro': './view/css/cadastro.css',
+         'recrutador-cadastrado': './view/css/recrutador-cadastrado.css',
+        'plano-alterado': './view/css/plano-alterado.css',
         'cadastro-concluido': './view/css/cadastro-concluido.css',
         'login': './view/css/login.css', 
         'candidato-vagas': './view/css/candidato-vagas.css',
@@ -47,6 +51,14 @@ export function iniciarRouter() {
         app.innerHTML = '';
 
         switch (hash) {
+            case '#cadastro':
+                trocarEstiloPagina('cadastro');
+                app.appendChild(renderCadastroPage());
+                break;
+            case '#plano-alterado':
+                trocarEstiloPagina('plano-alterado');
+                app.appendChild(renderPlanoAlterado());
+                break;
             case '#login':
                 trocarEstiloPagina('login');
                 app.appendChild(renderLogin());
