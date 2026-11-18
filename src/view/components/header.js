@@ -40,6 +40,11 @@ export function criarHeader() {
     btnEntrar.classList.add('btn-entrar');
     btnEntrar.textContent = "Entrar";
 
+    btnEntrar.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.location.hash = '#login';
+    });
+
     const btnCadastrar = document.createElement('button');
     btnCadastrar.classList.add('btn-cadastrar');
     btnCadastrar.textContent = "Cadastrar-se";

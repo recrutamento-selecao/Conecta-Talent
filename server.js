@@ -34,6 +34,35 @@ app.get('/api/supabase-config', (req, res) => {
     });
 });
 
+// --- ROTA DE LOGIN COM E-MAIL E SENHA ---
+app.post('/autenticacao/login', async (req, res) => {
+    const { email, senha } = req.body;
+
+    if (!email || !senha) {
+        return res.status(400).json({ erro: 'E-mail e senha são obrigatórios.' });
+    }
+
+    try {
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: email,
+            password: senha
+        });
+
+        if (error) {
+            return res.status(401).json({ erro: error.message });
+        }
+
+        return res.status(200).json({
+            mensagem: 'Login realizado com sucesso!',
+            session: data.session,
+            user: data.user
+        });
+    } catch (err) {
+        console.error('Erro interno no servidor ao realizar login:', err);
+        return res.status(500).json({ erro: 'Erro interno no servidor.' });
+    }
+});
+
 // --- ROTA DE BACKEND PARA ENVIAR/DISPARAR O OTP POR E-MAIL ---
 app.post('/api/auth/send-otp', async (req, res) => {
     const { email } = req.body;
@@ -95,5 +124,3 @@ app.post('/api/auth/verify-otp', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-
