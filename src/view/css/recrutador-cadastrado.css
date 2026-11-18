@@ -1,0 +1,143 @@
+/* =========================================
+   ESTILOS DA PÁGINA: RECRUTADOR CADASTRADO
+   ========================================= */
+.pagina-recrutador-cadastrado-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.pagina-recrutador-cadastrado-wrapper .conteudo-principal {
+    flex: 1;
+    margin-left: var(--sidebar-width, 260px);
+    padding: 2.5rem 2rem;
+    box-sizing: border-box;
+    transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 0;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ajuste quando a sidebar estiver fechada */
+body:has(.sidebar.fechada) .pagina-recrutador-cadastrado-wrapper .conteudo-principal {
+    margin-left: var(--sidebar-collapsed-width, 78px);
+}
+
+/* Slot específico de detalhes do recrutador */
+.detalhes-recrutador-slot {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+}
+
+.card-info-recrutador {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.avatar-recrutador {
+    width: 48px;
+    height: 48px;
+    background-color: #e0f2fe;
+    color: #0369a1;
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.info-texto-recrutador {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    width: 100%;
+}
+
+.nome-recrutador {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.detalhes-linha {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    font-size: 0.825rem;
+    color: #64748b;
+    flex-wrap: wrap;
+}
+
+.detalhes-linha span {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.badge-ativo {
+    background-color: #dcfce7;
+    color: #16a34a;
+    padding: 0.15rem 0.6rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+/* Caixa de Próximos Passos */
+.proximos-passos-box {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    font-size: 0.85rem;
+    color: #475569;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.proximos-passos-box strong {
+    color: #0f172a;
+    display: block;
+    margin-bottom: 0.15rem;
+}
+
+.proximos-passos-box p {
+    margin: 0;
+    color: #64748b;
+    line-height: 1.4;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .detalhes-linha {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .pagina-recrutador-cadastrado-wrapper .conteudo-principal {
+        margin-left: 0 !important;
+        padding: 1.5rem;
+    }
+}

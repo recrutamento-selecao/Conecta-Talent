@@ -1,208 +1,268 @@
 /* =========================================
-   1. LAYOUT GERAL DA PÁGINA PÚBLICA DE VAGAS
+   1. LAYOUT GERAL DA PÁGINA PÚBLICA (TELA INTEIRA)
    ========================================= */
 .page-vagas-inicio {
-    width: 100%;
+    width: 100vw !important;
     min-height: 100vh;
     background-color: #f8fafc;
     font-family: 'Inter', 'Lato', sans-serif;
     display: flex;
     flex-direction: column;
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
+    color: #0f172a;
+    overflow-x: hidden;
 }
-
-.main {
+ 
+.page-vagas-inicio .main {
     flex: 1;
-    width: 100%;
-    max-width: 100%;
+    width: 100% !important;
+    max-width: 100% !important;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-/* Esconde o botão de favoritar (bandeirinha) na área pública */
+ 
 .page-vagas-inicio .btn-favoritar {
     display: none !important;
 }
-
+ 
 /* =========================================
-   2. BARRA DE BUSCA (TOPO)
+   2. HEADER PÚBLICO (PADRÃO IDÊNTICO À HOME)
    ========================================= */
-.topo-busca-container {
+.page-vagas-inicio .header {
+    width: 100% !important;
+    max-width: 100% !important;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    margin: 0 !important;
+    padding: 1rem 5% !important;
+    box-sizing: border-box;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+ 
+.page-vagas-inicio .header .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+ 
+.page-vagas-inicio .header .navegacao {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    padding: 1.5rem 2.5rem 1rem 2.5rem;
-    max-width: 1600px;
-    margin: 0 auto;
-    width: 100%;
+}
+ 
+.page-vagas-inicio .header .acesso {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end !important;
+    gap: 1rem;
+}
+ 
+/* =========================================
+   3. BARRA DE BUSCA (ESTICADA DE PONTA A PONTA)
+   ========================================= */
+.vi-topo-busca-container {
+    display: flex;
+    justify-content: stretch !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 2rem 4% 1.25rem 4% !important;
     box-sizing: border-box;
 }
-
-.barra-busca-wrapper {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0;
+ 
+.vi-barra-busca-wrapper,
+.vi-barra-busca-wrapper > div,
+.vi-barra-busca-wrapper form {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    display: flex !important;
+    gap: 1rem;
 }
-
+ 
+.vi-barra-busca-wrapper input,
+.vi-barra-busca-wrapper .input-container,
+.vi-barra-busca-wrapper > div > div {
+    flex: 1 !important;
+    width: auto !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+}
+ 
 /* =========================================
-   3. CORPO: LAYOUT DE FILTROS + LISTA DE VAGAS
+   4. CORPO: FILTROS + LISTA DE VAGAS (FLUIDO)
    ========================================= */
-.layout-vagas-container {
+.vi-layout-vagas-container {
     display: flex;
     align-items: flex-start;
-    gap: 2.5rem;
-    width: 100%;
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 1rem 2.5rem 3rem 1.25rem;
-    /* ⬅️ Reduzido o padding esquerdo (de 2.5rem para 1.25rem) para o filtro ir mais à esquerda */
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0.5rem 4% 4rem 4% !important;
     box-sizing: border-box;
-    padding: 1rem 2.5rem 3rem 0; /* ⬅️ Mude de 1.25rem para 0 (ou 0.5rem se quiser um respiro mínimo) */
 }
-
-.filtros-lateral {
-    flex-shrink: 0;
+ 
+.vi-filtros-lateral {
+    flex: 0 0 280px !important;
+    width: 280px !important;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    position: sticky;
+    top: 5.5rem;
 }
-
-.area-central-vagas {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.lista-vagas-wrapper {
-    width: 100%;
-    max-width: 980px;
-    /* ⬅️ Aumentado de 860px para 980px para esticar os cards */
-}
-
-/* =========================================
-   4. COMPONENTE: LISTA DE VAGAS E CARDS
-   ========================================= */
-.container-lista-vagas {
+ 
+.vi-area-central-vagas {
+    flex: 1 !important;
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
-    width: 100%;
+    min-width: 0;
+    width: 100% !important;
+    max-width: 100% !important;
 }
-
-/* ... (cabeçalho da lista continua igual) ... */
-
-.card-vaga {
+ 
+.vi-lista-vagas-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+ 
+/* =========================================
+   5. CARDS DE VAGAS (OCUPAM 100% DA ÁREA LIVRE)
+   ========================================= */
+.page-vagas-inicio .container-lista-vagas,
+.page-vagas-inicio .cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+ 
+.page-vagas-inicio .card-vaga {
     background-color: #ffffff;
     border: 1px solid #e2e8f0;
     border-radius: 12px;
-    padding: 2rem 2rem;
-    /* ⬅️ Aumentado o padding interno para o card ficar mais robusto e espaçoso */
+    padding: 1.5rem 2rem;
     display: flex;
     align-items: center;
     gap: 1.5rem;
-    /* ⬅️ Espaçamento interno um pouco maior entre os elementos */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+    transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100% !important;
 }
-
-.card-vaga:hover {
-    border-color: #cbd5e1;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+ 
+.page-vagas-inicio .card-vaga:hover {
+    border-color: #93c5fd;
+    box-shadow: 0 6px 16px rgba(29, 78, 216, 0.06);
 }
-
-.cards-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem; /* ⬅️ Aumente de 1rem para 1.5rem ou 2rem para dar mais espaço entre os cards */
-}
-.card-vaga-logo {
-    width: 48px;
-    height: 48px;
+ 
+.page-vagas-inicio .card-vaga-logo {
+    width: 52px;
+    height: 52px;
     background-color: #eff6ff;
+    border: 1px solid #dbeafe;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
-
-.card-vaga-logo img {
+ 
+.page-vagas-inicio .card-vaga-logo img {
     width: 26px;
     height: 26px;
     object-fit: contain;
 }
-
-.card-vaga-conteudo {
+ 
+.page-vagas-inicio .card-vaga-conteudo {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.65rem;
+    min-width: 0;
 }
-
-.info-titulo h3 {
+ 
+.page-vagas-inicio .info-titulo h3 {
     font-size: 1.1rem;
     font-weight: 700;
     color: #0f172a;
     margin: 0;
 }
-
-.empresa-nome {
-    font-size: 0.85rem;
+ 
+.page-vagas-inicio .empresa-nome {
+    font-size: 0.9rem;
     color: #64748b;
     display: block;
     margin-top: 0.15rem;
 }
-
-.card-vaga-tags {
+ 
+.page-vagas-inicio .card-vaga-tags {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1.5rem;
     font-size: 0.85rem;
     color: #475569;
     font-weight: 500;
 }
-
-.tag-item {
-    display: flex;
+ 
+.page-vagas-inicio .tag-item {
+    display: inline-flex;
     align-items: center;
     gap: 0.4rem;
 }
-
-.icone-tag {
+ 
+.page-vagas-inicio .icone-tag {
     width: 16px;
     height: 16px;
     object-fit: contain;
     flex-shrink: 0;
 }
-
-.card-vaga-lado-direito {
+ 
+.page-vagas-inicio .card-vaga-lado-direito {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 0.75rem;
+    justify-content: space-between;
+    gap: 1rem;
     flex-shrink: 0;
 }
-
-.card-vaga-acoes-topo {
+ 
+.page-vagas-inicio .card-vaga-acoes-topo {
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
-
-.tempo-publicacao {
+ 
+.page-vagas-inicio .tempo-publicacao {
     font-size: 0.75rem;
     color: #94a3b8;
     font-weight: 500;
 }
-
-.card-vaga-botoes {
+ 
+.page-vagas-inicio .card-vaga-botoes {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.75rem;
 }
-
-.btn-detalhes {
+ 
+.page-vagas-inicio .btn-detalhes {
     background-color: #ffffff;
-    border: 1px solid #e2e8f0;
+    border: 1px solid #cbd5e1;
     color: #1d4ed8;
     padding: 0.6rem 1.2rem;
     border-radius: 8px;
@@ -211,67 +271,56 @@
     cursor: pointer;
     transition: background-color 0.2s ease, border-color 0.2s ease;
 }
-
-.btn-detalhes:hover {
-    background-color: #f8fafc;
-    border-color: #cbd5e1;
+ 
+.page-vagas-inicio .btn-detalhes:hover {
+    background-color: #f1f5f9;
 }
-
-.btn-candidatar {
+ 
+.page-vagas-inicio .btn-candidatar {
     background-color: #1d4ed8;
-    border: none;
+    border: 1px solid #1d4ed8;
     color: #ffffff;
-    padding: 0.65rem 1.2rem;
+    padding: 0.6rem 1.25rem;
     border-radius: 8px;
     font-weight: 600;
     font-size: 0.85rem;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
-
-.btn-candidatar:hover {
+ 
+.page-vagas-inicio .btn-candidatar:hover {
     background-color: #1e40af;
 }
-
-.sem-vagas {
+ 
+.page-vagas-inicio .sem-vagas {
     color: #64748b;
-    padding: 2rem;
+    padding: 3rem 2rem;
     background: #ffffff;
     border-radius: 12px;
-    border: 1px dashed #e2e8f0;
+    border: 1px dashed #cbd5e1;
     text-align: center;
+    width: 100% !important;
 }
-
+ 
 /* =========================================
-   5. HEADER PÚBLICO E LOGO
+   6. RESPONSIVIDADE
    ========================================= */
-.page-vagas-inicio .header {
-    width: 100%;
-    max-width: 100%;
-    margin: 0;
-    padding: 1rem 3rem;
-    box-sizing: border-box;
-    border-radius: 0;
+@media (max-width: 960px) {
+    .vi-layout-vagas-container {
+        flex-direction: column;
+        padding: 0.5rem 1.5rem 3rem 1.5rem !important;
+        gap: 1.5rem;
+    }
+ 
+    .vi-filtros-lateral {
+        width: 100% !important;
+        position: static;
+    }
+ 
+    .page-vagas-inicio .header,
+    .vi-topo-busca-container {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
 }
-
-.page-vagas-inicio .logo-container {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
-    margin: 0;
-}
-
-.page-vagas-inicio .logo-texto {
-    color: #93c5fd;
-    font-size: 1.25rem;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-    white-space: nowrap;
-    margin-left: 0.25rem;
-}
-
-.page-vagas-inicio .logo-texto strong {
-    color: #ffffff;
-    font-weight: 700;
-}
+ 

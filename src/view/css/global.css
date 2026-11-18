@@ -41,6 +41,8 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 body {
@@ -50,12 +52,15 @@ body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 #app {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
 }
 
 
@@ -86,9 +91,9 @@ input, select, textarea {
 
 .container {
     width: 100%;
-    max-width: 1280px;
+    max-width: 1680px; /* Ampliado para ocupar melhor telas de 1920x1080 */
     margin: 0 auto;
-    padding: 0 1.5rem;
+    padding: 0 2.5rem;   /* Respiro lateral proporcional */
 }
 
 .sr-only {
