@@ -16,7 +16,7 @@ import { renderMinhasVagas } from '../pages/gerenciar-vagas.js';
 import { renderGerenciarRecrutadores } from '../pages/gerenciar-recrutadores.js';
 import { renderGerenciarCandidaturas } from '../pages/gerenciar-candidaturas.js';
 import { renderVagasInicio } from '../pages/vagas-inicio.js';
-import { abrirModalCandidatar } from '../pages/modal-candidatar-se.js';
+import { renderCadastrarRecrutador } from '../pages/cadastrar-recrutador.js';
 
 function garantirCssModal() {
     if (!document.getElementById('estilo-modal-global')) {
@@ -57,7 +57,7 @@ function trocarEstiloPagina(nomePagina) {
         caminhoCss = './view/css/meus-dados.css';
     } else if (nomePagina === 'minhas-vagas') {
         caminhoCss = './view/css/minhas-vagas.css';
-    } else if (nomePagina === 'gerenciar-recrutadores') {
+    } else if (nomePagina === 'gerenciar-recrutadores' || nomePagina === 'cadastrar-recrutador') {
         caminhoCss = './view/css/gerenciar-recrutador.css';
     } else if (nomePagina === 'gerenciar-candidaturas') {
         caminhoCss = './view/css/gerenciar-candidaturas.css';
@@ -115,9 +115,7 @@ export function iniciarRouter() {
                 app.appendChild(renderTipoCadastro());
                 break;
             case '#login':
-                // Caso já tenha a função renderLogin(), importe-a no topo e descomente abaixo:
                 trocarEstiloPagina('login');
-                // app.appendChild(renderLogin());
                 break;
             case '#candidato-vagas':
                 trocarEstiloPagina('candidato-vagas');
@@ -161,6 +159,10 @@ export function iniciarRouter() {
             case '#gerenciar-recrutadores':
                 trocarEstiloPagina('gerenciar-recrutadores');
                 app.appendChild(renderGerenciarRecrutadores());
+                break;
+            case '#cadastrar-recrutador':
+                trocarEstiloPagina('cadastrar-recrutador');
+                app.appendChild(renderCadastrarRecrutador()); 
                 break;
             case '#gerenciar-candidaturas':
                 trocarEstiloPagina('gerenciar-candidaturas');

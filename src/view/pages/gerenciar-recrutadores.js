@@ -31,23 +31,120 @@ export function renderGerenciarRecrutadores() {
     btnNovo.className = 'btn-primario';
     btnNovo.innerHTML = `+ Novo recrutador`;
     btnNovo.addEventListener('click', () => {
-        alert('Abrir modal de novo recrutador');
+        // Redireciona para a rota de cadastro de recrutador
+        window.location.hash = '#cadastrar-recrutador';
     });
 
     cabecalhoSecao.appendChild(blocoTitulos);
     cabecalhoSecao.appendChild(btnNovo);
     conteudoPrincipal.appendChild(cabecalhoSecao);
 
-    // Dados base completos
+    // Dados base completos com permissões mockadas para cada recrutador
     const dadosRecrutadores = [
-        { id: 1, nome: 'Ana Souza', iniciais: 'AS', cargo: 'Recrutador(a)', email: 'ana.souza@bluecore.com', empresa: 'BlueCore Sistemas', status: 'Ativo', ultimoAcesso: '22/09/2026 às 14:30', telefone: '(15) 99876-5432', dataCadastro: '10/03/2026' },
-        { id: 2, nome: 'Carlos Mendes', iniciais: 'CM', cargo: 'Recrutador(a)', email: 'carlos.mendes@vagaspro.com', empresa: 'VagasPro', status: 'Ativo', ultimoAcesso: '21/08/2026 às 10:15', telefone: '(15) 98812-3344', dataCadastro: '12/04/2026' },
-        { id: 3, nome: 'Juliana Lima', iniciais: 'JL', cargo: 'Recrutador(a)', email: 'juliana.lima@techsol.com', empresa: 'TechSol', status: 'Ativo', ultimoAcesso: '20/09/2026 às 16:42', telefone: '(11) 97766-1122', dataCadastro: '05/01/2026' },
-        { id: 4, nome: 'Rafael Costa', iniciais: 'RC', cargo: 'Recrutador(a)', email: 'rafael.costa@innovare.com', empresa: 'Innovare', status: 'Pendente', ultimoAcesso: '—', telefone: '(11) 96655-4433', dataCadastro: '15/05/2026' },
-        { id: 5, nome: 'Mariana Alves', iniciais: 'MA', cargo: 'Recrutador(a)', email: 'mariana.alves@nextdigital.com', empresa: 'NextDigital', status: 'Ativo', ultimoAcesso: '19/09/2026 às 11:20', telefone: '(19) 95544-3322', dataCadastro: '20/02/2026' },
-        { id: 6, nome: 'Bruno Ferreira', iniciais: 'BF', cargo: 'Recrutador(a)', email: 'bruno.ferreira@dataon.com', empresa: 'DataOn', status: 'Inativo', ultimoAcesso: '15/09/2026 às 09:10', telefone: '(12) 94433-2211', dataCadastro: '01/02/2026' },
-        { id: 7, nome: 'Camila Rocha', iniciais: 'CR', cargo: 'Recrutador(a)', email: 'camila.rocha@horizonte.com', empresa: 'Horizonte', status: 'Ativo', ultimoAcesso: '18/09/2026 às 13:55', telefone: '(18) 93322-1100', dataCadastro: '18/03/2026' },
-        { id: 8, nome: 'Lucas Martins', iniciais: 'LM', cargo: 'Recrutador(a)', email: 'lucas.martins@talenthub.com', empresa: 'TalentHub', status: 'Ativo', ultimoAcesso: '17/09/2026 às 08:30', telefone: '(16) 92211-0099', dataCadastro: '25/03/2026' }
+        { 
+            id: 1, 
+            nome: 'Ana Souza', 
+            iniciais: 'AS', 
+            cargo: 'Recrutador(a)', 
+            email: 'ana.souza@bluecore.com', 
+            empresa: 'BlueCore Sistemas', 
+            status: 'Ativo', 
+            ultimoAcesso: '22/09/2026 às 14:30', 
+            telefone: '(15) 99876-5432', 
+            dataCadastro: '10/03/2026',
+            permissoes: { gerenciar_vagas: true, gerenciar_candidatos: true, processos_seletivos: true, agenda: true, relatorios: false, banco_talentos: false }
+        },
+        { 
+            id: 2, 
+            nome: 'Carlos Mendes', 
+            iniciais: 'CM', 
+            cargo: 'Recrutador(a)', 
+            email: 'carlos.mendes@vagaspro.com', 
+            empresa: 'VagasPro', 
+            status: 'Ativo', 
+            ultimoAcesso: '21/08/2026 às 10:15', 
+            telefone: '(15) 98812-3344', 
+            dataCadastro: '12/04/2026',
+            permissoes: { gerenciar_vagas: true, gerenciar_candidatos: true, processos_seletivos: false, agenda: true, relatorios: true, banco_talentos: true }
+        },
+        { 
+            id: 3, 
+            nome: 'Juliana Lima', 
+            iniciais: 'JL', 
+            cargo: 'Recrutador(a)', 
+            email: 'juliana.lima@techsol.com', 
+            empresa: 'TechSol', 
+            status: 'Ativo', 
+            ultimoAcesso: '20/09/2026 às 16:42', 
+            telefone: '(11) 97766-1122', 
+            dataCadastro: '05/01/2026',
+            permissoes: { gerenciar_vagas: true, gerenciar_candidatos: true, processos_seletivos: true, agenda: true, relatorios: true, banco_talentos: true }
+        },
+        { 
+            id: 4, 
+            nome: 'Rafael Costa', 
+            iniciais: 'RC', 
+            cargo: 'Recrutador(a)', 
+            email: 'rafael.costa@innovare.com', 
+            empresa: 'Innovare', 
+            status: 'Pendente', 
+            ultimoAcesso: '—', 
+            telefone: '(11) 96655-4433', 
+            dataCadastro: '15/05/2026',
+            permissoes: { gerenciar_vagas: true, gerenciar_candidatos: false, processos_seletivos: false, agenda: false, relatorios: false, banco_talentos: false }
+        },
+        { 
+            id: 5, 
+            nome: 'Mariana Alves', 
+            iniciais: 'MA', 
+            cargo: 'Recrutador(a)', 
+            email: 'mariana.alves@nextdigital.com', 
+            empresa: 'NextDigital', 
+            status: 'Ativo', 
+            ultimoAcesso: '19/09/2026 às 11:20', 
+            telefone: '(19) 95544-3322', 
+            dataCadastro: '20/02/2026',
+            permissoes: { gerenciar_vagas: true, gerenciar_candidatos: true, processos_seletivos: true, agenda: false, relatorios: false, banco_talentos: true }
+        },
+        { 
+            id: 6, 
+            nome: 'Bruno Ferreira', 
+            iniciais: 'BF', 
+            cargo: 'Recrutador(a)', 
+            email: 'bruno.ferreira@dataon.com', 
+            empresa: 'DataOn', 
+            status: 'Inativo', 
+            ultimoAcesso: '15/09/2026 às 09:10', 
+            telefone: '(12) 94433-2211', 
+            dataCadastro: '01/02/2026',
+            permissoes: { gerenciar_vagas: false, gerenciar_candidatos: false, processos_seletivos: false, agenda: false, relatorios: false, banco_talentos: false }
+        },
+        { 
+            id: 7, 
+            nome: 'Camila Rocha', 
+            iniciais: 'CR', 
+            cargo: 'Recrutador(a)', 
+            email: 'camila.rocha@horizonte.com', 
+            empresa: 'Horizonte', 
+            status: 'Ativo', 
+            ultimoAcesso: '18/09/2026 às 13:55', 
+            telefone: '(18) 93322-1100', 
+            dataCadastro: '18/03/2026',
+            permissoes: { gerenciar_vagas: true, gerenciar_candidatos: true, processos_seletivos: true, agenda: true, relatorios: true, banco_talentos: false }
+        },
+        { 
+            id: 8, 
+            nome: 'Lucas Martins', 
+            iniciais: 'LM', 
+            cargo: 'Recrutador(a)', 
+            email: 'lucas.martins@talenthub.com', 
+            empresa: 'TalentHub', 
+            status: 'Ativo', 
+            ultimoAcesso: '17/09/2026 às 08:30', 
+            telefone: '(16) 92211-0099', 
+            dataCadastro: '25/03/2026',
+            permissoes: { gerenciar_vagas: true, gerenciar_candidatos: true, processos_seletivos: false, agenda: true, relatorios: false, banco_talentos: true }
+        }
     ];
 
     // Extrair opções únicas para os filtros dinamicamente
@@ -55,7 +152,7 @@ export function renderGerenciarRecrutadores() {
     const statusUnicos = [...new Set(dadosRecrutadores.map(item => item.status))];
     const cargosUnicos = [...new Set(dadosRecrutadores.map(item => item.cargo))];
 
-    // Barra de Filtros Interativa com Selects populados dinamicamente
+    // Barra de Filtros Interativa
     const barraFiltros = document.createElement('div');
     barraFiltros.className = 'barra-filtros-tabela';
     barraFiltros.innerHTML = `
@@ -131,6 +228,74 @@ export function renderGerenciarRecrutadores() {
 
     function mostrarDetalhesRecrutador(item) {
         containerDetalhes.style.display = 'block';
+
+        const permissoesRecrutador = item.permissoes || {
+            gerenciar_vagas: false,
+            gerenciar_candidatos: false,
+            processos_seletivos: false,
+            agenda: false,
+            relatorios: false,
+            banco_talentos: false
+        };
+
+        function renderizarConteudoPainel(abaAtiva) {
+            const corpoDetalhes = containerDetalhes.querySelector('.corpo-detalhes-dinamico');
+            const btnInfo = containerDetalhes.querySelector('#aba-info');
+            const btnPerm = containerDetalhes.querySelector('#aba-permissoes');
+            
+            if (abaAtiva === 'info') {
+                btnInfo.classList.add('ativo');
+                btnPerm.classList.remove('ativo');
+                
+                corpoDetalhes.innerHTML = `
+                    <div class="lista-infos-detalhes">
+                        <div class="item-info"><span class="rotulo-info">E-mail</span><span class="valor-info">${item.email}</span></div>
+                        <div class="item-info"><span class="rotulo-info">Telefone</span><span class="valor-info">${item.telefone}</span></div>
+                        <div class="item-info"><span class="rotulo-info">Cargo</span><span class="valor-info">${item.cargo}</span></div>
+                        <div class="item-info"><span class="rotulo-info">Empresa</span><span class="valor-info">${item.empresa}</span></div>
+                        <div class="item-info"><span class="rotulo-info">Data de cadastro</span><span class="valor-info">${item.dataCadastro}</span></div>
+                        <div class="item-info"><span class="rotulo-info">Último acesso</span><span class="valor-info">${item.ultimoAcesso}</span></div>
+                    </div>
+                `;
+            } else {
+                btnPerm.classList.add('ativo');
+                btnInfo.classList.remove('ativo');
+
+                const listaOpcoesPermissao = [
+                    { chave: 'gerenciar_vagas', titulo: 'Gerenciar vagas', desc: 'Criar, editar e encerrar vagas.' },
+                    { chave: 'gerenciar_candidatos', titulo: 'Gerenciar candidatos', desc: 'Visualizar e acompanhar candidatos.' },
+                    { chave: 'processos_seletivos', titulo: 'Processos seletivos', desc: 'Movimentar candidatos entre etapas.' },
+                    { chave: 'agenda', titulo: 'Agenda', desc: 'Criar e gerenciar entrevistas.' },
+                    { chave: 'relatorios', titulo: 'Relatórios', desc: 'Visualizar relatórios de recrutamento.' },
+                    { chave: 'banco_talentos', titulo: 'Banco de talentos', desc: 'Acessar o banco de talentos da empresa.' }
+                ];
+
+                const htmlPermissoes = listaOpcoesPermissao.map(p => {
+                    const ativo = permissoesRecrutador[p.chave];
+                    return `
+                        <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px 12px; border: 1px solid ${ativo ? '#e2e8f0' : '#f1f5f9'}; background-color: ${ativo ? '#ffffff' : '#f8fafc'}; border-radius: 8px; margin-bottom: 6px; text-align: left; width: 100%; box-sizing: border-box; opacity: ${ativo ? '1' : '0.6'};">
+                            <div style="display: flex; flex-direction: column; gap: 2px;">
+                                <strong style="font-size: 13px; color: #0f172a; font-weight: 500;">${p.titulo}</strong>
+                                <span style="font-size: 11px; color: #64748b;">${p.desc}</span>
+                            </div>
+                            <span style="font-size: 12px; font-weight: 600; padding: 3px 8px; border-radius: 4px; background-color: ${ativo ? '#dcfce7' : '#fee2e2'}; color: ${ativo ? '#166534' : '#991b1b'};">
+                                ${ativo ? 'Liberado' : 'Restrito'}
+                            </span>
+                        </div>
+                    `;
+                }).join('');
+
+                corpoDetalhes.innerHTML = `
+                    <div style="width: 100%; display: flex; flex-direction: column; text-align: left;">
+                        <span style="font-size: 12px; color: #64748b; margin-bottom: 10px; display: block;">Módulos com acesso liberado para este recrutador:</span>
+                        <div style="display: flex; flex-direction: column; gap: 2px;">
+                            ${htmlPermissoes}
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
         containerDetalhes.innerHTML = `
             <div class="cabecalho-detalhes">
                 <h3>Detalhes do recrutador</h3>
@@ -143,25 +308,24 @@ export function renderGerenciarRecrutadores() {
                 <div class="status-centralizado"><span class="badge-status badge-ativo">${item.status}</span></div>
 
                 <div class="abas-detalhes">
-                    <button class="aba-btn ativo">Informações</button>
-                    <button class="aba-btn">Permissões</button>
+                    <button class="aba-btn ativo" id="aba-info">Informações</button>
+                    <button class="aba-btn" id="aba-permissoes">Permissões</button>
                 </div>
 
-                <div class="lista-infos-detalhes">
-                    <div class="item-info"><span class="rotulo-info">E-mail</span><span class="valor-info">${item.email}</span></div>
-                    <div class="item-info"><span class="rotulo-info">Telefone</span><span class="valor-info">${item.telefone}</span></div>
-                    <div class="item-info"><span class="rotulo-info">Cargo</span><span class="valor-info">${item.cargo}</span></div>
-                    <div class="item-info"><span class="rotulo-info">Empresa</span><span class="valor-info">${item.empresa}</span></div>
-                    <div class="item-info"><span class="rotulo-info">Data de cadastro</span><span class="valor-info">${item.dataCadastro}</span></div>
-                    <div class="item-info"><span class="rotulo-info">Último acesso</span><span class="valor-info">${item.ultimoAcesso}</span></div>
-                </div>
+                <div class="corpo-detalhes-dinamico" style="width: 100%;"></div>
 
-                <div class="rodape-acoes-detalhes">
+                <div class="rodape-acoes-detalhes" style="margin-top: 20px;">
                     <button type="button" class="btn-secundario" id="btn-editar-detalhes">Editar</button>
                     <button type="button" class="btn-perigo" id="btn-excluir-detalhes">Excluir</button>
                 </div>
             </div>
         `;
+
+        // Renderizar Informações por padrão
+        renderizarConteudoPainel('info');
+
+        containerDetalhes.querySelector('#aba-info').addEventListener('click', () => renderizarConteudoPainel('info'));
+        containerDetalhes.querySelector('#aba-permissoes').addEventListener('click', () => renderizarConteudoPainel('permissao'));
 
         containerDetalhes.querySelector('#fechar-painel').addEventListener('click', () => {
             containerDetalhes.style.display = 'none';
@@ -230,7 +394,7 @@ export function renderGerenciarRecrutadores() {
         instanciaTabela.atualizar(dadosAtuais);
     }
 
-    // Associar os eventos diretamente aos elementos assim que o componente é montado
+    // Associar os eventos aos filtros
     setTimeout(() => {
         const inputBusca = document.getElementById('input-busca-recrutador');
         const selectEmpresa = document.getElementById('filtro-empresa');

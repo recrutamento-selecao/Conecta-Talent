@@ -1,0 +1,276 @@
+/* ==========================================================================
+   ESTILOS DA TELA: CADASTRAR RECRUTADOR
+   ========================================================================== */
+
+.page-cadastrar-recrutador {
+    margin-left: var(--sidebar-width, 260px);
+    padding: 0.25rem 2.5rem 2rem 2.5rem;
+    max-width: calc(1200px + var(--sidebar-width, 260px));
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: #0f172a;
+    box-sizing: border-box;
+    transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Ajuste automático quando a sidebar estiver recolhida */
+body:has(.sidebar.fechada) .page-cadastrar-recrutador {
+    margin-left: var(--sidebar-collapsed-width, 78px);
+    max-width: calc(1200px + var(--sidebar-collapsed-width, 78px));
+}
+
+.conteudo-principal-dashboard {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Título e Descrição da Página */
+.header-titulo-pagina {
+    margin-bottom: 1.25rem;
+}
+
+.header-titulo-pagina h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.35rem 0;
+}
+
+.header-titulo-pagina p {
+    font-size: 0.95rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Formulário e Seções em Cards */
+.form-adicionar-recrutador {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.card-secao-formulario {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.secao-titulo-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.icone-secao {
+    font-size: 1.25rem;
+    background-color: #eff6ff;
+    padding: 0.65rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.secao-titulo-wrapper h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.2rem 0;
+}
+
+.secao-titulo-wrapper p {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Grelha de Campos Duplos (Inputs gerados por criarCampo) */
+.grid-campos-duplos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilização padrão para o componente de campos reutilizáveis */
+.grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+}
+
+.campo-rotulo {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.campo-obrigatorio {
+    color: #ef4444;
+}
+
+.grupo-campo input,
+.grupo-campo select,
+.grupo-campo textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #0f172a;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+}
+
+.grupo-campo input:focus,
+.grupo-campo select:focus,
+.grupo-campo textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.campo-ajuda {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+/* Caixa de Aviso Importante */
+.aviso-alerta-caixa {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-left: 4px solid #3b82f6;
+    padding: 0.85rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #475569;
+    line-height: 1.4;
+}
+
+/* Grelha de Permissões de Acesso (Checkboxes em Cards) */
+.grid-permissoes-checkbox {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.checkbox-card-opcao {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.checkbox-card-opcao:hover {
+    border-color: #cbd5e1;
+    background-color: #f8fafc;
+}
+
+.checkbox-card-opcao input[type="checkbox"] {
+    margin-top: 0.2rem;
+    width: 16px;
+    height: 16px;
+    accent-color: #1d4ed8;
+    cursor: pointer;
+}
+
+.checkbox-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.checkbox-info strong {
+    font-size: 0.875rem;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+.checkbox-info span {
+    font-size: 0.75rem;
+    color: #64748b;
+    line-height: 1.35;
+}
+
+/* Rodapé de Ações do Formulário */
+.form-footer-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-secundario {
+    padding: 0.75rem 1.5rem;
+    background-color: #ffffff;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-secundario:hover {
+    background-color: #f1f5f9;
+}
+
+.btn-primario {
+    padding: 0.75rem 1.5rem;
+    background-color: #1d4ed8;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primario:hover {
+    background-color: #1e40af;
+}
+
+.form-footer-acoes .btn-secundario {
+    width: auto;
+    flex: 0 0 auto;
+}
+
+.form-footer-acoes {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .grid-permissoes-checkbox {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .page-cadastrar-recrutador {
+        margin-left: var(--sidebar-collapsed-width, 78px);
+        padding: 1rem;
+    }
+    .grid-campos-duplos,
+    .grid-permissoes-checkbox {
+        grid-template-columns: 1fr;
+    }
+}
