@@ -3,16 +3,21 @@ import { renderPlanos } from '../pages/planos.js';
 import { renderRecursos } from '../pages/recursos.js';
 import { renderSobreNos } from '../pages/sobre-nos.js';
 import { renderSuporte } from '../pages/suporte.js';
-import { renderTipoCadastro } from '../pages/tipo-cadastro.js';  
+import { renderTipoCadastro } from '../pages/tipo-cadastro.js';
 // Certifique-se de importar o renderLogin se for usar a rota de login:
-// import { renderLogin } from '../pages/login.js';  
+// import { renderLogin } from '../pages/login.js';
+import { renderModalExcluirConta } from '../pages/modal-excluir-conta.js';
+import { renderModalExcluirRecrutador } from '../pages/modal-excluir-recrutador.js';
+import { renderModalPausarVaga } from '../pages/modal-pausar-vaga.js';
+import { renderModalBloquearUsuario } from '../pages/modal-bloquear-usuario.js';
+
 
 function trocarEstiloPagina(nomePagina) {
     const estiloAnterior = document.getElementById('estilo-Dinamico-pagina');
     if (estiloAnterior) {
         estiloAnterior.remove();
     }
- 
+
     const estilosMap = {
         'candidato-vagas': './view/css/candidato-vagas.css',
         'home': './view/css/home.css',
@@ -20,12 +25,12 @@ function trocarEstiloPagina(nomePagina) {
         'recursos': './view/css/recursos.css',
         'planos': './view/css/planos.css',
         'suporte': './view/css/suporte.css',
-        'tipo-cadastro': './view/css/tipo-cadastro.css', // Adicionado o CSS correspondente
-        'login': './view/css/login.css'                 // Adicionado caso precise
+        'tipo-cadastro': './view/css/tipo-cadastro.css',
+        'login': './view/css/login.css'
     };
- 
+
     const caminhoCss = estilosMap[nomePagina];
- 
+
     if (caminhoCss) {
         const link = document.createElement('link');
         link.id = 'estilo-Dinamico-pagina';
@@ -34,20 +39,20 @@ function trocarEstiloPagina(nomePagina) {
         document.head.appendChild(link);
     }
 }
- 
+
 export function iniciarRouter() {
     const app = document.getElementById('app');
- 
+
     function navegar() {
         const hash = window.location.hash;
         app.innerHTML = '';
- 
+
         switch (hash) {
             case '#login':
                 trocarEstiloPagina('login');
-                // app.appendChild(renderLogin()); // Descomente quando importar a função de login
+                // app.appendChild(renderLogin());
                 break;
-            case '#tipo-cadastro': // <-- ADICIONADO AQUI
+            case '#tipo-cadastro':
                 trocarEstiloPagina('tipo-cadastro');
                 app.appendChild(renderTipoCadastro());
                 break;
@@ -66,7 +71,37 @@ export function iniciarRouter() {
             case '#suporte':
                 trocarEstiloPagina('suporte');
                 app.appendChild(renderSuporte());
-                break; 
+                break;
+            case '#excluir-conta':
+                app.appendChild(renderModalExcluirConta({
+                    aoConfirmar: () => alert('Conta excluída com sucesso!'),
+                    aoCancelar: () => { window.location.hash = '#home'; }
+                }));
+                break;
+            case '#excluir-recrutador':
+                app.appendChild(renderModalExcluirRecrutador({
+                    nomeRecrutador: 'Carlos Silva',
+                    aoConfirmar: () => alert('Recrutador excluído com sucesso!'),
+                    aoCancelar: () => { window.location.hash = '#home'; }
+                }));
+                break;
+            case '#pausar-vaga':
+                app.appendChild(renderModalPausarVaga({
+                    aoPausar: () => alert('Vaga pausada com sucesso!'),
+                    aoCancelar: () => { window.location.hash = '#home'; }
+                }));
+                break;
+            case '#bloquear-usuario':
+                app.appendChild(renderModalBloquearUsuario({
+                    // Motivos de exemplo, só para testar a rota. Troque pela lista real.
+                    motivos: ['Violação dos termos de uso', 'Atividade suspeita', 'Outro'],
+                    aoConfirmar: ({ motivo, observacoes }) => {
+                        console.log('Bloqueio:', { motivo, observacoes });
+                        alert('Usuário bloqueado com sucesso!');
+                    },
+                    aoCancelar: () => { window.location.hash = '#home'; }
+                }));
+                break;
             case '#home':
             case '':
             default:
@@ -74,10 +109,10 @@ export function iniciarRouter() {
                 app.appendChild(renderHome());
                 break;
         }
- 
+
         window.scrollTo(0, 0);
     }
- 
+
     window.addEventListener('hashchange', navegar);
     window.addEventListener('load', navegar);
 }

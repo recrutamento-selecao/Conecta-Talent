@@ -186,3 +186,194 @@
         overflow-y: auto; /* Apenas em ecrãs móveis pequenos caso o conteúdo ultrapasse */
     }
 }
+
+/* ==================================================================== */
+/* --- VARIAÇÕES DE MODAIS DE ALERTA E CONFIRMAÇÃO                  --- */
+/* ==================================================================== */
+
+.modal-conteudo.modal-compacto {
+    max-width: 480px;
+}
+
+.modal-alerta-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.75rem;
+}
+
+.modal-icone-perigo {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background-color: #fee2e2;
+    color: #dc2626;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.modal-alerta-header h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #0f172a;
+}
+
+.modal-alerta-header p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.modal-box-aviso-perigo {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+    padding: 0.9rem 1rem;
+    font-size: 0.85rem;
+    color: #991b1b;
+    line-height: 1.45;
+}
+
+.modal-box-aviso-perigo ul {
+    margin: 0.4rem 0 0 0;
+    padding-left: 1.2rem;
+}
+
+.modal-campo-confirmacao {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+}
+
+.modal-campo-confirmacao label {
+    font-size: 0.85rem;
+    color: #334155;
+    font-weight: 500;
+}
+
+.modal-campo-confirmacao input {
+    padding: 0.65rem 0.85rem;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.modal-campo-confirmacao input:focus {
+    border-color: #dc2626;
+}
+
+.modal-acoes-rodape {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.btn-modal-perigo {
+    padding: 0.65rem 1.15rem;
+    background-color: #dc2626; /* Vermelho escuro sólido */
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-modal-perigo:hover:not(:disabled) {
+    background-color: #b91c1c;
+}
+
+.btn-modal-perigo:disabled {
+    background-color: #fca5a5; /* Fica clarinho enquanto não digitar EXCLUIR */
+    cursor: not-allowed;
+}
+
+/* ==================================================================== */
+/* --- CARD DE CONFIGURAÇÃO DE PERIGO (TELA DE CONFIGURAÇÕES)       --- */
+/* ==================================================================== */
+
+.card-configuracao-perigo {
+    background-color: #ffffff;
+    border: 1px solid #fee2e2;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.card-config-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.card-config-icone {
+    width: 44px;
+    height: 44px;
+    background-color: #fef2f2;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    color: #dc2626;
+    flex-shrink: 0;
+}
+
+.card-config-titulos h3 {
+    margin: 0 0 0.35rem 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #991b1b;
+}
+
+.card-config-titulos p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #475569;
+    line-height: 1.45;
+}
+
+.card-config-acao {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    padding-left: 3.75rem; /* Alinha o botão exatamente abaixo do texto, como no Figma */
+}
+
+.btn-outline-perigo {
+    background-color: transparent;
+    color: #dc2626;
+    border: 1px solid #dc2626;
+    border-radius: 8px;
+    padding: 0.6rem 1.15rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-outline-perigo:hover {
+    background-color: #fef2f2;
+}
+
+.texto-aviso-perigo {
+    color: #991b1b;
+    font-size: 0.75rem;
+}
