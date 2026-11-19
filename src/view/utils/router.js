@@ -10,6 +10,10 @@ import { renderCadastroConcluido } from '../pages/cadastro-concluido.js';
 import { renderRecrutadorCadastrado } from '../pages/recrutador-cadastrado.js';
 import { renderPlanoAlterado } from '../pages/plano-alterado.js';
 import renderCadastroPage from '../pages/cadastro.js';
+import { renderCandidaturaEnviada} from '../pages/candidatura-enviada.js';
+import { renderMinhasCandidaturas } from '../pages/minhas-candidaturas.js';
+import { criarModalSair } from '../components/modal-sair.js';
+
 
 function trocarEstiloPagina(nomePagina) {
     const estiloAnterior = document.getElementById('estilo-Dinamico-pagina');
@@ -18,12 +22,14 @@ function trocarEstiloPagina(nomePagina) {
     }
 
     const estilosMap = {
+        "minhas-candidaturas": './view/css/minhas-candidaturas.css',
         'cadastro': './view/css/cadastro.css',
         'recrutador-cadastrado': './view/css/recrutador-cadastrado.css',
         'plano-alterado': './view/css/plano-alterado.css',
         'cadastro-concluido': './view/css/cadastro-concluido.css',
         'login': './view/css/login.css',
         'candidato-vagas': './view/css/candidato-vagas.css',
+        'candidatura-enviada': './view/css/candidatura-enviada.css',
         'vagas-inicio': './view/css/vagas-inicio.css',
         'home': './view/css/home.css',
         'sobre-nos': './view/css/sobre-nos.css',
@@ -46,11 +52,21 @@ function trocarEstiloPagina(nomePagina) {
 export function iniciarRouter() {
     const app = document.getElementById('app');
 
+    criarModalSair({
+        onConfirmarSaida: () => {
+            window.location.hash = '#home';
+        }
+    });
+
     function navegar() {
         const hash = window.location.hash;
         app.innerHTML = '';
 
         switch (hash) {
+            case '#minhas-candidaturas':
+                trocarEstiloPagina('minhas-candidaturas');
+                app.appendChild(renderMinhasCandidaturas());
+                break;
             case '#cadastro':
                 trocarEstiloPagina('cadastro');
                 app.appendChild(renderCadastroPage());
@@ -95,6 +111,10 @@ export function iniciarRouter() {
                 trocarEstiloPagina('vagas-inicio');
                 app.appendChild(renderVagasInicio());
                 break;
+            case '#candidatura-enviada':
+               trocarEstiloPagina('candidatura-enviada');
+               app.appendChild(renderCandidaturaEnviada());
+               break;
             case '#home':
             case '':
             default:

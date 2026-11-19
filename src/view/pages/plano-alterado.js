@@ -15,10 +15,17 @@ export function renderPlanoAlterado() {
     const main = document.createElement("main");
     main.classList.add("conteudo-principal");
 
-    const tituloPagina = document.createElement("h1");
-    tituloPagina.className = "titulo-pagina";
-    tituloPagina.textContent = "Confirmação";
-    main.appendChild(tituloPagina);
+    const containerConteudo = document.createElement("div");
+    containerConteudo.classList.add("container-conteudo-pagina");
+
+    // Cabeçalho alinhado à esquerda (padrão da tela de inspiração)
+    const cabecalhoPagina = document.createElement("header");
+    cabecalhoPagina.classList.add("cabecalho-pagina-padrao");
+    cabecalhoPagina.innerHTML = `
+        <h1 class="titulo-pagina">Confirmação</h1>
+        <p class="subtitulo-pagina">Confira os detalhes da atualização do seu plano e da sua assinatura.</p>
+    `;
+    containerConteudo.appendChild(cabecalhoPagina);
 
     // Layout em grelha (Card de sucesso + Painel lateral de resumo)
     const layoutGrid = document.createElement("div");
@@ -28,8 +35,7 @@ export function renderPlanoAlterado() {
     const cardSucesso = criarCardSucesso({
         titulo: "Plano alterado com sucesso!",
         descricao: "Sua assinatura foi atualizada e já está ativa.",
-        botaoPrimarioTexto: "Ir para minha assinatura",
-     
+        botaoPrimarioTexto: "Ir para minha assinatura"
     });
 
     // 4. Slot com os detalhes da alteração e comparativo de planos
@@ -74,7 +80,7 @@ export function renderPlanoAlterado() {
             ✓ Um e-mail de confirmação foi enviado para <strong>contato@twelse.com</strong> com os detalhes da sua assinatura.
         </div>
     `;
-    
+
     cardSucesso.slot.appendChild(slotDetalhes);
     layoutGrid.appendChild(cardSucesso.element);
 
@@ -104,7 +110,8 @@ export function renderPlanoAlterado() {
     `;
     layoutGrid.appendChild(painelResumo);
 
-    main.appendChild(layoutGrid);
+    containerConteudo.appendChild(layoutGrid);
+    main.appendChild(containerConteudo);
     containerPrincipal.appendChild(main);
 
     return containerPrincipal;

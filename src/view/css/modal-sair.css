@@ -35,7 +35,8 @@
 .modal-icone-wrapper {
     width: 48px;
     height: 48px;
-    background-color: #fee2e2; /* Fundo suave */
+    background-color: #fee2e2;
+    /* Fundo suave */
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -45,7 +46,8 @@
 .modal-icone {
     width: 22px;
     height: 22px;
-    stroke: #dc2626; /* Vermelho mais forte e fechado */
+    stroke: #dc2626;
+    /* Vermelho mais forte e fechado */
 }
 
 .modal-card h3 {
@@ -88,6 +90,10 @@
     border-color: #94a3b8;
 }
 
+.modal-overlay.oculto {
+    display: none;
+}
+
 /* Botão Sair com um vermelho mais forte e vibrante (#dc2626) */
 .btn-confirmar-sair {
     background-color: #dc2626;
@@ -96,16 +102,29 @@
 }
 
 .btn-confirmar-sair:hover {
-    background-color: #b91c1c; /* Vermelho ainda mais profundo no hover */
+    background-color: #b91c1c;
+    /* Vermelho ainda mais profundo no hover */
     border-color: #b91c1c;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes scaleUp {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }

@@ -14,16 +14,10 @@
 .pagina-cadastro-concluido-wrapper .conteudo-principal {
     flex: 1;
     margin-left: var(--sidebar-width, 260px);
-    padding: 2.5rem 2rem;
+    padding: 2rem 2.5rem 3rem;
     box-sizing: border-box;
     transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     min-width: 0;
-    width: 100%;
-    
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
 /* Ajuste automático rigoroso quando a sidebar estiver fechada */
@@ -31,9 +25,48 @@ body:has(.sidebar.fechada) .pagina-cadastro-concluido-wrapper .conteudo-principa
     margin-left: var(--sidebar-collapsed-width, 78px);
 }
 
+.pagina-cadastro-concluido-wrapper .container-conteudo-pagina {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+}
+
+.pagina-cadastro-concluido-wrapper .cabecalho-pagina-padrao {
+    display: block;
+    text-align: left;
+    max-width: 960px;
+    margin: 0 0 1.5rem 2rem;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+.pagina-cadastro-concluido-wrapper .titulo-pagina {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+}
+
+.pagina-cadastro-concluido-wrapper .subtitulo-pagina {
+    display: block;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.pagina-cadastro-concluido-wrapper .componente-card-sucesso {
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
 /* Resumo do Perfil (Grid 2 colunas) */
 .secao-resumo-perfil {
     width: 100%;
+    text-align: left;
 }
 
 .secao-resumo-perfil h3 {
@@ -108,6 +141,8 @@ body:has(.sidebar.fechada) .pagina-cadastro-concluido-wrapper .conteudo-principa
     color: #475569;
     width: 100%;
     box-sizing: border-box;
+    margin-top: 1rem;
+    text-align: left;
 }
 
 /* Responsividade */
@@ -118,5 +153,8 @@ body:has(.sidebar.fechada) .pagina-cadastro-concluido-wrapper .conteudo-principa
     .pagina-cadastro-concluido-wrapper .conteudo-principal {
         margin-left: 0 !important;
         padding: 1.5rem;
+    }
+    .pagina-cadastro-concluido-wrapper .cabecalho-pagina-padrao {
+        margin-left: 0;
     }
 }

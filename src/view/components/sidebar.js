@@ -1,4 +1,3 @@
-import { criarModalSair } from './modal-sair.js';
 
 // Mapeamento das rotas por hash para cada perfil de utilizador
 const MENUS_POR_PERFIL = {

@@ -1,36 +1,85 @@
-export function criarModalSair(onConfirmar) {
-    const overlay = document.createElement("div");
-    overlay.className = "modal-overlay";
+export function criarModalSair({ onConfirmarSaida, seletorBotaoSair } = {}) {
+    if (document.getElementById("modal-sair-overlay")) return;
 
+    let ultimoGatilhoClicado = null;
+
+    const overlay = document.createElement("div");
+    overlay.id = "modal-sair-overlay";
+    overlay.className = "modal-overlay oculto";
     overlay.innerHTML = `
-        <div class="modal-card">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-sair-titulo">
             <div class="modal-icone-wrapper">
-                <svg class="modal-icone" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+                <svg class="modal-icone" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                    <polyline points="16 17 21 12 16 7"></polyline>
+                    <line x1="21" y1="12" x2="9" y2="12"></line>
+                </svg>
             </div>
-            <h3>Deseja realmente sair de sua conta?</h3>
+            <h3 id="modal-sair-titulo">Deseja realmente sair?</h3>
             <div class="modal-botoes">
-                <button class="btn-cancelar-modal">Cancelar</button>
-                <button class="btn-confirmar-sair">Sair</button>
+                <button type="button" class="btn-cancelar-modal">Cancelar</button>
+                <button type="button" class="btn-confirmar-sair">Sair</button>
             </div>
         </div>
     `;
 
-    // Eventos para fechar ou confirmar
-    const btnCancelar = overlay.querySelector(".btn-cancelar-modal");
-    const btnSair = overlay.querySelector(".btn-confirmar-sair");
+    document.body.appendChild(overlay);
 
-    btnCancelar.addEventListener("click", () => {
-        overlay.remove();
-    });
+    const btnCancelar = overlay.querySelector(".btn-cancelar-modal");
+    const btnConfirmar = overlay.querySelector(".btn-confirmar-sair");
+
+    const fecharModal = () => {
+        overlay.classList.add("oculto");
+        if (ultimoGatilhoClicado && typeof ultimoGatilhoClicado.focus === "function") {
+            ultimoGatilhoClicado.focus();
+            ultimoGatilhoClicado = null;
+        }
+    };
+
+    const abrirModal = (gatilho = null) => {
+        ultimoGatilhoClicado = gatilho;
+        overlay.classList.remove("oculto");
+        btnCancelar.focus();
+    };
+
+    const encontrarGatilhoSair = (alvo) => {
+        const seletorPadrao = seletorBotaoSair || ".btn-sair, [data-acao='sair'], .sidebar-sair, a[href='#sair'], button[data-sair]";
+        const matchDireto = alvo.closest(seletorPadrao);
+        if (matchDireto) return matchDireto;
+
+        const candidato = alvo.closest("button, a");
+        if (candidato && candidato.closest(".sidebar, aside, nav") && candidato.textContent.trim().toLowerCase() === "sair") {
+            return candidato;
+        }
+
+        return null;
+    };
+
+    btnCancelar.addEventListener("click", fecharModal);
 
     overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) overlay.remove(); // Fecha se clicar fora do card
+        if (e.target === overlay) fecharModal();
     });
 
-    btnSair.addEventListener("click", () => {
-        if (onConfirmar) onConfirmar();
-        overlay.remove();
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !overlay.classList.contains("oculto")) {
+            fecharModal();
+        }
     });
 
-    return overlay;
+    btnConfirmar.addEventListener("click", () => {
+        fecharModal();
+        if (typeof onConfirmarSaida === "function") {
+            onConfirmarSaida();
+        } else {
+            window.location.hash = "#home";
+        }
+    });
+
+    document.addEventListener("click", (e) => {
+        const gatilho = encontrarGatilhoSair(e.target);
+        if (!gatilho) return;
+        e.preventDefault();
+        abrirModal(gatilho);
+    });
 }

@@ -1,0 +1,359 @@
+/* =========================================
+   ESTILOS DA PÁGINA: MINHAS CANDIDATURAS
+   ========================================= */
+.pagina-minhas-candidaturas-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.pagina-minhas-candidaturas-wrapper .conteudo-principal {
+    flex: 1;
+    margin-left: var(--sidebar-width, 260px);
+    padding: 2rem 2.5rem 3rem;
+    box-sizing: border-box;
+    transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 0;
+}
+
+body:has(.sidebar.fechada) .pagina-minhas-candidaturas-wrapper .conteudo-principal {
+    margin-left: var(--sidebar-collapsed-width, 78px);
+}
+
+/* Cabeçalho livre sem retângulo ao fundo, na mesma posição de plano-alterado */
+.pagina-minhas-candidaturas-wrapper .cabecalho-pagina-padrao {
+    display: block;
+    text-align: left;
+    margin: 0 0 1.5rem 2rem;
+    padding: 0;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.pagina-minhas-candidaturas-wrapper .titulo-pagina {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.25rem 0;
+}
+
+.pagina-minhas-candidaturas-wrapper .subtitulo-pagina {
+    display: block;
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.pagina-minhas-candidaturas-wrapper .container-conteudo-pagina {
+    width: 100%;
+    max-width: 1220px;
+    margin: 0 auto;
+}
+
+/* Abas */
+.barra-abas-candidaturas {
+    display: flex;
+    gap: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+    margin-bottom: 1.25rem;
+    overflow-x: auto;
+}
+
+.aba-candidatura {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 0.65rem 0.2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.aba-candidatura.ativa {
+    color: #1d4ed8;
+    border-bottom-color: #1d4ed8;
+    font-weight: 600;
+}
+
+/* Contagem e selects */
+.barra-contagem-filtros {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.contagem-resultados {
+    font-size: 0.825rem;
+    color: #64748b;
+}
+
+.contagem-resultados strong {
+    color: #0f172a;
+}
+
+.controles-ordenacao {
+    display: flex;
+    gap: 0.65rem;
+}
+
+.select-filtro {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8rem;
+    color: #334155;
+    cursor: pointer;
+}
+
+/* Grid principal */
+.layout-minhas-candidaturas-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 310px;
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.coluna-lista-candidaturas {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card-candidatura-item {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.35rem 1.5rem;
+    box-sizing: border-box;
+}
+
+.card-candidatura-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.card-candidatura-info-principal {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+}
+
+.icone-empresa-quadrado {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background-color: #dbeafe;
+    color: #1e40af;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.titulo-vaga-card {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.15rem 0;
+}
+
+.nome-empresa-card {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0 0 0.35rem 0;
+}
+
+.meta-vaga-card {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.badge-status-candidatura {
+    background-color: #fef3c7;
+    color: #b45309;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.22rem 0.6rem;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.card-candidatura-rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid #f1f5f9;
+}
+
+.data-envio-candidatura {
+    font-size: 0.78rem;
+    color: #64748b;
+}
+
+.btn-ver-candidatura {
+    background-color: #ffffff;
+    border: 1px solid #93c5fd;
+    color: #1d4ed8;
+    border-radius: 6px;
+    padding: 0.4rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-ver-candidatura:hover {
+    background-color: #eff6ff;
+}
+
+/* Coluna lateral */
+.coluna-lateral-candidaturas {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.card-lateral-resumo,
+.card-lateral-proxima-etapa {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-sizing: border-box;
+}
+
+.card-lateral-resumo h3,
+.card-lateral-proxima-etapa h3 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 1rem 0;
+}
+
+.grid-metricas-candidatura {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.metrica-box {
+    background-color: #f8fafc;
+    border-radius: 8px;
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.metrica-numero {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #1d4ed8;
+}
+
+.metrica-rotulo {
+    font-size: 0.72rem;
+    color: #64748b;
+}
+
+.lista-etapas-lateral {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.lista-etapas-lateral li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+}
+
+.ponto-etapa {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #cbd5e1;
+    margin-top: 0.35rem;
+    flex-shrink: 0;
+}
+
+.ponto-etapa.ativo {
+    background-color: #1d4ed8;
+}
+
+.lista-etapas-lateral strong {
+    display: block;
+    font-size: 0.82rem;
+    color: #0f172a;
+    margin-bottom: 0.15rem;
+}
+
+.lista-etapas-lateral p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: #64748b;
+    line-height: 1.35;
+}
+
+/* Rodapé voltar */
+.rodape-acoes-pagina {
+    margin-top: 1.75rem;
+}
+
+.btn-voltar-pagina {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    border-radius: 6px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-voltar-pagina:hover {
+    background-color: #f1f5f9;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .layout-minhas-candidaturas-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .pagina-minhas-candidaturas-wrapper .conteudo-principal {
+        margin-left: 0 !important;
+        padding: 1.5rem;
+    }
+    .pagina-minhas-candidaturas-wrapper .cabecalho-pagina-padrao {
+        margin-left: 0;
+    }
+}

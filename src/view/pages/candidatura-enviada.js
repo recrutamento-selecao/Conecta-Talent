@@ -3,7 +3,13 @@ import { criarStepper } from '../components/stepper.js';
 import { criarCardSucesso } from '../components/card-sucesso.js';
 
 export function renderCandidaturaEnviada(containerPai) {
-    containerPai.innerHTML = '';
+    const alvo = containerPai || document.getElementById('app') || document.body;
+    if (!alvo) {
+        console.error('Container de destino não encontrado em renderCandidaturaEnviada.');
+        return;
+    }
+
+    alvo.innerHTML = '';
 
     const wrapper = document.createElement('div');
     wrapper.className = 'pagina-candidatura-enviada-wrapper';
@@ -16,12 +22,12 @@ export function renderCandidaturaEnviada(containerPai) {
     conteudoPrincipal.className = 'conteudo-principal';
 
     conteudoPrincipal.innerHTML = `
-        <div class="breadcrumb-pagina">Candidaturas &gt; Candidatar-se</div>
+       
         <h1 class="titulo-pagina">Candidatar-se</h1>
         <p class="subtitulo-pagina">Preencha as informações abaixo para se candidatar a esta vaga.</p>
     `;
 
-    // 1. Instancia o seu stepper existente
+    // Stepper
     const stepperEl = criarStepper({
         etapas: [
             { id: 1, titulo: "Currículo" },
@@ -40,32 +46,31 @@ export function renderCandidaturaEnviada(containerPai) {
     const colunaEsquerda = document.createElement('div');
     colunaEsquerda.className = 'coluna-conteudo-central';
 
-    // 2. Instancia o seu card de sucesso existente
+    // Card de sucesso
     const cardSucesso = criarCardSucesso({
         titulo: "Candidatura enviada com sucesso!",
         descricao: "Sua candidatura para a vaga de Analista de Dados Júnior foi enviada para a BlueCore Sistemas.",
         mensagemAlerta: "A empresa poderá visualizar seu perfil e entrar em contato caso avance no processo seletivo.",
         botaoSecundarioTexto: "Ver minhas candidaturas",
-        onBotaoSecundarioClick: () => { window.location.hash = ""; },
+        onBotaoSecundarioClick: () => { window.location.hash = "#minhas-candidaturas"; },
         botaoPrimarioTexto: "Explorar outras vagas",
         onBotaoPrimarioClick: () => { window.location.hash = "#candidato-vagas"; }
     });
 
-    // 3. Preenche o slot do card com o resumo e próximos passos
     cardSucesso.slot.innerHTML = `
-        <div class="bloco-resumo-candidatura" style="margin-top: 1.5rem; text-align: left;">
-            <h3 style="font-size: 0.95rem; font-weight: 600; color: #0f172a; margin-bottom: 1rem;">Resumo da candidatura</h3>
-            <div class="linha-resumo"><span class="rotulo" style="color: #64748b;">Vaga</span><span class="valor" style="font-weight: 500;">Analista de Dados Júnior</span></div>
-            <div class="linha-resumo"><span class="rotulo" style="color: #64748b;">Empresa</span><span class="valor" style="font-weight: 500;">BlueCore Sistemas</span></div>
-            <div class="linha-resumo"><span class="rotulo" style="color: #64748b;">Localização</span><span class="valor" style="font-weight: 500;">Sorocaba, SP</span></div>
-            <div class="linha-resumo"><span class="rotulo" style="color: #64748b;">Modelo de trabalho</span><span class="valor" style="font-weight: 500;">Híbrido</span></div>
-            <div class="linha-resumo"><span class="rotulo" style="color: #64748b;">Tipo de contrato</span><span class="valor" style="font-weight: 500;">CLT</span></div>
-            <div class="linha-resumo"><span class="rotulo" style="color: #64748b;">Data de candidatura</span><span class="valor" style="font-weight: 500;">24/09/2026</span></div>
+        <div class="bloco-resumo-candidatura">
+            <h3>Resumo da candidatura</h3>
+            <div class="linha-resumo"><span class="rotulo">Vaga</span><span class="valor">Analista de Dados Júnior</span></div>
+            <div class="linha-resumo"><span class="rotulo">Empresa</span><span class="valor">BlueCore Sistemas</span></div>
+            <div class="linha-resumo"><span class="rotulo">Localização</span><span class="valor">Sorocaba, SP</span></div>
+            <div class="linha-resumo"><span class="rotulo">Modelo de trabalho</span><span class="valor">Híbrido</span></div>
+            <div class="linha-resumo"><span class="rotulo">Tipo de contrato</span><span class="valor">CLT</span></div>
+            <div class="linha-resumo"><span class="rotulo">Data de candidatura</span><span class="valor">24/09/2026</span></div>
         </div>
 
-        <div class="bloco-proximos-passos" style="margin-top: 1.25rem; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 1.25rem; text-align: left;">
-            <h4 style="font-size: 0.9rem; font-weight: 600; color: #0f172a; margin-bottom: 0.75rem;">O que acontece agora?</h4>
-            <ul style="margin: 0; padding-left: 1.2rem; font-size: 0.825rem; color: #475569; display: flex; flex-direction: column; gap: 0.4rem;">
+        <div class="bloco-proximos-passos">
+            <h4>O que acontece agora?</h4>
+            <ul>
                 <li>A empresa analisará seu currículo e suas respostas.</li>
                 <li>Você poderá acompanhar o andamento em <strong>Minhas candidaturas</strong>.</li>
                 <li>Caso seja selecionado(a) para a próxima etapa, você receberá uma notificação.</li>
@@ -76,7 +81,7 @@ export function renderCandidaturaEnviada(containerPai) {
     colunaEsquerda.appendChild(cardSucesso.element);
     layoutGrid.appendChild(colunaEsquerda);
 
-    // 4. Painel lateral da vaga à direita
+    // Painel lateral da vaga
     const painelLateral = document.createElement('aside');
     painelLateral.className = 'painel-detalhes-vaga-lateral';
     painelLateral.innerHTML = `
@@ -124,5 +129,5 @@ export function renderCandidaturaEnviada(containerPai) {
     layoutGrid.appendChild(painelLateral);
     conteudoPrincipal.appendChild(layoutGrid);
     wrapper.appendChild(conteudoPrincipal);
-    containerPai.appendChild(wrapper);
+    alvo.appendChild(wrapper);
 }

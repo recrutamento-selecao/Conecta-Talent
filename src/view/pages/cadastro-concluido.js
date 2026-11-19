@@ -15,6 +15,18 @@ export function renderCadastroConcluido() {
     const main = document.createElement("main");
     main.classList.add("conteudo-principal");
 
+    const containerConteudo = document.createElement("div");
+    containerConteudo.classList.add("container-conteudo-pagina");
+
+    // Cabeçalho alinhado à esquerda (padrão da tela de inspiração)
+    const cabecalhoPagina = document.createElement("header");
+    cabecalhoPagina.classList.add("cabecalho-pagina-padrao");
+    cabecalhoPagina.innerHTML = `
+        <h1 class="titulo-pagina">Cadastro concluído</h1>
+        <p class="subtitulo-pagina">Veja o resumo do seu perfil e siga para as próximas etapas na plataforma.</p>
+    `;
+    containerConteudo.appendChild(cabecalhoPagina);
+
     // 3. Instancia o Componente de Card de Sucesso
     const cardSucesso = criarCardSucesso({
         titulo: "Cadastro concluído!",
@@ -22,7 +34,7 @@ export function renderCadastroConcluido() {
         mensagemAlerta: "Perfil atualizado com sucesso. Você pode alterar suas informações a qualquer momento.",
         botaoSecundarioTexto: "Ir para meu perfil",
         onBotaoSecundarioClick: () => {
-            // Ação do botão secundário se necessário
+            window.location.hash = "#perfil";
         },
         botaoPrimarioTexto: "Explorar vagas",
         onBotaoPrimarioClick: () => {
@@ -75,8 +87,9 @@ export function renderCadastroConcluido() {
     dicaBox.innerHTML = `<strong>Dica:</strong> Mantenha seu perfil sempre atualizado para aumentar a relevância das oportunidades recomendadas para você.`;
     cardSucesso.slot.appendChild(dicaBox);
 
-    // Adiciona o componente construído ao main
-    main.appendChild(cardSucesso.element);
+    // Adiciona o componente construído ao container e ao main
+    containerConteudo.appendChild(cardSucesso.element);
+    main.appendChild(containerConteudo);
     containerPrincipal.appendChild(main);
 
     return containerPrincipal;
