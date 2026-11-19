@@ -1,0 +1,240 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+.pagina-candidatura-concluida-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Afastamento e proteção da Sidebar fixa */
+.pagina-candidatura-concluida-wrapper .conteudo-principal {
+    flex: 1;
+    margin-left: var(--sidebar-width, 260px);
+    padding: 2rem 2.5rem;
+    transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 0;
+}
+
+body:has(.sidebar.fechada) .pagina-candidatura-concluida-wrapper .conteudo-principal {
+    margin-left: var(--sidebar-collapsed-width, 78px);
+}
+
+.breadcrumb-pagina {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 0.3rem;
+}
+
+.titulo-pagina {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.3rem 0;
+}
+
+.subtitulo-pagina {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+/* Layout Grid Principal */
+.layout-candidatura-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 1.5rem;
+    align-items: start;
+    width: 100%;
+}
+
+.coluna-conteudo-central {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* Resumo da Candidatura */
+.bloco-resumo-candidatura {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.25rem;
+}
+
+.bloco-resumo-candidatura h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 1rem 0;
+}
+
+.linha-resumo {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.85rem;
+}
+
+.linha-resumo:last-child {
+    border-bottom: none;
+}
+
+.linha-resumo .rotulo {
+    color: #64748b;
+}
+
+.linha-resumo .valor {
+    color: #0f172a;
+    font-weight: 500;
+    text-align: right;
+}
+
+/* Próximos Passos */
+.bloco-proximos-passos {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.25rem;
+}
+
+.bloco-proximos-passos h4 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 0.75rem 0;
+}
+
+.bloco-proximos-passos ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    font-size: 0.825rem;
+    color: #475569;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+/* Painel Lateral da Vaga */
+.painel-detalhes-vaga-lateral {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.cabecalho-vaga-lateral {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.icone-empresa-mini {
+    width: 36px;
+    height: 36px;
+    background-color: #dbeafe;
+    color: #1e40af;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.cabecalho-vaga-lateral h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 0 0 0.2rem 0;
+}
+
+.empresa-nome {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.btn-favorito-lateral {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    margin-left: auto;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icone-svg-acao {
+    width: 18px;
+    height: 18px;
+    stroke: #64748b;
+}
+
+.tags-vaga-lateral {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #475569;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.corpo-vaga-lateral h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #0f172a;
+    margin: 1rem 0 0.4rem 0;
+}
+
+.corpo-vaga-lateral p {
+    font-size: 0.8rem;
+    color: #475569;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.corpo-vaga-lateral ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: 0.8rem;
+    color: #475569;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.tags-habilidades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+
+.tag-habilidade {
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    font-size: 0.725rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* Responsividade para ecrãs menores */
+@media (max-width: 1024px) {
+    .layout-candidatura-grid {
+        grid-template-columns: 1fr;
+    }
+}

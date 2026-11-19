@@ -19,10 +19,10 @@ function trocarEstiloPagina(nomePagina) {
 
     const estilosMap = {
         'cadastro': './view/css/cadastro.css',
-         'recrutador-cadastrado': './view/css/recrutador-cadastrado.css',
+        'recrutador-cadastrado': './view/css/recrutador-cadastrado.css',
         'plano-alterado': './view/css/plano-alterado.css',
         'cadastro-concluido': './view/css/cadastro-concluido.css',
-        'login': './view/css/login.css', 
+        'login': './view/css/login.css',
         'candidato-vagas': './view/css/candidato-vagas.css',
         'vagas-inicio': './view/css/vagas-inicio.css',
         'home': './view/css/home.css',
@@ -66,7 +66,7 @@ export function iniciarRouter() {
             case '#cadastro-concluido':
                 trocarEstiloPagina('cadastro-concluido');
                 app.appendChild(renderCadastroConcluido());
-                break;  
+                break;
             case '#recrutador-cadastrado':
                 trocarEstiloPagina('recrutador-cadastrado');
                 app.appendChild(renderRecrutadorCadastrado());
@@ -92,9 +92,9 @@ export function iniciarRouter() {
                 app.appendChild(renderCandidatoVagas());
                 break;
             case '#vagas-inicio':
-            trocarEstiloPagina('vagas-inicio');
-            app.appendChild(renderVagasInicio());
-                break;          
+                trocarEstiloPagina('vagas-inicio');
+                app.appendChild(renderVagasInicio());
+                break;
             case '#home':
             case '':
             default:
