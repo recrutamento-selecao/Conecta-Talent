@@ -19,14 +19,7 @@ export function renderRecrutadorCadastrado() {
     containerConteudo.classList.add("container-conteudo-pagina");
 
     // Cabeçalho alinhado à esquerda (h1 + subtítulo abaixo)
-    const cabecalhoPagina = document.createElement("header");
-    cabecalhoPagina.classList.add("cabecalho-pagina-padrao");
-    cabecalhoPagina.innerHTML = `
-        <h1 class="titulo-pagina">Adicionar titulo</h1>
-        <p class="subtitulo-pagina">Confira os dados do novo recrutador e as próximas orientações de acesso.</p>
-    `;
-    containerConteudo.appendChild(cabecalhoPagina);
-
+  
     // 3. Instancia o Componente de Card de Sucesso
     const cardSucesso = criarCardSucesso({
         titulo: "Recrutador cadastrado com sucesso!",

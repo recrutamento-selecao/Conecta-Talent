@@ -14,10 +14,14 @@
 .pagina-recrutador-cadastrado-wrapper .conteudo-principal {
     flex: 1;
     margin-left: var(--sidebar-width, 260px);
-    padding: 2rem 2.5rem 3rem;
+    padding: 2rem 2.5rem;
     box-sizing: border-box;
     transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 /* Ajuste quando a sidebar estiver fechada */
@@ -27,34 +31,14 @@ body:has(.sidebar.fechada) .pagina-recrutador-cadastrado-wrapper .conteudo-princ
 
 .pagina-recrutador-cadastrado-wrapper .container-conteudo-pagina {
     width: 100%;
-    max-width: none;
-    margin: 0;
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
 }
 
 .pagina-recrutador-cadastrado-wrapper .cabecalho-pagina-padrao {
-    display: block;
-    text-align: left;
-    max-width: 960px;
-    margin: 0 0 1.5rem 2rem;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-}
-
-.pagina-recrutador-cadastrado-wrapper .titulo-pagina {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #0f172a;
-    margin: 0 0 0.25rem 0;
-}
-
-.pagina-recrutador-cadastrado-wrapper .subtitulo-pagina {
-    display: block;
-    font-size: 0.875rem;
-    color: #64748b;
-    margin: 0;
+    display: none;
 }
 
 .pagina-recrutador-cadastrado-wrapper .componente-card-sucesso {
@@ -172,8 +156,5 @@ body:has(.sidebar.fechada) .pagina-recrutador-cadastrado-wrapper .conteudo-princ
     .pagina-recrutador-cadastrado-wrapper .conteudo-principal {
         margin-left: 0 !important;
         padding: 1.5rem;
-    }
-    .pagina-recrutador-cadastrado-wrapper .cabecalho-pagina-padrao {
-        margin-left: 0;
     }
 }
