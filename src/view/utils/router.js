@@ -20,6 +20,8 @@ import { renderModalEtapaAdicionada } from '../pages/modal-etapa-adicionada.js';
 import { renderModalMoverCandidato } from '../pages/modal-mover-candidato.js';
 import { renderModalCandidatoMovido } from '../pages/modal-candidato-movido.js';
 import { renderModalAgendarEntrevista } from '../pages/modal-agendar-entrevista.js';
+import { renderModalEntrevistaAgendada } from '../pages/modal-entrevista-agendada.js';
+import { renderModalCancelarAssinatura } from '../pages/modal-cancelar-assinatura.js';
 
 
 function trocarEstiloPagina(nomePagina) {
@@ -263,6 +265,34 @@ export function iniciarRouter() {
                         alert('Entrevista agendada com sucesso!');
                     },
                     aoCancelar: () => { window.location.hash = '#home'; }
+                }));
+                break;
+            case '#entrevista-agendada':
+                app.appendChild(renderModalEntrevistaAgendada({
+                    // Dados de exemplo, só para testar a rota.
+                    candidato: { nome: 'Ana Clara Silva', cargo: 'Analista de Dados' },
+                    vaga: { titulo: 'Analista de Dados Jr.', empresa: 'Tech Soluções' },
+                    data: '2026-09-15',
+                    horario: '10:00',
+                    duracao: 60,
+                    tipo: 'online',
+                    link: 'https://meet.google.com/abc-defg-hij',
+                    entrevistadores: [{ nome: 'Juliana Martins' }, { nome: 'Ricardo Pereira' }],
+                    observacoes: 'Entrevista sobre experiência em Power BI e SQL.',
+                    aoFechar: () => { window.location.hash = '#home'; }
+                }));
+                break;
+            case '#cancelar-assinatura':
+                app.appendChild(renderModalCancelarAssinatura({
+                    // Dados de exemplo, só para testar a rota.
+                    dataFimPeriodo: '05/10/2026',
+                    planoDestino: 'Gratuito',
+                    diasRetencao: 90,
+                    aoConfirmar: ({ motivo, feedback }) => {
+                        console.log('Cancelamento:', { motivo, feedback });
+                        alert('Assinatura cancelada.');
+                    },
+                    aoVoltar: () => { window.location.hash = '#home'; }
                 }));
                 break;
             case '#home':
