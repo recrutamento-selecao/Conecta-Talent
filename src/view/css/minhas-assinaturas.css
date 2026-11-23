@@ -1,0 +1,498 @@
+/* ==========================================================================
+   Minha Assinatura - Layout e Componentes
+   ========================================================================== */
+.pagina-layout-dashboard,
+.pagina-layout-dashboard * {
+    box-sizing: border-box;
+}
+
+.pagina-layout-dashboard {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1e293b;
+}
+
+.conteudo-principal {
+    flex: 1;
+    min-width: 0;
+    padding: 28px 36px;
+    overflow-y: auto;
+}
+
+/* Breadcrumb */
+.breadcrumb-assinatura {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: #64748b;
+    margin-bottom: 10px;
+}
+
+.breadcrumb-assinatura a {
+    color: #64748b;
+    text-decoration: none;
+}
+
+.breadcrumb-assinatura a:hover {
+    color: #1d4ed8;
+}
+
+.breadcrumb-assinatura .atual {
+    color: #334155;
+    font-weight: 500;
+}
+
+/* Cabeçalho */
+.cabecalho-assinatura {
+    margin-bottom: 22px;
+}
+
+.titulo-pagina {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+}
+
+.subtitulo-pagina {
+    font-size: 13.5px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Grade Principal: Coluna Esquerda + Resumo à Direita */
+.grade-assinatura-principal {
+    display: grid;
+    grid-template-columns: minmax(0, 1.85fr) minmax(300px, 0.95fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.coluna-assinatura-esquerda {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 0;
+}
+
+/* Cards Base */
+.card-assinatura {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px 22px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.titulo-secao-card {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 14px 0;
+}
+
+/* Plano Atual */
+.box-plano-destaque {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px 18px;
+    background-color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.box-plano-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.nome-plano-atual {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+}
+
+.descricao-plano-atual {
+    font-size: 12.5px;
+    color: #64748b;
+    margin: 0;
+}
+
+.badge-plano-ativa {
+    background-color: #dcfce7;
+    color: #15803d;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.box-plano-rodape {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.preco-plano-box strong {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.preco-plano-box span {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.proxima-renovacao-box {
+    text-align: right;
+}
+
+.proxima-renovacao-box span {
+    display: block;
+    font-size: 11px;
+    color: #64748b;
+}
+
+.proxima-renovacao-box strong {
+    font-size: 12.5px;
+    color: #334155;
+}
+
+/* Botões */
+.btn-primario-assinatura {
+    background-color: #1d4ed8;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 16px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primario-assinatura:hover {
+    background-color: #1e40af;
+}
+
+.btn-outline-assinatura {
+    background-color: #ffffff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-outline-assinatura:hover {
+    background-color: #eff6ff;
+    border-color: #93c5fd;
+}
+
+/* Card Forma de Pagamento */
+.card-pagamento-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 22px;
+}
+
+.info-cartao-pagamento {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.bandeira-cartao {
+    position: relative;
+    width: 42px;
+    height: 28px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    background-color: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.circulo-vermelho,
+.circulo-amarelo {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+
+.circulo-vermelho {
+    background-color: #eb001b;
+    margin-right: -5px;
+    opacity: 0.9;
+}
+
+.circulo-amarelo {
+    background-color: #f79e1b;
+    opacity: 0.9;
+}
+
+.dados-cartao-texto strong {
+    display: block;
+    font-size: 13px;
+    color: #0f172a;
+    margin-bottom: 2px;
+}
+
+.dados-cartao-texto span {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: #64748b;
+    letter-spacing: 0.03em;
+}
+
+.dados-cartao-texto small {
+    display: block;
+    font-size: 10.5px;
+    color: #94a3b8;
+}
+
+/* Histórico de Cobranças */
+.tabela-cobrancas-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.tabela-cobrancas {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.tabela-cobrancas thead th {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-weight: 600;
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.tabela-cobrancas thead th:first-child {
+    border-top-left-radius: 6px;
+}
+
+.tabela-cobrancas thead th:last-child {
+    border-top-right-radius: 6px;
+}
+
+.tabela-cobrancas tbody td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    white-space: nowrap;
+}
+
+.badge-pago {
+    display: inline-block;
+    background-color: #dcfce7;
+    color: #15803d;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 999px;
+}
+
+.btn-baixar-fatura {
+    background: transparent;
+    border: none;
+    color: #1d4ed8;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 2px 4px;
+}
+
+.btn-baixar-fatura:hover {
+    text-decoration: underline;
+}
+
+/* Banner de Ajuda */
+.banner-ajuda-assinatura {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    background-color: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    padding: 16px 20px;
+}
+
+.banner-ajuda-assinatura h3 {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 3px 0;
+}
+
+.banner-ajuda-assinatura p {
+    font-size: 12px;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Coluna Direita: Resumo da Assinatura */
+.resumo-assinatura-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.bloco-resumo-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label-resumo {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.caixa-resumo-cinza {
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.caixa-resumo-cinza strong,
+.caixa-resumo-azul strong {
+    display: block;
+    font-size: 13px;
+    color: #0f172a;
+}
+
+.caixa-resumo-cinza span,
+.caixa-resumo-azul span {
+    font-size: 11.5px;
+    color: #64748b;
+}
+
+.badge-resumo-ativo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #dcfce7;
+    color: #15803d;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+}
+
+.ponto-verde {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #16a34a;
+}
+
+.ponto-alerta {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #d97706;
+}
+
+.divisor-resumo {
+    height: 1px;
+    background-color: #f1f5f9;
+}
+
+.valor-resumo-simples {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.caixa-resumo-azul {
+    background-color: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.caixa-alerta-cancelamento {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.titulo-alerta-cancelamento {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #b91c1c;
+    margin-bottom: 4px;
+}
+
+.caixa-alerta-cancelamento p {
+    font-size: 11.5px;
+    color: #dc2626;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.btn-cancelar-assinatura {
+    background-color: #ffffff;
+    color: #dc2626;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    padding: 9px 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-cancelar-assinatura:hover {
+    background-color: #fef2f2;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 1080px) {
+    .grade-assinatura-principal {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .conteudo-principal {
+        padding: 20px 16px;
+    }
+
+    .card-pagamento-flex,
+    .banner-ajuda-assinatura {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

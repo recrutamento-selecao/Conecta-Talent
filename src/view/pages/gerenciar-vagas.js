@@ -2,65 +2,78 @@ import { criarSidebar } from '../components/sidebar.js';
 import { criarCard } from '../components/card.js';
 import { criarTabela } from '../components/table.js';
 
-export function renderMinhasVagas() {
+export function renderMinhasVagas(perfil = 'empresa') {
+    const tipoPerfil = perfil === 'recrutador' ? 'recrutador' : 'empresa';
+    const ehRecrutador = tipoPerfil === 'recrutador';
+
     const containerPagina = document.createElement('div');
     containerPagina.className = 'pagina-layout-dashboard';
 
-    const sidebar = criarSidebar('empresa', 'Thaeny Soares');
+    const sidebar = criarSidebar(tipoPerfil, 'Thaeny Soares');
     containerPagina.appendChild(sidebar);
 
     const conteudoPrincipal = document.createElement('main');
     conteudoPrincipal.className = 'conteudo-principal';
 
+    const subtituloPagina = ehRecrutador
+        ? 'Crie, gerencie suas vagas e acompanhe o andamento dos processos seletivos.'
+        : 'Acompanhe e gerencie as vagas e os processos seletivos da sua empresa.';
+
+    const botaoCriarVagaHtml = ehRecrutador
+        ? `<button type="button" class="btn-criar-vaga" id="btn-criar-vaga">+ Criar vaga</button>`
+        : '';
+
     conteudoPrincipal.innerHTML = `
         <div class="cabecalho-pagina-flex">
             <div>
                 <h1 class="titulo-pagina">Gerenciar vagas</h1>
-                <p class="subtitulo-pagina">Gerencie suas vagas e acompanhe os processos seletivos da sua empresa.</p>
+                <p class="subtitulo-pagina">${subtituloPagina}</p>
             </div>
-            <button type="button" class="btn-criar-vaga" id="btn-criar-vaga">+ Criar vaga</button>
+            ${botaoCriarVagaHtml}
         </div>
 
         <!-- Cards de Estatísticas -->
         <div class="cards-estatisticas-grid" id="container-cards-estatisticas"></div>
 
-        <!-- Barra de Filtros e Pesquisa -->
+        <!-- Barra de Filtros e Pesquisa (Linha Única) -->
         <div class="barra-filtros-vagas">
             <div class="input-busca-vaga">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="text" id="input-busca" placeholder="Buscar vaga por título, área ou localização..." />
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="input-busca" placeholder="Buscar por vaga, área ou cidade..." />
             </div>
             <div class="filtros-selecao-grupo">
-                <select class="select-filtro" id="filtro-status">
+                <select class="select-filtro" id="filtro-status" aria-label="Filtrar por status">
                     <option value="">Status: Todos</option>
                     <option value="Em andamento">Em andamento</option>
                     <option value="Pausada">Pausada</option>
                     <option value="Concluída">Concluída</option>
                 </select>
-                <select class="select-filtro" id="filtro-area">
+                <select class="select-filtro" id="filtro-area" aria-label="Filtrar por área">
                     <option value="">Área: Todas</option>
                     <option value="Dados">Dados</option>
                     <option value="TI">TI</option>
                     <option value="Recursos Humanos">Recursos Humanos</option>
                     <option value="Design">Design</option>
                 </select>
-                <select class="select-filtro" id="filtro-contrato">
-                    <option value="">Tipo de contrato: Todos</option>
+                <select class="select-filtro" id="filtro-contrato" aria-label="Filtrar por contrato">
+                    <option value="">Contrato: Todos</option>
                     <option value="CLT">CLT</option>
                     <option value="PJ">PJ</option>
                 </select>
-                <select class="select-filtro" id="filtro-localizacao">
-                    <option value="">Localização: Todas</option>
+                <select class="select-filtro" id="filtro-localizacao" aria-label="Filtrar por localização">
+                    <option value="">Local: Todos</option>
                     <option value="Sorocaba - SP">Sorocaba - SP</option>
                     <option value="São Paulo - SP">São Paulo - SP</option>
                 </select>
-                <button type="button" class="btn-limpar-filtros" id="btn-limpar">↺ Limpar filtros</button>
+                <button type="button" class="btn-limpar-filtros" id="btn-limpar" title="Limpar filtros">↺ Limpar</button>
             </div>
         </div>
 
         <!-- Layout Principal: Tabela à Esquerda + Painel de Detalhes à Direita -->
         <div class="layout-conteudo-vagas">
-            
             <!-- Tabela de Vagas -->
             <div id="container-tabela-vagas"></div>
 
@@ -76,21 +89,20 @@ export function renderMinhasVagas() {
                     </div>
                     <div class="painel-topo-acoes">
                         <span class="badge-status" id="painel-status-badge"></span>
-                        <button class="btn-fechar-painel" id="btn-fechar-painel" title="Fechar detalhes">✕</button>
+                        <button type="button" class="btn-fechar-painel" id="btn-fechar-painel" title="Fechar detalhes">✕</button>
                     </div>
                 </div>
 
                 <div class="painel-abas" id="painel-abas-container">
-                    <button class="aba-item ativo" data-aba="informacoes">Informações</button>
-                    <button class="aba-item" data-aba="processo">Processo seletivo</button>
-                    <button class="aba-item" data-aba="testes">Testes</button>
-                    <button class="aba-item" data-aba="candidaturas">Candidaturas</button>
+                    <button type="button" class="aba-item ativo" data-aba="informacoes">Informações</button>
+                    <button type="button" class="aba-item" data-aba="processo">Processo seletivo</button>
+                    <button type="button" class="aba-item" data-aba="testes">Testes</button>
+                    <button type="button" class="aba-item" data-aba="candidaturas">Candidaturas</button>
                 </div>
 
                 <!-- Conteúdo Dinâmico das Abas -->
                 <div class="painel-conteudo-secao" id="painel-conteudo-corpo"></div>
             </div>
-
         </div>
     `;
 
@@ -103,8 +115,21 @@ export function renderMinhasVagas() {
     setTimeout(() => {
         // Base de Dados de Vagas
         let dadosVagasOriginais = [
-            { 
-                id: 1, vaga: 'Analista de Dados', contrato: 'CLT', iconeEmoji: '📊', corIcone: 'azul', area: 'Dados', localizacao: 'Sorocaba - SP', modalidade: 'Híbrido', candidatos: 48, processo: '4 etapas', status: 'Em andamento', statusClasse: 'em-andamento', empresa: 'Tech Soluções', descricao: 'Buscamos um Analista de Dados para atuar na análise, construção de dashboards e apoio à tomada de decisão.',
+            {
+                id: 1,
+                vaga: 'Analista de Dados',
+                contrato: 'CLT',
+                iconeEmoji: '📊',
+                corIcone: 'azul',
+                area: 'Dados',
+                localizacao: 'Sorocaba - SP',
+                modalidade: 'Híbrido',
+                candidatos: 48,
+                processo: '4 etapas',
+                status: 'Em andamento',
+                statusClasse: 'em-andamento',
+                empresa: 'Tech Soluções',
+                descricao: 'Buscamos um Analista de Dados para atuar na análise, construção de dashboards e apoio à tomada de decisão.',
                 etapas: [
                     { nome: 'Inscrição', status: 'concluida' },
                     { nome: 'Triagem', status: 'concluida' },
@@ -121,8 +146,21 @@ export function renderMinhasVagas() {
                     { nome: 'Mariana Costa', match: '82%', etapa: 'Triagem' }
                 ]
             },
-            { 
-                id: 2, vaga: 'Desenvolvedor Front-end', contrato: 'CLT', iconeEmoji: '💻', corIcone: 'laranja', area: 'TI', localizacao: 'São Paulo - SP', modalidade: 'Remoto', candidatos: 35, processo: '5 etapas', status: 'Em andamento', statusClasse: 'em-andamento', empresa: 'Inova Web', descricao: 'Desenvolvimento de interfaces modernas, responsivas e de alta performance utilizando frameworks atuais.',
+            {
+                id: 2,
+                vaga: 'Desenvolvedor Front-end',
+                contrato: 'CLT',
+                iconeEmoji: '💻',
+                corIcone: 'laranja',
+                area: 'TI',
+                localizacao: 'São Paulo - SP',
+                modalidade: 'Remoto',
+                candidatos: 35,
+                processo: '5 etapas',
+                status: 'Em andamento',
+                statusClasse: 'em-andamento',
+                empresa: 'Inova Web',
+                descricao: 'Desenvolvimento de interfaces modernas, responsivas e de alta performance utilizando frameworks atuais.',
                 etapas: [
                     { nome: 'Inscrição', status: 'concluida' },
                     { nome: 'Triagem', status: 'ativo' },
@@ -138,8 +176,21 @@ export function renderMinhasVagas() {
                     { nome: 'Beatriz Lima', match: '90%', etapa: 'Triagem' }
                 ]
             },
-            { 
-                id: 3, vaga: 'Analista de RH', contrato: 'CLT', iconeEmoji: '👥', corIcone: 'rosa', area: 'Recursos Humanos', localizacao: 'Sorocaba - SP', modalidade: 'Presencial', candidatos: 27, processo: '3 etapas', status: 'Pausada', statusClasse: 'pausada', empresa: 'Tech Soluções', descricao: 'Condução de processos de recrutamento e seleção, alinhamento de perfil com gestores e onboarding.',
+            {
+                id: 3,
+                vaga: 'Analista de RH',
+                contrato: 'CLT',
+                iconeEmoji: '👥',
+                corIcone: 'rosa',
+                area: 'Recursos Humanos',
+                localizacao: 'Sorocaba - SP',
+                modalidade: 'Presencial',
+                candidatos: 27,
+                processo: '3 etapas',
+                status: 'Pausada',
+                statusClasse: 'pausada',
+                empresa: 'Tech Soluções',
+                descricao: 'Condução de processos de recrutamento e seleção, alinhamento de perfil com gestores e onboarding.',
                 etapas: [
                     { nome: 'Inscrição', status: 'concluida' },
                     { nome: 'Entrevista RH', status: 'ativo' },
@@ -152,8 +203,21 @@ export function renderMinhasVagas() {
                     { nome: 'Juliana Mendes', match: '92%', etapa: 'Entrevista RH' }
                 ]
             },
-            { 
-                id: 4, vaga: 'Designer UI/UX', contrato: 'PJ', iconeEmoji: '🎨', corIcone: 'roxo', area: 'Design', localizacao: 'São Paulo - SP', modalidade: 'Híbrido', candidatos: 61, processo: '4 etapas', status: 'Concluída', statusClasse: 'concluida', empresa: 'Design Studio', descricao: 'Criação de fluxos de usuário, wireframes, protótipos de alta fidelidade e testes de usabilidade.',
+            {
+                id: 4,
+                vaga: 'Designer UI/UX',
+                contrato: 'PJ',
+                iconeEmoji: '🎨',
+                corIcone: 'roxo',
+                area: 'Design',
+                localizacao: 'São Paulo - SP',
+                modalidade: 'Híbrido',
+                candidatos: 61,
+                processo: '4 etapas',
+                status: 'Concluída',
+                statusClasse: 'concluida',
+                empresa: 'Design Studio',
+                descricao: 'Criação de fluxos de usuário, wireframes, protótipos de alta fidelidade e testes de usabilidade.',
                 etapas: [
                     { nome: 'Inscrição', status: 'concluida' },
                     { nome: 'Portfólio', status: 'concluida' },
@@ -178,6 +242,14 @@ export function renderMinhasVagas() {
         const painelDetalhes = conteudoPrincipal.querySelector('#painel-detalhes');
         const layoutGrid = conteudoPrincipal.querySelector('.layout-conteudo-vagas');
         const corpoPainel = conteudoPrincipal.querySelector('#painel-conteudo-corpo');
+
+        // Botão + Criar vaga (disponível apenas para recrutador)
+        const btnCriarVaga = conteudoPrincipal.querySelector('#btn-criar-vaga');
+        if (btnCriarVaga && ehRecrutador) {
+            btnCriarVaga.addEventListener('click', () => {
+                window.location.hash = '#criar-vaga';
+            });
+        }
 
         // Atualiza os 4 cards superiores dinamicamente
         function atualizarCards() {
@@ -208,7 +280,7 @@ export function renderMinhasVagas() {
             }
         });
 
-        // Ações de gestão da vaga (usadas tanto no menu dos 3 pontos quanto nos botões do painel lateral)
+        // Ações de gestão da vaga
         function alternarPausaVaga(item) {
             if (item.status === 'Pausada') {
                 item.status = 'Em andamento';
@@ -372,12 +444,12 @@ export function renderMinhasVagas() {
             } else if (abaAtiva === 'processo') {
                 corpoPainel.innerHTML = `
                     <h4>Etapas do Processo Seletivo</h4>
-                    <p class="subtitulo-pagina" style="margin-bottom: 12px;">Acompanhe o fluxo configurado para esta vaga:</p>
-                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <p class="subtitulo-painel">Acompanhe o fluxo configurado para esta vaga:</p>
+                    <div class="lista-cards-painel">
                         ${vagaSelecionada.etapas.map((etapa, idx) => `
-                            <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px;">
-                                <div style="display: flex; align-items: center; gap: 8px;">
-                                    <span style="width: 20px; height: 20px; background: #1d4ed8; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600;">${idx + 1}</span>
+                            <div class="item-card-painel">
+                                <div class="item-card-esquerda">
+                                    <span class="numero-etapa-painel">${idx + 1}</span>
                                     <strong>${etapa.nome}</strong>
                                 </div>
                                 <span class="badge-status ${etapa.status === 'concluida' ? 'concluida' : etapa.status === 'ativo' ? 'em-andamento' : ''}">${etapa.status ? etapa.status : 'Pendente'}</span>
@@ -388,17 +460,17 @@ export function renderMinhasVagas() {
             } else if (abaAtiva === 'testes') {
                 corpoPainel.innerHTML = `
                     <h4>Testes Técnicos e Questionários</h4>
-                    <p class="subtitulo-pagina" style="margin-bottom: 12px;">Testes aplicados aos candidatos desta vaga:</p>
-                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <p class="subtitulo-painel">Testes aplicados aos candidatos desta vaga:</p>
+                    <div class="lista-cards-painel">
                         ${vagaSelecionada.testes.map(teste => `
-                            <div style="padding: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px;">
-                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                                    <strong style="color: #0f172a;">${teste.titulo}</strong>
-                                    <span style="color: #64748b; font-size: 11px;">Prazo: ${teste.prazo}</span>
+                            <div class="item-card-painel coluna">
+                                <div class="item-card-topo">
+                                    <strong>${teste.titulo}</strong>
+                                    <span class="texto-secundario-mini">Prazo: ${teste.prazo}</span>
                                 </div>
-                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                                <div class="item-card-rodape">
                                     <span class="badge-status em-andamento">${teste.status}</span>
-                                    <button type="button" class="btn-acao-secundaria" style="padding: 4px 8px; font-size: 11px;">Ver relatórios</button>
+                                    <button type="button" class="btn-acao-secundaria btn-mini">Ver relatórios</button>
                                 </div>
                             </div>
                         `).join('')}
@@ -407,19 +479,17 @@ export function renderMinhasVagas() {
             } else if (abaAtiva === 'candidaturas') {
                 corpoPainel.innerHTML = `
                     <h4>Candidatos em Destaque (${vagaSelecionada.candidatos} total)</h4>
-                    <p class="subtitulo-pagina" style="margin-bottom: 12px;">Principais perfis alinhados à vaga:</p>
-                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <p class="subtitulo-painel">Principais perfis alinhados à vaga:</p>
+                    <div class="lista-cards-painel">
                         ${vagaSelecionada.candidatosLista.length > 0 ? vagaSelecionada.candidatosLista.map(cand => `
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 12px;">
+                            <div class="item-card-painel">
                                 <div>
-                                    <strong style="display: block; color: #0f172a;">${cand.nome}</strong>
-                                    <small style="color: #64748b;">Etapa atual: ${cand.etapa}</small>
+                                    <strong class="nome-candidato-painel">${cand.nome}</strong>
+                                    <small class="texto-secundario-mini">Etapa atual: ${cand.etapa}</small>
                                 </div>
-                                <div style="text-align: right;">
-                                    <span style="background: #f0fdf4; color: #16a34a; padding: 2px 6px; border-radius: 4px; font-weight: 600; font-size: 11px;">Match ${cand.match}</span>
-                                </div>
+                                <span class="badge-match">Match ${cand.match}</span>
                             </div>
-                        `).join('') : '<p style="font-size: 12px; color: #64748b;">Nenhum candidato inscrito ainda.</p>'}
+                        `).join('') : '<p class="texto-secundario-mini">Nenhum candidato inscrito ainda.</p>'}
                     </div>
                 `;
             }
@@ -459,7 +529,7 @@ export function renderMinhasVagas() {
             conteudoPrincipal.querySelector('#painel-icone').className = `icone-vaga-mini ${item.corIcone}`;
             conteudoPrincipal.querySelector('#painel-titulo').textContent = item.vaga;
             conteudoPrincipal.querySelector('#painel-empresa').textContent = item.empresa;
-            
+
             const badge = conteudoPrincipal.querySelector('#painel-status-badge');
             badge.className = `badge-status ${item.statusClasse}`;
             badge.textContent = item.status;
@@ -569,9 +639,9 @@ export function renderMinhasVagas() {
                     esquerda: `Mostrando ${dadosVagasOriginais.length} registros`,
                     direita: `
                         <div class="paginacao-botoes">
-                            <button>&lt;</button>
-                            <button class="ativo">1</button>
-                            <button>&gt;</button>
+                            <button type="button">&lt;</button>
+                            <button type="button" class="ativo">1</button>
+                            <button type="button">&gt;</button>
                         </div>
                     `
                 }
@@ -596,9 +666,9 @@ export function renderMinhasVagas() {
             const localVal = selectLocalizacao.value;
 
             const dadosFiltrados = dadosVagasOriginais.filter(item => {
-                const matchBusca = !termoBusca || 
-                    item.vaga.toLowerCase().includes(termoBusca) || 
-                    item.area.toLowerCase().includes(termoBusca) || 
+                const matchBusca = !termoBusca ||
+                    item.vaga.toLowerCase().includes(termoBusca) ||
+                    item.area.toLowerCase().includes(termoBusca) ||
                     item.localizacao.toLowerCase().includes(termoBusca);
 
                 const matchStatus = !statusVal || item.status === statusVal;

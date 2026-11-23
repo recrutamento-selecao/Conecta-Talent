@@ -17,6 +17,9 @@ import { renderGerenciarRecrutadores } from '../pages/gerenciar-recrutadores.js'
 import { renderGerenciarCandidaturas } from '../pages/gerenciar-candidaturas.js';
 import { renderVagasInicio } from '../pages/vagas-inicio.js';
 import { renderCadastrarRecrutador } from '../pages/cadastrar-recrutador.js';
+import { renderCriarVaga } from '../pages/criar-vagas.js';
+import { renderMinhaAssinatura } from '../pages/minhas-assinaturas.js';
+import { renderAlterarPlanos } from '../pages/alterar-planos.js';
 
 function garantirCssModal() {
     if (!document.getElementById('estilo-modal-global')) {
@@ -63,6 +66,12 @@ function trocarEstiloPagina(nomePagina) {
         caminhoCss = './view/css/gerenciar-candidaturas.css';
     } else if (nomePagina === 'vagas-inicio') {
         caminhoCss = './view/css/vagas-inicio.css';
+    } else if (nomePagina === 'criar-vaga') {
+        caminhoCss = './view/css/criar-vaga.css';
+    } else if (nomePagina === 'minha-assinatura') {
+        caminhoCss = './view/css/minha-assinatura.css';
+    } else if (nomePagina === 'alterar-planos') {
+        caminhoCss = './view/css/alterar-planos.css';
     }
 
     if (caminhoCss) {
@@ -80,7 +89,7 @@ export function iniciarRouter() {
 
     document.addEventListener('click', (e) => {
         const btnCandidatar = e.target.closest('.btn-candidatar');
-    
+
         if (btnCandidatar && window.location.hash === '#vagas-inicio') {
             e.preventDefault();
             e.stopPropagation();
@@ -162,7 +171,7 @@ export function iniciarRouter() {
                 break;
             case '#cadastrar-recrutador':
                 trocarEstiloPagina('cadastrar-recrutador');
-                app.appendChild(renderCadastrarRecrutador()); 
+                app.appendChild(renderCadastrarRecrutador());
                 break;
             case '#gerenciar-candidaturas':
                 trocarEstiloPagina('gerenciar-candidaturas');
@@ -171,6 +180,18 @@ export function iniciarRouter() {
             case '#vagas-inicio':
                 trocarEstiloPagina('vagas-inicio');
                 app.appendChild(renderVagasInicio());
+                break;
+            case '#criar-vaga':
+                trocarEstiloPagina('criar-vaga');
+                app.appendChild(renderCriarVaga());
+                break;
+            case '#meu-plano':
+                trocarEstiloPagina('minha-assinatura');
+                app.appendChild(renderMinhaAssinatura('empresa'));
+                break;
+            case '#alterar-planos':
+                trocarEstiloPagina('alterar-planos');
+                app.appendChild(renderAlterarPlanos('empresa'));
                 break;
             case '#home':
             default:
