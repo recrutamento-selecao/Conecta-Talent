@@ -10,10 +10,13 @@ import { renderCadastroConcluido } from '../pages/cadastro-concluido.js';
 import { renderRecrutadorCadastrado } from '../pages/recrutador-cadastrado.js';
 import { renderPlanoAlterado } from '../pages/plano-alterado.js';
 import renderCadastroPage from '../pages/cadastro.js';
-import { renderCandidaturaEnviada} from '../pages/candidatura-enviada.js';
+import { renderCandidaturaEnviada } from '../pages/candidatura-enviada.js';
 import { renderMinhasCandidaturas } from '../pages/minhas-candidaturas.js';
 import { criarModalSair } from '../components/modal-sair.js';
-
+import { renderMinhaAssinatura } from '../pages/minha-assinatura.js';
+import { renderAlterarPlanos } from '../pages/alterar-planos.js';
+import { renderRelatorioRecrutadores } from '../pages/relatorio-recrutadores.js';
+import { renderConfiguracaoConta } from '../pages/configuracao-conta.js';
 
 function trocarEstiloPagina(nomePagina) {
     const estiloAnterior = document.getElementById('estilo-Dinamico-pagina');
@@ -22,6 +25,10 @@ function trocarEstiloPagina(nomePagina) {
     }
 
     const estilosMap = {
+        "configuracao-conta": './view/css/configuracao-conta.css',
+        "relatorio-recrutadores": './view/css/relatorio-recrutadores.css',
+        "alterar-planos": './view/css/alterar-planos.css',
+        "minha-assinatura": './view/css/minha-assinatura.css',
         "minhas-candidaturas": './view/css/minhas-candidaturas.css',
         'cadastro': './view/css/cadastro.css',
         'recrutador-cadastrado': './view/css/recrutador-cadastrado.css',
@@ -63,6 +70,22 @@ export function iniciarRouter() {
         app.innerHTML = '';
 
         switch (hash) {
+            case '#configuracao-conta':
+                trocarEstiloPagina('configuracao-conta');
+                app.appendChild(renderConfiguracaoConta());
+                break;
+            case '#relatorio-recrutadores':
+                trocarEstiloPagina('relatorio-recrutadores');
+                app.appendChild(renderRelatorioRecrutadores());
+                break;
+            case '#alterar-planos':
+                trocarEstiloPagina('alterar-planos');
+                app.appendChild(renderAlterarPlanos());
+                break;
+            case '#minha-assinatura':
+                trocarEstiloPagina('minha-assinatura');
+                app.appendChild(renderMinhaAssinatura());
+                break;
             case '#minhas-candidaturas':
                 trocarEstiloPagina('minhas-candidaturas');
                 app.appendChild(renderMinhasCandidaturas());
@@ -112,9 +135,9 @@ export function iniciarRouter() {
                 app.appendChild(renderVagasInicio());
                 break;
             case '#candidatura-enviada':
-               trocarEstiloPagina('candidatura-enviada');
-               app.appendChild(renderCandidaturaEnviada());
-               break;
+                trocarEstiloPagina('candidatura-enviada');
+                app.appendChild(renderCandidaturaEnviada());
+                break;
             case '#home':
             case '':
             default:

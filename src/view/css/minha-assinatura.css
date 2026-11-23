@@ -1,0 +1,406 @@
+.pagina-minha-assinatura-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    box-sizing: border-box;
+}
+
+.pagina-minha-assinatura-wrapper .conteudo-principal {
+    flex: 1;
+    margin-left: var(--sidebar-width, 260px);
+    padding: 1.75rem 2.5rem 3rem;
+    box-sizing: border-box;
+    min-width: 0;
+    transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body:has(.sidebar.fechada) .pagina-minha-assinatura-wrapper .conteudo-principal {
+    margin-left: var(--sidebar-collapsed-width, 78px);
+}
+
+.breadcrumb-pagina {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.breadcrumb-pagina strong {
+    color: #0f172a;
+    font-weight: 500;
+}
+.pagina-minha-assinatura-wrapper .cabecalho-pagina-padrao {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.pagina-minha-assinatura-wrapper .titulo-pagina {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.pagina-minha-assinatura-wrapper .subtitulo-pagina {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #64748b;
+}
+
+/* Grid principal alinhado ao h1 */
+.layout-minha-assinatura-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 1.5rem;
+    align-items: start;
+    width: 100%;
+}
+
+.coluna-esquerda-assinatura {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    min-width: 0;
+}
+
+.card-assinatura {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.titulo-card-assinatura {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 1rem 0;
+}
+
+/* Plano atual */
+.box-plano-atual {
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.nome-plano {
+    display: block;
+    font-size: 1.05rem;
+    color: #0f172a;
+}
+
+.desc-plano {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0.2rem 0 0.75rem;
+}
+
+.valor-plano {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.valor-plano span {
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: #64748b;
+}
+
+.status-renovacao {
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
+}
+
+.badge-ativa {
+    background-color: #dcfce7;
+    color: #16a34a;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+}
+
+.status-renovacao small {
+    font-size: 0.72rem;
+    color: #64748b;
+    margin-top: 0.35rem;
+}
+
+/* Cartão */
+.card-pagamento-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.info-cartao {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bandeira-mastercard {
+    width: 42px;
+    height: 28px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circulo-vermelho {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #eb001b;
+}
+
+.circulo-amarelo {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: #f79e1b;
+    margin-left: -5px;
+}
+
+.numero-cartao {
+    display: block;
+    font-size: 0.85rem;
+    color: #0f172a;
+}
+
+.titular-cartao,
+.validade-cartao {
+    display: block;
+    font-size: 0.72rem;
+    color: #64748b;
+}
+
+/* Badges e link dentro do table.js */
+.badge-status-pago {
+    background-color: #dcfce7;
+    color: #16a34a;
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    display: inline-block;
+}
+
+.link-baixar-fatura {
+    color: #1d4ed8;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.link-baixar-fatura:hover {
+    text-decoration: underline;
+}
+
+/* Banner Ajuda */
+.banner-ajuda-assinatura {
+    background-color: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.15rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.banner-ajuda-assinatura strong {
+    font-size: 0.88rem;
+    color: #0f172a;
+}
+
+.banner-ajuda-assinatura p {
+    margin: 0.2rem 0 0;
+    font-size: 0.78rem;
+    color: #64748b;
+}
+
+/* Coluna Direita */
+.bloco-resumo-cinza {
+    background-color: #f1f5f9;
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.bloco-resumo-azul {
+    background-color: #eff6ff;
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    margin: 1rem 0;
+}
+
+.bloco-resumo-cinza small,
+.bloco-resumo-azul small {
+    display: block;
+    font-size: 0.72rem;
+    color: #64748b;
+}
+
+.bloco-resumo-cinza strong,
+.bloco-resumo-azul strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #0f172a;
+    margin: 0.15rem 0;
+}
+
+.bloco-resumo-cinza span,
+.bloco-resumo-azul span {
+    font-size: 0.78rem;
+    color: #475569;
+}
+
+.item-resumo-lista {
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.item-resumo-lista small {
+    display: block;
+    font-size: 0.72rem;
+    color: #64748b;
+    margin-bottom: 0.25rem;
+}
+
+.item-resumo-lista span {
+    font-size: 0.82rem;
+    color: #0f172a;
+    font-weight: 500;
+}
+
+.badge-assinatura-ativa {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: #dcfce7;
+    color: #16a34a !important;
+    padding: 0.2rem 0.65rem;
+    border-radius: 9999px;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+}
+
+.ponto-verde {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #16a34a;
+}
+
+.alerta-cancelamento-box {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 0.85rem;
+    margin: 1rem 0 0.75rem;
+}
+
+.alerta-cancelamento-box strong {
+    display: block;
+    font-size: 0.78rem;
+    color: #dc2626;
+    margin-bottom: 0.25rem;
+}
+
+.alerta-cancelamento-box p {
+    margin: 0;
+    font-size: 0.74rem;
+    color: #b91c1c;
+    line-height: 1.35;
+}
+
+/* Botões */
+.btn-primario-azul {
+    background-color: #1d4ed8;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.15rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-primario-azul:hover {
+    background-color: #1e40af;
+}
+
+.btn-secundario-outline {
+    background-color: #ffffff;
+    color: #1d4ed8;
+    border: 1px solid #93c5fd;
+    border-radius: 8px;
+    padding: 0.55rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-secundario-outline:hover {
+    background-color: #eff6ff;
+}
+
+.btn-cancelar-outline {
+    background-color: #ffffff;
+    color: #dc2626;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-cancelar-outline:hover {
+    background-color: #fef2f2;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .layout-minha-assinatura-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .pagina-minha-assinatura-wrapper .conteudo-principal {
+        margin-left: 0 !important;
+        padding: 1.5rem;
+    }
+}

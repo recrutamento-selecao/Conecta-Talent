@@ -1,0 +1,359 @@
+/* =========================================
+   ESTILOS DA PÁGINA: CONFIGURAÇÃO DE CONTA
+   ========================================= */
+.pagina-configuracao-conta-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    box-sizing: border-box;
+}
+
+.pagina-configuracao-conta-wrapper *,
+.pagina-configuracao-conta-wrapper *::before,
+.pagina-configuracao-conta-wrapper *::after {
+    box-sizing: border-box;
+}
+
+.pagina-configuracao-conta-wrapper .conteudo-principal {
+    flex: 1;
+    margin-left: var(--sidebar-width, 260px);
+    padding: 1.75rem 2.5rem 3rem;
+    min-width: 0;
+    transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body:has(.sidebar.fechada) .pagina-configuracao-conta-wrapper .conteudo-principal {
+    margin-left: var(--sidebar-collapsed-width, 78px);
+}
+
+/* Cabeçalho livre alinhado à esquerda */
+.pagina-configuracao-conta-wrapper .cabecalho-pagina-padrao {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 0.25rem;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.pagina-configuracao-conta-wrapper .titulo-pagina,
+.pagina-configuracao-conta-wrapper .subtitulo-pagina {
+    float: none !important;
+    margin-left: 0 !important;
+    text-align: left !important;
+    width: auto !important;
+}
+
+.pagina-configuracao-conta-wrapper .titulo-pagina {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.pagina-configuracao-conta-wrapper .subtitulo-pagina {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Pilha de seções */
+.secoes-configuracao-conta {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 960px;
+}
+
+.card-configuracao {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.cabecalho-secao-config {
+    margin-bottom: 1.25rem;
+}
+
+.cabecalho-secao-config h2 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 0.2rem 0;
+}
+
+.cabecalho-secao-config p {
+    font-size: 0.78rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Formulários e campos */
+.form-config-simples,
+.form-config-senha {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+}
+
+.campo-config {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+    max-width: 560px;
+}
+
+.campo-config label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.campo-config label span {
+    color: #dc2626;
+}
+
+.campo-config input {
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.8rem;
+    color: #0f172a;
+    font-family: inherit;
+}
+
+.campo-config input:focus {
+    outline: none;
+    border-color: #1d4ed8;
+}
+
+/* Caixa azul de requisitos da senha */
+.box-requisitos-senha {
+    width: 100%;
+    max-width: 560px;
+    background-color: #eff6ff;
+    border: 1px solid #dbeafe;
+    border-radius: 10px;
+    padding: 0.95rem 1.15rem;
+}
+
+.titulo-requisitos {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #1e3a8a;
+    margin-bottom: 0.65rem;
+}
+
+.lista-requisitos-senha {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem 1.25rem;
+}
+
+.lista-requisitos-senha li {
+    font-size: 0.75rem;
+    color: #334155;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.lista-requisitos-senha li::before {
+    content: "✓";
+    color: #16a34a;
+    font-weight: 700;
+    font-size: 0.76rem;
+    flex-shrink: 0;
+}
+
+.lista-requisitos-senha li.valido {
+    color: #15803d;
+    font-weight: 600;
+}
+
+.mensagem-feedback-form {
+    margin: 0;
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: #dc2626;
+    min-height: 1rem;
+}
+
+/* Ações */
+.acoes-senha-conta {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+}
+
+.pagina-configuracao-conta-wrapper .btn-primario-azul {
+    background-color: #1d4ed8;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.58rem 1.1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pagina-configuracao-conta-wrapper .btn-primario-azul:hover {
+    background-color: #1e40af;
+}
+
+.pagina-configuracao-conta-wrapper .btn-secundario-outline {
+    background-color: #ffffff;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    padding: 0.56rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.pagina-configuracao-conta-wrapper .btn-secundario-outline:hover {
+    background-color: #f8fafc;
+}
+
+/* Seção excluir conta */
+.card-excluir-conta {
+    background-color: #fff5f5;
+    border: 1px solid #fecaca;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.cabecalho-excluir-conta {
+    margin-bottom: 1rem;
+}
+
+.cabecalho-excluir-conta h2 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #991b1b;
+    margin: 0 0 0.25rem 0;
+}
+
+.cabecalho-excluir-conta p {
+    font-size: 0.78rem;
+    color: #7f1d1d;
+    margin: 0;
+}
+
+.btn-excluir-conta {
+    background-color: #ffffff;
+    color: #dc2626;
+    border: 1px solid #fca5a5;
+    border-radius: 8px;
+    padding: 0.52rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: block;
+}
+
+.btn-excluir-conta:hover {
+    background-color: #fef2f2;
+    border-color: #ef4444;
+}
+
+.aviso-confirmacao-exclusao {
+    display: block;
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-top: 0.55rem;
+}
+
+/* Modal de exclusão */
+.modal-backdrop-exclusao[hidden] {
+    display: none;
+}
+
+.modal-backdrop-exclusao {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.modal-box-exclusao {
+    width: 100%;
+    max-width: 420px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 20px 40px rgba(15, 23, 42, 0.16);
+}
+
+.modal-box-exclusao h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.modal-box-exclusao p {
+    margin: 0 0 1.25rem 0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: #475569;
+}
+
+.acoes-modal-exclusao {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.65rem;
+}
+
+.btn-confirmar-exclusao {
+    background-color: #dc2626;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.56rem 1rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-confirmar-exclusao:hover {
+    background-color: #b91c1c;
+}
+
+/* Responsividade */
+@media (max-width: 720px) {
+    .lista-requisitos-senha {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .pagina-configuracao-conta-wrapper .conteudo-principal {
+        margin-left: 0 !important;
+        padding: 1.5rem;
+    }
+}
