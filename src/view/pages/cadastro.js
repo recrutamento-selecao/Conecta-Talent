@@ -1,4 +1,14 @@
+import { criarStepper } from "../components/stepper.js";
+
 const renderCadastroPage = (navegarParaLogin) => {
+    const irParaLogin = () => {
+        if (typeof navegarParaLogin === "function") {
+            navegarParaLogin();
+        } else {
+            window.location.hash = "#login";
+        }
+    };
+
     const container = document.createElement("div");
     container.className = "cadastro-container";
 
@@ -6,9 +16,8 @@ const renderCadastroPage = (navegarParaLogin) => {
     painelEsquerdo.className = "cadastro-banner";
 
     const imagem = document.createElement("img");
-    imagem.src = "/view/assets/images/banner-cadastro.png";
+    imagem.src = "/assets/images/banner-cadastro.png";
     imagem.alt = "ConectaTalent - Sua carreira começa aqui";
-
     painelEsquerdo.appendChild(imagem);
 
     const painelDireito = document.createElement("div");
@@ -18,28 +27,21 @@ const renderCadastroPage = (navegarParaLogin) => {
     navegacao.className = "cadastro-navegacao";
 
     const voltar = document.createElement("a");
-    voltar.href = "#";
+    voltar.href = "#home";
     voltar.textContent = "← Voltar";
     voltar.addEventListener("click", (event) => {
         event.preventDefault();
-        navegarParaLogin();
+        window.location.hash = "#home";
     });
 
     const entrar = document.createElement("div");
     entrar.className = "cadastro-entrar";
-    entrar.textContent = "Já tem uma conta? ";
-
-    const linkNav = document.createElement("a");
-    linkNav.href = "#";
-    linkNav.className = "linkNav";
-    linkNav.textContent = "Já possui uma conta? Faça login!";
-
-    linkNav.addEventListener("click", (event) => {
+    entrar.innerHTML = 'Já tem uma conta? <a href="#login" class="linkNav">Entrar</a>';
+    entrar.querySelector("a").addEventListener("click", (event) => {
         event.preventDefault();
-        window.location.hash = "#login";
+        irParaLogin();
     });
 
-    entrar.appendChild(linkEntrar);
     navegacao.append(voltar, entrar);
 
     const card = document.createElement("div");
@@ -52,172 +54,133 @@ const renderCadastroPage = (navegarParaLogin) => {
     descricao.className = "cadastro-descricao";
     descricao.textContent = "É rápido e fácil. Em poucos passos você já estará pronto para encontrar grandes oportunidades.";
 
-    const stepper = document.createElement("div");
-    stepper.className = "cadastro-stepper";
-
-    const numeroEtapa = document.createElement("div");
-    numeroEtapa.className = "stepper-numero";
-    numeroEtapa.textContent = "1";
-
-    const nomeEtapa = document.createElement("span");
-    nomeEtapa.textContent = "Dados pessoais";
-
-    stepper.append(numeroEtapa, nomeEtapa);
-
-    const formContainer = createForm({
-        campos: [
-            {
-                nome: "nome",
-                label: "Nome completo",
-                tipo: "text",
-                placeholder: "Digite seu nome completo"
-            },
-            {
-                nome: "email",
-                label: "E-mail",
-                tipo: "email",
-                placeholder: "Digite seu e-mail"
-            },
-            {
-                nome: "cpf",
-                label: "CPF",
-                tipo: "text",
-                placeholder: "000.000.000-00"
-            },
-            {
-                nome: "telefone",
-                label: "Telefone",
-                tipo: "tel",
-                placeholder: "(00) 00000-0000"
-            },
-            {
-                nome: "senha",
-                label: "Senha",
-                tipo: "password",
-                placeholder: "Digite sua senha"
-            },
-            {
-                nome: "confirmar-senha",
-                label: "Confirmar senha",
-                tipo: "password",
-                placeholder: "Confirme sua senha"
-            }
-        ],
-        botoes: [
-            {
-                texto: "Finalizar cadastro",
-                tipo: "submit",
-                className: "btn-submit"
-            }
-        ]
+    const stepperWrapper = document.createElement("div");
+    stepperWrapper.className = "cadastro-stepper-wrapper";
+    const stepper = criarStepper({
+        etapas: [{ id: 1, titulo: "Dados pessoais" }],
+        etapaAtual: 1
     });
+    stepperWrapper.appendChild(stepper);
 
-    const form = formContainer.querySelector("form");
-    form.className = "cadastro-form";
+    const secaoHeader = document.createElement("div");
+    secaoHeader.className = "secao-subtitulo-box";
+    secaoHeader.innerHTML = `
+        <div class="secao-icone-circulo">
+            <img src="/assets/icons/people.svg" alt="" width="20" height="20">
+        </div>
+        <div>
+            <h2>Dados pessoais</h2>
+            <p>Informe seus dados básicos para criar sua conta.</p>
+        </div>
+    `;
 
-    const termos = document.createElement("div");
-    termos.className = "cadastro-termos";
+    const form = document.createElement("form");
+    form.innerHTML = `
+        <div class="cadastro-grid">
+            <div class="campo-bloco">
+                <label>Nome completo <span class="asterisco">*</span></label>
+                <div class="input-com-icone">
+                    <span class="icone-prefixo"><img src="/assets/icons/person-cinza.svg" alt="" width="16"></span>
+                    <input type="text" name="nome" required>
+                </div>
+            </div>
+            <div class="campo-bloco">
+                <label>E-mail <span class="asterisco">*</span></label>
+                <div class="input-com-icone">
+                    <span class="icone-prefixo"><img src="/assets/icons/envelope-cinza.svg" alt="" width="16"></span>
+                    <input type="email" name="email" required>
+                </div>
+            </div>
+            <div class="campo-bloco">
+                <label>CPF <span class="asterisco">*</span></label>
+                <div class="input-com-icone">
+                    <span class="icone-prefixo"><img src="/assets/icons/file-earmark-text-cinza.svg" alt="" width="16"></span>
+                    <input type="text" name="cpf" required>
+                </div>
+            </div>
+            <div class="campo-bloco">
+                <label>Telefone <span class="asterisco">*</span></label>
+                <div class="input-com-icone">
+                    <span class="icone-prefixo"><img src="/assets/icons/telephone-cinza.svg" alt="" width="16"></span>
+                    <input type="tel" name="telefone" required>
+                </div>
+            </div>
+            <div class="campo-bloco">
+                <label>Senha <span class="asterisco">*</span></label>
+                <div class="input-com-icone">
+                    <span class="icone-prefixo"><img src="/assets/icons/lock-cinza.svg" alt="" width="16"></span>
+                    <input type="password" name="senha" required>
+                    <button type="button" class="btn-olho-senha" data-alvo="senha">
+                        <img src="/assets/icons/eye-slash.svg" alt="" width="16">
+                    </button>
+                </div>
+            </div>
+            <div class="campo-bloco">
+                <label>Confirmar senha <span class="asterisco">*</span></label>
+                <div class="input-com-icone">
+                    <span class="icone-prefixo"><img src="/assets/icons/lock-cinza.svg" alt="" width="16"></span>
+                    <input type="password" name="confirmarSenha" required>
+                    <button type="button" class="btn-olho-senha" data-alvo="confirmarSenha">
+                        <img src="/assets/icons/eye-slash.svg" alt="" width="16">
+                    </button>
+                </div>
+            </div>
+        </div>
 
-    const checkboxTermos = document.createElement("input");
-    checkboxTermos.type = "checkbox";
-    checkboxTermos.name = "termos";
-    checkboxTermos.required = true;
+        <label class="cadastro-termos">
+            <input type="checkbox" name="termos" required>
+            <span>Li e concordo com os <a href="#">Termos de uso</a> e a <a href="#">Política de privacidade</a> do Conecta Talent</span>
+        </label>
 
-    const textoTermos = document.createElement("label");
-    textoTermos.append("Li e concordo com os ");
+        <div class="cadastro-rodape-botoes">
+            <button type="submit" class="btn-primario-cadastro">Finalizar cadastro</button>
+        </div>
+    `;
 
-    const linkTermos = document.createElement("a");
-    linkTermos.href = "#";
-    linkTermos.textContent = "Termos de uso";
-
-    const textoE = document.createTextNode(" e a ");
-
-    const linkPrivacidade = document.createElement("a");
-    linkPrivacidade.href = "#";
-    linkPrivacidade.textContent = "Política de privacidade";
-
-    textoTermos.append(linkTermos, textoE, linkPrivacidade);
-    termos.append(checkboxTermos, textoTermos);
-
-    const botaoSubmit = form.querySelector(".btn-submit");
-
-    if (botaoSubmit) {
-        const areaBotao = botaoSubmit.closest(".botoes") || botaoSubmit;
-        areaBotao.before(termos);
-    } else {
-        form.appendChild(termos);
-    }
-
-    const inputNome = form.querySelector('[name="nome"]');
-    const inputEmail = form.querySelector('[name="email"]');
-    const inputCpf = form.querySelector('[name="cpf"]');
-    const inputTelefone = form.querySelector('[name="telefone"]');
-    const inputSenha = form.querySelector('[name="senha"]');
-    const inputConfirmarSenha = form.querySelector('[name="confirmar-senha"]');
-
-    [
-        inputNome,
-        inputEmail,
-        inputCpf,
-        inputTelefone,
-        inputSenha,
-        inputConfirmarSenha
-    ].forEach((input) => {
-        if (input) {
-            input.required = true;
-        }
+    form.querySelectorAll(".btn-olho-senha").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const input = form.querySelector(`input[name="${btn.dataset.alvo}"]`);
+            const icone = btn.querySelector("img");
+            if (input.type === "password") {
+                input.type = "text";
+                icone.src = "/assets/icons/eye.svg";
+            } else {
+                input.type = "password";
+                icone.src = "/assets/icons/eye-slash.svg";
+            }
+        });
     });
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
+        const dados = Object.fromEntries(new FormData(form).entries());
 
-        const nome = inputNome.value.trim();
-        const email = inputEmail.value.trim();
-        const cpf = inputCpf.value.trim();
-        const telefone = inputTelefone.value.trim();
-        const senha = inputSenha.value;
-        const confirmarSenha = inputConfirmarSenha.value;
-
-        if (senha !== confirmarSenha) {
+        if (dados.senha !== dados.confirmarSenha) {
             alert("As senhas não coincidem!");
             return;
         }
 
-        if (!checkboxTermos.checked) {
-            alert("Você precisa aceitar os termos para continuar.");
-            return;
-        }
-
         try {
-            const resultado = await fetch("/autenticacao/cadastrar", {
+            const resultado = await fetch("/autenticacao/cadastro/candidato", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    nome,
-                    email,
-                    senha,
-                    cpf,
-                    telefone
-                })
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dados)
             });
 
-            const dados = await resultado.json();
+            const resposta = await resultado.json();
 
             if (resultado.ok) {
                 alert("Cadastro realizado com sucesso!");
-                navegarParaLogin();
+                irParaLogin();
             } else {
-                alert(dados.erro || "Erro ao realizar cadastro!");
+                alert(resposta.erro || "Erro ao realizar cadastro!");
             }
         } catch (erro) {
-            console.error(erro);
             alert("Erro ao conectar com o servidor!");
         }
     });
 
-    card.append(titulo, descricao, stepper, formContainer);
+    card.append(titulo, descricao, stepperWrapper, secaoHeader, form);
     painelDireito.append(navegacao, card);
     container.append(painelEsquerdo, painelDireito);
 

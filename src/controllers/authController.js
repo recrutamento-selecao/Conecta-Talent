@@ -1,78 +1,90 @@
-import conn from "../config/database.js";
+import AuthService from '../services/authService.js';
 
-class Authcontroller {
-    async cadastrar(req, res) {
+class AuthController {
+    static async login(req, res) {
+        const { email, senha } = req.body;
+
+        if (!email || !senha) {
+            return res.status(400).json({ erro: 'E-mail e senha são obrigatórios.' });
+        }
+
         try {
-            const { nome, email, senha } = req.body;
-
-            if (!nome || !email || !senha) {
-                return res.status(400).json({
-                    erro: "Preencha todos os campos obrigatórios"
-                });
-            }
-
-            const { data, error } = await conn.auth.signUp({
-                email: email,
-                password: senha,
-                options: {
-                    data: {
-                        nome: nome
-                    }
-                }
+            const resultado = await AuthService.login(email, senha);
+            return res.status(200).json({
+                mensagem: 'Login realizado com sucesso!',
+                session: resultado.session,
+                user: resultado.user
             });
-
-            if (error) {
-                return res.status(400).json({
-                    erro: error.message
-                });
-            }
-
-            return res.status(201).json({
-                mensagem: "Cadastro feito com sucesso!",
-                usuario: data.user,
-                requerConfirmacao: !data.session
-            });
-
-        } catch (erro) {
-            return res.status(500).json({
-                erro: `Falha ao cadastrar: ${erro.message}`
-            });
+        } catch (err) {
+            return res.status(401).json({ erro: err.message || 'Credenciais inválidas.' });
         }
     }
 
-    async login(req, res) {
+    static async loginOAuth(req, res) {
+        const { provider, redirectTo } = req.body;
+        const provedoresPermitidos = {
+            google: 'google',
+            microsoft: 'azure'
+        };
+
+        const providerSupabase = provedoresPermitidos[provider];
+        if (!providerSupabase) {
+            return res.status(400).json({ erro: 'Provedor social inválido.' });
+        }
+
         try {
-            const { email, senha } = req.body;
-
-            if (!email || !senha) {
-                return res.status(400).json({
-                    erro: "Preencha o e-mail e a senha"
-                });
-            }
-
-            const { data, error } = await conn.auth.signInWithPassword({
-                email: email,
-                password: senha
-            });
-
-            if (error) {
-                return res.status(401).json({
-                    erro: "E-mail ou senha incorretos"
-                });
-            }
-
+            const resultado = await AuthService.loginOAuth(providerSupabase, redirectTo);
             return res.status(200).json({
-                mensagem: "Login realizado com sucesso!",
-                usuario: data.user,
-                sessao: data.session
+                url: resultado.url
             });
+        } catch (err) {
+            return res.status(400).json({ erro: err.message || 'Erro ao iniciar login social.' });
+        }
+    }
 
-        } catch (erro) {
-            return res.status(500).json({
-                erro: `Falha ao realizar login: ${erro.message}`
+    static async cadastrarCandidato(req, res) {
+        const { email, senha, nome, cpf, telefone } = req.body;
+
+        if (!email || !senha || !nome) {
+            return res.status(400).json({ erro: 'Nome, e-mail e senha são obrigatórios.' });
+        }
+
+        try {
+            const resultado = await AuthService.cadastrarCandidato({
+                email,
+                senha,
+                nome,
+                cpf,
+                telefone
             });
+            return res.status(201).json({
+                mensagem: 'Cadastro realizado com sucesso!',
+                session: resultado.session,
+                user: resultado.user
+            });
+        } catch (err) {
+            return res.status(400).json({ erro: err.message || 'Erro ao cadastrar.' });
+        }
+    }
+
+    static async cadastrarEmpresa(req, res) {
+        const { email, senha, nomeEmpresa, cnpj } = req.body;
+
+        if (!email || !senha || !nomeEmpresa || !cnpj) {
+            return res.status(400).json({ erro: 'Dados obrigatórios da empresa não preenchidos.' });
+        }
+
+        try {
+            const resultado = await AuthService.cadastrarEmpresa(req.body);
+            return res.status(201).json({
+                mensagem: 'Empresa cadastrada com sucesso!',
+                session: resultado.session,
+                user: resultado.user
+            });
+        } catch (err) {
+            return res.status(400).json({ erro: err.message || 'Erro ao cadastrar empresa.' });
         }
     }
 }
 
-export default new Authcontroller();
+export default AuthController;

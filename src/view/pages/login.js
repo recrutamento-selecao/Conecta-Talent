@@ -72,16 +72,23 @@ function renderLoginPage() {
     btnEmpresa.className = "perfil";
     btnEmpresa.textContent = "Empresa";
 
-    let perfilSelecionado = "candidato";
+    let perfilSelecionado = localStorage.getItem("perfilSelecionado") || "candidato";
+
+    if (perfilSelecionado === "empresa") {
+        btnEmpresa.classList.add("ativo");
+        btnCandidato.classList.remove("ativo");
+    }
 
     btnCandidato.addEventListener("click", () => {
         perfilSelecionado = "candidato";
+        localStorage.setItem("perfilSelecionado", perfilSelecionado);
         btnCandidato.classList.add("ativo");
         btnEmpresa.classList.remove("ativo");
     });
 
     btnEmpresa.addEventListener("click", () => {
         perfilSelecionado = "empresa";
+        localStorage.setItem("perfilSelecionado", perfilSelecionado);
         btnEmpresa.classList.add("ativo");
         btnCandidato.classList.remove("ativo");
     });
@@ -130,6 +137,37 @@ function renderLoginPage() {
         Entrar com Microsoft
     `;
 
+    async function iniciarLoginSocial(provider) {
+        localStorage.setItem("perfilSelecionado", perfilSelecionado);
+        const destinoPosLogin = perfilSelecionado === "empresa"
+            ? `${window.location.origin}/#dashboard-empresa`
+            : `${window.location.origin}/#dashboard-candidato`;
+
+        try {
+            const response = await fetch("/autenticacao/oauth", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    provider,
+                    redirectTo: destinoPosLogin
+                })
+            });
+
+            const dados = await response.json();
+
+            if (response.ok && dados.url) {
+                window.location.href = dados.url;
+            } else {
+                alert(dados.erro || "Não foi possível iniciar o login social.");
+            }
+        } catch (erro) {
+            alert("Erro ao conectar com o servidor!");
+        }
+    }
+
+    btnGoogle.addEventListener("click", () => iniciarLoginSocial("google"));
+    btnMicrosoft.addEventListener("click", () => iniciarLoginSocial("microsoft"));
+
     botoesSociais.append(btnGoogle, btnMicrosoft);
 
     const linkCadastro = document.createElement("p");
@@ -138,7 +176,8 @@ function renderLoginPage() {
 
     linkCadastro.querySelector("a").addEventListener("click", (event) => {
         event.preventDefault();
-        window.location.hash = "#tipo-cadastro";
+        localStorage.setItem("perfilSelecionado", perfilSelecionado);
+        window.location.hash = perfilSelecionado === "empresa" ? "#cadastro-empresa" : "#tipo-cadastro";
     });
 
     const inputEmail = form.querySelector('input[type="email"]');

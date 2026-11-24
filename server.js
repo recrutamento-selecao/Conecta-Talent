@@ -3,6 +3,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createClient } from '@supabase/supabase-js';
+import authRoutes from './src/routes/authRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,6 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use('/autenticacao', authRoutes);
 
 // --- CONFIGURAÇÃO DE FICHEIROS ESTÁTICOS ---
 app.use(express.static(path.join(__dirname, 'src', 'view')));
@@ -32,35 +34,6 @@ app.get('/api/supabase-config', (req, res) => {
         supabaseUrl: process.env.SUPABASE_URL,
         supabaseKey: process.env.SUPABASE_PUBLISHABLE_KEY
     });
-});
-
-// --- ROTA DE LOGIN COM E-MAIL E SENHA ---
-app.post('/autenticacao/login', async (req, res) => {
-    const { email, senha } = req.body;
-
-    if (!email || !senha) {
-        return res.status(400).json({ erro: 'E-mail e senha são obrigatórios.' });
-    }
-
-    try {
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: senha
-        });
-
-        if (error) {
-            return res.status(401).json({ erro: error.message });
-        }
-
-        return res.status(200).json({
-            mensagem: 'Login realizado com sucesso!',
-            session: data.session,
-            user: data.user
-        });
-    } catch (err) {
-        console.error('Erro interno no servidor ao realizar login:', err);
-        return res.status(500).json({ erro: 'Erro interno no servidor.' });
-    }
 });
 
 // --- ROTA DE BACKEND PARA ENVIAR/DISPARAR O OTP POR E-MAIL ---
