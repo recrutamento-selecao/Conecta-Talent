@@ -17,6 +17,8 @@ import { renderGerenciarRecrutadores } from '../pages/gerenciar-recrutadores.js'
 import { renderGerenciarCandidaturas } from '../pages/gerenciar-candidaturas.js';
 import { renderVagasInicio } from '../pages/vagas-inicio.js';
 import { abrirModalCandidatar } from '../pages/modal-candidatar-se.js';
+import { renderGerenciarUsuarios } from '../pages/gerenciar-usuarios.js';
+import { criarSidebar } from '../components/sidebar.js'; 
 
 function garantirCssModal() {
     if (!document.getElementById('estilo-modal-global')) {
@@ -135,10 +137,20 @@ export function iniciarRouter() {
                 trocarEstiloPagina('dashboard-recrutador');
                 app.appendChild(renderDashboardRecrutador());
                 break;
-            case '#dashboard-administrador':
-                trocarEstiloPagina('dashboard-administrador');
-                app.appendChild(renderDashboardAdministrador());
-                break;
+           case '#dashboard-administrador': {
+          trocarEstiloPagina('dashboard');
+            const layout = document.createElement('div');
+           layout.className = 'pagina-layout-dashboard';
+           layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+
+           const main = document.createElement('main');
+           main.className = 'conteudo-principal';
+           main.append(renderDashboardAdministrador());
+
+           layout.append(main);
+           app.append(layout);
+           break;
+}
             case '#verificacao':
             case '#2fa':
                 trocarEstiloPagina('verificacao');
@@ -170,8 +182,25 @@ export function iniciarRouter() {
                 trocarEstiloPagina('vagas-inicio');
                 app.appendChild(renderVagasInicio());
                 break;
+               case '#/usuarios':
+            case '#usuarios': {
+               trocarEstiloPagina('dashboard');
+               const layout = document.createElement('div');
+               layout.className = 'pagina-layout-dashboard';
+               layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+
+               const main = document.createElement('main');
+               main.className = 'conteudo-principal';
+               main.append(renderGerenciarUsuarios());
+
+              layout.append(main);
+              app.append(layout);
+    break;
+            }
             case '#home':
+            case '':
             default:
+            case '#home':
                 trocarEstiloPagina('home');
                 app.appendChild(renderHome());
                 break;
