@@ -1,35 +1,36 @@
-import AuthService from '../services/authService.js';
+import AuthService from "../services/authService.js";
 
 class AuthController {
     static async login(req, res) {
         const { email, senha } = req.body;
 
         if (!email || !senha) {
-            return res.status(400).json({ erro: 'E-mail e senha são obrigatórios.' });
+            return res.status(400).json({ erro: "E-mail e senha são obrigatórios." });
         }
 
         try {
             const resultado = await AuthService.login(email, senha);
             return res.status(200).json({
-                mensagem: 'Login realizado com sucesso!',
+                mensagem: "Login realizado com sucesso!",
+                token: resultado.token,
                 session: resultado.session,
                 user: resultado.user
             });
         } catch (err) {
-            return res.status(401).json({ erro: err.message || 'Credenciais inválidas.' });
+            return res.status(401).json({ erro: err.message || "Credenciais inválidas." });
         }
     }
 
     static async loginOAuth(req, res) {
         const { provider, redirectTo } = req.body;
         const provedoresPermitidos = {
-            google: 'google',
-            microsoft: 'azure'
+            google: "google",
+            microsoft: "azure"
         };
 
         const providerSupabase = provedoresPermitidos[provider];
         if (!providerSupabase) {
-            return res.status(400).json({ erro: 'Provedor social inválido.' });
+            return res.status(400).json({ erro: "Provedor social inválido." });
         }
 
         try {
@@ -38,7 +39,7 @@ class AuthController {
                 url: resultado.url
             });
         } catch (err) {
-            return res.status(400).json({ erro: err.message || 'Erro ao iniciar login social.' });
+            return res.status(400).json({ erro: err.message || "Erro ao iniciar login social." });
         }
     }
 
@@ -46,7 +47,7 @@ class AuthController {
         const { email, senha, nome, cpf, telefone } = req.body;
 
         if (!email || !senha || !nome) {
-            return res.status(400).json({ erro: 'Nome, e-mail e senha são obrigatórios.' });
+            return res.status(400).json({ erro: "Nome, e-mail e senha são obrigatórios." });
         }
 
         try {
@@ -58,12 +59,13 @@ class AuthController {
                 telefone
             });
             return res.status(201).json({
-                mensagem: 'Cadastro realizado com sucesso!',
+                mensagem: "Cadastro realizado com sucesso!",
+                token: resultado.token,
                 session: resultado.session,
                 user: resultado.user
             });
         } catch (err) {
-            return res.status(400).json({ erro: err.message || 'Erro ao cadastrar.' });
+            return res.status(400).json({ erro: err.message || "Erro ao cadastrar." });
         }
     }
 
@@ -71,18 +73,31 @@ class AuthController {
         const { email, senha, nomeEmpresa, cnpj } = req.body;
 
         if (!email || !senha || !nomeEmpresa || !cnpj) {
-            return res.status(400).json({ erro: 'Dados obrigatórios da empresa não preenchidos.' });
+            return res.status(400).json({ erro: "Dados obrigatórios da empresa não preenchidos." });
         }
 
         try {
             const resultado = await AuthService.cadastrarEmpresa(req.body);
             return res.status(201).json({
-                mensagem: 'Empresa cadastrada com sucesso!',
+                mensagem: "Empresa cadastrada com sucesso!",
+                token: resultado.token,
                 session: resultado.session,
                 user: resultado.user
             });
         } catch (err) {
-            return res.status(400).json({ erro: err.message || 'Erro ao cadastrar empresa.' });
+            return res.status(400).json({ erro: err.message || "Erro ao cadastrar empresa." });
+        }
+    }
+
+    static async atualizarDadosEmpresa(req, res) {
+        try {
+            const resultado = await AuthService.atualizarDadosEmpresa(req.usuario, req.body);
+            return res.status(200).json({
+                mensagem: "Dados da empresa atualizados com sucesso!",
+                user: resultado.user
+            });
+        } catch (err) {
+            return res.status(400).json({ erro: err.message || "Erro ao atualizar dados da empresa." });
         }
     }
 }

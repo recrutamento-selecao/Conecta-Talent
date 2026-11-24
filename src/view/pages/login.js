@@ -196,8 +196,8 @@ function renderLoginPage() {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    email: email,
-                    senha: senha,
+                    email,
+                    senha,
                     perfil: perfilSelecionado
                 })
             });
@@ -205,7 +205,16 @@ function renderLoginPage() {
             const dados = await response.json();
 
             if (response.ok) {
-                localStorage.setItem("usuarioLogado", JSON.stringify(dados.user || dados.usuario || { email, perfil: perfilSelecionado }));
+                const token = dados.token || dados.session?.access_token;
+                if (token) {
+                    localStorage.setItem("token", token);
+                }
+
+                localStorage.setItem(
+                    "usuarioLogado",
+                    JSON.stringify(dados.user || dados.usuario || { email, perfil: perfilSelecionado })
+                );
+
                 alert("Login realizado com sucesso!");
                 window.location.hash = perfilSelecionado === "empresa" ? "#dashboard-empresa" : "#dashboard-candidato";
             } else {

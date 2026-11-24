@@ -1,325 +1,249 @@
-import { criarStepper } from "../components/stepper.js";
+import criarStepper from "../components/stepper.js";
+import createForm from "../components/form.js";
 
-const ETAPAS_EMPRESA = [
-    { id: 1, titulo: "Dados pessoais" },
-    { id: 2, titulo: "Informações complementares" }
-];
-
-const renderCadastroEmpresaPage = () => {
-    let etapaAtual = 1;
-
-    const estadoEmpresa = {
-        dadosIniciais: {
-            nomeEmpresa: "",
-            email: "",
-            cnpj: "",
-            telefone: "",
-            senha: "",
-            confirmarSenha: ""
-        },
-        complementares: {
-            nomeFantasia: "",
-            porte: "",
-            tipo: "",
-            endereco: "",
-            cep: "",
-            estado: "",
-            cidade: ""
-        }
-    };
-
+function renderCadastroEmpresaPage() {
     const container = document.createElement("div");
     container.className = "cadastro-container";
 
-    const painelEsquerdo = document.createElement("div");
-    painelEsquerdo.className = "cadastro-banner";
+    const layout = document.createElement("div");
+    layout.className = "cadastro-layout";
 
-    const imagem = document.createElement("img");
-    imagem.src = "/assets/images/banner-cadastro-empresa.png";
-    imagem.alt = "ConectaTalent - Encontre os talentos certos para sua empresa";
-    imagem.onerror = () => {
-        imagem.src = "/assets/images/banner-cadastro.png";
-    };
-    painelEsquerdo.appendChild(imagem);
+    const painelEsquerdo = document.createElement("div");
+    painelEsquerdo.className = "painel-esquerdo";
+
+    const imagemPainel = document.createElement("img");
+    imagemPainel.src = "/assets/images/banner-cadastro-empresa.png";
+    imagemPainel.alt = "ConectaTalent - Cadastro de Empresa";
+
+    painelEsquerdo.appendChild(imagemPainel);
 
     const painelDireito = document.createElement("div");
-    painelDireito.className = "cadastro-painel";
+    painelDireito.className = "painel-direito";
 
-    const navegacao = document.createElement("div");
-    navegacao.className = "cadastro-navegacao";
-
-    const voltar = document.createElement("a");
-    voltar.href = "#home";
-    voltar.textContent = "← Voltar";
-    voltar.addEventListener("click", (event) => {
-        event.preventDefault();
-        if (etapaAtual === 2) {
-            etapaAtual = 1;
-            renderizarEtapa();
-        } else {
-            window.location.hash = "#home";
-        }
-    });
-
-    const entrar = document.createElement("div");
-    entrar.className = "cadastro-entrar";
-    entrar.innerHTML = 'Já tem uma conta? <a href="#login" class="linkNav">Entrar</a>';
-    entrar.querySelector("a").addEventListener("click", (event) => {
+    const btnVoltar = document.createElement("a");
+    btnVoltar.href = "#login";
+    btnVoltar.className = "btn-voltar";
+    btnVoltar.textContent = "← Voltar";
+    btnVoltar.addEventListener("click", (event) => {
         event.preventDefault();
         window.location.hash = "#login";
     });
 
-    navegacao.append(voltar, entrar);
+    const titulo = document.createElement("h2");
+    titulo.className = "titulo-cadastro";
+    titulo.textContent = "Crie sua conta empresarial";
 
-    const card = document.createElement("div");
-    card.className = "cadastro-card";
+    const stepper = criarStepper({
+        etapas: ["Dados pessoais", "Informações complementares"],
+        etapaAtual: 0
+    });
 
-    function renderizarEtapa() {
-        card.innerHTML = "";
+    const dadosEmpresa = {
+        nomeEmpresa: "",
+        email: "",
+        cnpj: "",
+        telefone: "",
+        senha: "",
+        confirmarSenha: "",
+        nomeFantasia: "",
+        porte: "",
+        tipo: "",
+        endereco: "",
+        cep: "",
+        estado: "",
+        cidade: ""
+    };
 
-        const titulo = document.createElement("h1");
-        titulo.textContent = "Cadastro de empresa";
-
-        const descricao = document.createElement("p");
-        descricao.className = "cadastro-descricao";
-        descricao.textContent = "Preencha as informações abaixo para criar sua conta e começar a contratar os melhores talentos.";
-
-        const stepperWrapper = document.createElement("div");
-        stepperWrapper.className = "cadastro-stepper-wrapper";
-        const stepper = criarStepper({
-            etapas: ETAPAS_EMPRESA,
-            etapaAtual: etapaAtual,
-            onChange: (novaEtapa) => {
-                etapaAtual = novaEtapa;
-                renderizarEtapa();
+    const formEtapa1Container = createForm({
+        campos: [
+            { nome: "nomeEmpresa", label: "Nome da empresa", tipo: "text", placeholder: "" },
+            { nome: "email", label: "E-mail corporativo", tipo: "email", placeholder: "" },
+            { nome: "cnpj", label: "CNPJ", tipo: "text", placeholder: "" },
+            { nome: "telefone", label: "Telefone", tipo: "tel", placeholder: "" },
+            { nome: "senha", label: "Senha", tipo: "password", placeholder: "" },
+            { nome: "confirmarSenha", label: "Confirmar senha", tipo: "password", placeholder: "" }
+        ],
+        botoes: [
+            {
+                texto: "Continuar",
+                tipo: "submit",
+                className: "botao-enviar"
             }
-        });
-        stepperWrapper.appendChild(stepper);
+        ]
+    });
 
-        const secaoHeader = document.createElement("div");
-        secaoHeader.className = "secao-subtitulo-box";
-        secaoHeader.innerHTML = `
-            <div class="secao-icone-circulo">
-                <img src="/assets/icons/building.svg" alt="" width="20" height="20">
-            </div>
-            <div>
-                <h2>Dados da empresa</h2>
-                <p>Informe os dados principais da sua empresa.</p>
-            </div>
-        `;
+    const formEtapa1 = formEtapa1Container.querySelector("form");
+    formEtapa1.className = "cadastro-form grade-dois-campos";
 
-        card.append(titulo, descricao, stepperWrapper, secaoHeader);
+    const formEtapa2Container = createForm({
+        campos: [
+            { nome: "nomeFantasia", label: "Nome fantasia", tipo: "text", placeholder: "" },
+            { nome: "porte", label: "Porte da empresa", tipo: "text", placeholder: "" },
+            { nome: "tipo", label: "Tipo de empresa", tipo: "text", placeholder: "" },
+            { nome: "endereco", label: "Endereço", tipo: "text", placeholder: "" },
+            { nome: "cep", label: "CEP", tipo: "text", placeholder: "" },
+            { nome: "estado", label: "Estado", tipo: "text", placeholder: "" },
+            { nome: "cidade", label: "Cidade", tipo: "text", placeholder: "" }
+        ],
+        botoes: [
+            {
+                texto: "Voltar etapa",
+                tipo: "button",
+                className: "botao-secundario"
+            },
+            {
+                texto: "Finalizar cadastro",
+                tipo: "submit",
+                className: "botao-enviar"
+            }
+        ]
+    });
 
-        if (etapaAtual === 1) {
-            const form1 = document.createElement("form");
-            form1.innerHTML = `
-                <div class="cadastro-grid">
-                    <div class="campo-bloco">
-                        <label>Nome da empresa <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/person-cinza.svg" alt="" width="16"></span>
-                            <input type="text" name="nomeEmpresa" value="${estadoEmpresa.dadosIniciais.nomeEmpresa}" required>
-                        </div>
-                    </div>
-                    <div class="campo-bloco">
-                        <label>E-mail corporativo <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/envelope-cinza.svg" alt="" width="16"></span>
-                            <input type="email" name="email" value="${estadoEmpresa.dadosIniciais.email}" required>
-                        </div>
-                    </div>
-                    <div class="campo-bloco">
-                        <label>CNPJ <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/file-earmark-text-cinza.svg" alt="" width="16"></span>
-                            <input type="text" name="cnpj" value="${estadoEmpresa.dadosIniciais.cnpj}" required>
-                        </div>
-                    </div>
-                    <div class="campo-bloco">
-                        <label>Telefone <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/telephone-cinza.svg" alt="" width="16"></span>
-                            <input type="tel" name="telefone" value="${estadoEmpresa.dadosIniciais.telefone}" required>
-                        </div>
-                    </div>
-                    <div class="campo-bloco">
-                        <label>Senha <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/lock-cinza.svg" alt="" width="16"></span>
-                            <input type="password" name="senha" value="${estadoEmpresa.dadosIniciais.senha}" required>
-                            <button type="button" class="btn-olho-senha" data-alvo="senha">
-                                <img src="/assets/icons/eye-slash.svg" alt="" width="16">
-                            </button>
-                        </div>
-                    </div>
-                    <div class="campo-bloco">
-                        <label>Confirmar senha <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/lock-cinza.svg" alt="" width="16"></span>
-                            <input type="password" name="confirmarSenha" value="${estadoEmpresa.dadosIniciais.confirmarSenha}" required>
-                            <button type="button" class="btn-olho-senha" data-alvo="confirmarSenha">
-                                <img src="/assets/icons/eye-slash.svg" alt="" width="16">
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    const formEtapa2 = formEtapa2Container.querySelector("form");
+    formEtapa2.className = "cadastro-form grade-dois-campos";
+    formEtapa2Container.style.display = "none";
 
-                <div class="cadastro-rodape-botoes">
-                    <button type="submit" class="btn-primario-cadastro">Continuar</button>
-                </div>
-            `;
-
-            form1.querySelectorAll(".btn-olho-senha").forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    const input = form1.querySelector(`input[name="${btn.dataset.alvo}"]`);
-                    const icone = btn.querySelector("img");
-                    if (input.type === "password") {
-                        input.type = "text";
-                        icone.src = "/assets/icons/eye.svg";
-                    } else {
-                        input.type = "password";
-                        icone.src = "/assets/icons/eye-slash.svg";
-                    }
-                });
-            });
-
-            form1.addEventListener("submit", (event) => {
-                event.preventDefault();
-                const dados = Object.fromEntries(new FormData(form1).entries());
-
-                if (dados.senha !== dados.confirmarSenha) {
-                    alert("As senhas não coincidem!");
-                    return;
-                }
-
-                estadoEmpresa.dadosIniciais = dados;
-                etapaAtual = 2;
-                renderizarEtapa();
-            });
-
-            card.appendChild(form1);
-        } else {
-            const form2 = document.createElement("form");
-            form2.innerHTML = `
-                <div class="cadastro-grid">
-                    <div class="campo-bloco">
-                        <label>Nome fantasia <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/buildings-cinza.svg" alt="" width="16"></span>
-                            <input type="text" name="nomeFantasia" value="${estadoEmpresa.complementares.nomeFantasia}" required>
-                        </div>
-                    </div>
-                    <div class="campo-bloco">
-                        <label>Porte empresa <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/buildings-cinza.svg" alt="" width="16"></span>
-                            <select name="porte" required>
-                                <option value="">Selecione</option>
-                                <option value="MEI" ${estadoEmpresa.complementares.porte === "MEI" ? "selected" : ""}>MEI</option>
-                                <option value="Pequena" ${estadoEmpresa.complementares.porte === "Pequena" ? "selected" : ""}>Pequena</option>
-                                <option value="Média" ${estadoEmpresa.complementares.porte === "Média" ? "selected" : ""}>Média</option>
-                                <option value="Grande" ${estadoEmpresa.complementares.porte === "Grande" ? "selected" : ""}>Grande</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="campo-bloco linha-inteira">
-                        <label>Tipo empresa <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/buildings-cinza.svg" alt="" width="16"></span>
-                            <select name="tipo" required>
-                                <option value="">Selecione</option>
-                                <option value="Privada" ${estadoEmpresa.complementares.tipo === "Privada" ? "selected" : ""}>Privada</option>
-                                <option value="Pública" ${estadoEmpresa.complementares.tipo === "Pública" ? "selected" : ""}>Pública</option>
-                                <option value="ONG" ${estadoEmpresa.complementares.tipo === "ONG" ? "selected" : ""}>ONG</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="campo-bloco">
-                        <label>Endereço <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/geo-alt-cinza.svg" alt="" width="16"></span>
-                            <input type="text" name="endereco" value="${estadoEmpresa.complementares.endereco}" required>
-                        </div>
-                    </div>
-                    <div class="campo-bloco">
-                        <label>CEP <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/mailbox-cinza.svg" alt="" width="16"></span>
-                            <input type="text" name="cep" value="${estadoEmpresa.complementares.cep}" required>
-                        </div>
-                    </div>
-                    <div class="campo-bloco">
-                        <label>Estado <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/geo-alt-cinza.svg" alt="" width="16"></span>
-                            <input type="text" name="estado" value="${estadoEmpresa.complementares.estado}" required>
-                        </div>
-                    </div>
-                    <div class="campo-bloco">
-                        <label>Cidade <span class="asterisco">*</span></label>
-                        <div class="input-com-icone">
-                            <span class="icone-prefixo"><img src="/assets/icons/geo-alt-cinza.svg" alt="" width="16"></span>
-                            <input type="text" name="cidade" value="${estadoEmpresa.complementares.cidade}" required>
-                        </div>
-                    </div>
-                </div>
-
-                <label class="cadastro-termos">
-                    <input type="checkbox" name="termos" required>
-                    <span>Li e concordo com os <a href="#">Termos de uso</a> e a <a href="#">Política de privacidade</a> do Conecta Talent</span>
-                </label>
-
-                <div class="cadastro-rodape-botoes entre-extremos">
-                    <button type="button" id="btn-voltar-etapa1" class="btn-secundario-cadastro">Voltar</button>
-                    <button type="submit" class="btn-primario-cadastro">Finalizar cadastro</button>
-                </div>
-            `;
-
-            form2.querySelector("#btn-voltar-etapa1").addEventListener("click", () => {
-                estadoEmpresa.complementares = Object.fromEntries(new FormData(form2).entries());
-                etapaAtual = 1;
-                renderizarEtapa();
-            });
-
-            form2.addEventListener("submit", async (event) => {
-                event.preventDefault();
-                estadoEmpresa.complementares = Object.fromEntries(new FormData(form2).entries());
-
-                const payloadCompleto = {
-                    ...estadoEmpresa.dadosIniciais,
-                    ...estadoEmpresa.complementares
-                };
-
-                try {
-                    const resultado = await fetch("/autenticacao/cadastro/empresa", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(payloadCompleto)
-                    });
-
-                    const resposta = await resultado.json();
-
-                    if (resultado.ok) {
-                        alert("Cadastro da empresa realizado com sucesso!");
-                        window.location.hash = "#login";
-                    } else {
-                        alert(resposta.erro || "Erro ao cadastrar empresa!");
-                    }
-                } catch (erro) {
-                    alert("Erro ao conectar com o servidor!");
-                }
-            });
-
-            card.appendChild(form2);
+    // Preenche inputs se já houver valor salvo no estado
+    Object.keys(dadosEmpresa).forEach((campo) => {
+        const input = formEtapa1.querySelector(`[name="${campo}"]`) || formEtapa2.querySelector(`[name="${campo}"]`);
+        if (input && dadosEmpresa[campo]) {
+            input.value = dadosEmpresa[campo];
         }
-    }
+    });
 
-    renderizarEtapa();
+    formEtapa1.addEventListener("submit", (event) => {
+        event.preventDefault();
 
-    painelDireito.append(navegacao, card);
-    container.append(painelEsquerdo, painelDireito);
+        const nomeEmpresa = formEtapa1.querySelector('[name="nomeEmpresa"]').value.trim();
+        const email = formEtapa1.querySelector('[name="email"]').value.trim();
+        const cnpj = formEtapa1.querySelector('[name="cnpj"]').value.trim();
+        const telefone = formEtapa1.querySelector('[name="telefone"]').value.trim();
+        const senha = formEtapa1.querySelector('[name="senha"]').value.trim();
+        const confirmarSenha = formEtapa1.querySelector('[name="confirmarSenha"]').value.trim();
+
+        if (!nomeEmpresa || !email || !cnpj || !telefone || !senha || !confirmarSenha) {
+            alert("Preencha todos os campos da primeira etapa.");
+            return;
+        }
+
+        if (senha !== confirmarSenha) {
+            alert("As senhas não coincidem.");
+            return;
+        }
+
+        dadosEmpresa.nomeEmpresa = nomeEmpresa;
+        dadosEmpresa.email = email;
+        dadosEmpresa.cnpj = cnpj;
+        dadosEmpresa.telefone = telefone;
+        dadosEmpresa.senha = senha;
+        dadosEmpresa.confirmarSenha = confirmarSenha;
+
+        formEtapa1Container.style.display = "none";
+        formEtapa2Container.style.display = "block";
+        stepper.definirEtapa?.(1);
+    });
+
+    const btnVoltarEtapa = formEtapa2.querySelector('button[type="button"]');
+    btnVoltarEtapa?.addEventListener("click", () => {
+        dadosEmpresa.nomeFantasia = formEtapa2.querySelector('[name="nomeFantasia"]').value.trim();
+        dadosEmpresa.porte = formEtapa2.querySelector('[name="porte"]').value.trim();
+        dadosEmpresa.tipo = formEtapa2.querySelector('[name="tipo"]').value.trim();
+        dadosEmpresa.endereco = formEtapa2.querySelector('[name="endereco"]').value.trim();
+        dadosEmpresa.cep = formEtapa2.querySelector('[name="cep"]').value.trim();
+        dadosEmpresa.estado = formEtapa2.querySelector('[name="estado"]').value.trim();
+        dadosEmpresa.cidade = formEtapa2.querySelector('[name="cidade"]').value.trim();
+
+        formEtapa2Container.style.display = "none";
+        formEtapa1Container.style.display = "block";
+        stepper.definirEtapa?.(0);
+    });
+
+    formEtapa2.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        dadosEmpresa.nomeFantasia = formEtapa2.querySelector('[name="nomeFantasia"]').value.trim();
+        dadosEmpresa.porte = formEtapa2.querySelector('[name="porte"]').value.trim();
+        dadosEmpresa.tipo = formEtapa2.querySelector('[name="tipo"]').value.trim();
+        dadosEmpresa.endereco = formEtapa2.querySelector('[name="endereco"]').value.trim();
+        dadosEmpresa.cep = formEtapa2.querySelector('[name="cep"]').value.trim();
+        dadosEmpresa.estado = formEtapa2.querySelector('[name="estado"]').value.trim();
+        dadosEmpresa.cidade = formEtapa2.querySelector('[name="cidade"]').value.trim();
+
+        try {
+            const response = await fetch("/autenticacao/cadastro/empresa", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(dadosEmpresa)
+            });
+
+            const dados = await response.json();
+
+            if (!response.ok) {
+                alert(dados.erro || dados.error || "Não foi possível concluir o cadastro da empresa.");
+                return;
+            }
+
+            const tokenRecebido = dados.token || dados.session?.access_token;
+            if (tokenRecebido) {
+                localStorage.setItem("token", tokenRecebido);
+            }
+
+            const tokenAtivo = localStorage.getItem("token");
+            if (tokenAtivo) {
+                await fetch("/autenticacao/cadastro/empresa/dados", {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${tokenAtivo}`
+                    },
+                    body: JSON.stringify({
+                        nomeFantasia: dadosEmpresa.nomeFantasia,
+                        porte: dadosEmpresa.porte,
+                        tipo: dadosEmpresa.tipo,
+                        endereco: dadosEmpresa.endereco,
+                        cep: dadosEmpresa.cep,
+                        estado: dadosEmpresa.estado,
+                        cidade: dadosEmpresa.cidade
+                    })
+                });
+            }
+
+            localStorage.setItem("perfilSelecionado", "empresa");
+            if (dados.user) {
+                localStorage.setItem("usuarioLogado", JSON.stringify(dados.user));
+            }
+
+            alert(dados.mensagem || "Empresa cadastrada com sucesso!");
+            window.location.hash = "#login";
+        } catch (erro) {
+            console.log("Erro ao cadastrar empresa:", erro);
+            alert("Erro ao conectar com o servidor!");
+        }
+    });
+
+    const linkLogin = document.createElement("p");
+    linkLogin.className = "link-cadastro-texto";
+    linkLogin.innerHTML = 'Já possui uma conta? <a href="#login" class="linkNav">Entrar</a>';
+    linkLogin.querySelector("a").addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.hash = "#login";
+    });
+
+    painelDireito.append(
+        btnVoltar,
+        titulo,
+        stepper.elemento || stepper,
+        formEtapa1Container,
+        formEtapa2Container,
+        linkLogin
+    );
+
+    layout.append(painelEsquerdo, painelDireito);
+    container.appendChild(layout);
 
     return container;
-};
+}
 
 export default renderCadastroEmpresaPage;

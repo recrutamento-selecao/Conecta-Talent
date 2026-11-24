@@ -1,4 +1,4 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from "@supabase/supabase-js";
 
 const supabase = createClient(
     process.env.SUPABASE_URL,
@@ -17,6 +17,7 @@ class AuthService {
         }
 
         return {
+            token: data.session?.access_token || null,
             session: data.session,
             user: data.user
         };
@@ -50,7 +51,7 @@ class AuthService {
                     nome,
                     cpf,
                     telefone,
-                    perfil: 'candidato'
+                    perfil: "candidato"
                 }
             }
         });
@@ -60,6 +61,7 @@ class AuthService {
         }
 
         return {
+            token: data.session?.access_token || null,
             session: data.session,
             user: data.user
         };
@@ -96,7 +98,7 @@ class AuthService {
                     cep,
                     estado,
                     cidade,
-                    perfil: 'empresa'
+                    perfil: "empresa"
                 }
             }
         });
@@ -106,7 +108,26 @@ class AuthService {
         }
 
         return {
+            token: data.session?.access_token || null,
             session: data.session,
+            user: data.user
+        };
+    }
+
+    static async atualizarDadosEmpresa(usuario, dadosComplementares) {
+        const { data, error } = await supabase.auth.updateUser({
+            data: {
+                ...usuario.user_metadata,
+                ...dadosComplementares,
+                perfil: "empresa"
+            }
+        });
+
+        if (error) {
+            throw new Error(error.message);
+        }
+
+        return {
             user: data.user
         };
     }
