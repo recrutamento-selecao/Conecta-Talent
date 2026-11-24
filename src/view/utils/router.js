@@ -17,6 +17,7 @@ import { renderMinhaAssinatura } from '../pages/minha-assinatura.js';
 import { renderAlterarPlanos } from '../pages/alterar-planos.js';
 import { renderRelatorioRecrutadores } from '../pages/relatorio-recrutadores.js';
 import { renderConfiguracaoConta } from '../pages/configuracao-conta.js';
+import { renderRelatorioVagas } from '../pages/relatorio-vagas.js';
 
 function trocarEstiloPagina(nomePagina) {
     const estiloAnterior = document.getElementById('estilo-Dinamico-pagina');
@@ -25,6 +26,7 @@ function trocarEstiloPagina(nomePagina) {
     }
 
     const estilosMap = {
+        "relatorio-vagas": './view/css/relatorio-vagas.caa',
         "configuracao-conta": './view/css/configuracao-conta.css',
         "relatorio-recrutadores": './view/css/relatorio-recrutadores.css',
         "alterar-planos": './view/css/alterar-planos.css',
@@ -70,6 +72,10 @@ export function iniciarRouter() {
         app.innerHTML = '';
 
         switch (hash) {
+            case '#relatorio-vagas':
+                trocarEstiloPagina('relatorio-vagas');
+                app.appendChild(renderRelatorioVagas());
+                break
             case '#configuracao-conta':
                 trocarEstiloPagina('configuracao-conta');
                 app.appendChild(renderConfiguracaoConta());

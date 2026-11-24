@@ -1,0 +1,358 @@
+/* =========================================
+   ESTILOS DA PÁGINA: RELATÓRIO DE VAGAS
+   ========================================= */
+.pagina-relatorio-vagas-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    box-sizing: border-box;
+}
+
+.pagina-relatorio-vagas-wrapper *,
+.pagina-relatorio-vagas-wrapper *::before,
+.pagina-relatorio-vagas-wrapper *::after {
+    box-sizing: border-box;
+}
+
+.pagina-relatorio-vagas-wrapper .conteudo-principal {
+    flex: 1;
+    margin-left: var(--sidebar-width, 260px);
+    padding: 1.75rem 2.5rem 3rem;
+    min-width: 0;
+    transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body:has(.sidebar.fechada) .pagina-relatorio-vagas-wrapper .conteudo-principal {
+    margin-left: var(--sidebar-collapsed-width, 78px);
+}
+
+/* Cabeçalho livre alinhado à esquerda */
+.pagina-relatorio-vagas-wrapper .cabecalho-pagina-padrao {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 0.25rem;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.pagina-relatorio-vagas-wrapper .titulo-pagina,
+.pagina-relatorio-vagas-wrapper .subtitulo-pagina {
+    float: none !important;
+    margin-left: 0 !important;
+    text-align: left !important;
+    width: auto !important;
+}
+
+.pagina-relatorio-vagas-wrapper .titulo-pagina {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.pagina-relatorio-vagas-wrapper .subtitulo-pagina {
+    font-size: 0.875rem;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Grid principal: filtro lateral à esquerda + resultados à direita */
+.layout-relatorio-vagas-grid {
+    display: grid;
+    grid-template-columns: 270px minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+    width: 100%;
+}
+
+/* Card de filtros */
+.pagina-relatorio-vagas-wrapper .card-filtro-relatorio {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.25rem;
+    box-sizing: border-box;
+}
+
+.pagina-relatorio-vagas-wrapper .filtro-cabecalho {
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.pagina-relatorio-vagas-wrapper .filtro-topo-linha {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.2rem;
+}
+
+.pagina-relatorio-vagas-wrapper .filtro-cabecalho h2 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.pagina-relatorio-vagas-wrapper .btn-limpar-tudo-topo {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: #2563eb;
+    font-size: 0.76rem;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.pagina-relatorio-vagas-wrapper .btn-limpar-tudo-topo:hover {
+    color: #1d4ed8;
+    text-decoration: underline;
+}
+
+.pagina-relatorio-vagas-wrapper .filtro-cabecalho p {
+    font-size: 0.74rem;
+    color: #64748b;
+    margin: 0;
+}
+
+.pagina-relatorio-vagas-wrapper .form-filtro-relatorio {
+    display: flex;
+    flex-direction: column;
+    gap: 0.95rem;
+}
+
+.pagina-relatorio-vagas-wrapper .campo-filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.pagina-relatorio-vagas-wrapper .campo-filtro label {
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #334155;
+}
+
+.pagina-relatorio-vagas-wrapper .linha-datas-filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+}
+
+.pagina-relatorio-vagas-wrapper .linha-datas-filtro span {
+    font-size: 0.72rem;
+    color: #64748b;
+    text-align: center;
+}
+
+.pagina-relatorio-vagas-wrapper .input-filtro,
+.pagina-relatorio-vagas-wrapper .select-filtro-relatorio {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.76rem;
+    color: #0f172a;
+    font-family: inherit;
+}
+
+.pagina-relatorio-vagas-wrapper .input-filtro:focus,
+.pagina-relatorio-vagas-wrapper .select-filtro-relatorio:focus {
+    outline: none;
+    border-color: #1d4ed8;
+}
+
+.pagina-relatorio-vagas-wrapper .btn-aplicar-filtro {
+    width: 100%;
+    background-color: #1d4ed8;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.65rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.25rem;
+}
+
+.pagina-relatorio-vagas-wrapper .btn-aplicar-filtro:hover {
+    background-color: #1e40af;
+}
+
+/* Coluna direita: resultados */
+.pagina-relatorio-vagas-wrapper .coluna-resultados-relatorio {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.35rem 1.5rem;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.pagina-relatorio-vagas-wrapper .barra-topo-resultados {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.15rem;
+    flex-wrap: wrap;
+}
+
+.pagina-relatorio-vagas-wrapper .info-resultados-titulo {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.pagina-relatorio-vagas-wrapper .info-resultados-titulo h2 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.pagina-relatorio-vagas-wrapper .info-resultados-titulo span {
+    font-size: 0.76rem;
+    color: #64748b;
+}
+
+.pagina-relatorio-vagas-wrapper .input-busca-tabela {
+    width: 240px;
+    max-width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 0.42rem 0.7rem;
+    font-size: 0.78rem;
+    color: #0f172a;
+    font-family: inherit;
+}
+
+.pagina-relatorio-vagas-wrapper .input-busca-tabela:focus {
+    outline: none;
+    border-color: #1d4ed8;
+}
+
+.texto-cargo-vaga {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+/* Badges de status da vaga */
+.badge-status-vaga {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.18rem 0.65rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+}
+
+.badge-status-vaga.andamento {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.badge-status-vaga.concluida {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+
+.badge-status-vaga.pausada {
+    background-color: #fef3c7;
+    color: #d97706;
+}
+
+.badge-status-vaga.cancelada {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* Botão menu ⋮ da tabela */
+.pagina-relatorio-vagas-wrapper .btn-menu {
+    background: transparent;
+    border: none;
+    color: #64748b;
+    padding: 0.25rem;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+}
+
+.pagina-relatorio-vagas-wrapper .btn-menu:hover {
+    background-color: #f1f5f9;
+    color: #0f172a;
+}
+
+/* Paginação no rodapé da tabela */
+.pagina-relatorio-vagas-wrapper .paginacao-tabela-relatorio {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.pagina-relatorio-vagas-wrapper .btn-pag-relatorio {
+    min-width: 28px;
+    height: 28px;
+    border: 1px solid #e2e8f0;
+    background-color: #ffffff;
+    color: #334155;
+    border-radius: 6px;
+    font-size: 0.76rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagina-relatorio-vagas-wrapper .btn-pag-relatorio.ativa {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+    color: #ffffff;
+}
+
+.pagina-relatorio-vagas-wrapper .btn-pag-relatorio:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.texto-pag-relatorio {
+    font-size: 0.74rem;
+    color: #64748b;
+    padding: 0 0.2rem;
+}
+
+/* Responsividade */
+@media (max-width: 1080px) {
+    .layout-relatorio-vagas-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 900px) {
+    .pagina-relatorio-vagas-wrapper .conteudo-principal {
+        margin-left: 0 !important;
+        padding: 1.5rem;
+    }
+}
