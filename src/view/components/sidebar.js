@@ -48,16 +48,13 @@ const MENUS_POR_PERFIL = {
         {
             id: "vagas", icone: "assets/icons/clipboard-text-branco.svg", texto: "Gestão de vagas",
             submenu: [
-                { texto: "Gerenciar vagas", href: "#gerenciar-vagas" },
-                { texto: "Vagas ativas", href: "#vagas-ativas-empresa" },
-                { texto: "Vagas encerradas", href: "#vagas-encerradas-empresa" }
+                { texto: "Gerenciar vagas", href: "#gerenciar-vagas" }
             ]
         },
         {
             id: "assinaturas", icone: "assets/icons/license-branco.svg", texto: "Assinaturas",
             submenu: [
-                { texto: "Meu plano", href: "#meu-plano" },
-                { texto: "Pagamentos", href: "#historico-pagamentos" }
+                { texto: "Meu plano", href: "#meu-plano" }
             ]
         },
         {
@@ -70,8 +67,8 @@ const MENUS_POR_PERFIL = {
         {
             id: "configuracao", icone: "assets/icons/settings-branco.svg", texto: "Configuração",
             submenu: [
-                { texto: "Dados da empresa", href: "#dados-empresa" },
-                { texto: "Segurança", href: "#seguranca-empresa" }
+                { texto: "Meus dados", href: "#dados-empresa" },
+                { texto: "Alterar senha", href: "#alterar-senha-empresa" }
             ]
         }
     ],
@@ -82,16 +79,7 @@ const MENUS_POR_PERFIL = {
             id: "vagas", icone: "assets/icons/briefcase-branco.svg", texto: "Vagas",
             submenu: [
                 { texto: "Criar Vaga", href: "#criar-vaga" },
-                { texto: "Minhas Vagas", href: "#minhas-vagas" },
-                { texto: "Vagas Ativas", href: "#vagas-ativas" },
-                { texto: "Vagas Encerradas", href: "#vagas-encerradas" }
-            ]
-        },
-        {
-            id: "processos", icone: "assets/icons/clipboard-text-branco.svg", texto: "Processos Seletivos",
-            submenu: [
-                { texto: "Criar Processo", href: "#criar-processo" },
-                { texto: "Meus Processos", href: "#meus-processos" }
+                { texto: "Minhas Vagas", href: "#minhas-vagas-recrutador" }
             ]
         },
         {
@@ -104,22 +92,13 @@ const MENUS_POR_PERFIL = {
         {
             id: "candidaturas", icone: "assets/icons/file-description-branco.svg", texto: "Candidaturas",
             submenu: [
-                { texto: "Recebidas", href: "#candidaturas-recebidas" },
-                { texto: "Em Triagem", href: "#candidaturas-triagem" }
-            ]
-        },
-        {
-            id: "agenda", icone: "assets/icons/calendar-week-branco.svg", texto: "Agenda",
-            submenu: [
-                { texto: "Calendário", href: "#agenda-calendario" },
-                { texto: "Entrevistas", href: "#agenda-entrevistas" }
+                { texto: "Recebidas", href: "#candidaturas-recebidas-empresa" }
             ]
         },
         {
             id: "perfil", icone: "assets/icons/settings-branco.svg", texto: "Perfil",
             submenu: [
-                { texto: "Meus Dados", href: "#meus-dados-recrutador" },
-                { texto: "Alterar Senha", href: "#alterar-senha-recrutador" }
+                { texto: "Meus Dados", href: "#meus-dados-recrutador" }
             ]
         }
     ],

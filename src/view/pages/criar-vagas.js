@@ -9,6 +9,49 @@ const PASSOS = [
   { id: 4, titulo: "Revisão e publicação" }
 ];
 
+const VAGAS_EXEMPLO = [
+  {
+    id: 1,
+    titulo: "Analista de Dados Pleno",
+    empresa: "Conecta Talent",
+    recrutador: "Thaeny Soares",
+    area: "Dados",
+    contrato: "CLT",
+    modalidade: "Híbrido",
+    localizacao: "Sorocaba - SP",
+    status: "Ativa",
+    descricao: "Atuação na análise de dados comerciais e operacionais, construção de painéis e apoio ao acompanhamento de indicadores.",
+    responsabilidades: [
+      "Extrair e tratar bases com SQL e Power Query",
+      "Acompanhar indicadores e apoiar relatórios gerenciais"
+    ],
+    requisitosObrigatorios: [
+      "Experiência com SQL, Excel e ferramentas de BI",
+      "Boa organização e atenção aos detalhes"
+    ],
+    diferenciais: [
+      "Conhecimento em Python",
+      "Experiência com modelagem dimensional"
+    ],
+    etapas: [
+      { nome: "Inscrição", perguntas: [] },
+      { nome: "Triagem", perguntas: [] },
+      { nome: "Teste", perguntas: [] },
+      { nome: "Entrevista", perguntas: [] },
+      { nome: "Contratação", perguntas: [] }
+    ]
+  }
+];
+
+// Estado em memória compartilhado entre Criar Vaga e Minhas Vagas
+export const vagasRecrutadorEstado = VAGAS_EXEMPLO.map(v => ({
+  ...v,
+  responsabilidades: [...v.responsabilidades],
+  requisitosObrigatorios: [...v.requisitosObrigatorios],
+  diferenciais: [...v.diferenciais],
+  etapas: v.etapas.map(e => ({ ...e, perguntas: [...(e.perguntas || [])] }))
+}));
+
 function extrairLinhas(valor) {
   if (!valor) return [];
   return String(valor)
@@ -30,11 +73,13 @@ function ehEtapaDeTeste(nome = "") {
 }
 
 export function renderCriarVaga() {
+  const recrutadorLogado = "Thaeny Soares";
+
   const containerPagina = document.createElement("div");
   containerPagina.className = "pagina-layout-dashboard";
 
   // Sidebar lateral
-  const sidebar = criarSidebar("recrutador", "Thaeny Soares");
+  const sidebar = criarSidebar("recrutador", recrutadorLogado);
   containerPagina.appendChild(sidebar);
 
   const conteudoPrincipal = document.createElement("main");
@@ -432,7 +477,7 @@ export function renderCriarVaga() {
     botaoAdicionar.className = "botao-adicionar-etapa";
     botaoAdicionar.textContent = "+ Adicionar etapa";
 
-    function criarBlocoPerguntasEtapa(etapa, etapaIndex) {
+    function criarBlocoPerguntasEtapa(etapa) {
       if (!Array.isArray(etapa.perguntas)) {
         etapa.perguntas = [];
       }
@@ -655,7 +700,7 @@ export function renderCriarVaga() {
         item.appendChild(topoEtapa);
 
         if (ehEtapaDeTeste(etapa.nome)) {
-          item.appendChild(criarBlocoPerguntasEtapa(etapa, index));
+          item.appendChild(criarBlocoPerguntasEtapa(etapa));
         }
 
         listaEtapas.appendChild(item);
@@ -801,6 +846,36 @@ export function renderCriarVaga() {
     return div;
   }
 
+  function salvarVagaNoEstado() {
+    const novaVaga = {
+      id: Date.now(),
+      titulo: estado.basicos.titulo.trim() || "Título da vaga",
+      empresa: estado.basicos.empresa.trim() || "Nome da empresa",
+      recrutador: recrutadorLogado,
+      area: estado.basicos.area.trim() || "—",
+      contrato: estado.basicos.contratacao || "—",
+      modalidade: estado.basicos.modalidade || "—",
+      localizacao: estado.basicos.local.trim() || "Local",
+      status: "Ativa",
+      descricao: estado.basicos.descricao.trim() || "Sem descrição informada.",
+      responsabilidades: estado.requisitos.responsabilidades.length > 0
+        ? [...estado.requisitos.responsabilidades]
+        : ["Nenhuma responsabilidade informada."],
+      requisitosObrigatorios: estado.requisitos.obrigatorios.length > 0
+        ? [...estado.requisitos.obrigatorios]
+        : ["Nenhum requisito obrigatório informado."],
+      diferenciais: estado.requisitos.diferenciais.length > 0
+        ? [...estado.requisitos.diferenciais]
+        : ["Nenhum diferencial informado."],
+      etapas: estado.processo.etapas.map(e => ({
+        nome: e.nome,
+        perguntas: Array.isArray(e.perguntas) ? [...e.perguntas] : []
+      }))
+    };
+
+    vagasRecrutadorEstado.unshift(novaVaga);
+  }
+
   function renderizarEtapa() {
     stepperArea.replaceChildren(criarStepper({
       etapas: PASSOS,
@@ -827,7 +902,7 @@ export function renderCriarVaga() {
       etapaAtual--;
       renderizarEtapa();
     } else {
-      window.location.hash = "#gerenciar-vagas";
+      window.location.hash = "#minhas-vagas";
     }
   });
 
@@ -836,6 +911,7 @@ export function renderCriarVaga() {
       etapaAtual++;
       renderizarEtapa();
     } else {
+      salvarVagaNoEstado();
       alert("Vaga publicada com sucesso!");
       window.location.hash = "#gerenciar-vagas";
     }

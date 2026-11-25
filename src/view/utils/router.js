@@ -12,7 +12,11 @@ import { renderDashboardRecrutador } from '../pages/dashboard-recrutador.js';
 import { renderDashboardAdministrador } from '../pages/dashboard-administrador.js';
 import { renderCandidatoVagas } from '../pages/candidato-vagas.js';
 import { renderMeusDados } from '../pages/meus-dados.js';
+import { renderMeusDados as renderMeusDadosRecrutador } from '../pages/meus-dados-recrutador.js';
+import { renderMeusDadosEmpresa } from '../pages/meus-dados-empresa.js';
+import { renderAlterarSenhaEmpresa } from '../pages/alterar-senha-empresa.js';
 import { renderMinhasVagas } from '../pages/gerenciar-vagas.js';
+import { renderMinhasVagasRecrutador } from '../pages/minhas-vagas-recrutador.js';
 import { renderGerenciarRecrutadores } from '../pages/gerenciar-recrutadores.js';
 import { renderGerenciarCandidaturas } from '../pages/gerenciar-candidaturas.js';
 import { renderVagasInicio } from '../pages/vagas-inicio.js';
@@ -20,6 +24,10 @@ import { renderCadastrarRecrutador } from '../pages/cadastrar-recrutador.js';
 import { renderCriarVaga } from '../pages/criar-vagas.js';
 import { renderMinhaAssinatura } from '../pages/minhas-assinaturas.js';
 import { renderAlterarPlanos } from '../pages/alterar-planos.js';
+import { renderMeusPlanosEmpresa } from '../pages/meus-planos-empresa.js';
+import { renderBancoTalentos } from '../pages/banco-talentos.js';
+import { renderCandidatosFavoritados } from '../pages/candidatos-favoritados.js';
+import { renderCandidaturasRecebidasEmpresa } from '../pages/candidaturas-recebidas-empresa.js';
 
 function garantirCssModal() {
     if (!document.getElementById('estilo-modal-global')) {
@@ -56,10 +64,16 @@ function trocarEstiloPagina(nomePagina) {
         caminhoCss = './view/css/login.css';
     } else if (nomePagina === 'candidato-vagas') {
         caminhoCss = './view/css/candidato-vagas.css';
-    } else if (nomePagina === 'meus-dados') {
+    } else if (nomePagina === 'meus-dados' || nomePagina === 'meus-dados-recrutador') {
         caminhoCss = './view/css/meus-dados.css';
+    } else if (nomePagina === 'dados-empresa') {
+        caminhoCss = './view/css/meus-dados-empresa.css';
+    } else if (nomePagina === 'alterar-senha-empresa') {
+        caminhoCss = './view/css/alterar-senha-empresa.css';
     } else if (nomePagina === 'minhas-vagas') {
         caminhoCss = './view/css/minhas-vagas.css';
+    } else if (nomePagina === 'minhas-vagas-recrutador') {
+        caminhoCss = './view/css/banco-talentos.css';
     } else if (nomePagina === 'gerenciar-recrutadores' || nomePagina === 'cadastrar-recrutador') {
         caminhoCss = './view/css/gerenciar-recrutador.css';
     } else if (nomePagina === 'gerenciar-candidaturas') {
@@ -70,8 +84,16 @@ function trocarEstiloPagina(nomePagina) {
         caminhoCss = './view/css/criar-vaga.css';
     } else if (nomePagina === 'minha-assinatura') {
         caminhoCss = './view/css/minha-assinatura.css';
+    } else if (nomePagina === 'meus-planos-empresa') {
+        caminhoCss = './view/css/meus-planos-empresa.css';
     } else if (nomePagina === 'alterar-planos') {
         caminhoCss = './view/css/alterar-planos.css';
+    } else if (nomePagina === 'banco-talentos') {
+        caminhoCss = './view/css/banco-talentos.css';
+    } else if (nomePagina === 'candidatos-favoritados') {
+        caminhoCss = './view/css/candidatos-favoritados.css';
+    } else if (nomePagina === 'candidaturas-recebidas-empresa') {
+        caminhoCss = './view/css/banco-talentos.css';
     }
 
     if (caminhoCss) {
@@ -161,9 +183,27 @@ export function iniciarRouter() {
                 trocarEstiloPagina('meus-dados');
                 app.appendChild(renderMeusDados());
                 break;
+            case '#meus-dados-recrutador':
+                trocarEstiloPagina('meus-dados-recrutador');
+                app.appendChild(renderMeusDadosRecrutador('Thaeny Soares'));
+                break;
+            case '#dados-empresa':
+            case '#meus-dados-empresa':
+                trocarEstiloPagina('dados-empresa');
+                app.appendChild(renderMeusDadosEmpresa('Empresa'));
+                break;
+            case '#alterar-senha-empresa':
+            case '#seguranca-empresa':
+                trocarEstiloPagina('alterar-senha-empresa');
+                app.appendChild(renderAlterarSenhaEmpresa('Twelse LTDA'));
+                break;
             case '#gerenciar-vagas':
                 trocarEstiloPagina('gerenciar-vagas');
                 app.appendChild(renderMinhasVagas());
+                break;
+            case '#minhas-vagas-recrutador':
+                trocarEstiloPagina('minhas-vagas-recrutador');
+                app.appendChild(renderMinhasVagasRecrutador('Thaeny Soares'));
                 break;
             case '#gerenciar-recrutadores':
                 trocarEstiloPagina('gerenciar-recrutadores');
@@ -189,9 +229,27 @@ export function iniciarRouter() {
                 trocarEstiloPagina('minha-assinatura');
                 app.appendChild(renderMinhaAssinatura('empresa'));
                 break;
+            case '#candidaturas-recebidas-empresa':
+            case '#candidaturas-recebidas':
+                trocarEstiloPagina('candidaturas-recebidas-empresa');
+                app.appendChild(renderCandidaturasRecebidasEmpresa('Thaeny Soares'));
+                break;
+            case '#meus-planos-empresa':
+                trocarEstiloPagina('meus-planos-empresa');
+                app.appendChild(renderMeusPlanosEmpresa());
+                break;
             case '#alterar-planos':
                 trocarEstiloPagina('alterar-planos');
                 app.appendChild(renderAlterarPlanos('empresa'));
+                break;
+            case '#buscar-candidatos':
+            case '#banco-talentos':
+                trocarEstiloPagina('banco-talentos');
+                app.appendChild(renderBancoTalentos());
+                break;
+            case '#candidatos-favoritos':
+                trocarEstiloPagina('candidatos-favoritados');
+                app.appendChild(renderCandidatosFavoritados());
                 break;
             case '#home':
             default:

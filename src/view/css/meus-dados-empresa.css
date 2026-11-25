@@ -1,0 +1,342 @@
+.pagina-layout-dashboard.de-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f4f7fb;
+  color: #1e293b;
+  font-family: inherit;
+}
+
+.pagina-layout-dashboard.de-layout .conteudo-principal.de-main {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background-color: #f4f7fb;
+  max-width: none;
+  margin: 0;
+}
+
+.de-layout .de-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1040px;
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+.de-layout .de-title {
+  margin: 0;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.de-layout .de-subtitle {
+  margin: 4px 0 0;
+  font-size: 0.88rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.de-layout .de-header-actions,
+.de-layout .de-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.de-layout .de-footer-actions {
+  justify-content: flex-end;
+}
+
+.de-layout .de-btn-primary,
+.de-layout .de-btn-secondary {
+  padding: 9px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.de-layout .de-btn-primary {
+  background-color: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  color: #ffffff;
+}
+
+.de-layout .de-btn-primary:hover {
+  background-color: #1e40af;
+}
+
+.de-layout .de-btn-secondary {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+.de-layout .de-btn-secondary:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.de-layout .de-feedback {
+  padding: 11px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  max-width: 1040px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.de-layout .de-feedback--sucesso {
+  background-color: #dcfce7;
+  border: 1px solid #86efac;
+  color: #166534;
+}
+
+.de-layout .de-feedback--erro {
+  background-color: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+}
+
+.de-layout .de-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 1040px;
+  width: 100%;
+}
+
+.de-layout .de-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px 24px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.de-layout .de-card-header {
+  margin-bottom: 16px;
+}
+
+.de-layout .de-card-header--row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.de-layout .de-card-title {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.de-layout .de-card-desc {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  color: #64748b;
+}
+
+.de-layout .de-btn-adicionar-tel {
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #1d4ed8;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.de-layout .de-btn-adicionar-tel:hover {
+  background-color: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.de-layout .de-telefones-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.de-layout .de-telefone-item {
+  padding-top: 12px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.de-layout .de-telefone-item:first-child {
+  padding-top: 0;
+  border-top: none;
+}
+
+.de-layout .de-telefone-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.de-layout .de-telefone-rotulo {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.de-layout .de-btn-remover-tel {
+  background: transparent;
+  border: none;
+  padding: 2px 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #dc2626;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.de-layout .de-btn-remover-tel:hover {
+  background-color: #fee2e2;
+}
+
+.de-layout .de-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 18px;
+}
+
+.de-layout .de-grid-endereco {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 14px 16px;
+}
+
+.de-layout .de-span-2 {
+  grid-column: span 2;
+}
+
+.de-layout .de-span-4 {
+  grid-column: span 4;
+}
+
+.de-layout .de-span-5 {
+  grid-column: span 5;
+}
+
+.de-layout .de-span-6 {
+  grid-column: span 6;
+}
+
+.de-layout .de-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.de-layout .de-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.de-layout .de-required {
+  color: #dc2626;
+}
+
+.de-layout .de-input,
+.de-layout .de-select,
+.de-layout .de-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 12px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  color: #0f172a;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.de-layout .de-textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.45;
+}
+
+.de-layout .de-input:focus,
+.de-layout .de-select:focus,
+.de-layout .de-textarea:focus {
+  border-color: #1d4ed8;
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+}
+
+.de-layout .de-input:disabled,
+.de-layout .de-select:disabled,
+.de-layout .de-textarea:disabled {
+  background-color: #f8fafc;
+  color: #475569;
+  border-color: #e2e8f0;
+  cursor: default;
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  .de-layout .de-grid-endereco {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .de-layout .de-span-2,
+  .de-layout .de-span-4,
+  .de-layout .de-span-5,
+  .de-layout .de-span-6 {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .pagina-layout-dashboard.de-layout .conteudo-principal.de-main {
+    padding: 16px;
+  }
+
+  .de-layout .de-card {
+    padding: 16px;
+  }
+
+  .de-layout .de-grid-2,
+  .de-layout .de-grid-endereco {
+    grid-template-columns: 1fr;
+  }
+
+  .de-layout .de-header-actions,
+  .de-layout .de-footer-actions {
+    width: 100%;
+  }
+
+  .de-layout .de-btn-primary,
+  .de-layout .de-btn-secondary {
+    flex: 1;
+    text-align: center;
+  }
+}

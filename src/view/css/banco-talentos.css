@@ -1,0 +1,462 @@
+/* ==========================================
+   BANCO DE TALENTOS (PAINEL LATERAL ESTILO FIGMA)
+   ========================================== */
+.bt-barra-filtros-inline {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 1.5fr repeat(4, minmax(135px, 1fr)) auto;
+    gap: 10px;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.bt-campo-busca-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.bt-icone-lupa {
+    position: absolute;
+    left: 12px;
+    width: 15px;
+    height: 15px;
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+.bt-input-busca-inline {
+    width: 100%;
+    padding: 9px 12px 9px 34px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #0f172a;
+    background: #f8fafc;
+    outline: none;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.bt-input-busca-inline:focus {
+    background: #ffffff;
+    border-color: #1e3a8a;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+.bt-select-inline {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #0f172a;
+    background: #ffffff;
+    outline: none;
+    cursor: pointer;
+}
+
+.bt-select-inline:focus {
+    border-color: #1e3a8a;
+}
+
+.bt-btn-limpar-inline {
+    background: transparent;
+    border: none;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.bt-btn-limpar-inline:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+/* Tabela ocupa 100% até clicar em um candidato; ao clicar, divide ao lado (estilo Figma) */
+.bt-layout-split {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.bt-layout-split.bt-painel-aberto {
+    grid-template-columns: minmax(0, 1.3fr) minmax(390px, 470px);
+}
+
+.bt-coluna-tabela {
+    min-width: 0;
+}
+
+.bt-celula-candidato {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bt-avatar-tabela {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: #eff6ff;
+    color: #1e3a8a;
+    border: 1px solid #bfdbfe;
+    font-size: 12px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.bt-tabela-nome {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.bt-tabela-principal {
+    display: block;
+    font-size: 13px;
+    color: #0f172a;
+}
+
+.bt-tabela-sub {
+    display: block;
+    font-size: 11.5px;
+    color: #64748b;
+}
+
+.bt-tabela-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.bt-tag-mini,
+.bt-tag-mais {
+    font-size: 11px;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: #eff6ff;
+    color: #1e3a8a;
+    border: 1px solid #bfdbfe;
+    font-weight: 500;
+}
+
+.bt-tag-mais {
+    background: #f1f5f9;
+    color: #475569;
+    border-color: #cbd5e1;
+}
+
+.bt-badge-disponivel {
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.tabela tbody tr.bt-linha-ativa {
+    background: #eff6ff;
+}
+
+.bt-paginacao {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.bt-pag-label {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.bt-select-por-pagina {
+    padding: 4px 8px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 12px;
+    background: #ffffff;
+}
+
+.bt-btn-pag {
+    min-width: 28px;
+    height: 28px;
+    padding: 0 8px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.bt-btn-pag.ativa {
+    background: #1e3a8a;
+    color: #ffffff;
+    border-color: #1e3a8a;
+    font-weight: 600;
+}
+
+.bt-btn-pag:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* Painel lateral de detalhes no layout do Figma */
+.bt-painel-detalhe {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px 22px;
+    position: sticky;
+    top: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.bt-figma-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 12px;
+}
+
+.bt-figma-nome {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.25;
+}
+
+.bt-figma-cargo-topo {
+    margin: 2px 0 6px 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.bt-figma-contato-linha {
+    margin: 0;
+    font-size: 11.5px;
+    color: #64748b;
+    line-height: 1.45;
+    word-break: break-word;
+}
+
+.bt-btn-fechar-painel {
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.bt-btn-fechar-painel:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+.bt-figma-abas {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    border-bottom: 1px solid #e2e8f0;
+    overflow: hidden;
+    scrollbar-width: none;
+}
+
+.bt-figma-abas::-webkit-scrollbar {
+    display: none;
+}
+
+.bt-aba-item {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 10px 2px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.bt-aba-item.ativa {
+    color: #1d4ed8;
+    font-weight: 600;
+    border-bottom-color: #1d4ed8;
+}
+
+.bt-figma-corpo {
+    padding: 14px 0 6px 0;
+}
+
+.bt-figma-bloco {
+    padding: 4px 0;
+}
+
+.bt-figma-bloco-titulo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+}
+
+.bt-figma-bloco-titulo h4 {
+    margin: 0;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.bt-figma-icone-secao {
+    font-size: 13px;
+    line-height: 1;
+}
+
+.bt-figma-texto {
+    margin: 0;
+    font-size: 12px;
+    color: #475569;
+    line-height: 1.5;
+}
+
+.bt-figma-destaque-titulo {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.bt-figma-subtexto {
+    margin: 2px 0 0 0;
+    font-size: 11.5px;
+    color: #64748b;
+}
+
+.bt-figma-divisor {
+    border: none;
+    border-top: 1px solid #f1f5f9;
+    margin: 12px 0;
+}
+
+.bt-figma-chips-linha {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.bt-figma-chip {
+    font-size: 11px;
+    font-weight: 500;
+    color: #1d4ed8;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 6px;
+    padding: 3px 8px;
+}
+
+.bt-figma-duas-colunas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.bt-figma-formacao-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.bt-figma-box-formacao {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 12px;
+    background: #ffffff;
+}
+
+.bt-figma-box-label {
+    display: block;
+    font-size: 11px;
+    color: #64748b;
+    margin-bottom: 3px;
+}
+
+.bt-figma-box-valor {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.35;
+}
+
+.bt-detalhe-rodape {
+    padding-top: 12px;
+    margin-top: 10px;
+    border-top: 1px solid #e2e8f0;
+}
+
+.bt-btn-favoritar {
+    width: 100%;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bt-btn-favoritar.ativo {
+    background: #eff6ff;
+    color: #1e3a8a;
+    border-color: #93c5fd;
+}
+
+@media (max-width: 1200px) {
+    .bt-barra-filtros-inline {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bt-campo-busca-wrap {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 1024px) {
+    .bt-layout-split,
+    .bt-layout-split.bt-painel-aberto {
+        grid-template-columns: 1fr;
+    }
+
+    .bt-painel-detalhe {
+        position: static;
+    }
+}
+
+@media (max-width: 640px) {
+    .bt-barra-filtros-inline,
+    .bt-figma-duas-colunas,
+    .bt-figma-formacao-grid {
+        grid-template-columns: 1fr;
+    }
+}

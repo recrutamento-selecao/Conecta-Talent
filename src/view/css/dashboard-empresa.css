@@ -1,5 +1,5 @@
 /* =================================================================
-   DASHBOARD EMPRESA - CORRIGIDO, FLEXÍVEL E RESPONSIVO
+   DASHBOARD EMPRESA - ESTÉTICA REFINADA, FLEXÍVEL E RESPONSIVA
    ================================================================= */
 
 :root {
@@ -12,8 +12,8 @@
     flex: 1;
     width: calc(100vw - var(--sidebar-width));
     max-width: 100% !important;
-    margin-left: var(--sidebar-width); 
-    padding: 1.75rem;
+    margin-left: var(--sidebar-width);
+    padding: 1.85rem 2rem;
     transition: margin-left 0.25s ease, width 0.25s ease, padding 0.25s ease;
     box-sizing: border-box;
 }
@@ -29,67 +29,90 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
     width: calc(100vw - var(--sidebar-collapsed-width));
 }
 
+/* --- CABEÇALHO LIMPO SEM FUNDO BRANCO --- */
 .page-dashboard-empresa .header-saudacao {
-    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid #e2e8f0;
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
 }
 
 .page-dashboard-empresa .header-saudacao h1 {
     font-size: 1.65rem;
     font-weight: 700;
+    letter-spacing: -0.02em;
     color: var(--text-primary);
+    margin: 0;
+    line-height: 1.25;
 }
 
 .page-dashboard-empresa .header-saudacao p {
     color: var(--text-secondary);
     font-size: 0.9rem;
-    margin-top: 0.2rem;
+    margin: 0.25rem 0 0;
+    line-height: 1.45;
 }
 
 /* --- GRID DE KPIS (4 colunas preenchendo toda a largura) --- */
 .page-dashboard-empresa .kpi-grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 1.1rem;
+    margin-bottom: 1.6rem;
     width: 100%;
 }
 
 .page-dashboard-empresa .kpi-card {
     background-color: var(--bg-white);
-    padding: 1rem 1.1rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
+    padding: 1.1rem 1.2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
     display: flex;
     flex-direction: column;
     min-width: 0;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.page-dashboard-empresa .kpi-card:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
 }
 
 .page-dashboard-empresa .kpi-titulo {
-    font-size: 0.78rem;
+    font-size: 0.74rem;
     color: var(--text-secondary);
-    font-weight: 500;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
 .page-dashboard-empresa .kpi-valor {
-    font-size: 1.35rem;
+    font-size: 1.45rem;
     font-weight: 700;
+    letter-spacing: -0.02em;
     color: var(--text-primary);
-    margin: 0.25rem 0;
+    margin: 0.35rem 0 0.3rem;
+    line-height: 1.2;
 }
 
 .page-dashboard-empresa .kpi-status {
     font-size: 0.75rem;
     display: flex;
-    gap: 0.25rem;
+    gap: 0.3rem;
     align-items: center;
     white-space: nowrap;
 }
 
-.page-dashboard-empresa .kpi-status.positivo span { color: #16a34a; font-weight: 600; }
+.page-dashboard-empresa .kpi-status.positivo span { color: #15803d; font-weight: 600; }
 .page-dashboard-empresa .kpi-status.neutro span { color: var(--primary-color); font-weight: 600; }
 .page-dashboard-empresa .kpi-status small { color: var(--text-muted); }
 
@@ -97,7 +120,7 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
 .page-dashboard-empresa .grid-dashboard-empresa {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 1.25rem;
+    gap: 1.35rem;
     align-items: start;
     width: 100%;
 }
@@ -105,7 +128,7 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
 .page-dashboard-empresa .coluna-dashboard {
     display: flex;
     flex-direction: column;
-    gap: 1.25rem;
+    gap: 1.35rem;
     min-width: 0;
     width: 100%;
 }
@@ -113,10 +136,10 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
 /* CARDS GERAIS DE TABELAS E GRÁFICOS */
 .page-dashboard-empresa .tabela-card {
     background-color: var(--bg-white);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-lg);
-    padding: 1.25rem;
-    box-shadow: var(--shadow-sm);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.35rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -129,28 +152,32 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 1rem;
-    gap: 0.5rem;
+    margin-bottom: 1.1rem;
+    gap: 0.75rem;
 }
 
 .page-dashboard-empresa .card-painel-header h3 {
     font-size: 1.05rem;
     font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--text-primary);
+    margin: 0;
 }
 
 .page-dashboard-empresa .card-painel-header small {
     color: var(--text-secondary);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
+    display: block;
+    margin-top: 0.2rem;
 }
 
 .page-dashboard-empresa .card-painel-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 0.85rem;
-    margin-top: 1rem;
-    border-top: 1px solid var(--border-color);
+    padding-top: 0.9rem;
+    margin-top: 1.05rem;
+    border-top: 1px solid #e2e8f0;
     font-size: 0.78rem;
     color: var(--text-secondary);
 }
@@ -165,25 +192,46 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
     width: 100%;
     border-collapse: collapse;
     text-align: left;
-    font-size: 0.825rem;
+    font-size: 0.83rem;
 }
 
 .page-dashboard-empresa .tabela-empresas th {
     color: var(--text-secondary);
     font-weight: 600;
-    padding: 0.55rem 0.4rem;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 0.725rem;
-    letter-spacing: 0.04em;
-    background-color: var(--bg-light);
+    padding: 0.65rem 0.6rem;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: #f8fafc;
     white-space: nowrap;
 }
 
+.page-dashboard-empresa .tabela-empresas th:first-child {
+    border-top-left-radius: 6px;
+}
+
+.page-dashboard-empresa .tabela-empresas th:last-child {
+    border-top-right-radius: 6px;
+}
+
 .page-dashboard-empresa .tabela-empresas td {
-    padding: 0.75rem 0.4rem;
-    border-bottom: 1px solid #f8fafc;
+    padding: 0.85rem 0.6rem;
+    border-bottom: 1px solid #f1f5f9;
     color: var(--text-primary);
     vertical-align: middle;
+}
+
+.page-dashboard-empresa .tabela-empresas tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.page-dashboard-empresa .tabela-empresas tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.page-dashboard-empresa .tabela-empresas tbody tr:last-child td {
+    border-bottom: none;
 }
 
 .page-dashboard-empresa .text-right { text-align: right; }
@@ -194,15 +242,19 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
     font-size: 0.8rem;
     font-weight: 600;
     white-space: nowrap;
+    transition: opacity 0.15s ease;
 }
 
-.page-dashboard-empresa .link-acao:hover { text-decoration: underline; }
+.page-dashboard-empresa .link-acao:hover {
+    text-decoration: underline;
+    opacity: 0.88;
+}
 
 /* BADGES DE STATUS */
 .page-dashboard-empresa .badge {
-    padding: 0.18rem 0.5rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.725rem;
+    padding: 0.22rem 0.58rem;
+    border-radius: 999px;
+    font-size: 0.72rem;
     font-weight: 600;
     display: inline-block;
     white-space: nowrap;
@@ -212,50 +264,55 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
 .page-dashboard-empresa .status-pausada { background-color: #fef3c7; color: #b45309; }
 .page-dashboard-empresa .status-rascunho { background-color: #f1f5f9; color: var(--text-secondary); }
 
-.page-dashboard-empresa .ponto-etapa { font-size: 0.8rem; margin-right: 0.2rem; }
+.page-dashboard-empresa .ponto-etapa { font-size: 0.8rem; margin-right: 0.25rem; }
 .page-dashboard-empresa .ponto-etapa.azul { color: var(--primary-color); }
 .page-dashboard-empresa .ponto-etapa.roxo { color: #8b5cf6; }
 .page-dashboard-empresa .ponto-etapa.laranja { color: #f97316; }
 .page-dashboard-empresa .ponto-etapa.cinza { color: var(--text-muted); }
 
-.page-dashboard-empresa .badge-subtil.verde { color: #16a34a; font-weight: 500; }
+.page-dashboard-empresa .badge-subtil.verde { color: #15803d; font-weight: 600; }
 
 /* --- RECRUTADORES (Nome completo visível e avatares em círculo perfeito) --- */
 .page-dashboard-empresa .btn-adicionar {
     background-color: #eff6ff;
     color: var(--primary-color);
-    border: none;
-    padding: 0.35rem 0.7rem;
-    border-radius: var(--radius-sm);
+    border: 1px solid #dbeafe;
+    padding: 0.38rem 0.75rem;
+    border-radius: 8px;
     font-weight: 600;
     font-size: 0.78rem;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
     white-space: nowrap;
     flex-shrink: 0;
 }
 
-.page-dashboard-empresa .btn-adicionar:hover { background-color: #dbeafe; }
+.page-dashboard-empresa .btn-adicionar:hover {
+    background-color: #dbeafe;
+    border-color: #bfdbfe;
+}
 
 .page-dashboard-empresa .lista-recrutadores {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.65rem;
 }
 
 .page-dashboard-empresa .item-recrutador {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.6rem 0.75rem;
-    background-color: #fafafa;
-    border-radius: 8px;
-    border: 1px solid #f1f5f9;
-    gap: 0.5rem;
+    padding: 0.68rem 0.8rem;
+    background-color: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    gap: 0.6rem;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .page-dashboard-empresa .item-recrutador:hover {
-    background-color: #f8fafc;
+    background-color: #ffffff;
+    border-color: #cbd5e1;
 }
 
 .page-dashboard-empresa .recrutador-info {
@@ -281,7 +338,7 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
     align-items: center;
     justify-content: center;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     flex-shrink: 0 !important;
 }
 
@@ -296,12 +353,14 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
 .page-dashboard-empresa .recrutador-topo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.45rem;
+    flex-wrap: wrap;
     width: 100%;
 }
 
 .page-dashboard-empresa .recrutador-topo strong {
     font-size: 0.85rem;
+    font-weight: 600;
     color: var(--text-primary);
     white-space: normal;
     overflow: visible;
@@ -309,12 +368,12 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
 }
 
 .page-dashboard-empresa .tag-empresa {
-    background-color: #f1f5f9;
-    color: var(--text-secondary);
-    padding: 0.05rem 0.35rem;
-    border-radius: 4px;
-    font-size: 0.65rem;
-    font-weight: 500;
+    background-color: #dcfce7;
+    color: #15803d;
+    padding: 0.12rem 0.48rem;
+    border-radius: 999px;
+    font-size: 0.68rem;
+    font-weight: 600;
     white-space: nowrap;
     display: inline-block;
 }
@@ -330,31 +389,36 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
 .page-dashboard-empresa .recrutador-acoes {
     display: flex;
     align-items: center;
-    gap: 0.35rem;
+    gap: 0.25rem;
     flex-shrink: 0;
 }
 
-.page-dashboard-empresa .btn-acao-sm, 
+.page-dashboard-empresa .btn-acao-sm,
 .page-dashboard-empresa .btn-icone {
     background: none;
     border: none;
     cursor: pointer;
     color: var(--text-muted);
-    font-size: 0.95rem;
-    padding: 0.15rem;
-    transition: color 0.2s;
+    font-size: 0.9rem;
+    padding: 0.25rem;
+    border-radius: 6px;
+    transition: color 0.15s ease, background-color 0.15s ease;
 }
 
-.page-dashboard-empresa .btn-acao-sm:hover, 
-.page-dashboard-empresa .btn-icone:hover { color: var(--primary-color); }
+.page-dashboard-empresa .btn-acao-sm:hover,
+.page-dashboard-empresa .btn-icone:hover {
+    color: var(--primary-color);
+    background-color: #eff6ff;
+}
 
 /* --- GRÁFICOS DE BARRAS --- */
 .page-dashboard-empresa .legenda-grafico {
-    font-size: 0.725rem;
+    font-size: 0.75rem;
+    font-weight: 500;
     color: var(--text-secondary);
     display: flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.35rem;
     white-space: nowrap;
 }
 
@@ -372,9 +436,9 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
-    height: 160px;
+    height: 165px;
     padding-top: 1rem;
-    gap: 0.35rem;
+    gap: 0.4rem;
     width: 100%;
 }
 
@@ -384,21 +448,21 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
     align-items: center;
     height: 100%;
     justify-content: flex-end;
-    gap: 0.3rem;
+    gap: 0.35rem;
     flex: 1;
 }
 
 .page-dashboard-empresa .valor-coluna {
-    font-size: 0.725rem;
+    font-size: 0.74rem;
     font-weight: 700;
     color: var(--text-primary);
 }
 
 .page-dashboard-empresa .barra-fundo-vert {
-    width: 24px;
-    height: 100px;
-    background-color: var(--bg-light);
-    border-radius: var(--radius-sm);
+    width: 26px;
+    height: 104px;
+    background-color: #f1f5f9;
+    border-radius: 6px;
     display: flex;
     align-items: flex-end;
     overflow: hidden;
@@ -406,8 +470,8 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
 
 .page-dashboard-empresa .barra-preenchida-vert {
     width: 100%;
-    border-radius: 5px 5px 0 0;
-    transition: height 0.4s ease;
+    border-radius: 6px 6px 0 0;
+    transition: height 0.35s ease;
 }
 
 .page-dashboard-empresa .barra-preenchida-vert.azul { background-color: var(--primary-color); }
@@ -415,13 +479,14 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
 
 .page-dashboard-empresa .label-coluna {
     font-size: 0.7rem;
+    font-weight: 500;
     color: var(--text-secondary);
     text-align: center;
     white-space: nowrap;
 }
 
 .page-dashboard-empresa .texto-positivo {
-    color: #16a34a;
+    color: #15803d;
     font-weight: 600;
 }
 
@@ -446,9 +511,9 @@ body:has(.sidebar[style*="width: 78px"]) .page-dashboard-empresa .conteudo-princ
     .page-dashboard-empresa .conteudo-principal {
         margin-left: 0 !important;
         width: 100% !important;
-        padding: 1rem;
+        padding: 1.1rem;
     }
-    
+
     .page-dashboard-empresa .kpi-grid {
         grid-template-columns: 1fr;
     }
