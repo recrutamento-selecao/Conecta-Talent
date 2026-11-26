@@ -26,6 +26,7 @@ export function criarListaVagas(vagas = []) {
     vagas.forEach((vaga) => {
         const card = document.createElement("div");
         card.classList.add("card-vaga");
+        card.dataset.vagaId = vaga.id;
 
         card.innerHTML = `
             <div class="card-vaga-logo">
@@ -59,7 +60,14 @@ export function criarListaVagas(vagas = []) {
             <div class="card-vaga-lado-direito">
                 <div class="card-vaga-acoes-topo">
                     <span class="tempo-publicacao">Há ${vaga.dias} dias</span>
-                    <button type="button" class="btn-favoritar" title="Salvar vaga">
+                    <button
+                        type="button"
+                        class="btn-favoritar"
+                        data-vaga-id="${vaga.id}"
+                        data-acao="favoritar"
+                        title="Salvar vaga"
+                        aria-label="Salvar vaga ${vaga.titulo}"
+                    >
                         <svg class="icone-bookmark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2">
                             <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
                         </svg>
@@ -67,15 +75,28 @@ export function criarListaVagas(vagas = []) {
                 </div>
 
                 <div class="card-vaga-botoes">
-                    <button type="button" class="btn-detalhes">Ver detalhes</button>
-                    <button type="button" class="btn-candidatar">Candidatar-se</button>
+                    <button type="button" class="btn-detalhes" data-vaga-id="${vaga.id}">Ver detalhes</button>
+                    <button type="button" class="btn-candidatar" data-vaga-id="${vaga.id}">Candidatar-se</button>
                 </div>
             </div>
         `;
 
         const btnFavoritar = card.querySelector(".btn-favoritar");
-        btnFavoritar.addEventListener("click", () => {
+        btnFavoritar.addEventListener("click", (evento) => {
+            evento.preventDefault();
+            evento.stopPropagation();
+
             btnFavoritar.classList.toggle("salvo");
+
+            btnFavoritar.dispatchEvent(
+                new CustomEvent("favoritarVagaSolicitado", {
+                    bubbles: true,
+                    detail: {
+                        vagaId: Number(vaga.id),
+                        vaga
+                    }
+                })
+            );
         });
 
         wrapper.appendChild(card);

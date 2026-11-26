@@ -11,10 +11,14 @@ import { renderDashboardEmpresa } from '../pages/dashboard-empresa.js';
 import { renderDashboardRecrutador } from '../pages/dashboard-recrutador.js';
 import { renderDashboardAdministrador } from '../pages/dashboard-administrador.js';
 import { renderCandidatoVagas } from '../pages/candidato-vagas.js';
-import { renderMeusDados } from '../pages/meus-dados.js';
+import { renderVagasFavoritasCandidato } from '../pages/vagas-favoritas-candidato.js';
+import { renderCurriculoCandidato } from '../pages/curriculo-candidato.js';
+import { abrirModalCandidatura } from '../pages/modal-candidatura.js';
+import { renderMeusDados } from '../pages/meus-dados-candidato.js';
 import { renderMeusDados as renderMeusDadosRecrutador } from '../pages/meus-dados-recrutador.js';
 import { renderMeusDadosEmpresa } from '../pages/meus-dados-empresa.js';
 import { renderAlterarSenhaEmpresa } from '../pages/alterar-senha-empresa.js';
+import { renderAlterarSenhaCandidato } from '../pages/alterar-senha-candidato.js';
 import { renderMinhasVagas } from '../pages/gerenciar-vagas.js';
 import { renderMinhasVagasRecrutador } from '../pages/minhas-vagas-recrutador.js';
 import { renderGerenciarRecrutadores } from '../pages/gerenciar-recrutadores.js';
@@ -28,6 +32,7 @@ import { renderMeusPlanosEmpresa } from '../pages/meus-planos-empresa.js';
 import { renderBancoTalentos } from '../pages/banco-talentos.js';
 import { renderCandidatosFavoritados } from '../pages/candidatos-favoritados.js';
 import { renderCandidaturasRecebidasEmpresa } from '../pages/candidaturas-recebidas-empresa.js';
+import { renderCandidaturasRecebidasRecrutador } from '../pages/candidaturas-recebidas-recrutador.js';
 
 function garantirCssModal() {
     if (!document.getElementById('estilo-modal-global')) {
@@ -45,57 +50,47 @@ function trocarEstiloPagina(nomePagina) {
         estiloAnterior.remove();
     }
 
-    let caminhoCss = null;
-    if (nomePagina === 'dashboard-empresa') {
-        caminhoCss = './view/css/dashboard-empresa.css';
-    } else if (nomePagina === 'dashboard-candidato') {
-        caminhoCss = './view/css/dashboard-candidato.css';
-    } else if (nomePagina === 'dashboard-recrutador') {
-        caminhoCss = './view/css/dashboard-recrutador.css';
-    } else if (nomePagina === 'dashboard-administrador') {
-        caminhoCss = './view/css/dashboard-administrador.css';
-    } else if (nomePagina === 'autenticacao2FA' || nomePagina === 'verificacao') {
-        caminhoCss = './view/css/autenticacao2FA.css';
-    } else if (nomePagina === 'mfa-config') {
-        caminhoCss = './view/css/mfaConfig.css';
-    } else if (nomePagina === 'cadastro') {
-        caminhoCss = './view/css/cadastro.css';
-    } else if (nomePagina === 'login') {
-        caminhoCss = './view/css/login.css';
-    } else if (nomePagina === 'candidato-vagas') {
-        caminhoCss = './view/css/candidato-vagas.css';
-    } else if (nomePagina === 'meus-dados' || nomePagina === 'meus-dados-recrutador') {
-        caminhoCss = './view/css/meus-dados.css';
-    } else if (nomePagina === 'dados-empresa') {
-        caminhoCss = './view/css/meus-dados-empresa.css';
-    } else if (nomePagina === 'alterar-senha-empresa') {
-        caminhoCss = './view/css/alterar-senha-empresa.css';
-    } else if (nomePagina === 'minhas-vagas') {
-        caminhoCss = './view/css/minhas-vagas.css';
-    } else if (nomePagina === 'minhas-vagas-recrutador') {
-        caminhoCss = './view/css/banco-talentos.css';
-    } else if (nomePagina === 'gerenciar-recrutadores' || nomePagina === 'cadastrar-recrutador') {
-        caminhoCss = './view/css/gerenciar-recrutador.css';
-    } else if (nomePagina === 'gerenciar-candidaturas') {
-        caminhoCss = './view/css/gerenciar-candidaturas.css';
-    } else if (nomePagina === 'vagas-inicio') {
-        caminhoCss = './view/css/vagas-inicio.css';
-    } else if (nomePagina === 'criar-vaga') {
-        caminhoCss = './view/css/criar-vaga.css';
-    } else if (nomePagina === 'minha-assinatura') {
-        caminhoCss = './view/css/minha-assinatura.css';
-    } else if (nomePagina === 'meus-planos-empresa') {
-        caminhoCss = './view/css/meus-planos-empresa.css';
-    } else if (nomePagina === 'alterar-planos') {
-        caminhoCss = './view/css/alterar-planos.css';
-    } else if (nomePagina === 'banco-talentos') {
-        caminhoCss = './view/css/banco-talentos.css';
-    } else if (nomePagina === 'candidatos-favoritados') {
-        caminhoCss = './view/css/candidatos-favoritados.css';
-    } else if (nomePagina === 'candidaturas-recebidas-empresa') {
-        caminhoCss = './view/css/banco-talentos.css';
-    }
+    const mapaEstilos = {
+        'dashboard-empresa': './view/css/dashboard-empresa.css',
+        'dashboard-candidato': './view/css/dashboard-candidato.css',
+        'dashboard-recrutador': './view/css/dashboard-recrutador.css',
+        'dashboard-administrador': './view/css/dashboard-administrador.css',
+        'autenticacao2FA': './view/css/autenticacao2FA.css',
+        'verificacao': './view/css/autenticacao2FA.css',
+        'mfa-config': './view/css/mfaConfig.css',
+        'cadastro': './view/css/cadastro.css',
+        'login': './view/css/login.css',
+        'candidato-vagas': './view/css/candidato-vagas.css',
+        'vagas-favoritas-candidato': './view/css/vagas-favoritas-candidato.css',
+        'curriculo-candidato': './view/css/curriculo-candidato.css',
+        'meus-dados': './view/css/meus-dados.css',
+        'meus-dados-recrutador': './view/css/meus-dados.css',
+        'dados-empresa': './view/css/meus-dados-empresa.css',
+        'alterar-senha-empresa': './view/css/alterar-senha-empresa.css',
+        'alterar-senha-candidato': './view/css/alterar-senha-empresa.css',
+        'minhas-vagas': './view/css/minhas-vagas.css',
+        'minhas-vagas-recrutador': './view/css/banco-talentos.css',
+        'gerenciar-recrutadores': './view/css/gerenciar-recrutador.css',
+        'cadastrar-recrutador': './view/css/gerenciar-recrutador.css',
+        'gerenciar-candidaturas': './view/css/gerenciar-candidaturas.css',
+        'vagas-inicio': './view/css/vagas-inicio.css',
+        'criar-vaga': './view/css/criar-vaga.css',
+        'minha-assinatura': './view/css/minha-assinatura.css',
+        'meus-planos-empresa': './view/css/meus-planos-empresa.css',
+        'alterar-planos': './view/css/alterar-planos.css',
+        'banco-talentos': './view/css/banco-talentos.css',
+        'candidatos-favoritados': './view/css/candidatos-favoritados.css',
+        'candidaturas-recebidas-empresa': './view/css/banco-talentos.css',
+        'candidaturas-recebidas-recrutador': './view/css/candidaturas-recebidas-recrutador.css',
+        'sobre-nos': './view/css/sobre-nos.css',
+        'recursos': './view/css/recursos.css',
+        'planos': './view/css/planos.css',
+        'suporte': './view/css/suporte.css',
+        'tipo-cadastro': './view/css/tipo-cadastro.css',
+        'home': './view/css/home.css'
+    };
 
+    const caminhoCss = mapaEstilos[nomePagina];
     if (caminhoCss) {
         const link = document.createElement('link');
         link.id = 'estilo-Dinamico-pagina';
@@ -105,22 +100,73 @@ function trocarEstiloPagina(nomePagina) {
     }
 }
 
+function extrairDadosVagaDoBotao(btn) {
+    const card = btn.closest('.vaga-card, .card-vaga, article, .job-card, tr') || document;
+    const titulo =
+        btn.dataset.titulo ||
+        card.querySelector('.vaga-titulo, .titulo-vaga, h3, h2')?.textContent?.trim() ||
+        'Vaga disponível';
+    const empresa =
+        btn.dataset.empresa ||
+        card.querySelector('.vaga-empresa, .empresa-nome, .empresa')?.textContent?.trim() ||
+        'Conecta Talent';
+    const localidade =
+        btn.dataset.localidade ||
+        card.querySelector('.vaga-localidade, .localidade')?.textContent?.trim() ||
+        '';
+    const modelo =
+        btn.dataset.modelo ||
+        card.querySelector('.vaga-modelo, .modelo-trabalho')?.textContent?.trim() ||
+        '';
+    const salario =
+        btn.dataset.salario ||
+        card.querySelector('.vaga-salario, .salario')?.textContent?.trim() ||
+        '';
+
+    return {
+        id: btn.dataset.vagaId || btn.dataset.id || card.dataset.vagaId || card.dataset.id || titulo,
+        titulo,
+        empresa,
+        localidade,
+        modelo,
+        salario
+    };
+}
+
+function obterHashNormalizada() {
+    const hash = window.location.hash || '#home';
+    return hash.startsWith('#') ? hash : `#${hash}`;
+}
+
 export function iniciarRouter() {
     const app = document.getElementById('app');
+    if (!app) {
+        console.error('Elemento #app não encontrado no DOM.');
+        return;
+    }
+
     garantirCssModal();
 
     document.addEventListener('click', (e) => {
         const btnCandidatar = e.target.closest('.btn-candidatar');
+        if (!btnCandidatar) return;
 
-        if (btnCandidatar && window.location.hash === '#vagas-inicio') {
+        const hash = obterHashNormalizada();
+        if (
+            hash === '#vagas-inicio' ||
+            hash === '#candidato-vagas' ||
+            hash === '#vagas-favoritas' ||
+            hash === '#vagas-favoritas-candidato'
+        ) {
             e.preventDefault();
             e.stopPropagation();
-            abrirModalCandidatar();
+            const vaga = extrairDadosVagaDoBotao(btnCandidatar);
+            abrirModalCandidatura(vaga);
         }
     });
 
     function navegar() {
-        const hash = window.location.hash;
+        const hash = obterHashNormalizada();
         app.innerHTML = '';
 
         switch (hash) {
@@ -151,6 +197,16 @@ export function iniciarRouter() {
             case '#candidato-vagas':
                 trocarEstiloPagina('candidato-vagas');
                 app.appendChild(renderCandidatoVagas());
+                break;
+            case '#vagas-favoritas':
+            case '#vagas-favoritas-candidato':
+                trocarEstiloPagina('vagas-favoritas-candidato');
+                app.appendChild(renderVagasFavoritasCandidato());
+                break;
+            case '#curriculo':
+            case '#curriculo-candidato':
+                trocarEstiloPagina('curriculo-candidato');
+                app.appendChild(renderCurriculoCandidato('João Oliveira'));
                 break;
             case '#dashboard-candidato':
                 trocarEstiloPagina('dashboard-candidato');
@@ -197,6 +253,11 @@ export function iniciarRouter() {
                 trocarEstiloPagina('alterar-senha-empresa');
                 app.appendChild(renderAlterarSenhaEmpresa('Twelse LTDA'));
                 break;
+            case '#alterar-senha-candidato':
+            case '#seguranca-candidato':
+                trocarEstiloPagina('alterar-senha-candidato');
+                app.appendChild(renderAlterarSenhaCandidato('João Oliveira'));
+                break;
             case '#gerenciar-vagas':
                 trocarEstiloPagina('gerenciar-vagas');
                 app.appendChild(renderMinhasVagas());
@@ -228,6 +289,11 @@ export function iniciarRouter() {
             case '#meu-plano':
                 trocarEstiloPagina('minha-assinatura');
                 app.appendChild(renderMinhaAssinatura('empresa'));
+                break;
+            case '#candidaturas-recebidas-recrutador':
+            case '#recebidas-recrutador':
+                trocarEstiloPagina('candidaturas-recebidas-recrutador');
+                app.appendChild(renderCandidaturasRecebidasRecrutador('Thaeny Soares'));
                 break;
             case '#candidaturas-recebidas-empresa':
             case '#candidaturas-recebidas':

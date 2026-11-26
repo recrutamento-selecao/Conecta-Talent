@@ -121,14 +121,7 @@ const MENUS_POR_PERFIL = {
         {
             id: "curriculo", icone: "assets/icons/file-description-branco.svg", texto: "Currículo",
             submenu: [
-                { texto: "Meu currículo", href: "#meu-curriculo" }
-            ]
-        },
-        {
-            id: "agenda", icone: "assets/icons/calendar-week-branco.svg", texto: "Agenda",
-            submenu: [
-                { texto: "Entrevistas", href: "#entrevistas-candidato" },
-                { texto: "Calendário", href: "#calendario-candidato" }
+                { texto: "Meu currículo", href: "#curriculo-candidato" }
             ]
         },
         {

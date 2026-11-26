@@ -1,0 +1,410 @@
+/* =================================================================
+   VAGAS FAVORITADAS (CANDIDATO) - ESTILO ESPECÍFICO E RESPONSIVO
+   ================================================================= */
+
+:root {
+    --fav-sidebar-width: 260px;
+    --fav-sidebar-collapsed-width: 78px;
+}
+
+.page-vagas-favoritas-candidato .fav-candidato-page {
+    flex: 1;
+    width: calc(100vw - var(--fav-sidebar-width));
+    max-width: 100% !important;
+    margin-left: var(--fav-sidebar-width);
+    padding: 1.85rem 2rem;
+    box-sizing: border-box;
+    transition: margin-left 0.25s ease, width 0.25s ease, padding 0.25s ease;
+}
+
+body:has(.sidebar.fechada) .page-vagas-favoritas-candidato .fav-candidato-page,
+body:has(.sidebar.collapsed) .page-vagas-favoritas-candidato .fav-candidato-page,
+body.sidebar-fechada .page-vagas-favoritas-candidato .fav-candidato-page,
+.sidebar.fechada ~ .page-vagas-favoritas-candidato .fav-candidato-page,
+.sidebar.collapsed ~ .page-vagas-favoritas-candidato .fav-candidato-page,
+body:has(.sidebar[style*="width: 78px"]) .page-vagas-favoritas-candidato .fav-candidato-page {
+    margin-left: var(--fav-sidebar-collapsed-width);
+    width: calc(100vw - var(--fav-sidebar-collapsed-width));
+}
+
+/* --- CABEÇALHO --- */
+.page-vagas-favoritas-candidato .fav-cabecalho {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid #e2e8f0;
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.page-vagas-favoritas-candidato .fav-titulo {
+    font-size: 1.65rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary, #0f172a);
+    margin: 0;
+    line-height: 1.25;
+}
+
+.page-vagas-favoritas-candidato .fav-subtitulo {
+    font-size: 0.9rem;
+    color: var(--text-secondary, #64748b);
+    margin: 0.25rem 0 0;
+    line-height: 1.45;
+}
+
+/* --- BARRA DE FILTROS --- */
+.page-vagas-favoritas-candidato .fav-filtros-card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--bg-white, #ffffff);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 0.95rem 1.1rem;
+    margin-bottom: 1.35rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.page-vagas-favoritas-candidato .fav-busca-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1 1 240px;
+    min-width: 200px;
+}
+
+.page-vagas-favoritas-candidato .fav-busca-icone {
+    position: absolute;
+    left: 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary, #64748b);
+    pointer-events: none;
+}
+
+.page-vagas-favoritas-candidato .fav-input-busca {
+    width: 100%;
+    height: 38px;
+    padding: 0 0.75rem 0 2.15rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.85rem;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.page-vagas-favoritas-candidato .fav-input-busca:focus {
+    outline: none;
+    border-color: var(--primary-color, #2563eb);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.page-vagas-favoritas-candidato .fav-select {
+    height: 38px;
+    padding: 0 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.83rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.page-vagas-favoritas-candidato .fav-select:focus {
+    outline: none;
+    border-color: var(--primary-color, #2563eb);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.page-vagas-favoritas-candidato .fav-btn-limpar {
+    height: 38px;
+    padding: 0 0.9rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background-color: #f8fafc;
+    color: var(--text-secondary, #475569);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.page-vagas-favoritas-candidato .fav-btn-limpar:hover {
+    background-color: #f1f5f9;
+    color: var(--text-primary, #0f172a);
+    border-color: #cbd5e1;
+}
+
+/* --- CARD DA TABELA --- */
+.page-vagas-favoritas-candidato .fav-tabela-card {
+    background-color: var(--bg-white, #ffffff);
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    overflow: hidden;
+}
+
+.page-vagas-favoritas-candidato .fav-tabela-responsiva {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.page-vagas-favoritas-candidato .fav-tabela {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.84rem;
+}
+
+.page-vagas-favoritas-candidato .fav-tabela th {
+    background-color: #f8fafc;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+}
+
+.page-vagas-favoritas-candidato .fav-tabela td {
+    padding: 0.85rem 0.75rem;
+    border-bottom: 1px solid #f1f5f9;
+    color: var(--text-primary, #0f172a);
+    vertical-align: middle;
+}
+
+.page-vagas-favoritas-candidato .fav-tabela tbody tr {
+    transition: background-color 0.15s ease;
+}
+
+.page-vagas-favoritas-candidato .fav-tabela tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.page-vagas-favoritas-candidato .fav-tabela tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.page-vagas-favoritas-candidato .col-check {
+    width: 38px;
+    text-align: center;
+}
+
+.page-vagas-favoritas-candidato .col-check input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    accent-color: var(--primary-color, #2563eb);
+    cursor: pointer;
+}
+
+.page-vagas-favoritas-candidato .text-right {
+    text-align: right;
+}
+
+/* --- CÉLULA DA VAGA E AVATAR --- */
+.page-vagas-favoritas-candidato .fav-vaga-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    min-width: 190px;
+}
+
+.page-vagas-favoritas-candidato .fav-avatar {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background-color: #e0e7ff;
+    color: #4338ca;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-vagas-favoritas-candidato .fav-vaga-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+}
+
+.page-vagas-favoritas-candidato .fav-vaga-titulo {
+    font-weight: 600;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.86rem;
+}
+
+.page-vagas-favoritas-candidato .fav-vaga-empresa {
+    font-size: 0.76rem;
+    color: var(--text-secondary, #64748b);
+}
+
+/* --- LOCALIZAÇÃO --- */
+.page-vagas-favoritas-candidato .fav-local-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.12rem;
+}
+
+.page-vagas-favoritas-candidato .fav-local-cidade {
+    font-size: 0.83rem;
+    color: var(--text-primary, #0f172a);
+}
+
+.page-vagas-favoritas-candidato .fav-local-mod {
+    font-size: 0.75rem;
+    color: var(--text-secondary, #64748b);
+}
+
+/* --- BADGE E AÇÃO --- */
+.page-vagas-favoritas-candidato .badge-favoritada {
+    display: inline-block;
+    padding: 0.22rem 0.6rem;
+    border-radius: 999px;
+    background-color: #fef3c7;
+    color: #b45309;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.page-vagas-favoritas-candidato .fav-btn-remover {
+    background-color: #fffbeb;
+    color: #b45309;
+    border: 1px solid #fde68a;
+    border-radius: 8px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.page-vagas-favoritas-candidato .fav-btn-remover:hover {
+    background-color: #fef3c7;
+    color: #92400e;
+    border-color: #fcd34d;
+}
+
+/* --- ESTADO VAZIO --- */
+.page-vagas-favoritas-candidato .fav-estado-vazio {
+    text-align: center;
+    padding: 2.5rem 1.25rem !important;
+    color: var(--text-secondary, #64748b);
+    font-size: 0.88rem;
+}
+
+/* --- PAGINAÇÃO --- */
+.page-vagas-favoritas-candidato .fav-rodape-paginacao {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.15rem;
+    border-top: 1px solid #e2e8f0;
+    background-color: #ffffff;
+    font-size: 0.8rem;
+    color: var(--text-secondary, #64748b);
+}
+
+.page-vagas-favoritas-candidato .fav-controles-paginacao {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.page-vagas-favoritas-candidato .fav-label-por-pagina {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.page-vagas-favoritas-candidato .fav-select-pagina {
+    height: 32px;
+    padding: 0 0.5rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.page-vagas-favoritas-candidato .fav-botoes-pagina {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.page-vagas-favoritas-candidato .fav-btn-pag {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: var(--text-primary, #0f172a);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.page-vagas-favoritas-candidato .fav-btn-pag:hover:not(:disabled) {
+    background-color: #f1f5f9;
+    border-color: #94a3b8;
+}
+
+.page-vagas-favoritas-candidato .fav-btn-pag:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.page-vagas-favoritas-candidato .fav-pag-atual {
+    min-width: 24px;
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-primary, #0f172a);
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    .page-vagas-favoritas-candidato .fav-candidato-page {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding: 1.1rem;
+    }
+
+    .page-vagas-favoritas-candidato .fav-filtros-card {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .page-vagas-favoritas-candidato .fav-busca-box {
+        min-width: 0;
+        flex: none;
+        width: 100%;
+    }
+
+    .page-vagas-favoritas-candidato .fav-select,
+    .page-vagas-favoritas-candidato .fav-btn-limpar {
+        width: 100%;
+    }
+}

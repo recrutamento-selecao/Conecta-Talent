@@ -17,7 +17,8 @@
 }
 
 .conteudo-principal {
-    flex: 1;
+    flex: 1 1 auto;
+    min-width: 0;
     padding: 2.25rem 3rem;
     overflow-y: auto;
     max-width: 1400px;
@@ -58,22 +59,32 @@
    CRIAR VAGA — STEPPER COMPACTO
    ========================================== */
 .stepper-cartao {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    align-self: stretch !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
     border-radius: 12px;
-    padding: 0.5rem 1.5rem 0.65rem;
+    padding: 0.9rem 2rem;
     margin-bottom: 1.25rem;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
 }
 
 .stepper-cartao > * {
+    width: 100% !important;
+    max-width: 100% !important;
     margin-top: 0;
     margin-bottom: 0;
 }
 
 .stepper-container {
-    display: flex;
+    display: flex !important;
     justify-content: space-between;
     position: relative;
     align-items: center;
+    width: 100% !important;
+    max-width: 100% !important;
     padding-top: 2px;
 }
 

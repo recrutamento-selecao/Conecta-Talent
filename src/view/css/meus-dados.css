@@ -47,10 +47,12 @@ body:has(.sidebar.fechada) .conteudo-principal {
 .formulario-modular-wrapper {
     max-width: 980px;
     margin: 0 auto;
+    width: 100%;
 }
 
 .secao-form-bloco {
     padding-bottom: 24px;
+    width: 100%;
 }
 
 .secao-separada {
@@ -83,6 +85,7 @@ body:has(.sidebar.fechada) .conteudo-principal {
 
 .grid-secao-simples {
     padding-left: 0;
+    width: 100%;
 }
 
 /* Bloco da Foto de Perfil */
@@ -158,31 +161,637 @@ body:has(.sidebar.fechada) .conteudo-principal {
 
 /* Distribuição personalizada das colunas na 1ª Seção (Dados Pessoais) */
 .secao-form-bloco:not(.secao-separada) .linha-formulario-grid:nth-child(1) {
-    grid-template-columns: 2fr 1.2fr 1.2fr; /* Nome, Nascimento, Gênero */
+    grid-template-columns: 2fr 1.2fr 1.2fr;
 }
 
 .secao-form-bloco:not(.secao-separada) .linha-formulario-grid:nth-child(2) {
-    grid-template-columns: 1fr 1.2fr 1.2fr; /* Estado Civil, CPF, RG */
+    grid-template-columns: 1fr 1.2fr 1.2fr;
 }
 
 .secao-form-bloco:not(.secao-separada) .linha-formulario-grid:nth-child(3) {
-    grid-template-columns: 1.4fr 1.2fr 1.2fr; /* E-mail, Celular, Telefone */
+    grid-template-columns: 1.4fr 1.2fr 1.2fr;
 }
 
 .secao-form-bloco:not(.secao-separada) .linha-formulario-grid:nth-child(4) {
-    grid-template-columns: 1fr 1fr; /* LinkedIn, Portfólio */
+    grid-template-columns: 1fr 1fr;
 }
 
 /* Distribuição personalizada das colunas na 2ª Seção (Endereço) */
 .secao-separada .linha-formulario-grid:nth-child(1) {
-    grid-template-columns: 1fr 2fr 0.8fr 1.2fr; /* CEP, Logradouro, Número, Complemento */
+    grid-template-columns: 1fr 2fr 0.8fr 1.2fr;
 }
 
 .secao-separada .linha-formulario-grid:nth-child(2) {
-    grid-template-columns: 1fr 1fr 1fr; /* Bairro, Cidade, Estado */
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
-/* Campos Individuais e Rótulos */
+/* =========================================================
+   FORMAÇÃO ACADÊMICA — ALINHAMENTO E "CURSANDO ATUALMENTE"
+   ========================================================= */
+.linha-formulario-grid:has(#f-instituicao):has(#f-curso) {
+    grid-template-columns: 1.4fr 1.4fr;
+    align-items: end;
+}
+
+.linha-formulario-grid:has(#f-grau):has(#f-situacao):has(#f-inicio):has(#f-fim) {
+    grid-template-columns: 1.4fr 1.1fr 1.15fr 1.15fr;
+    align-items: end;
+}
+
+.linha-formulario-grid:has(#f-cursando) {
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.grupo-campo:has(#f-cursando) {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+}
+
+.grupo-campo:has(#f-cursando) label {
+    margin-bottom: 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+#f-cursando {
+    width: 16px;
+    height: 16px;
+    accent-color: #1d4ed8;
+    cursor: pointer;
+}
+
+.linha-formulario-grid:has(#f-obs) {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    margin-top: 4px;
+}
+
+.grupo-campo:has(#f-obs),
+.grupo-campo:has(#f-obs) .input-wrapper,
+#f-obs {
+    width: 100%;
+    max-width: 100%;
+}
+
+#f-obs {
+    min-height: 72px;
+    max-height: 180px;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #1e293b;
+    background-color: #ffffff;
+    outline: none;
+    box-sizing: border-box;
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+#f-obs::placeholder {
+    color: #94a3b8;
+}
+
+#f-obs:focus {
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+#f-fim:disabled,
+.grupo-campo:has(#f-fim:disabled) input,
+.grupo-campo:has(#f-fim:disabled) label {
+    background-color: #f1f5f9 !important;
+    color: #94a3b8 !important;
+    border-color: #e2e8f0 !important;
+    cursor: not-allowed !important;
+}
+
+.grupo-campo:has(#f-fim:disabled) {
+    opacity: 0.65;
+}
+
+/* =========================================================
+   EXPERIÊNCIA PROFISSIONAL E CURSOS — MESMA ESTRUTURA DA FORMAÇÃO
+   ========================================================= */
+.linha-formulario-grid:has(#exp-cargo):has(#exp-empresa),
+.linha-formulario-grid:has(#c-nome):has(#c-instituicao) {
+    grid-template-columns: 1.4fr 1.4fr;
+    align-items: end;
+}
+
+.linha-formulario-grid:has(#exp-contrato):has(#exp-inicio):has(#exp-fim) {
+    grid-template-columns: 1.4fr 1.15fr 1.15fr;
+    align-items: end;
+}
+
+.linha-formulario-grid:has(#c-tipo):has(#c-inicio):has(#c-fim) {
+    grid-template-columns: 1.4fr 1.15fr 1.15fr;
+    align-items: end;
+}
+
+.linha-formulario-grid:has(#exp-atual),
+.linha-formulario-grid:has(#c-cursando) {
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.grupo-campo:has(#exp-atual),
+.grupo-campo:has(#c-cursando) {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: auto;
+}
+
+.grupo-campo:has(#exp-atual) label,
+.grupo-campo:has(#c-cursando) label {
+    margin-bottom: 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+#exp-atual,
+#c-cursando {
+    width: 16px;
+    height: 16px;
+    accent-color: #1d4ed8;
+    cursor: pointer;
+}
+
+.linha-formulario-grid:has(#exp-obs),
+.linha-formulario-grid:has(#c-obs) {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    margin-top: 4px;
+}
+
+.grupo-campo:has(#exp-obs),
+.grupo-campo:has(#exp-obs) .input-wrapper,
+#exp-obs,
+.grupo-campo:has(#c-obs),
+.grupo-campo:has(#c-obs) .input-wrapper,
+#c-obs {
+    width: 100%;
+    max-width: 100%;
+}
+
+#exp-obs,
+#c-obs {
+    min-height: 72px;
+    max-height: 180px;
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #1e293b;
+    background-color: #ffffff;
+    outline: none;
+    box-sizing: border-box;
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+#exp-obs::placeholder,
+#c-obs::placeholder {
+    color: #94a3b8;
+}
+
+#exp-obs:focus,
+#c-obs:focus {
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+#exp-fim:disabled,
+.grupo-campo:has(#exp-fim:disabled) input,
+.grupo-campo:has(#exp-fim:disabled) label,
+#c-fim:disabled,
+.grupo-campo:has(#c-fim:disabled) input,
+.grupo-campo:has(#c-fim:disabled) label {
+    background-color: #f1f5f9 !important;
+    color: #94a3b8 !important;
+    border-color: #e2e8f0 !important;
+    cursor: not-allowed !important;
+}
+
+.grupo-campo:has(#exp-fim:disabled),
+.grupo-campo:has(#c-fim:disabled) {
+    opacity: 0.65;
+}
+
+/* =========================================================
+   IDIOMAS E HABILIDADES — ALINHAMENTO E LARGURA TOTAL
+   ========================================================= */
+.linha-formulario-grid:has(#i-idioma):has(#i-nivel) {
+    grid-template-columns: 1.4fr 1.4fr;
+    align-items: end;
+}
+
+.linha-formulario-grid:has(#h-habilidade),
+.grupo-campo:has(#h-habilidade),
+.grupo-campo:has(#h-habilidade) .input-wrapper,
+#h-habilidade {
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: 1fr;
+}
+
+/* =========================================================
+   BARRA DE AÇÕES E LISTA DINÂMICA (ITENS ADICIONADOS)
+   ========================================================= */
+.acoes-formacao-lista {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    margin-bottom: 20px;
+}
+
+.btn-adicionar-item {
+    background: #1d4ed8;
+    color: #ffffff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-adicionar-item:hover {
+    background: #1e40af;
+}
+
+.btn-limpar-campos {
+    background: #ffffff;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    padding: 9px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-limpar-campos:hover {
+    background: #f8fafc;
+    border-color: #94a3b8;
+}
+
+.lista-itens-dinamica {
+    margin-top: 20px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 16px;
+}
+
+.lista-itens-titulo {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.lista-itens-vazio {
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.card-item-adicionado {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    background: #f8fafc;
+    margin-bottom: 10px;
+}
+
+.item-adicionado-titulo {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.item-adicionado-subtitulo {
+    font-size: 12.5px;
+    color: #475569;
+    margin-top: 2px;
+}
+
+.item-adicionado-periodo {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+.item-idioma-conteudo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bandeira-idioma-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid #e2e8f0;
+    flex-shrink: 0;
+}
+
+.bandeira-idioma-fallback {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.btn-remover-item {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.btn-remover-item:hover {
+    background: #fee2e2;
+    border-color: #fca5a5;
+}
+
+/* =========================================================
+   DIVERSIDADE — CARDS E PERGUNTAS ALINHADOS
+   ========================================================= */
+.grid-diversidade-topo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.grid-diversidade-meio {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+    width: 100%;
+}
+
+.grid-diversidade-base {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 16px;
+    width: 100%;
+}
+
+.card-diversidade {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.card-diversidade-titulo {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+.opcoes-diversidade-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.opcoes-diversidade-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.opcoes-diversidade-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.opcao-diversidade-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border: 1px solid #e2e8f0;
+    padding: 7px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #334155;
+    background-color: #ffffff;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.opcao-diversidade-label:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.opcao-diversidade-label:has(input:checked) {
+    border-color: #1d4ed8;
+    background-color: #eff6ff;
+    color: #1e3a8a;
+    font-weight: 600;
+}
+
+.opcao-diversidade-label input[type="radio"] {
+    accent-color: #1d4ed8;
+    cursor: pointer;
+    margin: 0;
+}
+
+.input-diversidade-texto {
+    width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #1e293b;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-diversidade-texto::placeholder {
+    color: #94a3b8;
+}
+
+.input-diversidade-texto:focus {
+    border-color: #1d4ed8;
+    box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+}
+
+/* =========================================================
+   TELA DE CONCLUSÃO / RESUMO DO PERFIL
+   ========================================================= */
+.card-sucesso-container {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 32px;
+    max-width: 980px;
+    margin: 24px auto;
+    box-sizing: border-box;
+}
+
+.sucesso-cabecalho {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.sucesso-icone-check {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #dcfce7;
+    color: #16a34a;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.sucesso-titulo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 8px 0;
+}
+
+.sucesso-subtitulo {
+    color: #475569;
+    font-size: 14px;
+    margin: 0;
+}
+
+.sucesso-banner-status {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 24px;
+}
+
+.secao-resumo-perfil {
+    margin-bottom: 24px;
+}
+
+.resumo-titulo {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0 0 12px 0;
+}
+
+.grid-opcoes-perfil {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.card-opcao-item {
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.card-opcao-check {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.card-opcao-titulo {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+.card-opcao-desc {
+    margin: 0;
+    font-size: 12px;
+    color: #64748b;
+}
+
+.sucesso-dica-box {
+    background: #f8fafc;
+    border-left: 4px solid #2563eb;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #334155;
+    margin-bottom: 24px;
+}
+
+.sucesso-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-resumo-secundario {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    background: #ffffff;
+    color: #334155;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-resumo-primario {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    background: #2563eb;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* =========================================================
+   CAMPOS, ÍCONES, BOTÕES E ESTADOS DE ERRO
+   ========================================================= */
 .grupo-campo {
     display: flex;
     flex-direction: column;
@@ -202,7 +811,6 @@ body:has(.sidebar.fechada) .conteudo-principal {
     margin-left: 2px;
 }
 
-/* Envelopes de Inputs e Selects */
 .input-wrapper {
     position: relative;
     display: flex;
@@ -235,7 +843,6 @@ body:has(.sidebar.fechada) .conteudo-principal {
     box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
 }
 
-/* Ícones nos Inputs (Esquerda e Direita) */
 .input-wrapper.com-icone-esq input {
     padding-left: 36px;
 }
@@ -261,7 +868,6 @@ body:has(.sidebar.fechada) .conteudo-principal {
     pointer-events: none;
 }
 
-/* Rodapé de Ações (Botões Cancelar e Continuar) */
 .acoes-formulario {
     display: flex;
     justify-content: space-between;
@@ -306,7 +912,6 @@ body:has(.sidebar.fechada) .conteudo-principal {
     background: #1e40af;
 }
 
-/* Alerta global de erro no topo do formulário */
 .alerta-erro-formulario {
     display: flex;
     align-items: center;
@@ -331,17 +936,36 @@ body:has(.sidebar.fechada) .conteudo-principal {
     color: #dc2626;
     margin-left: 0;
     display: inline-block;
-    /* Garante que o desenho do SVG interno fique centralizado */
-    overflow: visible; 
+    overflow: visible;
 }
 
-/* Estado de erro aplicado ao campo obrigatório vazio */
 .grupo-campo.erro-campo input,
-.grupo-campo.erro-campo select {
+.grupo-campo.erro-campo select,
+.grupo-campo.erro-campo textarea {
     border-color: #dc2626 !important;
     background-color: #fff5f5;
 }
 
 .grupo-campo.erro-campo label {
     color: #dc2626;
+}
+
+.erro-critico-container {
+    padding: 40px;
+    color: #dc2626;
+}
+
+@media (max-width: 900px) {
+    .grid-diversidade-topo,
+    .grid-diversidade-meio,
+    .grid-diversidade-base {
+        grid-template-columns: 1fr;
+    }
+
+    .linha-formulario-grid:has(#i-idioma):has(#i-nivel),
+    .linha-formulario-grid:has(#exp-contrato):has(#exp-inicio):has(#exp-fim),
+    .linha-formulario-grid:has(#c-tipo):has(#c-inicio):has(#c-fim),
+    .linha-formulario-grid:has(#f-grau):has(#f-situacao):has(#f-inicio):has(#f-fim) {
+        grid-template-columns: 1fr;
+    }
 }
