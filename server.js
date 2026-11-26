@@ -2,7 +2,9 @@ import 'dotenv/config';
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { createClient } from '@supabase/supabase-js';
+import conn from './src/config/database.js';
+import authRoutes from './src/routes/authRoutes.js';
+import recrutadorRoutes from './src/routes/recrutadorRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,21 +14,21 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
-// --- CONFIGURAÇÃO DE FICHEIROS ESTÁTICOS ---
+// --- CONFIGURAÇÃO DE ARQUIVOS ESTÁTICOS ---
 app.use(express.static(path.join(__dirname, 'src', 'view')));
-app.use('/view', express.static(path.join(__dirname, 'src', 'view'))); // Garante que /view/... funciona sem erros
+app.use('/view', express.static(path.join(__dirname, 'src', 'view')));
 app.use('/assets', express.static(path.join(__dirname, 'public', 'assets')));
-app.use('/src', express.static(path.join(__dirname, 'src')));
 
-// Inicializa o cliente do Supabase no backend
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_PUBLISHABLE_KEY);
+// --- ROTAS DA API ---
+app.use('/autenticacao', authRoutes);
+app.use('/recrutadores', recrutadorRoutes);
 
 // --- ROTA RAIZ ---
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'src', 'view', 'index.html'));
 });
 
-// --- ROTA DE CONFIGURAÇÃO DO SUPABASE ---
+// --- ROTA DE CONFIGURAÇÃO DO SUPABASE (CHAVE PÚBLICA APENAS) ---
 app.get('/api/supabase-config', (req, res) => {
     res.json({
         supabaseUrl: process.env.SUPABASE_URL,
@@ -43,8 +45,8 @@ app.post('/api/auth/send-otp', async (req, res) => {
     }
 
     try {
-        const { error } = await supabase.auth.signInWithOtp({
-            email: email,
+        const { error } = await conn.auth.signInWithOtp({
+            email,
             options: {
                 shouldCreateUser: false
             }
@@ -70,9 +72,9 @@ app.post('/api/auth/verify-otp', async (req, res) => {
     }
 
     try {
-        const { data, error } = await supabase.auth.verifyOtp({
-            email: email,
-            token: token,
+        const { data, error } = await conn.auth.verifyOtp({
+            email,
+            token,
             type: 'email'
         });
 
@@ -85,7 +87,6 @@ app.post('/api/auth/verify-otp', async (req, res) => {
             session: data.session,
             user: data.user
         });
-
     } catch (err) {
         console.error('Erro interno no servidor ao verificar OTP:', err);
         return res.status(500).json({ error: 'Erro interno no servidor.' });
@@ -95,5 +96,3 @@ app.post('/api/auth/verify-otp', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
-
-
