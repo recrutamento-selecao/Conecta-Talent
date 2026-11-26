@@ -18,7 +18,15 @@ import { renderGerenciarCandidaturas } from '../pages/gerenciar-candidaturas.js'
 import { renderVagasInicio } from '../pages/vagas-inicio.js';
 import { abrirModalCandidatar } from '../pages/modal-candidatar-se.js';
 import { renderGerenciarUsuarios } from '../pages/gerenciar-usuarios.js';
-import { criarSidebar } from '../components/sidebar.js'; 
+import { criarSidebar } from '../components/sidebar.js';
+import { renderGerenciarPlanos, PLANOS_ADM_INICIAIS } from '../pages/gerenciar-planos.js';
+import { renderFormPlanoAdm } from '../pages/form-plano-adm.js';
+import { renderGerenciarAssinaturas, renderVisualizarAssinatura } from '../pages/gerenciar-assinaturas.js';
+import { renderPagamentosAdm, renderVisualizarPagamento } from '../pages/pagamentos-adm.js'; 
+import { renderRelatorioUsuariosAdm } from '../pages/relatorio-usuarios-adm.js';
+import { renderRelatorioAssinaturasAdm } from '../pages/relatorio-assinaturas-adm.js';
+import { renderRelatorioFinanceiroAdm } from '../pages/relatorio-financeiro-adm.js';
+
 
 function garantirCssModal() {
     if (!document.getElementById('estilo-modal-global')) {
@@ -93,8 +101,149 @@ export function iniciarRouter() {
     function navegar() {
         const hash = window.location.hash;
         app.innerHTML = '';
+        
+        // Rotas dinâmicas do painel administrativo
+if (hash.startsWith('#/planos/editar/')) {
+    const planoId = decodeURIComponent(hash.replace('#/planos/editar/', ''));
+    const planoAlvo = PLANOS_ADM_INICIAIS.find((p) => p.id === planoId) || PLANOS_ADM_INICIAIS[1];
+    trocarEstiloPagina('dashboard');
+    const layout = document.createElement('div');
+    layout.className = 'pagina-layout-dashboard';
+    layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+    const main = document.createElement('main');
+    main.className = 'conteudo-principal';
+    main.append(renderFormPlanoAdm('editar', planoAlvo));
+    layout.append(main);
+    app.append(layout);
+    return;
+}
 
+if (hash.startsWith('#/assinaturas/') && hash !== '#/assinaturas') {
+    const assinaturaId = decodeURIComponent(hash.replace('#/assinaturas/', ''));
+    trocarEstiloPagina('dashboard');
+    const layout = document.createElement('div');
+    layout.className = 'pagina-layout-dashboard';
+    layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+    const main = document.createElement('main');
+    main.className = 'conteudo-principal';
+    main.append(renderVisualizarAssinatura(assinaturaId));
+    layout.append(main);
+    app.append(layout);
+    return;
+}
+
+if (hash.startsWith('#/pagamentos/') && hash !== '#/pagamentos') {
+    const pagamentoId = decodeURIComponent(hash.replace('#/pagamentos/', ''));
+    trocarEstiloPagina('dashboard');
+    const layout = document.createElement('div');
+    layout.className = 'pagina-layout-dashboard';
+    layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+    const main = document.createElement('main');
+    main.className = 'conteudo-principal';
+    main.append(renderVisualizarPagamento(pagamentoId));
+    layout.append(main);
+    app.append(layout);
+    return;
+}     
         switch (hash) {
+
+            case '#/relatorios/usuarios':
+case '#relatorios/usuarios': {
+    trocarEstiloPagina('dashboard');
+    const layout = document.createElement('div');
+    layout.className = 'pagina-layout-dashboard';
+    layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+    const main = document.createElement('main');
+    main.className = 'conteudo-principal';
+    main.append(renderRelatorioUsuariosAdm());
+    layout.append(main);
+    app.append(layout);
+    break;
+}
+
+case '#/relatorios/assinaturas':
+case '#relatorios/assinaturas': {
+    trocarEstiloPagina('dashboard');
+    const layout = document.createElement('div');
+    layout.className = 'pagina-layout-dashboard';
+    layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+    const main = document.createElement('main');
+    main.className = 'conteudo-principal';
+    main.append(renderRelatorioAssinaturasAdm());
+    layout.append(main);
+    app.append(layout);
+    break;
+}
+
+case '#/relatorios/financeiro':
+case '#relatorios/financeiro': {
+    trocarEstiloPagina('dashboard');
+    const layout = document.createElement('div');
+    layout.className = 'pagina-layout-dashboard';
+    layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+    const main = document.createElement('main');
+    main.className = 'conteudo-principal';
+    main.append(renderRelatorioFinanceiroAdm());
+    layout.append(main);
+    app.append(layout);
+    break;
+}
+
+            case '#/planos':
+case '#planos': {
+    trocarEstiloPagina('dashboard');
+    const layout = document.createElement('div');
+    layout.className = 'pagina-layout-dashboard';
+    layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+    const main = document.createElement('main');
+    main.className = 'conteudo-principal';
+    main.append(renderGerenciarPlanos());
+    layout.append(main);
+    app.append(layout);
+    break;
+}
+
+case '#/planos/novo':
+case '#planos/novo': {
+    trocarEstiloPagina('dashboard');
+    const layout = document.createElement('div');
+    layout.className = 'pagina-layout-dashboard';
+    layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+    const main = document.createElement('main');
+    main.className = 'conteudo-principal';
+    main.append(renderFormPlanoAdm('novo'));
+    layout.append(main);
+    app.append(layout);
+    break;
+}
+
+case '#/assinaturas':
+case '#assinaturas': {
+    trocarEstiloPagina('dashboard');
+    const layout = document.createElement('div');
+    layout.className = 'pagina-layout-dashboard';
+    layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+    const main = document.createElement('main');
+    main.className = 'conteudo-principal';
+    main.append(renderGerenciarAssinaturas());
+    layout.append(main);
+    app.append(layout);
+    break;
+}
+
+case '#/pagamentos':
+case '#pagamentos': {
+    trocarEstiloPagina('dashboard');
+    const layout = document.createElement('div');
+    layout.className = 'pagina-layout-dashboard';
+    layout.append(criarSidebar('administrador', 'Pedro Vitara'));
+    const main = document.createElement('main');
+    main.className = 'conteudo-principal';
+    main.append(renderPagamentosAdm());
+    layout.append(main);
+    app.append(layout);
+    break;
+}
             case '#sobre-nos':
             case '#sobre':
                 trocarEstiloPagina('sobre-nos');

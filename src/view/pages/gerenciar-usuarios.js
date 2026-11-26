@@ -333,25 +333,40 @@ export function renderGerenciarUsuarios() {
         return fechar;
     }
 
-    function abrirModalBloqueio(usuario) {
+   function abrirModalBloqueio(usuario) {
         let fechar = () => {};
         const aoCancelar = () => fechar();
         const wrap = document.createElement('div');
         wrap.innerHTML = `
-            <div style="display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:1rem;">
-                <div style="width:56px;height:56px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;margin-bottom:0.75rem;color:#dc2626;font-size:1.5rem;">🚫</div>
-                <h3 style="margin:0 0 0.35rem;color:#0f172a;font-size:1.25rem;">Bloquear usuário</h3>
-                <p style="margin:0;font-size:0.85rem;color:#64748b;">Tem certeza que deseja bloquear <strong>${escaparHtml(usuario.nome)}</strong>? O usuário não poderá mais acessar a plataforma.</p>
+            <h3 style="margin:0 0 0.35rem;color:#0f172a;font-size:1.35rem;font-weight:700;">Bloquear usuário</h3>
+            <p style="margin:0 0 0.25rem;font-size:0.88rem;font-weight:600;color:#334155;">Tem certeza que deseja bloquear este usuário?</p>
+            <p style="margin:0 0 1.1rem;font-size:0.84rem;line-height:1.45;color:#64748b;">O usuário não poderá mais acessar a plataforma, mas seus dados serão mantidos no sistema. Você poderá desbloqueá-lo a qualquer momento.</p>
+
+            <div class="gu-alerta-vermelho">
+                <span class="gu-alerta-icone" aria-hidden="true">!</span>
+                <div>
+                    <div class="gu-alerta-titulo">O que acontece ao bloquear esta conta?</div>
+                    <ul class="gu-alerta-lista">
+                        <li>• O usuário será desconectado imediatamente.</li>
+                        <li>• Não poderá acessar a plataforma.</li>
+                        <li>• Todos os recursos ficarão indisponíveis para ele.</li>
+                        <li>• Os dados e histórico serão mantidos no sistema.</li>
+                    </ul>
+                </div>
             </div>
-            <label style="display:block;font-size:0.82rem;font-weight:600;margin-bottom:0.35rem;color:#0f172a;">Motivo do bloqueio *</label>
-            <select id="fb-motivo" style="width:100%;padding:0.55rem 0.65rem;margin-bottom:0.85rem;border:1px solid #cbd5e1;border-radius:8px;font-size:0.85rem;background:#fff;">
+
+            <label for="fb-motivo" style="display:block;font-size:0.82rem;font-weight:700;margin-bottom:0.35rem;color:#0f172a;">Motivo do bloqueio <span style="color:#dc2626;">*</span></label>
+            <select id="fb-motivo" style="width:100%;padding:0.6rem 0.7rem;margin-bottom:0.9rem;border:1px solid #cbd5e1;border-radius:8px;font-size:0.85rem;background:#fff;color:#334155;">
+                <option value="" selected disabled>Selecione um motivo</option>
                 ${MOTIVOS_BLOQUEIO.map((m) => `<option value="${escaparHtml(m)}">${escaparHtml(m)}</option>`).join('')}
             </select>
-            <label style="display:block;font-size:0.82rem;font-weight:600;margin-bottom:0.35rem;color:#0f172a;">Observações (opcional)</label>
-            <textarea id="fb-obs" rows="3" placeholder="Usuário realizou cadastro com informações inconsistentes." style="width:100%;box-sizing:border-box;padding:0.55rem 0.65rem;margin-bottom:1.15rem;border:1px solid #cbd5e1;border-radius:8px;font-size:0.85rem;font-family:inherit;"></textarea>
-            <div style="display:flex;justify-content:flex-end;gap:0.6rem;">
-                <button type="button" id="fb-cancelar" style="padding:0.55rem 1.05rem;border-radius:8px;border:1px solid #cbd5e1;background:#fff;color:#334155;font-weight:600;font-size:0.85rem;cursor:pointer;">Cancelar</button>
-                <button type="button" id="fb-confirmar" style="padding:0.55rem 1.1rem;border-radius:8px;border:none;background:#dc2626;color:#fff;font-weight:600;font-size:0.85rem;cursor:pointer;">Bloquear usuário</button>
+
+            <label for="fb-obs" style="display:block;font-size:0.82rem;font-weight:700;margin-bottom:0.35rem;color:#0f172a;">Observações <span style="font-weight:400;color:#64748b;">(opcional)</span></label>
+            <textarea id="fb-obs" rows="3" placeholder="Digite uma observação..." style="width:100%;box-sizing:border-box;padding:0.6rem 0.7rem;margin-bottom:1.2rem;border:1px solid #cbd5e1;border-radius:8px;font-size:0.85rem;font-family:inherit;color:#0f172a;"></textarea>
+
+            <div style="display:flex;justify-content:flex-end;gap:0.65rem;">
+                <button type="button" id="fb-cancelar" style="padding:0.58rem 1.15rem;border-radius:8px;border:1px solid #cbd5e1;background:#fff;color:#334155;font-weight:600;font-size:0.85rem;cursor:pointer;">Cancelar</button>
+                <button type="button" id="fb-confirmar" style="padding:0.58rem 1.15rem;border-radius:8px;border:none;background:#dc2626;color:#fff;font-weight:600;font-size:0.85rem;cursor:pointer;">🔒 Bloquear usuário</button>
             </div>
         `;
         fechar = montarModal(wrap, aoCancelar);
@@ -359,8 +374,12 @@ export function renderGerenciarUsuarios() {
         wrap.querySelector('#fb-confirmar').addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            const statusAnterior = usuario.status;
             const motivo = wrap.querySelector('#fb-motivo').value;
+            if (!motivo) {
+                alert('Selecione um motivo do bloqueio para prosseguir.');
+                return;
+            }
+            const statusAnterior = usuario.status;
             const observacoes = wrap.querySelector('#fb-obs').value.trim() || 'Usuário realizou cadastro com informações inconsistentes.';
             const dataBloqueio = formatarDataHora(new Date().toISOString());
 
@@ -379,7 +398,6 @@ export function renderGerenciarUsuarios() {
             });
         });
     }
-
     function abrirModalBloqueioSucesso(usuario, dadosBloqueio = {}) {
         let fechar = () => {};
         const aoFechar = () => fechar();
@@ -448,29 +466,40 @@ export function renderGerenciarUsuarios() {
         });
     }
 
-    function abrirModalExclusao(usuario) {
+   function abrirModalExclusao(usuario) {
         let fechar = () => {};
         const aoCancelar = () => fechar();
         const wrap = document.createElement('div');
         wrap.innerHTML = `
-            <div style="display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:1rem;">
-                <div style="width:56px;height:56px;border-radius:50%;background:#fee2e2;display:flex;align-items:center;justify-content:center;margin-bottom:0.75rem;color:#dc2626;font-size:1.5rem;">🗑️</div>
-                <h3 style="margin:0 0 0.35rem;color:#b91c1c;font-size:1.25rem;">Excluir usuário</h3>
-                <p style="margin:0;font-size:0.85rem;color:#64748b;">Tem certeza que deseja excluir <strong>${escaparHtml(usuario.nome)}</strong>? Esta ação é permanente e não poderá ser desfeita.</p>
+            <h3 style="margin:0 0 0.35rem;color:#0f172a;font-size:1.35rem;font-weight:700;">Excluir usuário</h3>
+            <p style="margin:0 0 0.25rem;font-size:0.88rem;font-weight:600;color:#334155;">Tem certeza que deseja excluir este usuário?</p>
+            <p style="margin:0 0 1.1rem;font-size:0.84rem;line-height:1.45;color:#64748b;">Esta ação é permanente e não poderá ser desfeita. A conta será removida da plataforma conforme as regras de retenção de dados do sistema.</p>
+
+            <div class="gu-alerta-vermelho">
+                <span class="gu-alerta-icone" aria-hidden="true">!</span>
+                <div>
+                    <div class="gu-alerta-titulo">Atenção: esta ação é permanente</div>
+                    <p class="gu-alerta-texto">A exclusão poderá remover ou desvincular os dados relacionados à conta, incluindo acesso à plataforma, informações do perfil e histórico associado ao usuário.</p>
+                </div>
             </div>
-            <label style="display:block;font-size:0.82rem;font-weight:600;margin-bottom:0.35rem;color:#0f172a;">Motivo da exclusão *</label>
-            <select id="fe-motivo" style="width:100%;padding:0.55rem 0.65rem;margin-bottom:0.85rem;border:1px solid #cbd5e1;border-radius:8px;font-size:0.85rem;background:#fff;">
+
+            <label for="fe-motivo" style="display:block;font-size:0.82rem;font-weight:700;margin-bottom:0.35rem;color:#0f172a;">Motivo da exclusão <span style="color:#dc2626;">*</span></label>
+            <select id="fe-motivo" style="width:100%;padding:0.6rem 0.7rem;margin-bottom:0.9rem;border:1px solid #cbd5e1;border-radius:8px;font-size:0.85rem;background:#fff;color:#334155;">
+                <option value="" selected disabled>Selecione um motivo</option>
                 ${MOTIVOS_EXCLUSAO.map((m) => `<option value="${escaparHtml(m)}">${escaparHtml(m)}</option>`).join('')}
             </select>
-            <label style="display:block;font-size:0.82rem;font-weight:600;margin-bottom:0.35rem;color:#0f172a;">Confirmação *</label>
-            <input type="text" id="fe-texto" placeholder="Digite EXCLUIR para confirmar" style="width:100%;box-sizing:border-box;padding:0.55rem 0.65rem;margin-bottom:0.75rem;border:1px solid #cbd5e1;border-radius:8px;font-size:0.85rem;" />
-            <label style="display:flex;align-items:flex-start;gap:0.45rem;font-size:0.8rem;color:#334155;margin-bottom:1.15rem;cursor:pointer;">
+
+            <label for="fe-texto" style="display:block;font-size:0.82rem;font-weight:700;margin-bottom:0.35rem;color:#0f172a;">Confirmação <span style="color:#dc2626;">*</span></label>
+            <input type="text" id="fe-texto" placeholder="Digite EXCLUIR para confirmar" style="width:100%;box-sizing:border-box;padding:0.6rem 0.7rem;margin-bottom:0.85rem;border:1px solid #cbd5e1;border-radius:8px;font-size:0.85rem;color:#0f172a;" />
+
+            <label style="display:flex;align-items:flex-start;gap:0.5rem;font-size:0.82rem;color:#334155;margin-bottom:1.25rem;cursor:pointer;">
                 <input type="checkbox" id="fe-check" style="margin-top:0.15rem;" />
                 <span>Estou ciente de que a exclusão da conta é uma ação permanente e desejo prosseguir.</span>
             </label>
-            <div style="display:flex;justify-content:flex-end;gap:0.6rem;">
-                <button type="button" id="fe-cancelar" style="padding:0.55rem 1.05rem;border-radius:8px;border:1px solid #cbd5e1;background:#fff;color:#334155;font-weight:600;font-size:0.85rem;cursor:pointer;">Cancelar</button>
-                <button type="button" id="fe-confirmar" style="padding:0.55rem 1.1rem;border-radius:8px;border:none;background:#dc2626;color:#fff;font-weight:600;font-size:0.85rem;cursor:pointer;">Excluir usuário</button>
+
+            <div style="display:flex;justify-content:flex-end;gap:0.65rem;">
+                <button type="button" id="fe-cancelar" style="padding:0.58rem 1.15rem;border-radius:8px;border:1px solid #cbd5e1;background:#fff;color:#334155;font-weight:600;font-size:0.85rem;cursor:pointer;">Cancelar</button>
+                <button type="button" id="fe-confirmar" style="padding:0.58rem 1.15rem;border-radius:8px;border:none;background:#dc2626;color:#fff;font-weight:600;font-size:0.85rem;cursor:pointer;">🗑️ Excluir usuário</button>
             </div>
         `;
         fechar = montarModal(wrap, aoCancelar);
@@ -478,13 +507,13 @@ export function renderGerenciarUsuarios() {
         wrap.querySelector('#fe-confirmar').addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
+            const motivo = wrap.querySelector('#fe-motivo').value;
             const digitado = wrap.querySelector('#fe-texto').value.trim();
             const marcado = wrap.querySelector('#fe-check').checked;
-            if (digitado !== 'EXCLUIR' || !marcado) {
-                alert('Digite EXCLUIR e marque a caixa de confirmação para prosseguir.');
+            if (!motivo || digitado !== 'EXCLUIR' || !marcado) {
+                alert('Selecione um motivo, digite EXCLUIR e marque a caixa de confirmação para prosseguir.');
                 return;
             }
-            const motivo = wrap.querySelector('#fe-motivo').value;
             const dataExclusao = formatarDataHora(new Date().toISOString());
 
             const removido = { ...usuario };
@@ -500,7 +529,6 @@ export function renderGerenciarUsuarios() {
             });
         });
     }
-
     function abrirModalExclusaoSucesso(usuario, dadosExclusao = {}) {
         let fechar = () => {};
         const aoFechar = () => fechar();
