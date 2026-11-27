@@ -1,0 +1,279 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fc;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+.cadastro-container {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f7fc;
+}
+
+.cadastro-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Banner lateral esquerdo proporcional */
+.cadastro-layout .painel-esquerdo {
+    width: 36%;
+    min-height: 100vh;
+    background-color: #0755c5;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.cadastro-layout .painel-esquerdo img {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: left center;
+}
+
+/* Painel direito com topo e card */
+.cadastro-layout .painel-direito {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 44px 32px;
+    background-color: #f5f7fc;
+}
+
+.topo-cadastro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto 16px;
+    font-size: 13px;
+}
+
+.topo-cadastro .btn-voltar {
+    color: #6b7280;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.topo-cadastro .link-cadastro-texto {
+    margin: 0;
+    color: #4b5563;
+}
+
+.topo-cadastro .linkNav {
+    color: #203fbd;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* Card branco */
+.cadastro-card {
+    width: 100%;
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    background-color: #ffffff;
+    border: 1px solid #eef0f6;
+    border-radius: 16px;
+    box-shadow: 0 2px 14px rgba(15, 23, 42, 0.03);
+}
+
+.cadastro-card .titulo-cadastro {
+    margin: 0 0 6px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #111827;
+    text-align: center;
+}
+
+.cadastro-card .descricao-cadastro {
+    margin: 0 auto 20px;
+    max-width: 500px;
+    font-size: 13.5px;
+    color: #6b7280;
+    text-align: center;
+    line-height: 1.5;
+}
+
+.cadastro-card .stepper-container {
+    margin-bottom: 22px;
+}
+
+/* Subtítulo "Dados da empresa" */
+.secao-subtitulo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-bottom: 14px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.secao-icone {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: #eef2ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.secao-subtitulo h3 {
+    margin: 0 0 2px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.secao-subtitulo p {
+    margin: 0;
+    font-size: 12.5px;
+    color: #6b7280;
+}
+
+/* Grade de 2 colunas com inputs largos */
+.cadastro-form.grade-dois-campos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 20px;
+    width: 100%;
+}
+
+.cadastro-form.grade-dois-campos .grupo-campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.cadastro-form.grade-dois-campos label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #4b5563;
+}
+
+.cadastro-form.grade-dois-campos .campo-texto {
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #111827;
+    font-size: 14px;
+    outline: none;
+}
+
+.cadastro-form.grade-dois-campos .campo-texto:focus {
+    border-color: #203fbd;
+}
+
+.cadastro-form.grade-dois-campos .divSenha {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.cadastro-form.grade-dois-campos .divSenha input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.cadastro-form.grade-dois-campos .btnVisibilidade {
+    position: absolute;
+    right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border: none;
+    background: transparent;
+    color: #9ca3af;
+    cursor: pointer;
+}
+
+.cadastro-form.grade-dois-campos .btnVisibilidade svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Termos e botões */
+.termos-cadastro {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #6b7280;
+    cursor: pointer;
+}
+
+.termos-cadastro a {
+    color: #203fbd;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.cadastro-form.grade-dois-campos .botao-enviar {
+    grid-column: 2;
+    justify-self: end;
+    width: auto;
+    min-width: 165px;
+    height: 40px;
+    margin-top: 8px;
+    padding: 0 24px;
+    border: none;
+    border-radius: 7px;
+    background-color: #203fbd;
+    color: #ffffff;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cadastro-form.grade-dois-campos .botao-secundario {
+    grid-column: 1;
+    justify-self: start;
+    width: auto;
+    min-width: 140px;
+    height: 40px;
+    margin-top: 8px;
+    padding: 0 20px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    background-color: #ffffff;
+    color: #374151;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+@media (max-width: 960px) {
+    .cadastro-layout .painel-esquerdo {
+        display: none;
+    }
+
+    .cadastro-form.grade-dois-campos {
+        grid-template-columns: 1fr;
+    }
+
+    .cadastro-form.grade-dois-campos .botao-enviar,
+    .cadastro-form.grade-dois-campos .botao-secundario {
+        grid-column: 1;
+        justify-self: stretch;
+    }
+}

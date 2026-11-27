@@ -1,4 +1,4 @@
-import criarStepper from "../components/stepper.js";
+import { criarStepper } from "../components/stepper.js";
 import createForm from "../components/form.js";
 
 function renderCadastroEmpresaPage() {
@@ -20,6 +20,9 @@ function renderCadastroEmpresaPage() {
     const painelDireito = document.createElement("div");
     painelDireito.className = "painel-direito";
 
+    const topo = document.createElement("div");
+    topo.className = "topo-cadastro";
+
     const btnVoltar = document.createElement("a");
     btnVoltar.href = "#login";
     btnVoltar.className = "btn-voltar";
@@ -29,14 +32,50 @@ function renderCadastroEmpresaPage() {
         window.location.hash = "#login";
     });
 
+    const linkLogin = document.createElement("p");
+    linkLogin.className = "link-cadastro-texto";
+    linkLogin.innerHTML = 'Já tem uma conta? <a href="#login" class="linkNav">Entrar</a>';
+    linkLogin.querySelector("a").addEventListener("click", (event) => {
+        event.preventDefault();
+        window.location.hash = "#login";
+    });
+
+    topo.append(btnVoltar, linkLogin);
+
+    const card = document.createElement("div");
+    card.className = "cadastro-card";
+
     const titulo = document.createElement("h2");
     titulo.className = "titulo-cadastro";
-    titulo.textContent = "Crie sua conta empresarial";
+    titulo.textContent = "Cadastro de empresa";
 
-    const stepper = criarStepper({
-        etapas: ["Dados pessoais", "Informações complementares"],
-        etapaAtual: 0
+    const descricao = document.createElement("p");
+    descricao.className = "descricao-cadastro";
+    descricao.textContent = "Preencha as informações abaixo para criar sua conta e começar a contratar os melhores talentos.";
+
+    const etapasEmpresa = [
+        { id: 1, titulo: "Dados pessoais" },
+        { id: 2, titulo: "Informações complementares" }
+    ];
+
+    let stepper = criarStepper({
+        etapas: etapasEmpresa,
+        etapaAtual: 1
     });
+
+    const secaoSubtitulo = document.createElement("div");
+    secaoSubtitulo.className = "secao-subtitulo";
+    secaoSubtitulo.innerHTML = `
+        <div class="secao-icone">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#203fbd" stroke-width="1.8">
+                <path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/>
+            </svg>
+        </div>
+        <div>
+            <h3>Dados da empresa</h3>
+            <p>Informe os dados principais da sua empresa.</p>
+        </div>
+    `;
 
     const dadosEmpresa = {
         nomeEmpresa: "",
@@ -56,12 +95,12 @@ function renderCadastroEmpresaPage() {
 
     const formEtapa1Container = createForm({
         campos: [
-            { nome: "nomeEmpresa", label: "Nome da empresa", tipo: "text", placeholder: "" },
-            { nome: "email", label: "E-mail corporativo", tipo: "email", placeholder: "" },
-            { nome: "cnpj", label: "CNPJ", tipo: "text", placeholder: "" },
-            { nome: "telefone", label: "Telefone", tipo: "tel", placeholder: "" },
-            { nome: "senha", label: "Senha", tipo: "password", placeholder: "" },
-            { nome: "confirmarSenha", label: "Confirmar senha", tipo: "password", placeholder: "" }
+            { nome: "nomeEmpresa", label: "Nome da empresa *", tipo: "text", placeholder: "" },
+            { nome: "email", label: "E-mail corporativo *", tipo: "email", placeholder: "" },
+            { nome: "cnpj", label: "CNPJ *", tipo: "text", placeholder: "" },
+            { nome: "telefone", label: "Telefone *", tipo: "tel", placeholder: "" },
+            { nome: "senha", label: "Senha *", tipo: "password", placeholder: "" },
+            { nome: "confirmarSenha", label: "Confirmar senha *", tipo: "password", placeholder: "" }
         ],
         botoes: [
             {
@@ -77,11 +116,11 @@ function renderCadastroEmpresaPage() {
 
     const formEtapa2Container = createForm({
         campos: [
-            { nome: "nomeFantasia", label: "Nome fantasia", tipo: "text", placeholder: "" },
-            { nome: "porte", label: "Porte da empresa", tipo: "text", placeholder: "" },
-            { nome: "tipo", label: "Tipo de empresa", tipo: "text", placeholder: "" },
-            { nome: "endereco", label: "Endereço", tipo: "text", placeholder: "" },
-            { nome: "cep", label: "CEP", tipo: "text", placeholder: "" },
+            { nome: "nomeFantasia", label: "Nome fantasia *", tipo: "text", placeholder: "" },
+            { nome: "porte", label: "Porte empresa *", tipo: "text", placeholder: "" },
+            { nome: "tipo", label: "Tipo empresa *", tipo: "text", placeholder: "" },
+            { nome: "endereco", label: "Endereço *", tipo: "text", placeholder: "" },
+            { nome: "cep", label: "CEP *", tipo: "text", placeholder: "" },
             { nome: "estado", label: "Estado", tipo: "text", placeholder: "" },
             { nome: "cidade", label: "Cidade", tipo: "text", placeholder: "" }
         ],
@@ -103,13 +142,30 @@ function renderCadastroEmpresaPage() {
     formEtapa2.className = "cadastro-form grade-dois-campos";
     formEtapa2Container.style.display = "none";
 
-    // Preenche inputs se já houver valor salvo no estado
+    const termosLabel = document.createElement("label");
+    termosLabel.className = "termos-cadastro";
+    termosLabel.innerHTML = `
+        <input type="checkbox" required>
+        <span>Li e concordo com os <a href="#">Termos de uso</a> e a <a href="#">Política de privacidade</a> do Conecta Talent</span>
+    `;
+    const primeiroBotaoEtapa2 = formEtapa2.querySelector("button");
+    formEtapa2.insertBefore(termosLabel, primeiroBotaoEtapa2);
+
     Object.keys(dadosEmpresa).forEach((campo) => {
         const input = formEtapa1.querySelector(`[name="${campo}"]`) || formEtapa2.querySelector(`[name="${campo}"]`);
         if (input && dadosEmpresa[campo]) {
             input.value = dadosEmpresa[campo];
         }
     });
+
+    function atualizarStepper(novaEtapa) {
+        const novoStepper = criarStepper({
+            etapas: etapasEmpresa,
+            etapaAtual: novaEtapa
+        });
+        stepper.replaceWith(novoStepper);
+        stepper = novoStepper;
+    }
 
     formEtapa1.addEventListener("submit", (event) => {
         event.preventDefault();
@@ -140,7 +196,7 @@ function renderCadastroEmpresaPage() {
 
         formEtapa1Container.style.display = "none";
         formEtapa2Container.style.display = "block";
-        stepper.definirEtapa?.(1);
+        atualizarStepper(2);
     });
 
     const btnVoltarEtapa = formEtapa2.querySelector('button[type="button"]');
@@ -155,7 +211,7 @@ function renderCadastroEmpresaPage() {
 
         formEtapa2Container.style.display = "none";
         formEtapa1Container.style.display = "block";
-        stepper.definirEtapa?.(0);
+        atualizarStepper(1);
     });
 
     formEtapa2.addEventListener("submit", async (event) => {
@@ -223,23 +279,16 @@ function renderCadastroEmpresaPage() {
         }
     });
 
-    const linkLogin = document.createElement("p");
-    linkLogin.className = "link-cadastro-texto";
-    linkLogin.innerHTML = 'Já possui uma conta? <a href="#login" class="linkNav">Entrar</a>';
-    linkLogin.querySelector("a").addEventListener("click", (event) => {
-        event.preventDefault();
-        window.location.hash = "#login";
-    });
-
-    painelDireito.append(
-        btnVoltar,
+    card.append(
         titulo,
-        stepper.elemento || stepper,
+        descricao,
+        stepper,
+        secaoSubtitulo,
         formEtapa1Container,
-        formEtapa2Container,
-        linkLogin
+        formEtapa2Container
     );
 
+    painelDireito.append(topo, card);
     layout.append(painelEsquerdo, painelDireito);
     container.appendChild(layout);
 

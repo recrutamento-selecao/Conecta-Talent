@@ -2,75 +2,53 @@
     box-sizing: border-box;
 }
 
-#login-container:has(.cadastro-container) {
-    display: block;
-    width: 100%;
-    max-width: none;
-    min-height: 100vh;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    background: transparent;
-    border: none;
-    border-radius: 0;
-    box-shadow: none;
-    text-align: left;
-    grid-template-columns: none;
-    grid-template-rows: none;
-    grid-template-areas: none;
-}
-
-#login-container:has(.cadastro-container)::before {
-    display: none;
-    content: none;
-}
-
 .cadastro-container {
     display: flex;
     width: 100%;
     min-height: 100vh;
-    background-color: #f4f6fb;
+    background-color: #f5f7fc;
     font-family: 'Inter', Arial, sans-serif;
 }
 
 .cadastro-banner {
-    width: 36%;
+    width: 38%;
     min-height: 100vh;
-    background-color: #0b57d0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: #0755c5;
     overflow: hidden;
     flex-shrink: 0;
 }
 
 .cadastro-banner img {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
     display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    object-fit: cover;
+    object-position: center;
 }
 
 .cadastro-painel {
     flex: 1;
-    min-height: 100vh;
-    padding: 24px 40px 36px;
     display: flex;
     flex-direction: column;
-    background-color: #f4f6fb;
+    padding: 28px 6%;
+    overflow-y: auto;
 }
 
 .cadastro-navegacao {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 18px;
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto 20px;
     font-size: 13px;
 }
 
 .cadastro-navegacao a {
     color: #6b7280;
     text-decoration: none;
+    font-weight: 500;
 }
 
 .cadastro-navegacao a:hover {
@@ -78,62 +56,60 @@
 }
 
 .cadastro-entrar {
-    color: #374151;
+    color: #4b5563;
 }
 
 .cadastro-entrar .linkNav {
-    color: #1d4ed8;
+    color: #203fbd;
     font-weight: 600;
-    text-decoration: none;
-}
-
-.cadastro-entrar .linkNav:hover {
-    text-decoration: underline;
 }
 
 .cadastro-card {
+    width: 100%;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 36px 44px;
     background-color: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 16px;
-    padding: 32px 40px;
-    box-shadow: 0 2px 14px rgba(15, 23, 42, 0.04);
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
 }
 
 .cadastro-card h1 {
-    margin: 0 0 6px;
-    font-size: 32px;
+    margin: 0 0 8px;
+    font-size: 26px;
     font-weight: 700;
     color: #111827;
+    text-align: center;
 }
 
 .cadastro-descricao {
-    margin: 0 0 22px;
+    margin: 0 auto 24px;
+    max-width: 520px;
     font-size: 14px;
     color: #6b7280;
-    line-height: 1.45;
+    text-align: center;
+    line-height: 1.5;
 }
 
 .cadastro-stepper-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 6px 0 24px;
+    margin-bottom: 28px;
 }
 
 .secao-subtitulo-box {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
+    gap: 14px;
+    padding-bottom: 18px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid #f1f5f9;
 }
 
 .secao-icone-circulo {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     background-color: #eef2ff;
-    color: #1d4ed8;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -142,137 +118,109 @@
 
 .secao-subtitulo-box h2 {
     margin: 0 0 2px;
-    font-size: 17px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 600;
     color: #111827;
 }
 
 .secao-subtitulo-box p {
     margin: 0;
-    font-size: 12.5px;
+    font-size: 13px;
     color: #6b7280;
 }
 
 .cadastro-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 20px;
 }
 
 .campo-bloco {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    width: 100%;
 }
 
 .campo-bloco.linha-inteira {
-    grid-column: span 2;
+    grid-column: 1 / -1;
 }
 
 .campo-bloco label {
     font-size: 13px;
     font-weight: 500;
-    color: #6b7280;
+    color: #374151;
 }
 
-.campo-bloco label .asterisco {
+.campo-bloco .asterisco {
     color: #ef4444;
-    margin-left: 2px;
 }
 
 .input-com-icone {
+    position: relative;
     display: flex;
     align-items: center;
-    height: 42px;
-    border: 1px solid #e2e8f0;
-    border-radius: 6px;
-    background-color: #ffffff;
-    overflow: hidden;
-    transition: border-color 0.2s ease;
+    width: 100%;
 }
 
-.input-com-icone:focus-within {
-    border-color: #1d4ed8;
-}
-
-.icone-prefixo {
-    width: 40px;
-    height: 100%;
+.input-com-icone .icone-prefixo {
+    position: absolute;
+    left: 12px;
     display: flex;
     align-items: center;
-    justify-content: center;
-    border-right: 1px solid #f1f5f9;
-    color: #9ca3af;
-    flex-shrink: 0;
+    pointer-events: none;
 }
 
 .input-com-icone input,
 .input-com-icone select {
-    flex: 1;
     width: 100%;
-    min-width: 0;
-    height: 100%;
-    border: none;
+    height: 42px;
+    padding: 0 38px 0 36px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #111827;
+    background-color: #ffffff;
     outline: none;
-    padding: 0 12px;
-    font-size: 13.5px;
-    color: #1f2937;
-    background: transparent;
+    transition: border-color 0.2s ease;
 }
 
-.input-com-icone input::placeholder {
-    color: #9ca3af;
+.input-com-icone input:focus,
+.input-com-icone select:focus {
+    border-color: #203fbd;
 }
 
 .btn-olho-senha {
-    border: none;
-    background: transparent;
-    padding: 0 12px;
-    height: 100%;
-    color: #9ca3af;
-    cursor: pointer;
+    position: absolute;
+    right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.btn-olho-senha:hover {
-    color: #374151;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px;
 }
 
 .cadastro-termos {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 13px;
     color: #4b5563;
-}
-
-.cadastro-termos input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
     cursor: pointer;
-    accent-color: #1d4ed8;
 }
 
 .cadastro-termos a {
-    color: #1d4ed8;
-    font-weight: 600;
+    color: #203fbd;
     text-decoration: none;
-}
-
-.cadastro-termos a:hover {
-    text-decoration: underline;
+    font-weight: 500;
 }
 
 .cadastro-rodape-botoes {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    gap: 12px;
-    margin-top: 20px;
+    margin-top: 26px;
 }
 
 .cadastro-rodape-botoes.entre-extremos {
@@ -280,28 +228,28 @@
 }
 
 .btn-primario-cadastro {
-    padding: 11px 26px;
+    padding: 11px 28px;
     border: none;
     border-radius: 8px;
-    background-color: #1b3fb8;
+    background-color: #203fbd;
     color: #ffffff;
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
 
 .btn-primario-cadastro:hover {
-    background-color: #132e8a;
+    background-color: #173399;
 }
 
 .btn-secundario-cadastro {
-    padding: 11px 22px;
+    padding: 11px 24px;
     border: 1px solid #d1d5db;
     border-radius: 8px;
     background-color: #ffffff;
     color: #374151;
-    font-size: 13.5px;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
 }
@@ -310,25 +258,16 @@
     background-color: #f9fafb;
 }
 
-@media (max-width: 960px) {
+@media (max-width: 900px) {
     .cadastro-banner {
         display: none;
-    }
-
-    .cadastro-painel {
-        width: 100%;
-        padding: 20px;
-    }
-
-    .cadastro-card {
-        padding: 24px 20px;
     }
 
     .cadastro-grid {
         grid-template-columns: 1fr;
     }
 
-    .campo-bloco.linha-inteira {
-        grid-column: span 1;
+    .cadastro-card {
+        padding: 24px 20px;
     }
 }

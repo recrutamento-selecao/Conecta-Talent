@@ -205,14 +205,19 @@ function renderLoginPage() {
             const dados = await response.json();
 
             if (response.ok) {
-                const token = dados.token || dados.session?.access_token;
+                const token =
+                    dados.token ||
+                    dados.access_token ||
+                    dados.session?.access_token ||
+                    dados.data?.session?.access_token;
+
                 if (token) {
                     localStorage.setItem("token", token);
                 }
 
                 localStorage.setItem(
                     "usuarioLogado",
-                    JSON.stringify(dados.user || dados.usuario || { email, perfil: perfilSelecionado })
+                    JSON.stringify(dados.user || dados.usuario || dados.data?.user || { email, perfil: perfilSelecionado })
                 );
 
                 alert("Login realizado com sucesso!");
