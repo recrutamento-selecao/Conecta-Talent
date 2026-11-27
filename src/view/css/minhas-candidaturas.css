@@ -53,9 +53,9 @@ body:has(.sidebar.fechada) .pagina-minhas-candidaturas-wrapper .conteudo-princip
 }
 
 .pagina-minhas-candidaturas-wrapper .container-conteudo-pagina {
-    width: 100%;
-    max-width: 1220px;
-    margin: 0 auto;
+    width: auto;
+    max-width: none;
+    margin: 0 0 0 2rem;
 }
 
 /* Abas */
@@ -353,7 +353,8 @@ body:has(.sidebar.fechada) .pagina-minhas-candidaturas-wrapper .conteudo-princip
         margin-left: 0 !important;
         padding: 1.5rem;
     }
-    .pagina-minhas-candidaturas-wrapper .cabecalho-pagina-padrao {
+    .pagina-minhas-candidaturas-wrapper .cabecalho-pagina-padrao,
+    .pagina-minhas-candidaturas-wrapper .container-conteudo-pagina {
         margin-left: 0;
     }
 }
